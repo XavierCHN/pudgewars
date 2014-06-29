@@ -1,0 +1,13 @@
+"AddonInfo"
+{
+	"addonSteamAppID"		"816"
+	"addontitle"			"PudgeWars"
+	"addonversion"			"0.1"
+	"addontagline"			"PudgeWars"
+	"addonauthor"			"XavierCHN&Yatkill&youqianrenhuiganmao"
+	"addonSteamGroupName"	""
+	"addonauthorSteamID"	""
+	"addonContent_Campaign"	"0"
+	"addonURL0"				"https://github.com/XavierCHN/PudgeWars"
+	"addonDescription"		"DOTA2 X PudgeWars"
+}

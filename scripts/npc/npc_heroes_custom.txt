@@ -1,0 +1,46 @@
+"DOTAHeroes"
+{
+	"npc_dota2x_pudgewars_pudge"
+	{
+		"AbilityLayout" 		"6"
+		"override_hero"			"npc_dota_hero_pudge"
+		"Ability1"				"dota2x_pudgewars_hook" 
+		"Ability2"				"dota2x_pudgewars_upgrage_hook_damage" 
+		"Ability3"				"dota2x_pudgewars_upgrade_hook_radius" 
+		"Ability4"				"dota2x_pudgewars_upgrade_hook_length"
+		"Ability5"				"dota2x_pudgewars_upgrade_hook_speed"
+		"Ability6"				"dota2x_pudgewars_toggle_hook"
+		"ArmorPhysical"				"0"									// Physical protection.
+		"MagicalResistance"			"0"									// Magical protection (percentage).
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MEELEE_ATTACK"
+		"AttackDamageMin"			"60"										// Damage range min.
+		"AttackDamageMax"			"95"										// Damage range max.
+
+		//"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"		"0"										// Base strength
+		"AttributeStrengthGain"		"0"										// Strength bonus per level.
+		"AttributeBaseIntelligence"	"0"										// Base intelligence
+		"AttributeIntelligenceGain"	"0"										// Intelligence bonus per level.
+		"AttributeBaseAgility"		"0"										// Base agility
+		"AttributeAgilityGain"		"0"										// Agility bonus per level.
+
+		"BountyXP"					"0"									// Experience earn.
+		"BountyGoldMin"				"0"										// Gold earned min.
+		"BountyGoldMax"				"0"										// Gold earned max.
+
+		//"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		//"RingRadius"				"70"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"280"									// Speed.
+		"MovementTurnRate"			"1.0"									// Turning rate.
+
+		"StatusHealth"				"888"									// Base health.
+		"StatusHealthRegen"			"0.0"									// Health regeneration rate.
+		"StatusMana"				"387"										// Base mana.
+		"StatusManaRegen"			"2"									// Mana regeneration rate.
+
+		"VisionNighttimeRange"		"1800"									// Range of vision at night time.
+	}
+}
