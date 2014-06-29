@@ -220,7 +220,7 @@
     "MaxUpgradeLevel"        "1"
     "ItemBaseLevel"          "1"
   }
-<<<<<<< HEAD
+
   // START OF NAIX JAW
   "item_recipe_dota2x_pudgewars_item_naix_jaw2"
     {
@@ -372,9 +372,245 @@
     }
   }
   "item_dota2x_pudgewars_item_naix_jaw2"
-=======
+  {
+    "ID"                    "1905"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
+    "BaseClass"                     "item_datadriven"
+    "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
+    "AbilityTextureName"        "dota2x_pudgewars_item_naix_jaw1"
+
+    // Stats
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastRange"        "5000"
+    "AbilityCastPoint"        "0"
+    "AbilityCooldown"        "0"
+
+    // Item Info
+    //-------------------------------------------------------------------------------------------------------------
+    "ItemCost"            "750"
+    "ItemInitialCharges"      "0"
+    
+    "ItemKillable"                  "0"
+    "ItemDroppable"          "1"
+    "ItemSellable"          "1"
+    "ItemRequiresCharges"      "0"
+    "ItemShopTags"                  "consumable"
+    "ItemQuality"                   "consumable"
+    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+    "SideShop"                      "1"
+    
+    "MaxUpgradeLevel"        "5"
+    "ItemBaseLevel"          "2"
+
+    "Modifiers"
+    {
+        "modifier_item_naix_life_steal"
+        {
+            "IsHidden"  "0"
+            "Passive" "1"
+            "TextureName"   "dota2x_pudgewars_modifier_naix_jaw1"
+            "OnDealDamage"
+            {
+                "Lifesteal"
+                {
+                    "Target"            "ATTACKER"
+                    "LifestealPercent"  "%heal_multiplier"
+                }
+            }
+        }
+    }
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"          "FIELD_FLOAT"
+            "heal_multiplier"   "10.0 15.0 20.0 25.0 30.0"
+        }
+    }
+  }"item_dota2x_pudgewars_item_naix_jaw3"
+  {
+    "ID"                    "1906"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
+    "BaseClass"                     "item_datadriven"
+    "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
+    "AbilityTextureName"        "dota2x_pudgewars_item_naix_jaw1"
+
+    // Stats
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastRange"        "5000"
+    "AbilityCastPoint"        "0"
+    "AbilityCooldown"        "0"
+
+    // Item Info
+    //-------------------------------------------------------------------------------------------------------------
+    "ItemCost"            "750"
+    "ItemInitialCharges"      "0"
+    
+    "ItemKillable"                  "0"
+    "ItemDroppable"          "1"
+    "ItemSellable"          "1"
+    "ItemRequiresCharges"      "0"
+    "ItemShopTags"                  "consumable"
+    "ItemQuality"                   "consumable"
+    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+    "SideShop"                      "1"
+    
+    "MaxUpgradeLevel"        "5"
+    "ItemBaseLevel"          "3"
+
+    "Modifiers"
+    {
+        "modifier_item_naix_life_steal"
+        {
+            "IsHidden"  "0"
+            "Passive" "1"
+            "TextureName"   "dota2x_pudgewars_modifier_naix_jaw1"
+            "OnDealDamage"
+            {
+                "Lifesteal"
+                {
+                    "Target"            "ATTACKER"
+                    "LifestealPercent"  "%heal_multiplier"
+                }
+            }
+        }
+    }
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"          "FIELD_FLOAT"
+            "heal_multiplier"   "10.0 15.0 20.0 25.0 30.0"
+        }
+    }
+  }"item_dota2x_pudgewars_item_naix_jaw4"
+  {
+    "ID"                    "1907"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
+    "BaseClass"                     "item_datadriven"
+    "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
+    "AbilityTextureName"        "dota2x_pudgewars_item_naix_jaw1"
+
+    // Stats
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastRange"        "5000"
+    "AbilityCastPoint"        "0"
+    "AbilityCooldown"        "0"
+
+    // Item Info
+    //-------------------------------------------------------------------------------------------------------------
+    "ItemCost"            "750"
+    "ItemInitialCharges"      "0"
+    
+    "ItemKillable"                  "0"
+    "ItemDroppable"          "1"
+    "ItemSellable"          "1"
+    "ItemRequiresCharges"      "0"
+    "ItemShopTags"                  "consumable"
+    "ItemQuality"                   "consumable"
+    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+    "SideShop"                      "1"
+    
+    "MaxUpgradeLevel"        "5"
+    "ItemBaseLevel"          "4"
+
+    "Modifiers"
+    {
+        "modifier_item_naix_life_steal"
+        {
+            "IsHidden"  "0"
+            "Passive" "1"
+            "TextureName"   "dota2x_pudgewars_modifier_naix_jaw1"
+            "OnDealDamage"
+            {
+                "Lifesteal"
+                {
+                    "Target"            "ATTACKER"
+                    "LifestealPercent"  "%heal_multiplier"
+                }
+            }
+        }
+    }
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"          "FIELD_FLOAT"
+            "heal_multiplier"   "10.0 15.0 20.0 25.0 30.0"
+        }
+    }
+  }
+"item_dota2x_pudgewars_item_naix_jaw5"
+  {
+    "ID"                    "1908"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
+    "BaseClass"                     "item_datadriven"
+    "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
+    "AbilityTextureName"        "dota2x_pudgewars_item_naix_jaw1"
+
+    // Stats
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastRange"        "5000"
+    "AbilityCastPoint"        "0"
+    "AbilityCooldown"        "0"
+
+    // Item Info
+    //-------------------------------------------------------------------------------------------------------------
+    "ItemCost"            "750"
+    "ItemInitialCharges"      "0"
+    
+    "ItemKillable"                  "0"
+    "ItemDroppable"          "1"
+    "ItemSellable"          "1"
+    "ItemRequiresCharges"      "0"
+    "ItemShopTags"                  "consumable"
+    "ItemQuality"                   "consumable"
+    "ItemShareability"        "ITEM_NOT_SHAREABLE"
+    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+    "SideShop"                      "1"
+    
+    "MaxUpgradeLevel"        "5"
+    "ItemBaseLevel"          "5"
+
+    "Modifiers"
+    {
+        "modifier_item_naix_life_steal"
+        {
+            "IsHidden"  "0"
+            "Passive" "1"
+            "TextureName"   "dota2x_pudgewars_modifier_naix_jaw1"
+            "OnDealDamage"
+            {
+                "Lifesteal"
+                {
+                    "Target"            "ATTACKER"
+                    "LifestealPercent"  "%heal_multiplier"
+                }
+            }
+        }
+    }
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"          "FIELD_FLOAT"
+            "heal_multiplier"   "10.0 15.0 20.0 25.0 30.0"
+        }
+    }
+  }
   "item_dota2x_pudgewars_item_flask"
->>>>>>> origin/Xavier
+
   {
     "ID"              "1840"
     "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
@@ -401,7 +637,7 @@
     "ItemShareability"        "ITEM_NOT_SHAREABLE"
     "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
     
-<<<<<<< HEAD
+
     "MaxUpgradeLevel"        "5"
     "ItemBaseLevel"          "2"
     "Modifiers"
@@ -429,10 +665,10 @@
             "heal_multiplier"   "10.0 15.0 20.0 25.0 30.0"
         }
     }
-=======
+
     "MaxUpgradeLevel"        "1"
     "ItemBaseLevel"          "1"
->>>>>>> origin/Xavier
+
   }
   "item_dota2x_pudgewars_item_grappling_hook"
   {
@@ -461,7 +697,7 @@
     "ItemShareability"        "ITEM_NOT_SHAREABLE"
     "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
     
-<<<<<<< HEAD
+
     "MaxUpgradeLevel"        "5"
     "ItemBaseLevel"          "3"
     "Modifiers"
@@ -489,10 +725,10 @@
             "heal_multiplier"   "10.0 15.0 20.0 25.0 30.0"
         }
     }
-=======
+
     "MaxUpgradeLevel"        "1"
     "ItemBaseLevel"          "1"
->>>>>>> origin/Xavier
+
   }
   "item_dota2x_pudgewars_item_lycan_paw"
   {
@@ -521,7 +757,7 @@
     "ItemShareability"        "ITEM_NOT_SHAREABLE"
     "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
     
-<<<<<<< HEAD
+
     "MaxUpgradeLevel"        "5"
     "ItemBaseLevel"          "4"
     "Modifiers"
@@ -549,80 +785,10 @@
             "heal_multiplier"   "10.0 15.0 20.0 25.0 30.0"
         }
     }
-=======
+
     "MaxUpgradeLevel"        "1"
     "ItemBaseLevel"          "1"
->>>>>>> origin/Xavier
-  }
-  "item_dota2x_pudgewars_item_naix_jaw"
-  {
-    "ID"              "1843"
-    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
-    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
-    "BaseClass"            "item_datadriven"
-    "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
-    "AbilityTextureName"      "dota2x_pudgewars_item_naix_jaw"
 
-    // Stats
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityCastRange"        "900"
-    "AbilityCastPoint"        "0.2"
-    "AbilityCooldown"        "13.0"
-
-    // Item Info
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityManaCost"        "100"
-    "ItemCost"            "750"
-    "ItemInitialCharges"      "0"
-    "ItemDroppable"          "1"
-    "ItemSellable"          "1"
-    "ItemRequiresCharges"      "0"
-    "ItemShareability"        "ITEM_NOT_SHAREABLE"
-    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-    
-<<<<<<< HEAD
-    "MaxUpgradeLevel"        "5"
-    "ItemBaseLevel"          "5"
-    "Modifiers"
-    {
-        "item_naix_life_steal"
-        {
-            "IsHidden"  "0"
-            "Passive" "1"
-            "TextureName"   "dota2x_pudgewars_item_naix_jaw"
-            "OnAttackLanded"
-            {
-                "FireEffect"
-                {
-                    "EffectName"    "life_stealer_infest_emerge_clean_lights"
-                    "EffectAttachType"  "follow_origin"
-                    "Target"            "CASTER"
-                    "ControlPoints"
-                    {
-                        "01"    "0 0 50"
-                    }
-                }
-                "Lifesteal"
-                {
-                    "Target"            "CASTER"
-                    "LifestealPercent"  "%heal_multiplier"
-                }
-            }
-        }
-    }
-    "AbilitySpecial"
-    {
-        "01"
-        {
-            "var_type"          "FIELD_FLOAT"
-            "heal_multiplier"   "10.0 15.0 20.0 25.0 30.0"
-        }
-    }
-=======
-    "MaxUpgradeLevel"        "1"
-    "ItemBaseLevel"          "1"
->>>>>>> origin/Xavier
   }
   "item_dota2x_pudgewars_item_ricochet_turbine"
   {

@@ -89,7 +89,7 @@ function initHookData()
 						--ability_dota2x_pudgewars_hook_applier
 						
 						local caster = CreateUnitByName(v,Vector(-1500,-1000,0) + RandomVector(300),false,nil,nil,DOTA_TEAM_BADGUYS)
-						--[[
+						
 						local dummy = CreateUnitByName("npc_dota2x_pudgewars_unit_dummy", 
 							caster:GetAbsOrigin(), false, caster, caster, DOTA_TEAM_GOODGUYS)
 						if dummy then print("test dummy unit created") end
@@ -98,16 +98,16 @@ function initHookData()
 						if ABILITY_HOOK_APPLIER then print("ability successful added") end
 						ABILITY_HOOK_APPLIER:SetLevel(1)
 		
-						dummy:CastAbilityOnTarget(caster, ABILITY_HOOK_APPLIER, 0 )]]
+						dummy:CastAbilityOnTarget(caster, ABILITY_HOOK_APPLIER, 0 )
 						PudgeWarsGameMode:CreateTimer("damage_dealer_"..tostring(k)..tostring(GameRules:GetGameTime()),
 						{
 							endTime = Time() + 0.5,
 							callback = function()
-								--[[if caster:HasModifier("modifier_pudgewars_hooked") then
+								if caster:HasModifier("modifier_pudgewars_hooked") then
 									print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 									print("the test unit  has the hooked modifier")
 									print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-								end]]
+								end
 								if dummy then dummy:Destroy() end
 							end
 						})
@@ -369,20 +369,19 @@ local function HookUnit( target , caster ,plyid )
 			dummy:Destroy()
 		end
 	})
-<<<<<<< HEAD
+
 
 	
 
-=======
+
 		
->>>>>>> origin/Xavier
 	local dmg = tnPlayerHookDamage[plyid]
 	print("dmg = "..tostring(dmg).."playerdi"..tostring(plyid))
 	local hp = target:GetHealth()
 	print(" hp = "..tostring(hp))
 	if dmg < hp then
 		-- take away health directly
-<<<<<<< HEAD
+
 		if caster:GetTeam() ~= target:GetTeam() then
 			target:SetHealth(hp-dmg)
 			-- think about naix jaw
@@ -402,9 +401,9 @@ local function HookUnit( target , caster ,plyid )
 				end
 			end
 		end
-=======
+
 		target:SetHealth(hp-dmg)
->>>>>>> origin/Xavier
+
 	else
 		-- ADD THE ABILITY "ability_deal_the_last_hit" AND DEAL DAMAGE WITH THE SPELL
 		dealLastHit(caster,unit)

@@ -42,7 +42,7 @@
       "pudgewars_setting_hook"
       {
         "IsHidden"  "1"
-        "Duration"  "2"
+        "Duration"  "4"
         "ThinkInterval" "0.04"
         "OnInterValThink"
         {
@@ -125,7 +125,7 @@
     "AbilityCastRange"        "700"
     "AbilityManaCost"         "95"
     "AbilityCastPoint"        "0.0"
-    "AbilityCooldown"         "15"
+    "AbilityCooldown"         "0"
     "AbilityUnitDamageType"     "DAMAGE_TYPE_PURE"
     "AbilityCastAnimation"      "pudge_meat_hook_start"
 
