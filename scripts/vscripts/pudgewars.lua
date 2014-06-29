@@ -75,12 +75,6 @@ function PudgeWarsGameMode:InitGameMode()
     self.vDire = {}
     self.vPlayerHeroData = {}
 
-    --Find the gold and chest spawner
-    self.tuGold = {}
-    self.tuChest = {}
-    self.eGoldSpawner  = Entities:FindByName(nil,"dota_pudgewar_gold_spawner" )
-    self.eChestSpawner = Entities:FindByName(nil,"dota_pudgewar_chest_spawner")
-
     initHookData()
     self.t0 = 0
     PrecacheUnitByName('npc_precache_everything')
@@ -113,27 +107,24 @@ end
 function PudgeWarsGameMode:InitGoldAndChestTimer( ... )
     if self.timers["gold_spawn_timer"] == nil then
         self:CreateTimer("gold_spawn_timer",{
-            endTime = GameRules:GetGameTime() + math.random( 10 , 20 ),
+            endTime = GameRules:GetGameTime() + 1,--math.random( 10 , 20 ),
             useGameTime = true,
             continousTimer = true,
             callback = function(pudgewars, args)
                 print("[PudgeWars] Spawning Gold")
-                if self.eGoldSpawner and self.eChestSpawner then
-                    local vGoldSpawnPos = self.eGoldSpawner:GetOrigin()
-                    local vGoldMoveTarget = self.eChestSpawner:GetOrigin()
-                    local unit = CreateUnitByName("npc_dota2x_pudgewars_gold",vGoldSpawnPos,true,nil,DOTA_TEAM_NEUTRALS)
-                    table.insert( self.tuGold , #self.tuGold +1 , unit )
-                    local uIndex = unit.entindex()
-                    local moveOrder = {
-                        UnitIndex = uIndex,
-                        OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
-                        Position = vGoldMoveTarget,
-                        Queue = false
-                    }
-                    ExecuteOrderFromTable(moveOrder)
-                else
-                    print('err gold spawner or chest spawner not found on the map')
-                end
+                    local vGoldSpawnPos = Vector(0,-1200,100)
+                    local vGoldMoveTarget = Vector(0,1200,100)
+                    local unit = CreateUnitByName(
+                        "npc_dota2x_pudgewars_gold"
+                        ,vGoldSpawnPos
+                        ,true
+                        ,nil
+                        ,nil
+                        ,DOTA_TEAM_NEUTRALS
+                    )
+                    unit:SetInitialGoalEntity(self.eChestSpawner)
+                    unit:SetMustReachEachGoalEntity(true)
+                return true
             end
         })
     end
@@ -145,18 +136,18 @@ function PudgeWarsGameMode:InitGoldAndChestTimer( ... )
             callback = function(pudgewars, args)
                 print("[PudgeWars] Spawning Chest")
                 if self.eGoldSpawner and self.eChestSpawner then
-                    local vChestSpawnPos = self.eChestSpawner:GetOrigin()
-                    local vChestMoveTarget = self.eGoldSpawner:GetOrigin()
-                    local unit = CreateUnitByName("npc_dota2x_pudgewars_chest",vChestSpawnPos,true,nil,DOTA_TEAM_NEUTRALS)
-                    table.insert( self.tuChest , #self.tuChest +1 , unit )
-                    local uIndex = unit.entindex()
-                    local moveOrder = {
-                        UnitIndex = uIndex,
-                        OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
-                        Position = vChestMoveTarget,
-                        Queue = false
-                    }
-                    ExecuteOrderFromTable(moveOrder)
+                    local vChestSpawnPos = Vector(0,1200,100)
+                    local vChestMoveTarget =  Vector(0,-1200,100)
+                    local unit = CreateUnitByName(
+                        "npc_dota2x_pudgewars_chest"
+                        ,vChestSpawnPos
+                        ,true
+                        ,nil
+                        ,nil
+                        ,DOTA_TEAM_NEUTRALS
+                    )
+                    unit:SetInitialGoalEntity(self.eGoldSpawner)
+                    unit:SetMustReachEachGoalEntity(true)
                 else
                     print('err gold spawner or chest spawner not found on the map')
                 end
@@ -185,15 +176,19 @@ function PudgeWarsGameMode:Think()
         if (bUseGameTime and GameRules:GetGameTime() > v.endTime) or (not bUseGameTime and Time() > v.endTime) then
             PudgeWarsGameMode.timers[k] = nil
             local status, continousTimer = pcall(v.callback, PudgeWarsGameMode, v)
-
+            
+            print("==========================")
+            print(tostring(status))
+            print("----------------------------")
+            print(tostring(continousTimer))
             -- Make sure it worked
             if status then
                 -- Check if it needs to loop
-                if continousTimer then
+                if v.continousTimer then
                     -- Change it's end time
-                    v.endTime = continousTimer
                     print("start a continous timer")
-                    PudgeWarsGameMode.timers[k] = v
+                    PudgeWarsGameMode:RemoveTimer(k)
+                    PudgeWarsGameMode:CreateTimer(k,v)
                 end
 
             else

@@ -493,14 +493,6 @@
             {
                 "IsHidden"  "0"
                 "Passive" "1"
-                "OnDealDamage"
-                {
-                    "Lifesteal"
-                    {
-                        "Target"            "ATTACKER"
-                        "LifestealPercent"  "%heal_multiplier"
-                    }
-                }
             }
         }
         "AbilitySpecial"
@@ -548,14 +540,6 @@
             {
                 "IsHidden"  "0"
                 "Passive" "1"
-                "OnDealDamage"
-                {
-                    "Lifesteal"
-                    {
-                        "Target"            "ATTACKER"
-                        "LifestealPercent"  "%heal_multiplier"
-                    }
-                }
             }
         }
         "AbilitySpecial"
@@ -603,14 +587,6 @@
             {
                 "IsHidden"  "0"
                 "Passive" "1"
-                "OnDealDamage"
-                {
-                    "Lifesteal"
-                    {
-                        "Target"            "ATTACKER"
-                        "LifestealPercent"  "%heal_multiplier"
-                    }
-                }
             }
         }
         "AbilitySpecial"
@@ -658,14 +634,6 @@
             {
                 "IsHidden"  "0"
                 "Passive" "1"
-                "OnDealDamage"
-                {
-                    "Lifesteal"
-                    {
-                        "Target"            "ATTACKER"
-                        "LifestealPercent"  "%heal_multiplier"
-                    }
-                }
             }
         }
         "AbilitySpecial"
@@ -713,14 +681,6 @@
             {
                 "IsHidden"  "0"
                 "Passive" "1"
-                "OnDealDamage"
-                {
-                    "Lifesteal"
-                    {
-                        "Target"            "ATTACKER"
-                        "LifestealPercent"  "%heal_multiplier"
-                    }
-                }
             }
         }
         "AbilitySpecial"
@@ -732,23 +692,76 @@
             }
         }
     } 
-    "item_pudge_techies_explosive_barrel1"
+    "item_recipe_pudge_tiny_arm2"
     {
-        "ID"                            "1734"
-        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
-        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+      "ID"                            "1734"
+      "Model"                         "models/props_gameplay/recipe.mdl"
+      "BaseClass"                     "item_recipe_arcane_boots"
+      "ItemCost"                      "1000"  
+      "ItemShopTags"                  ""
+      "ItemRecipe"                    "1"
+      "ItemResult"                    "item_pudge_tiny_arm2"
+      "ItemRequirements"
+      {
+          "01"                        "item_pudge_tiny_arm1"
+      }
+    }
+    "item_recipe_pudge_tiny_arm3"
+    {
+      "ID"                            "1736"
+      "Model"                         "models/props_gameplay/recipe.mdl"
+      "BaseClass"                     "item_recipe_arcane_boots"
+      "ItemCost"                      "1000"  
+      "ItemShopTags"                  ""
+      "ItemRecipe"                    "1"
+      "ItemResult"                    "item_pudge_tiny_arm3"
+      "ItemRequirements"
+      {
+          "01"                        "item_pudge_tiny_arm2"
+      }
+    }
+    "item_recipe_pudge_tiny_arm4"
+    {
+      "ID"                            "1737"
+      "Model"                         "models/props_gameplay/recipe.mdl"
+      "BaseClass"                     "item_recipe_arcane_boots"
+      "ItemCost"                      "1000"  
+      "ItemShopTags"                  ""
+      "ItemRecipe"                    "1"
+      "ItemResult"                    "item_pudge_tiny_arm4"
+      "ItemRequirements"
+      {
+          "01"                        "item_pudge_tiny_arm3"
+      }
+    }
+    "item_recipe_pudge_tiny_arm5"
+    {
+      "ID"                            "1738"
+      "Model"                         "models/props_gameplay/recipe.mdl"
+      "BaseClass"                     "item_recipe_arcane_boots"
+      "ItemCost"                      "1000"  
+      "ItemShopTags"                  ""
+      "ItemRecipe"                    "1"
+      "ItemResult"                    "item_pudge_tiny_arm5"
+      "ItemRequirements"
+      {
+          "01"                        "item_pudge_tiny_arm4"
+      }
+    }
+    "item_pudge_tiny_arm1"
+    {
+        "ID"                            "1739"
+        
         "BaseClass"                     "item_datadriven"
-        "AbilityCastAnimation"          "ACT_DOTA_DISABLED"
-        "AbilityTextureName"            "item_pudge_techies_explosive_barrel1"
-
-        "AbilityCastRange"              "5000"
-        "AbilityCastPoint"              "0"
-        "AbilityCooldown"               "0"
+        "AbilityCastRange"              "2500"
+        "AbilityCastPoint"              "0.0 0.0 0.0 0.0 0.0 0.0"
+        "AbilityCooldown"               "20"
+        "AbilityManaCost"               "0 0 0 0 0"
+        "AbilityModifierSupportValue"   "0.25"
+        "AbilityTextureName"            "item_pudge_tiny_arm1"
 
         "ItemCost"                      "750"
         "ItemInitialCharges"            "0"
-        
         "ItemKillable"                  "0"
         "ItemDroppable"                 "1"
         "ItemSellable"                  "1"
@@ -758,18 +771,312 @@
         "ItemShareability"              "ITEM_NOT_SHAREABLE"
         "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
         "SideShop"                      "1"
-    
-        "MaxUpgradeLevel"        "1"
-        "ItemBaseLevel"          "1"
 
-        "OnSpellStart"
+        "MaxUpgradeLevel"               "5"
+        "ItemBaseLevel"                 "1"
+
+        "AbilitySpecial"
         {
-            "RunScript"
+            "01"
             {
-                "ScriptFile"        "scripts/vscripts/abilityitems.lua"
-                "Function"          "SerBarrel"
-                "Target"            "CASTER"
+                "var_type"              "FIELD_INTEGER"
+                "duration"              "1.0 1.0 1.0 1.0 1.0"
             }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "grab_radius"           "250 250 250 250 250 250"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"                "275 275 275 275 275 275"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_damage_pct"      "20 20 20 20 20 20"
+            }
+            "05"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "grow_bonus_damage_pct"     "35 50 80 80 80"
+            }
+            "06"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "tooltip_range"             "2500"
+            }
+            "07"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "toss_damage"               "75 150 225 300 350 450"
+            }
+
+        }
+    }
+    "item_pudge_tiny_arm2"
+    {
+        "ID"                            "1740"
+        "BaseClass"                     "item_datadriven"
+        "AbilityCastRange"              "2500"
+        "AbilityCastPoint"              "0.0 0.0 0.0 0.0 0.0 0.0"
+        "AbilityCooldown"               "20"
+        "AbilityManaCost"               "0 0 0 0 0"
+        "AbilityModifierSupportValue"   "0.25"
+        "AbilityTextureName"            "item_pudge_tiny_arm2"
+
+        "ItemCost"                      "750"
+        "ItemInitialCharges"            "0"
+        "ItemKillable"                  "0"
+        "ItemDroppable"                 "1"
+        "ItemSellable"                  "1"
+        "ItemRequiresCharges"           "0"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                      "1"
+
+        "MaxUpgradeLevel"               "5"
+        "ItemBaseLevel"                 "2"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "duration"              "1.0 1.0 1.0 1.0 1.0"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "grab_radius"           "250 250 250 250 250 250"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"                "275 275 275 275 275 275"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_damage_pct"      "20 20 20 20 20 20"
+            }
+            "05"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "grow_bonus_damage_pct"     "35 50 80 80 80"
+            }
+            "06"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "tooltip_range"             "2500"
+            }
+            "07"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "toss_damage"               "75 150 225 300 350 450"
+            }
+
+        }
+    }
+    "item_pudge_tiny_arm3"
+    {
+        "ID"                        "1741"
+        "BaseClass"                     "item_datadriven"
+        "AbilityCastRange"              "2500"
+        "AbilityCastPoint"              "0.0 0.0 0.0 0.0 0.0 0.0"
+        "AbilityCooldown"               "20"
+        "AbilityManaCost"               "0 0 0 0 0"
+        "AbilityModifierSupportValue"   "0.25"
+        "AbilityTextureName"            "item_pudge_tiny_arm3"
+
+        "ItemCost"                      "750"
+        "ItemInitialCharges"            "0"
+        "ItemKillable"                  "0"
+        "ItemDroppable"                 "1"
+        "ItemSellable"                  "1"
+        "ItemRequiresCharges"           "0"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                      "1"
+
+        "MaxUpgradeLevel"               "5"
+        "ItemBaseLevel"                 "3"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "duration"              "1.0 1.0 1.0 1.0 1.0"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "grab_radius"           "250 250 250 250 250 250"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"                "275 275 275 275 275 275"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_damage_pct"      "20 20 20 20 20 20"
+            }
+            "05"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "grow_bonus_damage_pct"     "35 50 80 80 80"
+            }
+            "06"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "tooltip_range"             "2500"
+            }
+            "07"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "toss_damage"               "75 150 225 300 350 450"
+            }
+
+        }
+    }
+    "item_pudge_tiny_arm4"
+    {
+        "ID"                        "1742"
+        "BaseClass"                     "item_datadriven"
+        "AbilityCastRange"              "2500"
+        "AbilityCastPoint"              "0.0 0.0 0.0 0.0 0.0 0.0"
+        "AbilityCooldown"               "20"
+        "AbilityManaCost"               "0 0 0 0 0"
+        "AbilityModifierSupportValue"   "0.25"
+        "AbilityTextureName"            "item_pudge_tiny_arm4"
+
+        "ItemCost"                      "750"
+        "ItemInitialCharges"            "0"
+        "ItemKillable"                  "0"
+        "ItemDroppable"                 "1"
+        "ItemSellable"                  "1"
+        "ItemRequiresCharges"           "0"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                      "1"
+
+        "MaxUpgradeLevel"               "5"
+        "ItemBaseLevel"                 "4"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "duration"              "1.0 1.0 1.0 1.0 1.0"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "grab_radius"           "250 250 250 250 250 250"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"                "275 275 275 275 275 275"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_damage_pct"      "20 20 20 20 20 20"
+            }
+            "05"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "grow_bonus_damage_pct"     "35 50 80 80 80"
+            }
+            "06"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "tooltip_range"             "2500"
+            }
+            "07"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "toss_damage"               "75 150 225 300 350 450"
+            }
+
+        }
+    }
+    "item_pudge_tiny_arm5"
+    {
+        "ID"                        "1743"
+        "BaseClass"                     "item_datadriven"
+        "AbilityCastRange"              "2500"
+        "AbilityCastPoint"              "0.0 0.0 0.0 0.0 0.0 0.0"
+        "AbilityCooldown"               "20"
+        "AbilityManaCost"               "0 0 0 0 0"
+        "AbilityModifierSupportValue"   "0.25"
+        "AbilityTextureName"            "item_pudge_tiny_arm5"
+
+        "ItemCost"                      "750"
+        "ItemInitialCharges"            "0"
+        "ItemKillable"                  "0"
+        "ItemDroppable"                 "1"
+        "ItemSellable"                  "1"
+        "ItemRequiresCharges"           "0"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                      "1"
+
+        "MaxUpgradeLevel"               "5"
+        "ItemBaseLevel"                 "5"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "duration"              "1.0 1.0 1.0 1.0 1.0"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "grab_radius"           "250 250 250 250 250 250"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"                "275 275 275 275 275 275"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_damage_pct"      "20 20 20 20 20 20"
+            }
+            "05"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "grow_bonus_damage_pct"     "35 50 80 80 80"
+            }
+            "06"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "tooltip_range"             "2500"
+            }
+            "07"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "toss_damage"               "75 150 225 300 350 450"
+            }
+
         }
     }
 }

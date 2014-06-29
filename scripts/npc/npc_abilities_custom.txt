@@ -16,7 +16,7 @@
 
     // Stats
     //----------------------------------------------------------------
-    "AbilityCastRange"        "700"
+    "AbilityCastRange"        "1200"
     "AbilityManaCost"         "95"
     "AbilityCastPoint"        "0.3"
     "AbilityCooldown"         "15"
@@ -288,6 +288,11 @@
         "var_type"        "FIELD_INTEGER"
         "hook_damage"     "175 250 350 500"
       }
+      "02"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "cost"            "500 1000 1500 0"
+      }
     }
   }
 
@@ -364,6 +369,11 @@
         "var_type"        "FIELD_INTEGER"
         "hook_radius"      "20 30 50 80"
       }
+      "02"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "cost"            "500 1000 1500 0"
+      }
     }
   }
 
@@ -438,7 +448,12 @@
       "01"
       {
         "var_type"        "FIELD_INTEGER"
-        "hook_length"     "500 700 900 1200"
+        "hook_length"     "1400 1500 1600 1800"
+      }
+      "02"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "cost"            "500 1000 1500 0"
       }
     }
   }
@@ -515,6 +530,11 @@
       {
         "var_type"        "FIELD_INTEGER"
         "hook_speed"      "400 450 520 600"
+      }
+      "02"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "cost"            "500 1000 1500 0"
       }
     }
   }

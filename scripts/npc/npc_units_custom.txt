@@ -72,6 +72,32 @@
   		"HasInventory"			"0"
   		"WakesNeutrals"			"0"
   	}
+  	"npc_dota2x_pudgewars_gold"
+  	{
+  		"model"					"models/props_debris/goldcoins_01.mdl"
+  		"BaseClass"				"npc_dota_creep_neutral"
+  		"ModelScale"			"1"
+  		"Ability1"				"ability_dota2x_pudgewars_hook_dummy"
+  		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+  		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_FLY"
+  		"VisionDaytimeRange"	"0"
+  		"VisionNighttimeRange"	"0"
+  		"HasInventory"			"0"
+  		"WakesNeutrals"			"0"
+  	}
+  	"npc_dota2x_pudgewars_chest"
+  	{
+  		"model"					"models/props_debris/merchant_debris_chest001.mdl"
+  		"BaseClass"				"npc_dota_creep_neutral"
+  		"ModeLScale"			"0.3"
+  		"Ability1"				"ability_dota2x_pudgewars_hook_dummy"
+  		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+  		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_FLY"
+  		"VisionDaytimeRange"	"0"
+  		"VisionNighttimeRange"	"0"
+  		"HasInventory"			"0"
+  		"WakesNeutrals"			"0"
+  	}
   	"npc_dota2x_pudgewars_unit_bomb"
   	{
   		"model"					"models/heroes/rattletrap/rattletrap_cog.mdl"

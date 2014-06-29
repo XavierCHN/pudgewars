@@ -13,7 +13,7 @@ function initHookData()
 
 	tHookElements = tHookElements or {}
 	tnHookDamage  = {175 , 250 , 350 , 500  }
-	tnHookLength  = {500 , 700 , 900 , 1200 }
+	tnHookLength  = {1400 , 1500 , 1600 , 1800 }
 	tnHookRadius  = {80  , 120  , 150  , 200   }
 	tnHookSpeed   = {0.2 , 0.3 , 0.4 , 0.6  }
 
@@ -68,10 +68,10 @@ function initHookData()
 		}
 		tnPlayerHookType[i] = tnHookTypeString[1]
 		tnPlayerHookBDType[i] = tnHookParticleString[1]
-		tnPlayerHookRadius[i] = 100
-		tnPlayerHookLength[i] = 1300
-		tnPlayerHookSpeed[i] = 0.4
-		tnPlayerHookDamage[i] = 200
+		tnPlayerHookRadius[i] = 80
+		tnPlayerHookLength[i] = 1400
+		tnPlayerHookSpeed[i] = 0.2
+		tnPlayerHookDamage[i] = 175
 
 		tbPlayerOutterHook[i] = false
 
@@ -91,7 +91,13 @@ function initHookData()
 					table.insert( tPossibleHookTargetName , #tPossibleHookTargetName + 1 ,v)
 					--ability_dota2x_pudgewars_hook_applier
 					
-					local caster = CreateUnitByName(v,Vector(-1500,-500,0) + RandomVector(400),false,nil,nil,DOTA_TEAM_BADGUYS)
+					local caster = CreateUnitByName(
+						v,
+						Vector(-1500,-500,0) + RandomVector(400),
+						false,
+						nil,
+						nil,
+						DOTA_TEAM_GOODGUYS)
 					--[[
 					local dummy = CreateUnitByName("npc_dota2x_pudgewars_unit_dummy", 
 						caster:GetAbsOrigin(), false, caster, caster, DOTA_TEAM_GOODGUYS)
@@ -270,7 +276,7 @@ local function GetHookedUnit(caster, head , plyid)
 
 	if #tuHookedUnits >= 1 then
 		for k,v in pairs(tuHookedUnits) do
-			--print("unitunitname " .. tostring(k)..":"..v:GetUnitName())
+			print("unitunitname " .. tostring(k)..":"..v:GetUnitName())
 
 			local va = false
 			for s,t in pairs (tPossibleHookTargetName) do
@@ -281,7 +287,7 @@ local function GetHookedUnit(caster, head , plyid)
 			end
 			if ( not va ) or ( v == caster ) then
 				-- not a valid unit , remove
-				--print("remove")
+				print("remove")
 				table.remove(tuHookedUnits , k)
 			end
 		end
@@ -616,10 +622,17 @@ function OnReleaseHook( keys )
 				
 				hooked = false
 				tHookElements[nPlayerID].CurrentLength = nil
-				uHead:Remove()
+				local offsetVecs = Vector(0,0,-300)
+				ParticleManager:SetParticleControl( paHead, 0, tHookElements[nPlayerID].Head.unit:GetOrigin() + offsetVecs)
+				PudgeWarsGameMode:CreateTimer("",{
+					endTime = Time() + 0.5,
+					callback = function()
+						ParticleManager:SetParticleControl( paHead, 0, WORLDMAX_VEC)
+						ParticleManager:ReleaseParticleIndex(paHead)
+					end
+					})
 				tHookElements[nPlayerID].Head.unit = nil
-				ParticleManager:SetParticleControl( paHead, 0, WORLDMAX_VEC)
-				ParticleManager:ReleaseParticleIndex(paHead)
+				uHead:Remove()
 				tHookElements[nPlayerID].Body = {}
 				tHookElements[nPlayerID].Target = nil
 				tbPlayerFinishedHook[nPlayerID] = true
@@ -776,7 +789,7 @@ function OnUpgradeHookLengthFinished( keys )
 
 	local hHookAbility  = caster:FindAbilityByName("ability_pudgewars_upgrade_length")
 	local nCurrentLevel = hHookAbility:GetLevel()
-	local nUpgradeCost  = tnUpgradeLengthCost[nCurrentLevel]
+	local nUpgradeCost  = tnUpgradeHookLengthCost[nCurrentLevel]
 	if nUpgradeCost > PlayerResource:GetGold(nPlayerID) then
 		Say(caster:GetOwner(),"#Upgrading_hook_length_fail_to_spend_gold",false)
 	else

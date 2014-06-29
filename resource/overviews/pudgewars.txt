@@ -1,4 +1,4 @@
-dota2xpudgewars
+pudgewars
 {
 	material overviews/pudgewars
     pos_x -2300
