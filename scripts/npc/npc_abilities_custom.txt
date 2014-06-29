@@ -6,12 +6,12 @@
 
   // the hook ability
   //----------------------------------------------------------------
-	"dota2x_pudgewars_hook"
+	"ability_pudgewars_hook"
   {
     "ID"    "2000"
     "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_POINT"
     "BaseClass"           "ability_datadriven"
-    "AbilityTextureName"      "pudgewars_set_hook"
+    "AbilityTextureName"      "ability_pudgewars_hook"
     "MaxLevel"          "1"
 
     // Stats
@@ -64,12 +64,12 @@
     }
     
   }
-  "dota2x_pudgewars_toggle_hook"
+  "ability_pudgewars_toggle_hook"
   {
     "ID"    "2001"
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
     "BaseClass"               "ability_datadriven"
-    "AbilityTextureName"      "pudgewars_toggle_outter_hook_off"
+    "AbilityTextureName"      "ability_pudgewars_toggle_hook"
     "MaxLevel"                  "1"
 
     // Stats
@@ -112,12 +112,12 @@
       }
     }
   }
-  "dota2x_pudgewars_release_hook"
+  "ability_pudgewars_release_hook"
   {
     "ID"    "2002"
     "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
     "BaseClass"           "ability_datadriven"
-    "AbilityTextureName"      "pudgewars_release_hook"
+    "AbilityTextureName"      "ability_pudgewars_release_hook"
     "MaxLevel"                "1"
 
     // Stats
@@ -217,12 +217,12 @@
   //1855-1858
   //增加伤害 每级+35
   //----------------------------------------------------------------
-  "dota2x_pudgewars_upgrage_hook_damage"
+  "ability_pudgewars_upgrade_damage"
   {
     "ID"                  "1857"
     "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
     "BaseClass"           "ability_datadriven"
-    "AbilityTextureName"  "pudgewars_upgrade_damage"
+    "AbilityTextureName"  "ability_pudgewars_upgrade_damage"
     "MaxLevel"            "4"
     
     // Stats
@@ -293,12 +293,12 @@
 
 　//增大半径 每级+15
   //----------------------------------------------------------------
-  "dota2x_pudgewars_upgrade_hook_radius"
+  "ability_pudgewars_upgrade_radius"
   {
     "ID"    "2005"
     "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
     "BaseClass"           "ability_datadriven"
-    "AbilityTextureName"   "pudgewars_upgrade_size"
+    "AbilityTextureName"   "ability_pudgewars_upgrade_radius"
     "MaxLevel"            "4"
 
     // Stats
@@ -369,12 +369,12 @@
 
 　//增加范围(即长度) 每级+175
   //----------------------------------------------------------------
-  "dota2x_pudgewars_upgrade_hook_length"
+  "ability_pudgewars_upgrade_length"
   {
     "ID"    "2006"
     "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
     "BaseClass"           "ability_datadriven"
-    "AbilityTextureName"   "pudgewars_upgrade_length"
+    "AbilityTextureName"   "ability_pudgewars_upgrade_length"
     "MaxLevel"            "4"
 
     // Stats
@@ -445,12 +445,12 @@
 
 　//增快速度 每级+30
   //----------------------------------------------------------------
-  "dota2x_pudgewars_upgrade_hook_speed"
+  "ability_pudgewars_upgrade_speed"
   {
     "ID"    "2007"
     "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
     "BaseClass"           "ability_datadriven"
-    "AbilityTextureName"   "pudgewars_upgrade_speed"
+    "AbilityTextureName"   "ability_pudgewars_upgrade_speed"
     "MaxLevel"            "4"
 
     // Stats

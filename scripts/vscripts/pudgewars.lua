@@ -239,20 +239,19 @@ function PudgeWarsGameMode:AutoAssignPlayer(keys)
                 print("ply hero entity = nil reassign it ")
                 CreateHeroForPlayer('npc_dota_hero_pudge', ply)
                 heroEntity = ply:GetAssignedHero()
-                ABILITY = heroEntity:FindAbilityByName("dota2x_pudgewars_hook")
-                if ABILITY then ABILITY:SetLevel(1) else print("dota2x_pudgewars_hook not found") end
-                ABILITY = heroEntity:FindAbilityByName("dota2x_pudgewars_toggle_hook")
-                if ABILITY then ABILITY:SetLevel(1) else print("dota2x_pudgewars_toggle_hook not found") end
-                ABILITY = heroEntity:FindAbilityByName("dota2x_pudgewars_upgrage_hook_damage")
-                if ABILITY then ABILITY:SetLevel(1) else print("dota2x_pudgewars_upgrage_hook_damage not found") end
-                ABILITY = heroEntity:FindAbilityByName("dota2x_pudgewars_upgrade_hook_radius")
-                if ABILITY then ABILITY:SetLevel(1) else print("dota2x_pudgewars_upgrade_hook_radius not found") end
-                ABILITY = heroEntity:FindAbilityByName("dota2x_pudgewars_upgrade_hook_length")
-                if ABILITY then ABILITY:SetLevel(1) else print("dota2x_pudgewars_upgrade_hook_length not found") end
-                ABILITY = heroEntity:FindAbilityByName("dota2x_pudgewars_upgrade_hook_speed")
-                if ABILITY then ABILITY:SetLevel(1) else print("dota2x_pudgewars_upgrade_hook_speed not found") end
+                ABILITY = heroEntity:FindAbilityByName("ability_pudgewars_hook")
+                if ABILITY then ABILITY:SetLevel(1) end
+                ABILITY = heroEntity:FindAbilityByName("ability_pudgewars_toggle_hook")
+                if ABILITY then ABILITY:SetLevel(1) end
+                ABILITY = heroEntity:FindAbilityByName("ability_pudgewars_upgrade_damage")
+                if ABILITY then ABILITY:SetLevel(1) end
+                ABILITY = heroEntity:FindAbilityByName("ability_pudgewars_upgrade_radius")
+                if ABILITY then ABILITY:SetLevel(1) end
+                ABILITY = heroEntity:FindAbilityByName("ability_pudgewars_upgrade_length")
+                if ABILITY then ABILITY:SetLevel(1) end
+                ABILITY = heroEntity:FindAbilityByName("ability_pudgewars_upgrade_speed")
+                if ABILITY then ABILITY:SetLevel(1) end
                 heroEntity:SetAbilityPoints(0)
-                if developmentmode then heroEntity:SetHealth(200) end
             end
         end
     })

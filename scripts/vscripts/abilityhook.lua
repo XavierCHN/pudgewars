@@ -14,7 +14,7 @@ function initHookData()
 	tHookElements = tHookElements or {}
 	tnHookDamage  = {175 , 250 , 350 , 500  }
 	tnHookLength  = {500 , 700 , 900 , 1200 }
-	tnHookRadius  = {20  , 30  , 50  , 80   }
+	tnHookRadius  = {80  , 120  , 150  , 200   }
 	tnHookSpeed   = {0.2 , 0.3 , 0.4 , 0.6  }
 
 	tnUpgradeHookDamageCost = {500 , 1000 , 1500 , 2000  }
@@ -60,7 +60,11 @@ function initHookData()
 			},
 			Target = nil,
 			CurrentLength = nil,
-			Body = {}
+			Body = {},
+			longerBody = {
+				vec = nil,
+				index = nil
+			}
 		}
 		tnPlayerHookType[i] = tnHookTypeString[1]
 		tnPlayerHookBDType[i] = tnHookParticleString[1]
@@ -161,12 +165,13 @@ function OnHookStart(keys)
 	else
 		-- store the head
 		tHookElements[nPlayerID].Head.unit = unit
+		unit:SetModelScale((tnPlayerHookRadius[nPlayerID]/80)*0.8,0)
 		local diffVec = targetPoint - caster:GetOrigin()
 		diffVec.z = 0
 		unit:SetForwardVector(diffVec:Normalized())
 		-- catch the head position
 		local vOrigin = unit:GetOrigin()
-		
+		tvPlayerPudgeLastPos[nPlayerID] = caster:GetOrigin()
 		--create and store the first body		
 		local nFXIndex = ParticleManager:CreateParticle( tnPlayerHookBDType[ nPlayerID ] , PATTACH_CUSTOMORIGIN, caster )
 		vOrigin.z = vOrigin.z + 150
@@ -186,9 +191,9 @@ function OnHookStart(keys)
 		tHookElements[nPlayerID].Head.index = tnFXIndex
 		
 		--remove the set ability and add release ability
-			caster:RemoveAbility("dota2x_pudgewars_hook")
-			caster:AddAbility("dota2x_pudgewars_release_hook")
-			ABILITY_RELEASE_HOOK = caster:FindAbilityByName("dota2x_pudgewars_release_hook")
+			caster:RemoveAbility("ability_pudgewars_hook")
+			caster:AddAbility("ability_pudgewars_release_hook")
+			ABILITY_RELEASE_HOOK = caster:FindAbilityByName("ability_pudgewars_release_hook")
 			ABILITY_RELEASE_HOOK:SetLevel(1)
 		
 		if not hasModifieroh then
@@ -217,7 +222,7 @@ function OnSettingHookDirectionTimeUp(keys)
 	local head = tHookElements[nPlayerID].Head.unit
 	local headpa = tHookElements[nPlayerID].Head.index
 	local body1pa = tHookElements[nPlayerID].Body[1].index
-	local ABILITY_SETTING_HOOK_DIRECTION = caster:FindAbilityByName("dota2x_pudgewars_release_hook")
+	local ABILITY_SETTING_HOOK_DIRECTION = caster:FindAbilityByName("ability_pudgewars_release_hook")
 	if not tbPlayerHooking[nPlayerID] then
 		head:Remove()
 		ParticleManager:SetParticleControl(headpa,0,WORLDMAX_VEC)
@@ -230,12 +235,12 @@ function OnSettingHookDirectionTimeUp(keys)
 	end
 
 	if ABILITY_SETTING_HOOK_DIRECTION then 
-		caster:RemoveAbility("dota2x_pudgewars_release_hook")
-		caster:AddAbility("dota2x_pudgewars_hook")
+		caster:RemoveAbility("ability_pudgewars_release_hook")
+		caster:AddAbility("ability_pudgewars_hook")
 		if caster:HasModifier("pudgewars_setting_hook") then
 			caster:RemoveModifierByName("pudgewars_setting_hook")
 		end
-		local ABILITY_HOOK = caster:FindAbilityByName("dota2x_pudgewars_hook")
+		local ABILITY_HOOK = caster:FindAbilityByName("ability_pudgewars_hook")
 		if ABILITY_HOOK then ABILITY_HOOK:SetLevel(1) end
 	end
 end
@@ -475,17 +480,45 @@ function OnReleaseHook( keys )
 
 		tbPlayerHooking[nPlayerID] = true
 
-		local ABILITY_SETTING_HOOK_DIRECTION = caster:FindAbilityByName("dota2x_pudgewars_release_hook")
+		local ABILITY_SETTING_HOOK_DIRECTION = caster:FindAbilityByName("ability_pudgewars_release_hook")
 		if caster:HasModifier( "pudgewars_setting_hook" ) then caster:RemoveModifierByName("pudgewars_setting_hook") end
 		
 		if ABILITY_SETTING_HOOK_DIRECTION then 
-			local ABILITY_HOOK = caster:FindAbilityByName("dota2x_pudgewars_hook")
+			local ABILITY_HOOK = caster:FindAbilityByName("ability_pudgewars_hook")
 			if ABILITY_HOOK then ABILITY_HOOK:SetLevel(1) end
-			caster:RemoveAbility("dota2x_pudgewars_release_hook")
-			caster:AddAbility("dota2x_pudgewars_hook")
+			caster:RemoveAbility("ability_pudgewars_release_hook")
+			caster:AddAbility("ability_pudgewars_hook")
 		end
 
-
+		--[[
+		local oPudgePos = tvPlayerPudgeLastPos[nPlayerID]
+		local nowPos = caster:GetOrigin()
+		local longerCount = distance(oPudgePos,nowPos)/(PER_HOOK_BODY_LENGTH * tnPlayerHookSpeed[nPlayerID] )
+		longerCount = math.floor(longerCount)
+		if tHookElements[nPlayerID].longerBody == nil then tHookElements[nPlayerID].longerBody ={} end
+		if longerCount > #tHookElements[nPlayerID].longerBody then
+			for j = longerCount-#tHookElements[nPlayerID].longerBody,1,-1 do
+				
+				local fxi = ParticleManager:CreateParticle( tnPlayerHookBDType[ nPlayerID ], PATTACH_CUSTOMORIGIN, caster )
+				local pas = {
+			    	index = fxi,
+			    	vec = nil,
+				}
+				table.insert(tHookElements[nPlayerID].longerBody,1,pas)
+			end
+		end
+		for i = 1,#tHookElements[nPlayerID].longerBody do
+			local posDiff = oPudgePos - nowPos
+			local x = posDiff.x * (i/longerCount-#tHookElements[nPlayerID].longerBody)
+			local y = posDiff.y * (i/longerCount-#tHookElements[nPlayerID].longerBody)
+			local vec3 = Vector(x + nowPos.x,y+nowPos.y,150)
+			local incs = tHookElements[nPlayerID].longerBody[i].index
+			ParticleManager:SetParticleControl(incs,0,vec3)
+			ParticleManager:SetParticleControl(incs,1,vec3)
+			ParticleManager:SetParticleControl(incs,2,vec3)
+			ParticleManager:SetParticleControl(incs,3,vec3)
+			tHookElements[nPlayerID].longerBody[i].vec = vec3
+		end]]
 		if uHead ~= nil and 
 			tHookElements[nPlayerID].Target == nil and
 			not tbPlayerHookingBack[nPlayerID] then
@@ -544,6 +577,14 @@ function OnReleaseHook( keys )
 
 			tvPlayerPudgeLastPos[nPlayerID] = caster:GetOrigin()
 		else
+			--[[
+			if tHookElements[nPlayerID].longerBody ~= nil then
+				for i = #tHookElements[nPlayerID].Body,1,-1 do
+					table.insert(tHookElements[nPlayerID].Body,1,tHookElements[nPlayerID].Body[i])
+				end
+				tHookElements[nPlayerID].longerBody = nil
+			end
+			]]
 			local backVec = tHookElements[nPlayerID].Body[#tHookElements[nPlayerID].Body].vec
 			local fVec = tHookElements[nPlayerID].Body[#tHookElements[nPlayerID].Body].fvec
 			local paIndex = tHookElements[nPlayerID].Body[#tHookElements[nPlayerID].Body].index
@@ -594,7 +635,7 @@ function OnUpgradeHookDamage(keys)
 	local caster    = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = caster:GetPlayerID()
 
-	local hHookAbility  = caster:FindAbilityByName("dota2x_pudgewars_upgrage_hook_damage")
+	local hHookAbility  = caster:FindAbilityByName("ability_pudgewars_upgrade_damage")
 	local nCurrentLevel = hHookAbility:GetLevel()
 	local nUpgradeCost  = tnUpgradeHookDamageCost[nCurrentLevel]
 	local nCurrentGold  = PlayerResource:GetGold(nPlayerID)
@@ -618,7 +659,7 @@ function OnUpgradeHookRadius( keys )
 	local caster    = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = caster:GetPlayerID()
 	
-	local hHookAbility  = caster:FindAbilityByName("dota2x_pudgewars_upgrade_hook_radius")
+	local hHookAbility  = caster:FindAbilityByName("ability_pudgewars_upgrade_radius")
 	local nCurrentLevel = hHookAbility:GetLevel()
 	local nUpgradeCost  = tnUpgradeHookRadiusCost[nCurrentLevel]
 	local nCurrentGold  = PlayerResource:GetGold(nPlayerID)
@@ -643,7 +684,7 @@ function OnUpgradeHookLength( keys )
 	local caster    = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = caster:GetPlayerID()
 
-	local hHookAbility  = caster:FindAbilityByName("dota2x_pudgewars_upgrade_hook_length")
+	local hHookAbility  = caster:FindAbilityByName("ability_pudgewars_upgrade_length")
 	local nCurrentLevel = hHookAbility:GetLevel()
 	local nUpgradeCost  = tnUpgradeHookLengthCost[nCurrentLevel]
 	local nCurrentGold  = PlayerResource:GetGold(nPlayerID)
@@ -668,7 +709,7 @@ function OnUpgradeHookSpeed( keys )
 	local caster    = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = caster:GetPlayerID()
 
-	local hHookAbility  = caster:FindAbilityByName("dota2x_pudgewars_upgrade_hook_speed")
+	local hHookAbility  = caster:FindAbilityByName("ability_pudgewars_upgrade_speed")
 	local nCurrentLevel = hHookAbility:GetLevel()
 	local nUpgradeCost  = tnUpgradeHookSpeedCost[nCurrentLevel]
 	local nCurrentGold  = PlayerResource:GetGold(nPlayerID)
@@ -692,7 +733,7 @@ function OnUpgradeHookDamageFinished( keys )
 	local caster    = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = caster:GetPlayerID()
 
-	local hHookAbility  = caster:FindAbilityByName("dota2x_pudgewars_upgrage_hook_damage")
+	local hHookAbility  = caster:FindAbilityByName("ability_pudgewars_upgrade_damage")
 	local nCurrentLevel = hHookAbility:GetLevel()
 	local nUpgradeCost  = tnUpgradeHookDamageCost[nCurrentLevel]
 	
@@ -713,11 +754,10 @@ function OnUpgradeHookRadiusFinished( keys )
 	local caster    = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = caster:GetPlayerID()
 
-	local nUpgradeCost  = tnUpgradeHookRadiusCost[nCurrentLevel]
 
-	local hHookAbility  = caster:FindAbilityByName("dota2x_pudgewars_upgrade_hook_radius")
+	local hHookAbility  = caster:FindAbilityByName("ability_pudgewars_upgrade_radius")
 	local nCurrentLevel = hHookAbility:GetLevel()
-	
+	local nUpgradeCost  = tnUpgradeHookRadiusCost[nCurrentLevel]
 	if nUpgradeCost > PlayerResource:GetGold(nPlayerID) then
 		Say(caster:GetOwner(),"#Upgrading_hook_radius_fail_to_spend_gold",false)
 	else
@@ -733,11 +773,10 @@ function OnUpgradeHookLengthFinished( keys )
 	--PrintTable(keys)
 	local caster    = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = caster:GetPlayerID()
-	local nUpgradeCost  = tnUpgradeLengthCost[nCurrentLevel]
 
-	local hHookAbility  = caster:FindAbilityByName("dota2x_pudgewars_upgrade_hook_length")
+	local hHookAbility  = caster:FindAbilityByName("ability_pudgewars_upgrade_length")
 	local nCurrentLevel = hHookAbility:GetLevel()
-	
+	local nUpgradeCost  = tnUpgradeLengthCost[nCurrentLevel]
 	if nUpgradeCost > PlayerResource:GetGold(nPlayerID) then
 		Say(caster:GetOwner(),"#Upgrading_hook_length_fail_to_spend_gold",false)
 	else
@@ -753,12 +792,12 @@ function OnUpgradeHookSpeedFinished( keys )
 	--PrintTable(keys)
 	local caster    = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = caster:GetPlayerID()
-	local nUpgradeCost  = tnUpgradeHookSpeedCost[nCurrentLevel]
 
-	local hHookAbility  = caster:FindAbilityByName("dota2x_pudgewars_upgrade_hook_speed")
+	local hHookAbility  = caster:FindAbilityByName("ability_pudgewars_upgrade_speed")
 	local nCurrentLevel = hHookAbility:GetLevel()
 	
 
+	local nUpgradeCost  = tnUpgradeHookSpeedCost[nCurrentLevel]
 	if nUpgradeCost > PlayerResource:GetGold(nPlayerID) then
 		Say(caster:GetOwner(),"#Upgrading_hook_speed_fail_to_spend_gold",false)
 	else
@@ -774,12 +813,12 @@ function OnToggleHookType( keys )
 	local nPlayerID = caster:GetPlayerID()
 	if tbPlayerOutterHook[nPlayerID] then
 		--print("change from on to off")
-		local ABILITY_OUTTER_HOOK = caster:FindAbilityByName("dota2x_pudgewars_toggle_hook")
+		local ABILITY_OUTTER_HOOK = caster:FindAbilityByName("ability_pudgewars_toggle_hook")
 		ABILITY_OUTTER_HOOK:__KeyValueFromString("AbilityTextureName","pudgewars_toggle_outter_hook_off")
 		tbPlayerOutterHook[nPlayerID] = false
 	else
 		--print("change from of to on")
-		local ABILITY_OUTTER_HOOK = caster:FindAbilityByName("dota2x_pudgewars_toggle_hook")
+		local ABILITY_OUTTER_HOOK = caster:FindAbilityByName("ability_pudgewars_toggle_hook")
 		ABILITY_OUTTER_HOOK:__KeyValueFromString("AbilityTextureName","pudgewars_toggle_outter_hook_on")
 		tbPlayerOutterHook[nPlayerID] = true
 	end

@@ -4,12 +4,12 @@
 	{
 		"AbilityLayout" 		"6"
 		"override_hero"			"npc_dota_hero_pudge"
-		"Ability1"				"dota2x_pudgewars_hook" 
-		"Ability2"				"dota2x_pudgewars_upgrage_hook_damage" 
-		"Ability3"				"dota2x_pudgewars_upgrade_hook_radius" 
-		"Ability4"				"dota2x_pudgewars_upgrade_hook_length"
-		"Ability5"				"dota2x_pudgewars_upgrade_hook_speed"
-		"Ability6"				"dota2x_pudgewars_toggle_hook"
+		"Ability1"				"ability_pudgewars_hook" 
+		"Ability2"				"ability_pudgewars_upgrade_damage" 
+		"Ability3"				"ability_pudgewars_upgrade_radius" 
+		"Ability4"				"ability_pudgewars_upgrade_length"
+		"Ability5"				"ability_pudgewars_upgrade_speed"
+		"Ability6"				"ability_pudgewars_toggle_hook"
 		"ArmorPhysical"				"0"									// Physical protection.
 		"MagicalResistance"			"0"									// Magical protection (percentage).
 
