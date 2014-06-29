@@ -36,7 +36,7 @@
 		"MovementSpeed"				"280"									// Speed.
 		"MovementTurnRate"			"1.0"									// Turning rate.
 
-		"StatusHealth"				"888"									// Base health.
+		"StatusHealth"				"1588"									// Base health.
 		"StatusHealthRegen"			"0.0"									// Health regeneration rate.
 		"StatusMana"				"387"										// Base mana.
 		"StatusManaRegen"			"97.97"									// Mana regeneration rate.

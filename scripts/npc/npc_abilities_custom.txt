@@ -546,6 +546,67 @@
         }
       }
   }
+  "ability_dota2x_pudgewars_bloodsekker_claw"
+  {
+    "ID"  "1862"
+    "BaseClass"     "bloodseeker_rupture"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityType"         "DOTA_ABILITY_TYPE_ULTIMATE"
+    "AbilityUnitTargetFlags"    "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+    "AbilityUnitDamageType"     "DAMAGE_TYPE_HP_REMOVAL"  
+
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastPoint"        "0.0 0.0 0.0"
+
+    // Time   
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"       "0.0 0.0 0.0"
+
+    // Damage.
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityDamage"         "0 0 0"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"       "0 0 0"   
+    
+    // Cast Range
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastRange"        "5000"
+      
+    // Stats
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityModifierSupportValue" "0.0" // Only does damage
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"          "FIELD_FLOAT"
+        "duration"          "3.0 3.0 3.0"
+      }
+      "02"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "movement_damage_pct"   "20 30 40"
+      }
+      "03"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "damage_cap_amount"     "200"
+      }
+      "04"
+      {
+        "var_type"          "FIELD_FLOAT"
+        "damage_cap_interval"   "0.25"
+      }
+    }
+  }
   
 }
 

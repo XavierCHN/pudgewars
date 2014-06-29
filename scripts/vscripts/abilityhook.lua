@@ -87,8 +87,8 @@ function initHookData()
 					table.insert( tPossibleHookTargetName , #tPossibleHookTargetName + 1 ,v)
 					--ability_dota2x_pudgewars_hook_applier
 					
-					local caster = CreateUnitByName(v,Vector(-1500,-500,0) + RandomVector(400),false,nil,nil,DOTA_TEAM_GOODGUYS)
-					
+					local caster = CreateUnitByName(v,Vector(-1500,-500,0) + RandomVector(400),false,nil,nil,DOTA_TEAM_BADGUYS)
+					--[[
 					local dummy = CreateUnitByName("npc_dota2x_pudgewars_unit_dummy", 
 						caster:GetAbsOrigin(), false, caster, caster, DOTA_TEAM_GOODGUYS)
 					if dummy then print("test dummy unit created") end
@@ -110,7 +110,7 @@ function initHookData()
 							dummy:Destroy()
 						end
 					})
-					
+					]]
 					
 				end
 				PrintTable(tPossibleHookTargetName)
@@ -397,6 +397,16 @@ local function HookUnit( target , caster ,plyid )
 
 
 	local dmg = tnPlayerHookDamage[plyid]
+	
+	local bonusdamage = 0
+	local itemLatern = ItemThinker:FindItemFuzzy(caster,"item_dota2x_pudgewars_item_barathrum_lantern")
+	if itemLatren then
+		local itemLevel = string.sub(itemLatern,-1,-1)
+		bonusdamage = (tonumber(itemLevel) * 5 + 10 / 100) * dmg
+	end
+	dmg = dmg + bonusdamage
+
+
 	print("dmg = "..tostring(dmg).."playerdi"..tostring(plyid))
 	local hp = target:GetHealth()
 	print(" hp = "..tostring(hp))
@@ -404,7 +414,27 @@ local function HookUnit( target , caster ,plyid )
 		if dmg < hp then
 			-- take away health directly
 			target:SetHealth(hp-dmg)
-
+			local itemBlood = ItemThinker:FindItemFuzzy(caster,"item_dota2x_pudgewars_item_bloodseeker_claw")
+			if itemBlood then
+				local itemLevel = string.sub(itemBlood,-1,-1)
+				print("ITEAM BLOOD SEEKER CLAW FOUND LEVEL:"..itemLevel)
+				local dummy = CreateUnitByName("npc_dota2x_pudgewars_unit_dummy", 
+					target:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber())
+				if dummy then print("unit created") end
+				dummy:AddAbility("ability_dota2x_pudgewars_bloodsekker_claw")
+				local ABILITY_BLOOD_APPLIER = dummy:FindAbilityByName("ability_dota2x_pudgewars_bloodsekker_claw")
+				if ABILITY_BLOOD_APPLIER then print("ability_dota2x_pudgewars_bloodsekker_claw ability successful added") end
+				ABILITY_BLOOD_APPLIER:SetLevel(tonumber(itemLevel))
+					
+				dummy:CastAbilityOnTarget(target, ABILITY_BLOOD_APPLIER, 0 )
+				PudgeWarsGameMode:CreateTimer("blood_claw_dealer_"..tostring(caster)..tostring(GameRules:GetGameTime()),
+				{
+					endTime = Time() + 0.5,
+					callback = function()
+						dummy:Destroy()
+					end
+				})
+			end
 			local itemJaw = ItemThinker:FindItemFuzzy(caster,"item_dota2x_pudgewars_item_naix_jaw")
 			if itemJaw then
 
@@ -414,7 +444,7 @@ local function HookUnit( target , caster ,plyid )
 				ParticleManager:ReleaseParticleIndex(index)
 
 				local itemLevel = string.sub(itemJaw,-1,-1)
-				print("ITEM JAW FOUND"..itemLevel)
+				print("ITEM JAW FOUND LEVEL:"..itemLevel)
 				local lifestealPercent = (tonumber(itemLevel) * 5 + 5) / 100
 				caster:SetHealth(caster:GetHealth() + dmg * lifestealPercent)
 			end

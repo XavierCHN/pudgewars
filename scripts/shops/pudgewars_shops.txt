@@ -2,26 +2,26 @@
 {
 	"consumables"
 	{
-    	"item"		"item_dota2x_pudgewars_item_barathrum_lantern"
-    	"item"		"item_dota2x_pudgewars_item_bloodseeker_claw"
+    	"item"		"item_dota2x_pudgewars_item_barathrum_lantern1"
+    	"item"		"item_dota2x_pudgewars_item_bloodseeker_claw1"
     	"item"		"item_dota2x_pudgewars_item_naix_jaw1"
-    	"item"		"item_dota2x_pudgewars_item_ricochet_turbine"
-    	"item"		"item_dota2x_pudgewars_item_tiny_arm"
+    	"item"		"item_dota2x_pudgewars_item_ricochet_turbine1"
+    	"item"		"item_dota2x_pudgewars_item_tiny_arm1"
 	}
 
 	"attributes"
 	{
-    	"item"		"item_dota2x_pudgewars_item_earthshaker_totem"
-    	"item"		"item_dota2x_pudgewars_item_grappling_hook"
-    	"item"		"item_dota2x_pudgewars_item_lycan_paw"
-    	"item"		"item_dota2x_pudgewars_item_techies_explosive_barrel"
+    	"item"		"item_dota2x_pudgewars_item_earthshaker_totem1"
+    	"item"		"item_dota2x_pudgewars_item_grappling_hook1"
+    	"item"		"item_dota2x_pudgewars_item_lycan_paw1"
+    	"item"		"item_dota2x_pudgewars_item_techies_explosive_barrel1"
 
 	}
 
 	"weapons_armor"
 	{
-    	"item"		"item_dota2x_pudgewars_item_wardr"
-    	"item"		"item_dota2x_pudgewars_item_flask"
+    	"item"		"item_dota2x_pudgewars_item_wardr1"
+    	"item"		"item_dota2x_pudgewars_item_flask1"
 
     
 	}
