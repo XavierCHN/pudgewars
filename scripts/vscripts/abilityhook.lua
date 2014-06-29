@@ -134,11 +134,6 @@ function OnHookStart(keys)
 	local nPlayerID = keys.unit:GetPlayerID()
 
 	PrintTable(keys)
-
-
-	-- this is right!
-	
-
 	print("player "..nPlayerID.." Start A Hook")
 
 	--create the hook head
@@ -157,8 +152,8 @@ function OnHookStart(keys)
 		"npc_dota2x_pudgewars_unit_pudgehook_lv1"
 		,targetPoint
 		,false
-		,nil
-		,nil
+		,caster
+		,caster
 		,caster:GetTeam()
 		)
 	if not unit then
