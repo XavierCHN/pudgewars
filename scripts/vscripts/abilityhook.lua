@@ -393,9 +393,7 @@ local function HookUnit( target , caster ,plyid )
 				local offsetVec = Vector(0,0,150)
 				ParticleManager:SetParticleControl(index,0,caster:GetOrigin() + offsetVec)
 				ParticleManager:ReleaseParticleIndex(index)
-				
 				local lifestealpercent = string.sub(itemName,-1,-1)
-				print(lifestealpercent)
 				lifestealpercent = (tonumber(lifestealpercent) * 5 + 5)/100
 				if caster:GetMaxHealth() - caster:GetHealth() < dmg * lifestealpercent then
 					caster:SetHealth(caster:GetMaxHealth())
