@@ -1079,4 +1079,26 @@
 
         }
     }
+    "item_pudge_techies_explosive_barrel1"
+    {
+        "ID"       "1744"
+
+"Modifiers"
+"modifier_bomb_fuse"
+"Passive"
+OnCreated
+delayaction
+CreateThinker
+"modifier_bomb_trigger"
+thinkinterval 0.1
+onintervalthink
+dealdamage
+targer
+center caster
+radius
+ondamage
+removeunit
+caster
+}
+
 }
