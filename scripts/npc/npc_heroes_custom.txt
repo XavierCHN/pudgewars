@@ -13,7 +13,7 @@
 		"ArmorPhysical"				"0"									// Physical protection.
 		"MagicalResistance"			"0"									// Magical protection (percentage).
 
-		"AttackCapabilities"		"DOTA_UNIT_CAP_MEELEE_ATTACK"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackDamageMin"			"60"										// Damage range min.
 		"AttackDamageMax"			"95"										// Damage range max.
 

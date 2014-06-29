@@ -85,7 +85,8 @@ function ItemThinker:SerBarrel( keys )
 
                         if #tBombTargets >= 1 then
                             for k,v in pairs(tBombTargets) do
-                                if v:GetName ~= "npc_dota2x_pudgewars_pudge" then
+                                -- harm pudge only
+                                if v:GetName() ~= "npc_dota2x_pudgewars_pudge" then
                                     table.remove(tBombTargets,k)
                                 end
                             end

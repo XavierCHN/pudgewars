@@ -2,7 +2,7 @@
 {
     "item_recipe_dota2x_pudgewars_item_barathrum_lantern2"
     {
-      "ID"                            "1871"
+      "ID"                            "1840"
       "Model"                         "models/props_gameplay/recipe.mdl"
       "BaseClass"                     "item_recipe_arcane_boots"
       "ItemCost"                      "1000"  
@@ -16,7 +16,7 @@
     }
     "item_recipe_dota2x_pudgewars_item_barathrum_lantern3"
     {
-      "ID"                            "1872"
+      "ID"                            "1841"
       "Model"                         "models/props_gameplay/recipe.mdl"
       "BaseClass"                     "item_recipe_arcane_boots"
       "ItemCost"                      "1000"  
@@ -30,7 +30,7 @@
     }
     "item_recipe_dota2x_pudgewars_item_barathrum_lantern4"
     {
-      "ID"                            "1873"
+      "ID"                            "1842"
       "Model"                         "models/props_gameplay/recipe.mdl"
       "BaseClass"                     "item_recipe_arcane_boots"
       "ItemCost"                      "1000"  
@@ -44,7 +44,7 @@
     }
     "item_recipe_dota2x_pudgewars_item_barathrum_lantern5"
     {
-      "ID"                            "1874"
+      "ID"                            "1843"
       "Model"                         "models/props_gameplay/recipe.mdl"
       "BaseClass"                     "item_recipe_arcane_boots"
       "ItemCost"                      "1000"  
@@ -58,392 +58,350 @@
     }
     "item_dota2x_pudgewars_item_barathrum_lantern1"
     {
-        "ID"                    "1875"
-        "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
-        "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
+        "ID"                            "1844"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
         "BaseClass"                     "item_datadriven"
-        "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
-        "AbilityTextureName"        "dota2x_pudgewars_item_barathrum_lantern1"
-        "AbilityCastRange"        "5000"
-        "AbilityCastPoint"        "0"
-        "AbilityCooldown"        "0"
-        "ItemCost"            "750"
-        "ItemInitialCharges"      "0"
+        "AbilityCastAnimation"          "ACT_DOTA_DISABLED"
+        "AbilityTextureName"            "dota2x_pudgewars_item_barathrum_lantern1"
+        "AbilityCastRange"              "5000"
+        "AbilityCastPoint"              "0"
+        "AbilityCooldown"               "0"
+        "ItemCost"                      "750"
+        "ItemInitialCharges"            "0"
         
         "ItemKillable"                  "0"
-        "ItemDroppable"          "1"
-        "ItemSellable"          "1"
-        "ItemRequiresCharges"      "0"
+        "ItemDroppable"                 "1"
+        "ItemSellable"                  "1"
+        "ItemRequiresCharges"           "0"
         "ItemShopTags"                  "consumable"
         "ItemQuality"                   "consumable"
-        "ItemShareability"        "ITEM_NOT_SHAREABLE"
-        "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
         "SideShop"                      "1"
         
-        "MaxUpgradeLevel"        "5"
-        "ItemBaseLevel"          "1"
+        "MaxUpgradeLevel"               "5"
+        "ItemBaseLevel"                 "1"
         "AbilitySpecial"
         {
             "01"
             {
-                "var_type"          "FIELD_FLOAT"
-                "damage_bonus_percent"   "15.0 20.0 25.0 30.0 35.0"
+                "var_type"                  "FIELD_FLOAT"
+                "damage_bonus_percent"      "15.0 20.0 25.0 30.0 35.0"
             }
         }
     }
     "item_dota2x_pudgewars_item_barathrum_lantern2"
     {
-        "ID"                    "1876"
-        "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
-        "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
+        "ID"                            "1845"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
         "BaseClass"                     "item_datadriven"
-        "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
-        "AbilityTextureName"        "dota2x_pudgewars_item_barathrum_lantern1"
-        "AbilityCastRange"        "5000"
-        "AbilityCastPoint"        "0"
-        "AbilityCooldown"        "0"
-        "ItemCost"            "750"
-        "ItemInitialCharges"      "0"
+        "AbilityCastAnimation"          "ACT_DOTA_DISABLED"
+        "AbilityTextureName"            "dota2x_pudgewars_item_barathrum_lantern2"
+        "AbilityCastRange"              "5000"
+        "AbilityCastPoint"              "0"
+        "AbilityCooldown"               "0"
+        "ItemCost"                      "750"
+        "ItemInitialCharges"            "0"
         
         "ItemKillable"                  "0"
-        "ItemDroppable"          "1"
-        "ItemSellable"          "1"
-        "ItemRequiresCharges"      "0"
+        "ItemDroppable"                 "1"
+        "ItemSellable"                  "1"
+        "ItemRequiresCharges"           "0"
         "ItemShopTags"                  "consumable"
         "ItemQuality"                   "consumable"
-        "ItemShareability"        "ITEM_NOT_SHAREABLE"
-        "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
         "SideShop"                      "1"
         
-        "MaxUpgradeLevel"        "5"
-        "ItemBaseLevel"          "2"
+        "MaxUpgradeLevel"               "5"
+        "ItemBaseLevel"                 "2"
         "AbilitySpecial"
         {
             "01"
             {
-                "var_type"          "FIELD_FLOAT"
-                "damage_bonus_percent"   "15.0 20.0 25.0 30.0 35.0"
+                "var_type"              "FIELD_FLOAT"
+                "damage_bonus_percent"  "15.0 20.0 25.0 30.0 35.0"
             }
         }
     }
     "item_dota2x_pudgewars_item_barathrum_lantern3"
     {
-        "ID"                    "1877"
-        "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
-        "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
-        "BaseClass"                     "item_datadriven"
+        "ID"                        "1846"
+        "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+        "BaseClass"                 "item_datadriven"
         "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
-        "AbilityTextureName"        "dota2x_pudgewars_item_barathrum_lantern1"
-        "AbilityCastRange"        "5000"
-        "AbilityCastPoint"        "0"
-        "AbilityCooldown"        "0"
-        "ItemCost"            "750"
-        "ItemInitialCharges"      "0"
+        "AbilityTextureName"        "dota2x_pudgewars_item_barathrum_lantern3"
+        "AbilityCastRange"          "5000"
+        "AbilityCastPoint"          "0"
+        "AbilityCooldown"           "0"
+        "ItemCost"                  "750"
+        "ItemInitialCharges"        "0"
         
-        "ItemKillable"                  "0"
-        "ItemDroppable"          "1"
-        "ItemSellable"          "1"
-        "ItemRequiresCharges"      "0"
-        "ItemShopTags"                  "consumable"
-        "ItemQuality"                   "consumable"
-        "ItemShareability"        "ITEM_NOT_SHAREABLE"
-        "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-        "SideShop"                      "1"
+        "ItemKillable"              "0"
+        "ItemDroppable"             "1"
+        "ItemSellable"              "1"
+        "ItemRequiresCharges"       "0"
+        "ItemShopTags"              "consumable"
+        "ItemQuality"               "consumable"
+        "ItemShareability"          "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"          "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                  "1"
         
-        "MaxUpgradeLevel"        "5"
-        "ItemBaseLevel"          "3"
+        "MaxUpgradeLevel"           "5"
+        "ItemBaseLevel"             "3"
         "AbilitySpecial"
         {
             "01"
             {
-                "var_type"          "FIELD_FLOAT"
-                "damage_bonus_percent"   "15.0 20.0 25.0 30.0 35.0"
+                "var_type"                  "FIELD_FLOAT"
+                "damage_bonus_percent"      "15.0 20.0 25.0 30.0 35.0"
             }
         }
     }
     "item_dota2x_pudgewars_item_barathrum_lantern4"
     {
-        "ID"                    "1878"
-        "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
-        "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
-        "BaseClass"                     "item_datadriven"
+        "ID"                        "1847"
+        "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+        "BaseClass"                 "item_datadriven"
         "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
-        "AbilityTextureName"        "dota2x_pudgewars_item_barathrum_lantern1"
-        "AbilityCastRange"        "5000"
-        "AbilityCastPoint"        "0"
-        "AbilityCooldown"        "0"
-        "ItemCost"            "750"
-        "ItemInitialCharges"      "0"
+        "AbilityTextureName"        "dota2x_pudgewars_item_barathrum_lantern4"
+        "AbilityCastRange"          "5000"
+        "AbilityCastPoint"          "0"
+        "AbilityCooldown"           "0"
+        "ItemCost"                  "750"
+        "ItemInitialCharges"        "0"
         
-        "ItemKillable"                  "0"
-        "ItemDroppable"          "1"
-        "ItemSellable"          "1"
-        "ItemRequiresCharges"      "0"
-        "ItemShopTags"                  "consumable"
-        "ItemQuality"                   "consumable"
-        "ItemShareability"        "ITEM_NOT_SHAREABLE"
-        "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-        "SideShop"                      "1"
+        "ItemKillable"              "0"
+        "ItemDroppable"             "1"
+        "ItemSellable"              "1"
+        "ItemRequiresCharges"       "0"
+        "ItemShopTags"              "consumable"
+        "ItemQuality"               "consumable"
+        "ItemShareability"          "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"          "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                  "1"
         
-        "MaxUpgradeLevel"        "5"
-        "ItemBaseLevel"          "4"
+        "MaxUpgradeLevel"           "5"
+        "ItemBaseLevel"             "4"
         "AbilitySpecial"
         {
             "01"
             {
-                "var_type"          "FIELD_FLOAT"
-                "damage_bonus_percent"   "15.0 20.0 25.0 30.0 35.0"
+                "var_type"                  "FIELD_FLOAT"
+                "damage_bonus_percent"      "15.0 20.0 25.0 30.0 35.0"
             }
         }
     }
     "item_dota2x_pudgewars_item_barathrum_lantern5"
     {
-        "ID"                    "1879"
-        "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
-        "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
-        "BaseClass"                     "item_datadriven"
+        "ID"                        "1848"
+        "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+        "BaseClass"                 "item_datadriven"
         "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
-        "AbilityTextureName"        "dota2x_pudgewars_item_barathrum_lantern1"
-        "AbilityCastRange"        "5000"
-        "AbilityCastPoint"        "0"
-        "AbilityCooldown"        "0"
-        "ItemCost"            "750"
-        "ItemInitialCharges"      "0"
+        "AbilityTextureName"        "dota2x_pudgewars_item_barathrum_lantern5"
+        "AbilityCastRange"          "5000"
+        "AbilityCastPoint"          "0"
+        "AbilityCooldown"           "0"
+        "ItemCost"                  "750"
+        "ItemInitialCharges"        "0"
         
+        "ItemKillable"              "0"
+        "ItemDroppable"             "1"
+        "ItemSellable"              "1"
+        "ItemRequiresCharges"       "0"
+        "ItemShopTags"              "consumable"
+        "ItemQuality"               "consumable"
+        "ItemShareability"          "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"          "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                  "1"
+        
+        "MaxUpgradeLevel"           "5"
+        "ItemBaseLevel"             "5"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "damage_bonus_percent"      "15.0 20.0 25.0 30.0 35.0"
+            }
+        }
+    }
+    "item_recipe_dota2x_pudgewars_item_bloodseeker_claw2"
+    {
+        "ID"                            "1849"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+        "BaseClass"                     "item_recipe_arcane_boots"
+        "ItemCost"                      "1000"  
+        "ItemShopTags"                  ""
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_dota2x_pudgewars_item_bloodseeker_claw2"
+        "ItemRequirements"
+        {
+            "01"                        "item_dota2x_pudgewars_item_bloodseeker_claw1"
+        }
+    }
+    "item_recipe_dota2x_pudgewars_item_bloodseeker_claw3"
+    {
+        "ID"                            "1850"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+        "BaseClass"                     "item_recipe_arcane_boots"
+        "ItemCost"                      "1000"  
+        "ItemShopTags"                  ""
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_dota2x_pudgewars_item_bloodseeker_claw3"
+        "ItemRequirements"
+        {
+            "01"                        "item_dota2x_pudgewars_item_bloodseeker_claw2"
+        }
+    }
+    "item_dota2x_pudgewars_item_bloodseeker_claw1"
+    {
+        "ID"                            "1851"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "BaseClass"                     "item_datadriven"
+        "AbilityCastAnimation"          "ACT_DOTA_DISABLED"
+        "AbilityTextureName"            "dota2x_pudgewars_item_bloodseeker_claw1"
+        "AbilityCastRange"              "5000"
+        "AbilityCastPoint"              "0"
+        "AbilityCooldown"               "0"
+        "ItemCost"                      "750"
+        "ItemInitialCharges"            "0"
+    
         "ItemKillable"                  "0"
-        "ItemDroppable"          "1"
-        "ItemSellable"          "1"
-        "ItemRequiresCharges"      "0"
+        "ItemDroppable"                 "1"
+        "ItemSellable"                  "1"
+        "ItemRequiresCharges"           "0"
         "ItemShopTags"                  "consumable"
         "ItemQuality"                   "consumable"
-        "ItemShareability"        "ITEM_NOT_SHAREABLE"
-        "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
         "SideShop"                      "1"
-        
-        "MaxUpgradeLevel"        "5"
-        "ItemBaseLevel"          "5"
+    
+        "MaxUpgradeLevel"               "3"
+        "ItemBaseLevel"                 "1"
+        "Modifiers"
+        {
+            "modifier_item_bloodseeker_claw"
+            {
+                "IsHidden"  "0"
+                "Passive"   "1"
+            }
+        }
         "AbilitySpecial"
         {
             "01"
             {
                 "var_type"          "FIELD_FLOAT"
-                "damage_bonus_percent"   "15.0 20.0 25.0 30.0 35.0"
+                "damage_per_move"   "20.0 30.0 40.0"
             }
         }
     }
-  "item_recipe_dota2x_pudgewars_item_bloodseeker_claw2"
-  {
-    "ID"                            "1881"
-    "Model"                         "models/props_gameplay/recipe.mdl"
-    "BaseClass"                     "item_recipe_arcane_boots"
-    "ItemCost"                      "1000"  
-    "ItemShopTags"                  ""
-    "ItemRecipe"                    "1"
-    "ItemResult"                    "item_dota2x_pudgewars_item_bloodseeker_claw2"
-    "ItemRequirements"
+    "item_dota2x_pudgewars_item_bloodseeker_claw2"
     {
-        "01"                        "item_dota2x_pudgewars_item_bloodseeker_claw1"
-    }
-  }
-  "item_recipe_dota2x_pudgewars_item_bloodseeker_claw3"
-  {
-    "ID"    "1882"
-    "Model"                         "models/props_gameplay/recipe.mdl"
-    "BaseClass"                     "item_recipe_arcane_boots"
-    "ItemCost"                      "1000"  
-    "ItemShopTags"                  ""
-    "ItemRecipe"                    "1"
-    "ItemResult"                    "item_dota2x_pudgewars_item_bloodseeker_claw3"
-    "ItemRequirements"
-    {
-        "01"                        "item_dota2x_pudgewars_item_bloodseeker_claw2"
-    }
-  }
-  "item_dota2x_pudgewars_item_bloodseeker_claw1"
-  {
-    "ID"                    "1885"
-    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
-    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
-    "BaseClass"                     "item_datadriven"
-    "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
-    "AbilityTextureName"        "dota2x_pudgewars_item_bloodseeker_claw1"
-    "AbilityCastRange"        "5000"
-    "AbilityCastPoint"        "0"
-    "AbilityCooldown"        "0"
-    "ItemCost"            "750"
-    "ItemInitialCharges"      "0"
+        "ID"                            "1852"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "BaseClass"                     "item_datadriven"
+        "AbilityCastAnimation"          "ACT_DOTA_DISABLED"
+        "AbilityTextureName"            "dota2x_pudgewars_item_bloodseeker_claw2"
+        "AbilityCastRange"              "5000"
+        "AbilityCastPoint"              "0"
+        "AbilityCooldown"               "0"
+
+        "ItemCost"                      "750"
+        "ItemInitialCharges"            "0"
     
-    "ItemKillable"                  "0"
-    "ItemDroppable"          "1"
-    "ItemSellable"          "1"
-    "ItemRequiresCharges"      "0"
-    "ItemShopTags"                  "consumable"
-    "ItemQuality"                   "consumable"
-    "ItemShareability"        "ITEM_NOT_SHAREABLE"
-    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-    "SideShop"                      "1"
+        "ItemKillable"                  "0"
+        "ItemDroppable"                 "1"
+        "ItemSellable"                  "1"
+        "ItemRequiresCharges"           "0"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                      "1"
     
-    "MaxUpgradeLevel"        "3"
-    "ItemBaseLevel"          "1"
-    "AbilitySpecial"
-    {
-        "01"
+        "MaxUpgradeLevel"               "3"
+        "ItemBaseLevel"                 "2"
+
+        "Modifiers"
         {
-            "var_type"          "FIELD_FLOAT"
-            "damage_per_move"   "20.0 30.0 40.0"
+            "modifier_item_bloodseeker_claw"
+            {
+                "IsHidden"  "0"
+                "Passive"   "1"
+            }
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "damage_per_move"   "20.0 30.0 40.0"
+            }
         }
     }
-  }
-  "item_dota2x_pudgewars_item_bloodseeker_claw2"
+    "item_dota2x_pudgewars_item_bloodseeker_claw3"
     {
-    "ID"                    "1886"
-    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
-    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
-    "BaseClass"                     "item_datadriven"
-    "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
-    "AbilityTextureName"        "dota2x_pudgewars_item_bloodseeker_claw2"
+        "ID"                            "1853"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "BaseClass"                     "item_datadriven"
+        "AbilityCastAnimation"          "ACT_DOTA_DISABLED"
+        "AbilityTextureName"            "dota2x_pudgewars_item_bloodseeker_claw3"
 
-    // Stats
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityCastRange"        "5000"
-    "AbilityCastPoint"        "0"
-    "AbilityCooldown"        "0"
+        "AbilityCastRange"              "5000"
+        "AbilityCastPoint"              "0"
+        "AbilityCooldown"               "0"
 
-    // Item Info
-    //-------------------------------------------------------------------------------------------------------------
-    "ItemCost"            "750"
-    "ItemInitialCharges"      "0"
+        "ItemCost"                      "750"
+        "ItemInitialCharges"            "0"
     
-    "ItemKillable"                  "0"
-    "ItemDroppable"          "1"
-    "ItemSellable"          "1"
-    "ItemRequiresCharges"      "0"
-    "ItemShopTags"                  "consumable"
-    "ItemQuality"                   "consumable"
-    "ItemShareability"        "ITEM_NOT_SHAREABLE"
-    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-    "SideShop"                      "1"
+        "ItemKillable"                  "0"
+        "ItemDroppable"                 "1"
+        "ItemSellable"                  "1"
+        "ItemRequiresCharges"           "0"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                      "1"
     
-    "MaxUpgradeLevel"        "3"
-    "ItemBaseLevel"          "2"
+        "MaxUpgradeLevel"        "3"
+        "ItemBaseLevel"          "3"
 
-    "Modifiers"
-    {
-        "modifier_item_bloodseeker_claw"
+        "Modifiers"
         {
-            "IsHidden"  "0"
-            "Passive" "1"
-            "TextureName"   "dota2x_pudgewars_item_bloodseeker_claw2"
+            "modifier_item_bloodseeker_claw"
+            {
+                "IsHidden"  "0"
+                "Passive" "1"
+            }
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "damage_per_move"   "20.0 30.0 40.0"
+            }
         }
     }
-    "AbilitySpecial"
+    "item_recipe_dota2x_pudgewars_item_naix_jaw2"
     {
-        "01"
-        {
-            "var_type"          "FIELD_FLOAT"
-            "damage_per_move"   "20.0 30.0 40.0"
-        }
-    }
-  }
-
-  "item_dota2x_pudgewars_item_bloodseeker_claw3"
-    {
-    "ID"                    "1885"
-    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
-    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
-    "BaseClass"                     "item_datadriven"
-    "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
-    "AbilityTextureName"        "dota2x_pudgewars_item_bloodseeker_claw3"
-
-    // Stats
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityCastRange"        "5000"
-    "AbilityCastPoint"        "0"
-    "AbilityCooldown"        "0"
-
-    // Item Info
-    //-------------------------------------------------------------------------------------------------------------
-    "ItemCost"            "750"
-    "ItemInitialCharges"      "0"
-    
-    "ItemKillable"                  "0"
-    "ItemDroppable"          "1"
-    "ItemSellable"          "1"
-    "ItemRequiresCharges"      "0"
-    "ItemShopTags"                  "consumable"
-    "ItemQuality"                   "consumable"
-    "ItemShareability"        "ITEM_NOT_SHAREABLE"
-    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-    "SideShop"                      "1"
-    
-    "MaxUpgradeLevel"        "3"
-    "ItemBaseLevel"          "3"
-
-    "Modifiers"
-    {
-        "modifier_item_bloodseeker_claw"
-        {
-            "IsHidden"  "0"
-            "Passive" "1"
-            "TextureName"   "dota2x_pudgewars_item_bloodseeker_claw3"
-        }
-    }
-    "AbilitySpecial"
-    {
-        "01"
-        {
-            "var_type"          "FIELD_FLOAT"
-            "damage_per_move"   "20.0 30.0 40.0"
-        }
-    }
-  }
-  "item_dota2x_pudgewars_item_earthshaker_totem"
-  {
-    "ID"              "1890"
-    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
-    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
-    "BaseClass"            "item_datadriven"
-    "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
-    "AbilityTextureName"      "dota2x_pudgewars_item_earthshaker_totem"
-
-    // Stats
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityCastRange"        "900"
-    "AbilityCastPoint"        "0.2"
-    "AbilityCooldown"        "13.0"
-
-    // Item Info
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityManaCost"        "100"
-    "ItemCost"            "750"
-    "ItemInitialCharges"      "0"
-    "ItemDroppable"          "1"
-    "ItemSellable"          "1"
-    "ItemRequiresCharges"      "0"
-    "ItemShareability"        "ITEM_NOT_SHAREABLE"
-    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-    
-    "MaxUpgradeLevel"        "1"
-    "ItemBaseLevel"          "1"
-  }
-  "item_recipe_dota2x_pudgewars_item_naix_jaw2"
-    {
-        // General
-        //-------------------------------------------------------------------------------------------------------------
-        "ID"                            "1901"                                                      // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+        "ID"                            "1854" 
         "Model"                         "models/props_gameplay/recipe.mdl"
         "BaseClass"                     "item_recipe_arcane_boots"
-        
-        // Item Info
-        //-------------------------------------------------------------------------------------------------------------
         "ItemCost"                      "1000"  
         "ItemShopTags"                  ""
-        
-        // Recipe
-        //-------------------------------------------------------------------------------------------------------------
         "ItemRecipe"                    "1"
         "ItemResult"                    "item_dota2x_pudgewars_item_naix_jaw2"
 
@@ -454,19 +412,12 @@
     }
     "item_recipe_dota2x_pudgewars_item_naix_jaw3"
     {
-        // General
-        //-------------------------------------------------------------------------------------------------------------
-        "ID"                            "1902"                                                      // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+        "ID"                            "1855"
         "Model"                         "models/props_gameplay/recipe.mdl"
         "BaseClass"                     "item_recipe_arcane_boots"
-        
-        // Item Info
-        //-------------------------------------------------------------------------------------------------------------
         "ItemCost"                      "500"   
         "ItemShopTags"                  ""
         
-        // Recipe
-        //-------------------------------------------------------------------------------------------------------------
         "ItemRecipe"                    "1"
         "ItemResult"                    "item_dota2x_pudgewars_item_naix_jaw3"
         "ItemRequirements"
@@ -476,19 +427,13 @@
     }
     "item_recipe_dota2x_pudgewars_item_naix_jaw4"
     {
-        // General
-        //-------------------------------------------------------------------------------------------------------------
-        "ID"                            "1903"                                                      // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+        "ID"                            "1856"
         "Model"                         "models/props_gameplay/recipe.mdl"
         "BaseClass"                     "item_recipe_arcane_boots"
         
-        // Item Info
-        //-------------------------------------------------------------------------------------------------------------
         "ItemCost"                      "500"   
         "ItemShopTags"                  ""
         
-        // Recipe
-        //-------------------------------------------------------------------------------------------------------------
         "ItemRecipe"                    "1"
         "ItemResult"                    "item_dota2x_pudgewars_item_naix_jaw4"
         "ItemRequirements"
@@ -498,19 +443,13 @@
     }
     "item_recipe_dota2x_pudgewars_item_naix_jaw5"
     {
-        // General
-        //-------------------------------------------------------------------------------------------------------------
-        "ID"                            "1904"                                                      // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+        "ID"                            "1857"
         "Model"                         "models/props_gameplay/recipe.mdl"
         "BaseClass"                     "item_recipe_arcane_boots"
         
-        // Item Info
-        //-------------------------------------------------------------------------------------------------------------
         "ItemCost"                      "500"   
         "ItemShopTags"                  ""
         
-        // Recipe
-        //-------------------------------------------------------------------------------------------------------------
         "ItemRecipe"                    "1"
         "ItemResult"                    "item_dota2x_pudgewars_item_naix_jaw5"
         "ItemRequirements"
@@ -518,628 +457,279 @@
             "01"                        "item_dota2x_pudgewars_item_naix_jaw4"
         }
     }
-  "item_dota2x_pudgewars_item_naix_jaw1"
-  {
-    "ID"                    "1905"
-    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
-    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
-    "BaseClass"                     "item_datadriven"
-    "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
-    "AbilityTextureName"        "dota2x_pudgewars_item_naix_jaw1"
-
-    // Stats
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityCastRange"        "5000"
-    "AbilityCastPoint"        "0"
-    "AbilityCooldown"        "0"
-
-    // Item Info
-    //-------------------------------------------------------------------------------------------------------------
-    "ItemCost"            "750"
-    "ItemInitialCharges"      "0"
-    
-    "ItemKillable"                  "0"
-    "ItemDroppable"          "1"
-    "ItemSellable"          "1"
-    "ItemRequiresCharges"      "0"
-    "ItemShopTags"                  "consumable"
-    "ItemQuality"                   "consumable"
-    "ItemShareability"        "ITEM_NOT_SHAREABLE"
-    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-    "SideShop"                      "1"
-    
-    "MaxUpgradeLevel"        "5"
-    "ItemBaseLevel"          "1"
-
-    "Modifiers"
+    "item_dota2x_pudgewars_item_naix_jaw1"
     {
-        "modifier_item_naix_life_steal"
+        "ID"                                "1858"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "BaseClass"                         "item_datadriven"
+        "AbilityCastAnimation"              "ACT_DOTA_DISABLED"
+        "AbilityTextureName"                "dota2x_pudgewars_item_naix_jaw1"
+
+        "AbilityCastRange"                  "5000"
+        "AbilityCastPoint"                  "0"
+        "AbilityCooldown"                   "0"
+
+        "ItemCost"                          "750"
+        "ItemInitialCharges"                "0"
+    
+        "ItemKillable"                      "0"
+        "ItemDroppable"                     "1"
+        "ItemSellable"                      "1"
+        "ItemRequiresCharges"               "0"
+        "ItemShopTags"                      "consumable"
+        "ItemQuality"                       "consumable"
+        "ItemShareability"                  "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"                  "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                          "1"
+    
+        "MaxUpgradeLevel"        "5"
+        "ItemBaseLevel"          "1"
+
+        "Modifiers"
         {
-            "IsHidden"  "0"
-            "Passive" "1"
-            "OnDealDamage"
+            "modifier_item_naix_life_steal"
             {
-                "Lifesteal"
+                "IsHidden"  "0"
+                "Passive" "1"
+                "OnDealDamage"
                 {
-                    "Target"            "ATTACKER"
-                    "LifestealPercent"  "%heal_multiplier"
+                    "Lifesteal"
+                    {
+                        "Target"            "ATTACKER"
+                        "LifestealPercent"  "%heal_multiplier"
+                    }
                 }
             }
         }
-    }
-    "AbilitySpecial"
-    {
-        "01"
+        "AbilitySpecial"
         {
-            "var_type"          "FIELD_FLOAT"
-            "heal_multiplier"   "10.0 15.0 20.0 25.0 30.0"
-        }
-    }
-  }
-  "item_dota2x_pudgewars_item_naix_jaw2"
-  {
-    "ID"                    "1906"
-    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
-    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
-    "BaseClass"                     "item_datadriven"
-    "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
-    "AbilityTextureName"        "dota2x_pudgewars_item_naix_jaw2"
-
-    // Stats
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityCastRange"        "5000"
-    "AbilityCastPoint"        "0"
-    "AbilityCooldown"        "0"
-
-    // Item Info
-    //-------------------------------------------------------------------------------------------------------------
-    "ItemCost"            "750"
-    "ItemInitialCharges"      "0"
-    
-    "ItemKillable"                  "0"
-    "ItemDroppable"          "1"
-    "ItemSellable"          "1"
-    "ItemRequiresCharges"      "0"
-    "ItemShopTags"                  "consumable"
-    "ItemQuality"                   "consumable"
-    "ItemShareability"        "ITEM_NOT_SHAREABLE"
-    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-    "SideShop"                      "1"
-    
-    "MaxUpgradeLevel"        "5"
-    "ItemBaseLevel"          "2"
-
-    "Modifiers"
-    {
-        "modifier_item_naix_life_steal"
-        {
-            "IsHidden"  "0"
-            "Passive" "1"
-            "OnDealDamage"
+            "01"
             {
-                "Lifesteal"
-                {
-                    "Target"            "ATTACKER"
-                    "LifestealPercent"  "%heal_multiplier"
-                }
+                "var_type"          "FIELD_FLOAT"
+                "heal_multiplier"   "10.0 15.0 20.0 25.0 30.0"
             }
         }
     }
-    "AbilitySpecial"
+    "item_dota2x_pudgewars_item_naix_jaw2"
     {
-        "01"
+        "ID"                            "1859"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "BaseClass"                     "item_datadriven"
+        "AbilityCastAnimation"          "ACT_DOTA_DISABLED"
+        "AbilityTextureName"            "dota2x_pudgewars_item_naix_jaw2"
+
+        "AbilityCastRange"              "5000"
+        "AbilityCastPoint"              "0"
+        "AbilityCooldown"               "0"
+
+        "ItemCost"                      "750"
+        "ItemInitialCharges"            "0"
+        
+        "ItemKillable"                  "0"
+        "ItemDroppable"                 "1"
+        "ItemSellable"                  "1"
+        "ItemRequiresCharges"           "0"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                      "1"
+        
+        "MaxUpgradeLevel"        "5"
+        "ItemBaseLevel"          "2"
+
+        "Modifiers"
         {
-            "var_type"          "FIELD_FLOAT"
-            "heal_multiplier"   "10.0 15.0 20.0 25.0 30.0"
-        }
-    }
-  }"item_dota2x_pudgewars_item_naix_jaw3"
-  {
-    "ID"                    "1907"
-    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
-    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
-    "BaseClass"                     "item_datadriven"
-    "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
-    "AbilityTextureName"        "dota2x_pudgewars_item_naix_jaw3"
-
-    // Stats
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityCastRange"        "5000"
-    "AbilityCastPoint"        "0"
-    "AbilityCooldown"        "0"
-
-    // Item Info
-    //-------------------------------------------------------------------------------------------------------------
-    "ItemCost"            "750"
-    "ItemInitialCharges"      "0"
-    
-    "ItemKillable"                  "0"
-    "ItemDroppable"          "1"
-    "ItemSellable"          "1"
-    "ItemRequiresCharges"      "0"
-    "ItemShopTags"                  "consumable"
-    "ItemQuality"                   "consumable"
-    "ItemShareability"        "ITEM_NOT_SHAREABLE"
-    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-    "SideShop"                      "1"
-    
-    "MaxUpgradeLevel"        "5"
-    "ItemBaseLevel"          "3"
-
-    "Modifiers"
-    {
-        "modifier_item_naix_life_steal"
-        {
-            "IsHidden"  "0"
-            "Passive" "1"
-            "OnDealDamage"
+            "modifier_item_naix_life_steal"
             {
-                "Lifesteal"
+                "IsHidden"  "0"
+                "Passive" "1"
+                "OnDealDamage"
                 {
-                    "Target"            "ATTACKER"
-                    "LifestealPercent"  "%heal_multiplier"
+                    "Lifesteal"
+                    {
+                        "Target"            "ATTACKER"
+                        "LifestealPercent"  "%heal_multiplier"
+                    }
                 }
             }
         }
-    }
-    "AbilitySpecial"
-    {
-        "01"
+        "AbilitySpecial"
         {
-            "var_type"          "FIELD_FLOAT"
-            "heal_multiplier"   "10.0 15.0 20.0 25.0 30.0"
-        }
-    }
-  }"item_dota2x_pudgewars_item_naix_jaw4"
-  {
-    "ID"                    "1908"
-    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
-    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
-    "BaseClass"                     "item_datadriven"
-    "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
-    "AbilityTextureName"        "dota2x_pudgewars_item_naix_jaw4"
-
-    // Stats
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityCastRange"        "5000"
-    "AbilityCastPoint"        "0"
-    "AbilityCooldown"        "0"
-
-    // Item Info
-    //-------------------------------------------------------------------------------------------------------------
-    "ItemCost"            "750"
-    "ItemInitialCharges"      "0"
-    
-    "ItemKillable"                  "0"
-    "ItemDroppable"          "1"
-    "ItemSellable"          "1"
-    "ItemRequiresCharges"      "0"
-    "ItemShopTags"                  "consumable"
-    "ItemQuality"                   "consumable"
-    "ItemShareability"        "ITEM_NOT_SHAREABLE"
-    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-    "SideShop"                      "1"
-    
-    "MaxUpgradeLevel"        "5"
-    "ItemBaseLevel"          "4"
-
-    "Modifiers"
-    {
-        "modifier_item_naix_life_steal"
-        {
-            "IsHidden"  "0"
-            "Passive" "1"
-            "OnDealDamage"
+            "01"
             {
-                "Lifesteal"
-                {
-                    "Target"            "ATTACKER"
-                    "LifestealPercent"  "%heal_multiplier"
-                }
+                "var_type"          "FIELD_FLOAT"
+                "heal_multiplier"   "10.0 15.0 20.0 25.0 30.0"
             }
         }
     }
-    "AbilitySpecial"
+    "item_dota2x_pudgewars_item_naix_jaw3"
     {
-        "01"
+        "ID"                            "1860"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "BaseClass"                     "item_datadriven"
+        "AbilityCastAnimation"          "ACT_DOTA_DISABLED"
+        "AbilityTextureName"            "dota2x_pudgewars_item_naix_jaw3"
+
+        "AbilityCastRange"              "5000"
+        "AbilityCastPoint"              "0"
+        "AbilityCooldown"               "0"
+
+        "ItemCost"                      "750"
+        "ItemInitialCharges"            "0"
+        
+        "ItemKillable"                  "0"
+        "ItemDroppable"                 "1"
+        "ItemSellable"                  "1"
+        "ItemRequiresCharges"           "0"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                      "1"
+        
+        "MaxUpgradeLevel"        "5"
+        "ItemBaseLevel"          "3"
+
+        "Modifiers"
         {
-            "var_type"          "FIELD_FLOAT"
-            "heal_multiplier"   "10.0 15.0 20.0 25.0 30.0"
-        }
-    }
-  }
-"item_dota2x_pudgewars_item_naix_jaw5"
-  {
-    "ID"                    "1909"
-    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
-    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
-    "BaseClass"                     "item_datadriven"
-    "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
-    "AbilityTextureName"        "dota2x_pudgewars_item_naix_jaw5"
-
-    // Stats
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityCastRange"        "5000"
-    "AbilityCastPoint"        "0"
-    "AbilityCooldown"        "0"
-
-    // Item Info
-    //-------------------------------------------------------------------------------------------------------------
-    "ItemCost"            "750"
-    "ItemInitialCharges"      "0"
-    
-    "ItemKillable"                  "0"
-    "ItemDroppable"          "1"
-    "ItemSellable"          "1"
-    "ItemRequiresCharges"      "0"
-    "ItemShopTags"                  "consumable"
-    "ItemQuality"                   "consumable"
-    "ItemShareability"        "ITEM_NOT_SHAREABLE"
-    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-    "SideShop"                      "1"
-    
-    "MaxUpgradeLevel"        "5"
-    "ItemBaseLevel"          "5"
-
-    "Modifiers"
-    {
-        "modifier_item_naix_life_steal"
-        {
-            "IsHidden"  "0"
-            "Passive" "1"
-            "OnDealDamage"
+            "modifier_item_naix_life_steal"
             {
-                "Lifesteal"
+                "IsHidden"  "0"
+                "Passive" "1"
+                "OnDealDamage"
                 {
-                    "Target"            "ATTACKER"
-                    "LifestealPercent"  "%heal_multiplier"
+                    "Lifesteal"
+                    {
+                        "Target"            "ATTACKER"
+                        "LifestealPercent"  "%heal_multiplier"
+                    }
                 }
             }
         }
-    }
-    "AbilitySpecial"
-    {
-        "01"
+        "AbilitySpecial"
         {
-            "var_type"          "FIELD_FLOAT"
-            "heal_multiplier"   "10.0 15.0 20.0 25.0 30.0"
-        }
-    }
-  }
-  "item_dota2x_pudgewars_item_flask"
-
-  {
-    "ID"              "1910"
-    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
-    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
-    "BaseClass"            "item_datadriven"
-    "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
-    "AbilityTextureName"      "dota2x_pudgewars_item_flask"
-
-    // Stats
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityCastRange"        "900"
-    "AbilityCastPoint"        "0.2"
-    "AbilityCooldown"        "13.0"
-
-    // Item Info
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityManaCost"        "100"
-    "ItemCost"            "750"
-    "ItemInitialCharges"      "0"
-    "ItemDroppable"          "1"
-    "ItemSellable"          "1"
-    "ItemRequiresCharges"      "0"
-    "ItemShareability"        "ITEM_NOT_SHAREABLE"
-    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-    
-
-    "MaxUpgradeLevel"        "5"
-    "ItemBaseLevel"          "2"
-    "Modifiers"
-    {
-        "item_naix_life_steal"
-        {
-            "IsHidden"  "0"
-            "Passive" "1"
-            "TextureName"   "dota2x_pudgewars_item_naix_jaw"
-            "OnDealDamage"
+            "01"
             {
-                "Lifesteal"
-                {
-                    "Target"            "ATTACKER"
-                    "LifestealPercent"  "%heal_multiplier"
-                }
+                "var_type"          "FIELD_FLOAT"
+                "heal_multiplier"   "10.0 15.0 20.0 25.0 30.0"
             }
         }
     }
-    "AbilitySpecial"
+    "item_dota2x_pudgewars_item_naix_jaw4"
     {
-        "01"
-        {
-            "var_type"          "FIELD_FLOAT"
-            "heal_multiplier"   "10.0 15.0 20.0 25.0 30.0"
-        }
-    }
+        "ID"                            "1861"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "BaseClass"                     "item_datadriven"
+        "AbilityCastAnimation"          "ACT_DOTA_DISABLED"
+        "AbilityTextureName"            "dota2x_pudgewars_item_naix_jaw4"
 
-    "MaxUpgradeLevel"        "1"
-    "ItemBaseLevel"          "1"
+        "AbilityCastRange"              "5000"
+        "AbilityCastPoint"              "0"
+        "AbilityCooldown"               "0"
 
-  }
-  "item_dota2x_pudgewars_item_grappling_hook"
-  {
-    "ID"              "1920"
-    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
-    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
-    "BaseClass"            "item_datadriven"
-    "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
-    "AbilityTextureName"      "dota2x_pudgewars_item_grappling_hook"
-
-    // Stats
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityCastRange"        "900"
-    "AbilityCastPoint"        "0.2"
-    "AbilityCooldown"        "13.0"
-
-    // Item Info
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityManaCost"        "100"
-    "ItemCost"            "750"
-    "ItemInitialCharges"      "0"
-    "ItemDroppable"          "1"
-    "ItemSellable"          "1"
-    "ItemRequiresCharges"      "0"
-    "ItemShareability"        "ITEM_NOT_SHAREABLE"
-    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "ItemCost"                      "750"
+        "ItemInitialCharges"            "0"
+        
+        "ItemKillable"                  "0"
+        "ItemDroppable"                 "1"
+        "ItemSellable"                  "1"
+        "ItemRequiresCharges"           "0"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                      "1"
     
+        "MaxUpgradeLevel"        "5"
+        "ItemBaseLevel"          "4"
 
-    "MaxUpgradeLevel"        "5"
-    "ItemBaseLevel"          "3"
-    "Modifiers"
-    {
-        "item_naix_life_steal"
+        "Modifiers"
         {
-            "IsHidden"  "0"
-            "Passive" "1"
-            "TextureName"   "dota2x_pudgewars_item_naix_jaw"
-            "OnDealDamage"
+            "modifier_item_naix_life_steal"
             {
-                "Lifesteal"
+                "IsHidden"  "0"
+                "Passive" "1"
+                "OnDealDamage"
                 {
-                    "Target"            "ATTACKER"
-                    "LifestealPercent"  "%heal_multiplier"
+                    "Lifesteal"
+                    {
+                        "Target"            "ATTACKER"
+                        "LifestealPercent"  "%heal_multiplier"
+                    }
                 }
             }
         }
-    }
-    "AbilitySpecial"
-    {
-        "01"
+        "AbilitySpecial"
         {
-            "var_type"          "FIELD_FLOAT"
-            "heal_multiplier"   "10.0 15.0 20.0 25.0 30.0"
-        }
-    }
-
-    "MaxUpgradeLevel"        "1"
-    "ItemBaseLevel"          "1"
-
-  }
-  "item_dota2x_pudgewars_item_lycan_paw"
-  {
-    "ID"              "1930"
-    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
-    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
-    "BaseClass"            "item_datadriven"
-    "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
-    "AbilityTextureName"      "dota2x_pudgewars_item_lycan_paw"
-
-    // Stats
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityCastRange"        "900"
-    "AbilityCastPoint"        "0.2"
-    "AbilityCooldown"        "13.0"
-
-    // Item Info
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityManaCost"        "100"
-    "ItemCost"            "750"
-    "ItemInitialCharges"      "0"
-    "ItemDroppable"          "1"
-    "ItemSellable"          "1"
-    "ItemRequiresCharges"      "0"
-    "ItemShareability"        "ITEM_NOT_SHAREABLE"
-    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-    
-
-    "MaxUpgradeLevel"        "5"
-    "ItemBaseLevel"          "4"
-    "Modifiers"
-    {
-        "item_naix_life_steal"
-        {
-            "IsHidden"  "0"
-            "Passive" "1"
-            "TextureName"   "dota2x_pudgewars_item_naix_jaw"
-            "OnDealDamage"
+            "01"
             {
-                "Lifesteal"
-                {
-                    "Target"            "ATTACKER"
-                    "LifestealPercent"  "%heal_multiplier"
-                }
+                "var_type"          "FIELD_FLOAT"
+                "heal_multiplier"   "10.0 15.0 20.0 25.0 30.0"
             }
         }
     }
-    "AbilitySpecial"
+    "item_dota2x_pudgewars_item_naix_jaw5"
     {
-        "01"
+        "ID"                            "1862"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "BaseClass"                     "item_datadriven"
+        "AbilityCastAnimation"          "ACT_DOTA_DISABLED"
+        "AbilityTextureName"            "dota2x_pudgewars_item_naix_jaw5"
+
+        "AbilityCastRange"              "5000"
+        "AbilityCastPoint"              "0"
+        "AbilityCooldown"               "0"
+
+        "ItemCost"                      "750"
+        "ItemInitialCharges"            "0"
+        
+        "ItemKillable"                  "0"
+        "ItemDroppable"                 "1"
+        "ItemSellable"                  "1"
+        "ItemRequiresCharges"           "0"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                      "1"
+    
+        "MaxUpgradeLevel"        "5"
+        "ItemBaseLevel"          "5"
+
+        "Modifiers"
         {
-            "var_type"          "FIELD_FLOAT"
-            "heal_multiplier"   "10.0 15.0 20.0 25.0 30.0"
+            "modifier_item_naix_life_steal"
+            {
+                "IsHidden"  "0"
+                "Passive" "1"
+                "OnDealDamage"
+                {
+                    "Lifesteal"
+                    {
+                        "Target"            "ATTACKER"
+                        "LifestealPercent"  "%heal_multiplier"
+                    }
+                }
+            }
         }
-    }
-
-    "MaxUpgradeLevel"        "1"
-    "ItemBaseLevel"          "1"
-
-  }
-  "item_dota2x_pudgewars_item_ricochet_turbine"
-  {
-    "ID"              "1940"
-    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
-    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
-    "BaseClass"            "item_datadriven"
-    "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
-    "AbilityTextureName"      "dota2x_pudgewars_item_ricochet_turbine"
-
-    // Stats
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityCastRange"        "900"
-    "AbilityCastPoint"        "0.2"
-    "AbilityCooldown"        "13.0"
-
-    // Item Info
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityManaCost"        "100"
-    "ItemCost"            "750"
-    "ItemInitialCharges"      "0"
-    "ItemDroppable"          "1"
-    "ItemSellable"          "1"
-    "ItemRequiresCharges"      "0"
-    "ItemShareability"        "ITEM_NOT_SHAREABLE"
-    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-    
-    "MaxUpgradeLevel"        "1"
-    "ItemBaseLevel"          "1"
-  }
-  "item_dota2x_pudgewars_item_techies_explosive_barrel"
-  {
-    "ID"              "1950"
-    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
-    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
-    "BaseClass"            "item_datadriven"
-    "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
-    "AbilityTextureName"      "dota2x_pudgewars_item_techies_explosive_barrel"
-
-    // Stats
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityCastRange"        "900"
-    "AbilityCastPoint"        "0.2"
-    "AbilityCooldown"        "13.0"
-
-    // Item Info
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityManaCost"        "100"
-    "ItemCost"            "750"
-    "ItemInitialCharges"      "0"
-    "ItemDroppable"          "1"
-    "ItemSellable"          "1"
-    "ItemRequiresCharges"      "0"
-    "ItemShareability"        "ITEM_NOT_SHAREABLE"
-    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-    
-    "MaxUpgradeLevel"        "1"
-    "ItemBaseLevel"          "1"
-  }
-  "item_dota2x_pudgewars_item_techies_explosive_barrel"
-  {
-    "ID"              "1846"
-    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
-    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
-    "BaseClass"            "item_datadriven"
-    "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
-    "AbilityTextureName"      "dota2x_pudgewars_item_techies_explosive_barrel"
-
-    // Stats
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityCastRange"        "900"
-    "AbilityCastPoint"        "0.2"
-    "AbilityCooldown"        "13.0"
-
-    // Item Info
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityManaCost"        "100"
-    "ItemCost"            "750"
-    "ItemInitialCharges"      "0"
-    "ItemDroppable"          "1"
-    "ItemSellable"          "1"
-    "ItemRequiresCharges"      "0"
-    "ItemShareability"        "ITEM_NOT_SHAREABLE"
-    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-    
-    "MaxUpgradeLevel"        "1"
-    "ItemBaseLevel"          "1"
-  }
-  "item_dota2x_pudgewars_item_tiny_arm"
-  {
-    "ID"              "1847"
-    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
-    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
-    "BaseClass"            "item_datadriven"
-    "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
-    "AbilityTextureName"      "dota2x_pudgewars_item_tiny_arm"
-
-    // Stats
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityCastRange"        "900"
-    "AbilityCastPoint"        "0.2"
-    "AbilityCooldown"        "13.0"
-
-    // Item Info
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityManaCost"        "100"
-    "ItemCost"            "750"
-    "ItemInitialCharges"      "0"
-    "ItemDroppable"          "1"
-    "ItemSellable"          "1"
-    "ItemRequiresCharges"      "0"
-    "ItemShareability"        "ITEM_NOT_SHAREABLE"
-    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-    
-    "MaxUpgradeLevel"        "1"
-    "ItemBaseLevel"          "1"
-  }
-  "item_dota2x_pudgewars_item_wardr"
-  {
-    "ID"              "1848"
-    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
-    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO"
-    "BaseClass"            "item_datadriven"
-    "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
-    "AbilityTextureName"      "dota2x_pudgewars_item_wardr"
-
-    // Stats
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityCastRange"        "900"
-    "AbilityCastPoint"        "0.2"
-    "AbilityCooldown"        "13.0"
-
-    // Item Info
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityManaCost"        "100"
-    "ItemCost"            "750"
-    "ItemInitialCharges"      "0"
-    "ItemDroppable"          "1"
-    "ItemSellable"          "1"
-    "ItemRequiresCharges"      "0"
-    "ItemShareability"        "ITEM_NOT_SHAREABLE"
-    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-    
-    "MaxUpgradeLevel"        "1"
-    "ItemBaseLevel"          "1"
-  }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "heal_multiplier"   "10.0 15.0 20.0 25.0 30.0"
+            }
+        }
+    } 
 }
