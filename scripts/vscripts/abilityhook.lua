@@ -87,7 +87,8 @@ function initHookData()
 					table.insert( tPossibleHookTargetName , #tPossibleHookTargetName + 1 ,v)
 					--ability_dota2x_pudgewars_hook_applier
 					
-					local caster = CreateUnitByName(v,Vector(0,0,0) + RandomVector(1000),false,nil,nil,DOTA_TEAM_GOODGUYS)
+					local caster = CreateUnitByName(v,Vector(-1500,-500,0) + RandomVector(400),false,nil,nil,DOTA_TEAM_GOODGUYS)
+					
 					local dummy = CreateUnitByName("npc_dota2x_pudgewars_unit_dummy", 
 						caster:GetAbsOrigin(), false, caster, caster, DOTA_TEAM_GOODGUYS)
 					if dummy then print("test dummy unit created") end
@@ -180,7 +181,8 @@ function OnHookStart(keys)
 		ParticleManager:SetParticleControl( nFXIndex, 3, vOrigin )
 		tHookElements[nPlayerID].Body[1] = {
 		    index = nFXIndex,
-		    vec = vOrigin
+		    vec = vOrigin,
+		    fvec = caster:GetForwardVector()
 		}
 
 		-- create the head trail particle
@@ -299,12 +301,8 @@ local function dealLastHit( caster,target )
 	dummy:AddAbility("ability_deal_the_last_hit")
 	local ABILITY_LAST_HIT = dummy:FindAbilityByName("ability_deal_the_last_hit")
 	ABILITY_LAST_HIT:SetLevel(1)
-	ExecuteOrderFromTable({
-		UnitIndex = dummy:entindex(),
-		OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-		AbilityIndex = ABILITY_LAST_HIT:entindex(),
-		TargetIndex = target:entindex()
-	})
+	dummy:CastAbilityOnTarget(target, ABILITY_LAST_HIT, 0 )
+
 	PudgeWarsGameMode:CreateTimer("last_hit",{
 		endTime = Time() + 1,
 		callback = function()
@@ -312,7 +310,6 @@ local function dealLastHit( caster,target )
 			if target:IsAlive() then
 				print("WARNING! THE UNIT IS STILL ALIVE")
 				target:ForceKill(false)
-				
 			end
 		end
 	})
@@ -333,16 +330,25 @@ local function HookUnit( target , caster ,plyid )
 			--HEAD SHOT
 			print("unit has been hooked and its an enemy")
 			dealLastHit(caster,target)
-			showCenterMessage("#pudgewars_head_shot")
+			local msg = {
+			message = "#pudgewars_head_shot",
+			duration = 1
+			}
+		FireGameEvent('show_center_message',msg)
 			--TODO
 			--EMIT SOUND
 		end
 		if tbHookByAlly[target] then
 			print("the unit has been hooked by ally")
-			if unit:GetTeam() ~= caster:GetTeam() then
+			if target:GetTeam() ~= caster:GetTeam() then
 				--HEADSHOT
 				dealLastHit(caster,target)
-				showCenterMessage("#pudgewars_head_shot")
+				showCenterMessag("#pudgewars_head_shot")
+				local msg = {
+					message = "#pudgewars_head_shot",
+					duration = 1
+					}
+				FireGameEvent('show_center_message',msg)
 				--TODO
 				--EMIT SOUND
 			end
@@ -351,7 +357,11 @@ local function HookUnit( target , caster ,plyid )
 			if target:GetTeam() == caster:GetTeam() then
 				--DENIED
 				dealLastHit(caster,target)
-				showCenterMessage("#pudgewars_denied")
+				local msg = {
+					message = "#pudgewars_head_shot",
+					duration = 1
+					}
+				FireGameEvent('show_center_message',msg)
 				--TODO
 			    --EMIT SOUND
 			end
@@ -381,31 +391,38 @@ local function HookUnit( target , caster ,plyid )
 	{
 		endTime = Time() + 0.5,
 		callback = function()
-			if target:HasModifier("modifier_pudgewars_hooked") then
-				print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-				print("the unit has the hooked modifier")
-				print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-			end
 			dummy:Destroy()
 		end
 	})
-	if ItemThinker:HasMItem( caster , "item_dota2x_pudgewars_item_naix_jaw" ) then
-		local returnItems = ItemThinker:GetItems(caster)
-		for k,v in pairs(returnItems) do
-			print(k..tostring(v))
-		end
-	end	
+
+
 	local dmg = tnPlayerHookDamage[plyid]
 	print("dmg = "..tostring(dmg).."playerdi"..tostring(plyid))
 	local hp = target:GetHealth()
 	print(" hp = "..tostring(hp))
-	if dmg < hp then
-		-- take away health directly
-		target:SetHealth(hp-dmg)
-		
-	else
-		-- ADD THE ABILITY "ability_deal_the_last_hit" AND DEAL DAMAGE WITH THE SPELL
-		dealLastHit(caster,target)
+	if target:GetTeam() ~= caster:GetTeam() then
+		if dmg < hp then
+			-- take away health directly
+			target:SetHealth(hp-dmg)
+
+			local itemJaw = ItemThinker:FindItemFuzzy(caster,"item_dota2x_pudgewars_item_naix_jaw")
+			if itemJaw then
+
+				local index = ParticleManager:CreateParticle("life_stealer_infest_emerge_clean_lights_LV",PATTACH_CUSTOMORIGIN,caster)
+				local offsetVec = Vector(0,0,150)
+				ParticleManager:SetParticleControl(index,0,caster:GetOrigin() + offsetVec)
+				ParticleManager:ReleaseParticleIndex(index)
+
+				local itemLevel = string.sub(itemJaw,-1,-1)
+				print("ITEM JAW FOUND"..itemLevel)
+				local lifestealPercent = (tonumber(itemLevel) * 5 + 5) / 100
+				caster:SetHealth(caster:GetHealth() + dmg * lifestealPercent)
+			end
+			
+		else
+			-- ADD THE ABILITY "ability_deal_the_last_hit" AND DEAL DAMAGE WITH THE SPELL
+			dealLastHit(caster,target)
+		end
 	end
 	
 	--THINK ABOUT HEADSHOT AND DENY
@@ -464,16 +481,22 @@ function OnReleaseHook( keys )
 				tbPlayerHookingBack[nPlayerID] = true
 				return 
 			else
+				if tHookElements[nPlayerID].CurrentLength < 30 then diffVec = Vector(0,0,0) end
 				local vec3 = Vector(
-					 headOrigin.x + diffVec.x/2 +headFV.x * PER_HOOK_BODY_LENGTH * tnPlayerHookSpeed[nPlayerID]
-					,headOrigin.y + diffVec.y/2 +headFV.y * PER_HOOK_BODY_LENGTH * tnPlayerHookSpeed[nPlayerID]
+					 headOrigin.x + diffVec.x/20 + headFV.x * PER_HOOK_BODY_LENGTH * tnPlayerHookSpeed[nPlayerID]
+					,headOrigin.y + diffVec.y/20 + headFV.y * PER_HOOK_BODY_LENGTH * tnPlayerHookSpeed[nPlayerID]
 					,headOrigin.z
 				)
+
+				diffVec = vec3 - uHead:GetOrigin()
+
 				uHead:SetOrigin(vec3)
+				uHead:SetForwardVector(diffVec:Normalized())
 				local nFXIndex = ParticleManager:CreateParticle( tnPlayerHookBDType[ nPlayerID ], PATTACH_CUSTOMORIGIN, caster )
 				tHookElements[nPlayerID].Body[#tHookElements[nPlayerID].Body + 1] = {
 				    index = nFXIndex,
-				    vec = vec3
+				    vec = vec3,
+				    fvec = diffVec:Normalized()
 				}
 
 				tvec3 = vec3
@@ -496,6 +519,7 @@ function OnReleaseHook( keys )
 			tvPlayerPudgeLastPos[nPlayerID] = caster:GetOrigin()
 		else
 			local backVec = tHookElements[nPlayerID].Body[#tHookElements[nPlayerID].Body].vec
+			local fVec = tHookElements[nPlayerID].Body[#tHookElements[nPlayerID].Body].fvec
 			local paIndex = tHookElements[nPlayerID].Body[#tHookElements[nPlayerID].Body].index
 
 			ParticleManager:SetParticleControl( paIndex, 0, WORLDMAX_VEC)
@@ -508,6 +532,7 @@ function OnReleaseHook( keys )
 			ParticleManager:SetParticleControl( paHead, 0, backVec )
 			tbackVec.z = tbackVec.z - 150
 			uHead:SetOrigin(backVec)
+			uHead:SetForwardVector(fVec)
 			if tHookElements[nPlayerID].Target then 
 				tHookElements[nPlayerID].Target:SetOrigin(backVec)
 			end
@@ -518,7 +543,7 @@ function OnReleaseHook( keys )
 					if tHookElements[nPlayerID].Target:IsAlive() then
 						tHookElements[nPlayerID].Target:AddNewModifier(tHookElements[nPlayerID].Target,nil,"modifier_phased",{})
 						tHookElements[nPlayerID].Target:RemoveModifierByName("modifier_phased")
-						tHookElements[nPlayerID].Target:RemoveModifierByName( "dota2x_modifier_hooked" )
+						tHookElements[nPlayerID].Target:RemoveModifierByName( "modifier_pudgewars_hooked" )
 					end
 				end
 				

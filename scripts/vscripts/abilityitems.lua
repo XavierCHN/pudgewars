@@ -17,7 +17,7 @@ function ItemThinker:HasItem( player , itemname)
     local items = self:GetItems(player)
     for k,v in pairs(items) do
         if v:GetName() == itemname then
-            return true
+            return v:GetName()
         end
     end
     return false
