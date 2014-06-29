@@ -192,6 +192,7 @@ function PudgeWarsGameMode:Think()
                 if continousTimer then
                     -- Change it's end time
                     v.endTime = continousTimer
+                    print("start a continous timer")
                     PudgeWarsGameMode.timers[k] = v
                 end
 

@@ -76,7 +76,7 @@ function initHookData()
 		endTime = Time(),
 		callback = function ()
 			if developmentmode then
-				print("spawning test units")
+				--print("spawning test units")
 				local testUnitTable = {
 					 "npc_dota_goodguys_melee_rax_bot"
 					,"npc_dota_neutral_blue_dragonspawn_overseer"
@@ -113,7 +113,7 @@ function initHookData()
 					]]
 					
 				end
-				PrintTable(tPossibleHookTargetName)
+				--PrintTable(tPossibleHookTargetName)
 			end
 		end
 	})
@@ -133,7 +133,7 @@ function OnHookStart(keys)
 	local caster = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = keys.unit:GetPlayerID()
 
-	PrintTable(keys)
+	--PrintTable(keys)
 	print("player "..nPlayerID.." Start A Hook")
 
 	--create the hook head
@@ -157,7 +157,7 @@ function OnHookStart(keys)
 		,caster:GetTeam()
 		)
 	if not unit then
-		print("failed to create hook head")
+		--print("failed to create hook head")
 	else
 		-- store the head
 		tHookElements[nPlayerID].Head.unit = unit
@@ -265,7 +265,7 @@ local function GetHookedUnit(caster, head , plyid)
 
 	if #tuHookedUnits >= 1 then
 		for k,v in pairs(tuHookedUnits) do
-			print("unitunitname " .. tostring(k)..":"..v:GetUnitName())
+			--print("unitunitname " .. tostring(k)..":"..v:GetUnitName())
 
 			local va = false
 			for s,t in pairs (tPossibleHookTargetName) do
@@ -276,7 +276,7 @@ local function GetHookedUnit(caster, head , plyid)
 			end
 			if ( not va ) or ( v == caster ) then
 				-- not a valid unit , remove
-				print("remove")
+				--print("remove")
 				table.remove(tuHookedUnits , k)
 			end
 		end
@@ -289,10 +289,10 @@ local function GetHookedUnit(caster, head , plyid)
 	return nil
 end
 
-local function dealLastHit( caster,target )
+function dealLastHit( caster,target )
 	local dummy = CreateUnitByName("npc_dota2x_pudgewars_unit_dummy", 
 		target:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber())
-	if dummy then print("unit created") end
+	--if dummy then print("unit created") end
 	dummy:AddAbility("ability_deal_the_last_hit")
 	local ABILITY_LAST_HIT = dummy:FindAbilityByName("ability_deal_the_last_hit")
 	ABILITY_LAST_HIT:SetLevel(1)
@@ -315,15 +315,15 @@ local function HookUnit( target , caster ,plyid )
 	print ( "the enemy name "..target:GetName())
 
 	if target:HasModifier("modifier_pudgewars_hooked") then
-		print("the hooked unit has the hooked modifier already!!")
-		print(tostring(target:GetTeamNumber()))
-		print(tostring(caster:GetTeamNumber()))
-		print(tostring(target:GetTeam()))
-		print(tostring(caster:GetTeam()))
-		print("the hooked unit has the hooked modifier already!!")
+		--print("the hooked unit has the hooked modifier already!!")
+		--print(tostring(target:GetTeamNumber()))
+		--print(tostring(caster:GetTeamNumber()))
+		--print(tostring(target:GetTeam()))
+		--print(tostring(caster:GetTeam()))
+		--print("the hooked unit has the hooked modifier already!!")
 		if target:GetTeam() ~= caster:GetTeam() then
 			--HEAD SHOT
-			print("unit has been hooked and its an enemy")
+			--print("unit has been hooked and its an enemy")
 			dealLastHit(caster,target)
 			local msg = {
 			message = "#pudgewars_head_shot",
@@ -334,7 +334,7 @@ local function HookUnit( target , caster ,plyid )
 			--EMIT SOUND
 		end
 		if tbHookByAlly[target] then
-			print("the unit has been hooked by ally")
+			--print("the unit has been hooked by ally")
 			if target:GetTeam() ~= caster:GetTeam() then
 				--HEADSHOT
 				dealLastHit(caster,target)
@@ -348,7 +348,7 @@ local function HookUnit( target , caster ,plyid )
 				--EMIT SOUND
 			end
 		else
-			print("the unit has been hooked by enemy")
+			--print("the unit has been hooked by enemy")
 			if target:GetTeam() == caster:GetTeam() then
 				--DENIED
 				dealLastHit(caster,target)
@@ -375,10 +375,10 @@ local function HookUnit( target , caster ,plyid )
 	local time = GameRules:GetGameTime()
 	local dummy = CreateUnitByName("npc_dota2x_pudgewars_unit_dummy", 
 		target:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber())
-	if dummy then print("unit created") end
+	--if dummy then print("unit created") end
 	dummy:AddAbility("ability_dota2x_pudgewars_hook_applier")
 	local ABILITY_HOOK_APPLIER = dummy:FindAbilityByName("ability_dota2x_pudgewars_hook_applier")
-	if ABILITY_HOOK_APPLIER then print("ability successful added") end
+	--if ABILITY_HOOK_APPLIER then print("ability successful added") end
 	ABILITY_HOOK_APPLIER:SetLevel(1)
 	
 	dummy:CastAbilityOnTarget(target, ABILITY_HOOK_APPLIER, 0 )
@@ -394,31 +394,32 @@ local function HookUnit( target , caster ,plyid )
 	local dmg = tnPlayerHookDamage[plyid]
 	
 	local bonusdamage = 0
-	local itemLatern = ItemThinker:FindItemFuzzy(caster,"item_dota2x_pudgewars_item_barathrum_lantern")
+	local itemLatern = ItemThinker:FindItemFuzzy(caster,"item_pudge_barathrum_lantern")
 	if itemLatren then
 		local itemLevel = string.sub(itemLatern,-1,-1)
+		print("ITEM LATERN FOUND LV :"..tostring(itemLevel))
 		bonusdamage = (tonumber(itemLevel) * 5 + 10 / 100) * dmg
 	end
 	dmg = dmg + bonusdamage
 
 
-	print("dmg = "..tostring(dmg).."playerdi"..tostring(plyid))
+	--print("dmg = "..tostring(dmg).."playerdi"..tostring(plyid))
 	local hp = target:GetHealth()
-	print(" hp = "..tostring(hp))
+	--print(" hp = "..tostring(hp))
 	if target:GetTeam() ~= caster:GetTeam() then
 		if dmg < hp then
 			-- take away health directly
 			target:SetHealth(hp-dmg)
-			local itemBlood = ItemThinker:FindItemFuzzy(caster,"item_dota2x_pudgewars_item_bloodseeker_claw")
+			local itemBlood = ItemThinker:FindItemFuzzy(caster,"item_pudge_bloodseeker_claw")
 			if itemBlood then
 				local itemLevel = string.sub(itemBlood,-1,-1)
 				print("ITEAM BLOOD SEEKER CLAW FOUND LEVEL:"..itemLevel)
 				local dummy = CreateUnitByName("npc_dota2x_pudgewars_unit_dummy", 
 					target:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber())
-				if dummy then print("unit created") end
+				--if dummy then print("unit created") end
 				dummy:AddAbility("ability_dota2x_pudgewars_bloodsekker_claw")
 				local ABILITY_BLOOD_APPLIER = dummy:FindAbilityByName("ability_dota2x_pudgewars_bloodsekker_claw")
-				if ABILITY_BLOOD_APPLIER then print("ability_dota2x_pudgewars_bloodsekker_claw ability successful added") end
+				--if ABILITY_BLOOD_APPLIER then print("ability_dota2x_pudgewars_bloodsekker_claw ability successful added") end
 				ABILITY_BLOOD_APPLIER:SetLevel(tonumber(itemLevel))
 					
 				dummy:CastAbilityOnTarget(target, ABILITY_BLOOD_APPLIER, 0 )
@@ -430,7 +431,7 @@ local function HookUnit( target , caster ,plyid )
 					end
 				})
 			end
-			local itemJaw = ItemThinker:FindItemFuzzy(caster,"item_dota2x_pudgewars_item_naix_jaw")
+			local itemJaw = ItemThinker:FindItemFuzzy(caster,"item_pudge_naix_jaw")
 			if itemJaw then
 
 				local index = ParticleManager:CreateParticle("life_stealer_infest_emerge_clean_lights_LV",PATTACH_CUSTOMORIGIN,caster)
@@ -439,7 +440,7 @@ local function HookUnit( target , caster ,plyid )
 				ParticleManager:ReleaseParticleIndex(index)
 
 				local itemLevel = string.sub(itemJaw,-1,-1)
-				print("ITEM JAW FOUND LEVEL:"..itemLevel)
+				--print("ITEM JAW FOUND LEVEL:"..itemLevel)
 				local lifestealPercent = (tonumber(itemLevel) * 5 + 5) / 100
 				caster:SetHealth(caster:GetHealth() + dmg * lifestealPercent)
 			end
@@ -496,7 +497,7 @@ function OnReleaseHook( keys )
 			end
 			if tvPlayerPudgeLastPos[nPlayerID] == nil then tvPlayerPudgeLastPos[nPlayerID] = caster:GetOrigin() end
 			local diffVec = caster:GetOrigin() - tvPlayerPudgeLastPos[nPlayerID]
-			print("Diff Vector "..tostring(diffVec))
+			--print("Diff Vector "..tostring(diffVec))
 
 			if tHookElements[nPlayerID].CurrentLength 
 				* PER_HOOK_BODY_LENGTH 
@@ -589,7 +590,7 @@ end
 
 function OnUpgradeHookDamage(keys)
 	print("upgrading damage")
-	PrintTable(keys)
+	--PrintTable(keys)
 	local caster    = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = caster:GetPlayerID()
 
@@ -613,7 +614,7 @@ end
 function OnUpgradeHookRadius( keys )
 	print("upgrading radius")
 
-	PrintTable(keys)
+	--PrintTable(keys)
 	local caster    = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = caster:GetPlayerID()
 	
@@ -638,7 +639,7 @@ end
 function OnUpgradeHookLength( keys )
 	print("upgrading length")
 
-	PrintTable(keys)
+	--PrintTable(keys)
 	local caster    = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = caster:GetPlayerID()
 
@@ -663,7 +664,7 @@ end
 function OnUpgradeHookSpeed( keys )
 	print("upgrading speed")
 
-	PrintTable(keys)
+	--PrintTable(keys)
 	local caster    = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = caster:GetPlayerID()
 
@@ -687,7 +688,7 @@ end
 
 function OnUpgradeHookDamageFinished( keys )
 
-	PrintTable(keys)
+	--PrintTable(keys)
 	local caster    = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = caster:GetPlayerID()
 
@@ -708,7 +709,7 @@ end
 
 function OnUpgradeHookRadiusFinished( keys )
 
-	PrintTable(keys)
+	--PrintTable(keys)
 	local caster    = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = caster:GetPlayerID()
 
@@ -729,7 +730,7 @@ end
 
 function OnUpgradeHookLengthFinished( keys )
 
-	PrintTable(keys)
+	--PrintTable(keys)
 	local caster    = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = caster:GetPlayerID()
 	local nUpgradeCost  = tnUpgradeLengthCost[nCurrentLevel]
@@ -749,7 +750,7 @@ end
 
 function OnUpgradeHookSpeedFinished( keys )
 
-	PrintTable(keys)
+	--PrintTable(keys)
 	local caster    = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = caster:GetPlayerID()
 	local nUpgradeCost  = tnUpgradeHookSpeedCost[nCurrentLevel]
@@ -772,12 +773,12 @@ function OnToggleHookType( keys )
 	local caster = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = caster:GetPlayerID()
 	if tbPlayerOutterHook[nPlayerID] then
-		print("change from on to off")
+		--print("change from on to off")
 		local ABILITY_OUTTER_HOOK = caster:FindAbilityByName("dota2x_pudgewars_toggle_hook")
 		ABILITY_OUTTER_HOOK:__KeyValueFromString("AbilityTextureName","pudgewars_toggle_outter_hook_off")
 		tbPlayerOutterHook[nPlayerID] = false
 	else
-		print("change from of to on")
+		--print("change from of to on")
 		local ABILITY_OUTTER_HOOK = caster:FindAbilityByName("dota2x_pudgewars_toggle_hook")
 		ABILITY_OUTTER_HOOK:__KeyValueFromString("AbilityTextureName","pudgewars_toggle_outter_hook_on")
 		tbPlayerOutterHook[nPlayerID] = true

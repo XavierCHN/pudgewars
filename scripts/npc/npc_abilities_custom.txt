@@ -607,6 +607,37 @@
       }
     }
   }
-  
-}
+  "ability_bomb_timer_applier"
+  {
+      "ID"      "2009"
+      "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+      "BaseClass"           "ability_datadriven"
 
+      "OnSpellStart"
+      {
+        "ApplyModifier"
+        {
+          "Target"  "TARGET"
+          "ModfieirName"  "modfieir_bomb_timer"
+        }
+      }
+      "Modifiers"
+      {
+        "modfieir_bomb_timer"
+        {
+          "IsHidden"    "0"
+          "IsPassive"   "1"
+          "Duration"    "10"
+          "ThinkInterval"   "0.1"
+          "OnIntervalThink"
+          {
+            "RunScript"
+            {
+              "ScriptFile"  "scripts/vscripts/abilityitems.lua"
+              "Function"    "OnBombTimerTick"
+            }
+          }
+        }
+      }
+  }
+}
