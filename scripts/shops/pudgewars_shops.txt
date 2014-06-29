@@ -14,11 +14,7 @@
     	"item"		"item_pudge_earthshaker_totem1"
     	"item"		"item_pudge_grappling_hook1"
     	"item"		"item_pudge_lycan_paw1"
-    	"item"		"item_pudge_tiny_arm2"
-    	"item"		"item_pudge_tiny_arm3"
-    	"item"		"item_pudge_tiny_arm4"
-    	"item"		"item_pudge_tiny_arm5"
-    	//"item"		"item_pudge_techies_explosive_barrel1"
+       "item"		"item_pudge_techies_explosive_barrel1"
 
 	}
 
