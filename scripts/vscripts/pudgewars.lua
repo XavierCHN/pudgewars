@@ -98,10 +98,6 @@ function PudgeWarsGameMode:CaptureGameMode()
         GameMode:SetContextThink("PudgewarsThink", Dynamic_Wrap( PudgeWarsGameMode, 'Think' ), 0.1 )
         print("[PudgeWars] Pudgewars game mode begin to think")
 
-        self:InitGoldAndChestTimer()
-        --create gold and chest spawn timer
-        
-
     end 
 end
 

@@ -194,7 +194,7 @@
           {
             "MODIFIER_STATE_DISARMED"   "MODIFIER_STATE_VALUE_ENABLED"
             "MODIFIER_STATE_SILENCED"   "MODIFIER_STATE_VALUE_ENABLED"
-            "MODIFIER_STATE_ROOTED"     "MODIFIER_STATE_ROOTED"
+            "MODIFIER_STATE_ROOTED"     "MODIFIER_STATE_VALUE_ENABLED"
           }
         }
       }
@@ -629,109 +629,103 @@
       }
     }
   }
-  "ability_bomb_timer_applier"
+  "ability_make_bomb_a_bomb"
   {
-      "ID"      "2009"
-      "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-      "BaseClass"           "ability_datadriven"
+    "ID"        "2009"
+    "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "BaseClass"     "ability_datadriven"
+    "MaxLevel"      "5"
 
-      "OnSpellStart"
+    "precache"
+    {
+      "particlefile" "particles/units/heroes/hero_rattletrap.pcf"
+    }
+
+    "Modifiers"
+    {
+      "modifier_bomb_invisible"
       {
-        "ApplyModifier"
+        "Passive" "1"
+        "States"  
         {
-          "Target"  "TARGET"
-          "ModfieirName"  "modfieir_bomb_timer"
+          "MODIFIER_STATE_INVISIBLE" "MODIFIER_STATE_VALUE_ENABLED"
         }
       }
-      "Modifiers"
+      "pudgewars_bomb_fuse"
       {
-        "modfieir_bomb_timer"
+        "Passive"     "1"
+        "IsHidden"    "0"
+        "duration"      "%fuse_time + 0.1"  //to ensure modifier successful added
+        "ThinkInterval" "%fuse_time"
+        "OnIntervalThink"
         {
-          "IsHidden"    "0"
-          "IsPassive"   "1"
-          "Duration"    "10"
-          "ThinkInterval"   "0.1"
-          "OnIntervalThink"
+          "ApplyModifier"
           {
-            "RunScript"
-            {
-              "ScriptFile"  "scripts/vscripts/abilityitems.lua"
-              "Function"    "OnBombTimerTick"
-            }
+            "Target"  "CASTER"
+            "ModifierName"  "pudgewars_bomb_trigger"
+          }
+          "RemoveModifier"
+          {
+            "Target"  "CASTER"
+            "ModifierName"  "pudgewars_bomb_fuse"
           }
         }
       }
-  }
-  "ability_pudgewars_bomb_bomb"
-  {
-  	"ID"    "2010"
-  	"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-      	"BaseClass"   "ability_datadriven"
-  	"Modifiers"
+      "pudgewars_bomb_trigger"
+      {
+        "IsHidden"    "0"
+        "Duration"    "%bomb_max_time"
+        "AttachEffect"
         {
-            "modifier_bomb_fuse"
-            {
-                "OnCreated"
-                {
-                    "DelayAction"
-                    {
-                        "Delay" "%bomb_trigger_delay"
-                        "ActOnTarget"
-                        {
-                            "Target"    "CASTER"
-                            "Action"
-                            {
-                                "ApplyModifier"
-                                {
-                                    "ModifierName"  "modifier_bomb_tick"
-                                    "Target"    "CASTER"
-                                }
-                                "ApplyModifier"
-                                {
-                                    "ModifierName"  "modifier_bomb_destroyer"
-                                    "Target"    "CASTER"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            "modifier_bomb_tick"
-            {
-                "Passive"           "1"
-                "ThinkInterval"     "0.1"
-                "OnIntervalThink"
-                {
-                    "Damage"
-                    {
-                        "Target"
-                        {
-                            "Center"    "CASTER"
-                            "Radius"    "%bomb_radius"
-                            "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
-                            "Types"     "DOTA_UNIT_TARGET_HERO"
-                        }
-                        "OnDamage"
-                        {
-                            "RemoveUnit"
-                            {
-                                "Target"    "CASTER"
-                            }
-                        }
-                    }
-                }
-            }
-            "modifier_bomb_destroyer"
-            {
-                "ThinkInterval"     "%bomb_duration"
-                "OnIntervalThink"
-                {
-                    "RemoveUnit"
-                    {
-                        "Target"        "CASTER"
-                    }
-                }
-            }
+          "EffectName"          "rattletrap_cog_ambient"
+          "Target"              "CASTER"
+          "EffectAttachType"    "follow_origin"
         }
+        "ThinkInterval"
+        {
+          "Damage"
+          {
+            "Type"    "DAMAGE_TYPE_MAGICAL"
+            "Damage"  "%bomb_damage"
+            "Target"
+            {
+              "Center"  "CASTER"
+              "Radius"  "%bomb_radius"
+              "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+              "Types" "DOTA_UNIT_TARGET_HERO"
+            }
+          }
+          "RunScript"
+          {
+            "ScriptFile"  "scripts/vscripts/abilityhook.lua"
+            "Function"    "ThinkAboutBombTriggered"
+          }
+        }
+      }
     }
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "fuse_time" "3.0 2.5 2.0 1.5 1.0"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_FLOAT"
+        //TODO
+        "bomb_max_time" "20.0 3.0 4.0 5.0 6.0"
+      }
+      "03"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "Radius"  "100.0 150.0 200.0 250.0 300.0"
+      }
+      "04"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "bomb_damage" "100.0 200.0 300.0 400.0 500.0"
+      }
+    }
+  }
 }

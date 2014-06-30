@@ -1083,12 +1083,13 @@
     {
         "ID"       "1744"
         "BaseClass"                     "item_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityCastRange"              "2500"
-        "AbilityCastPoint"              "0.0 0.0 0.0 0.0 0.0 0.0"
+        "AbilityCastPoint"              "0.0 0.0 0.0 0.0 0.0"
         "AbilityCooldown"               "20"
         "AbilityManaCost"               "0 0 0 0 0"
         "AbilityModifierSupportValue"   "0.25"
-        "AbilityTextureName"            "item_pudge_tiny_arm5"
+        "AbilityTextureName"            "pudge_techies_explosive_barrel1"
 
         "ItemCost"                      "750"
         "ItemInitialCharges"            "0"
@@ -1103,7 +1104,15 @@
         "SideShop"                      "1"
 
         "MaxUpgradeLevel"               "5"
-        "ItemBaseLevel"                 "5"
-        
+        "ItemBaseLevel"                 "1"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "scripts/vscripts/abilityhook.lua"
+                "Function"      "PlantABomb"
+            }
+        }
     }
 }

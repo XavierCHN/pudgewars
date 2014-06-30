@@ -32,16 +32,6 @@ function AddWall(keys)
   end
 end
 
-function ThinkOfWallDisappear()
-  local caster =  EntToHscript(keys.caster_entindex)
-  for k,v in pairs(tHookBlockWalls) do
-    if v.onwer == caster then
-    	print("an wall removed"..v.id)
-    	table.remove(tHookBlockWalls,k)
-    end
-  end
-end
-
 function PudgeWarsGameMode:HookHeadTHink()
   PrintTable(keys)
   

@@ -295,9 +295,8 @@ end
 
 
 local function GetHookedUnit(caster, head , plyid)
-		
-	-- find unit in radius within hook radius	
-	local tuHookedUnits = FindUnitsInRadius(
+	local tuHookedUnits = nil
+	tuHookedUnits = FindUnitsInRadius(
 		caster:GetTeam(),		--caster team
 		head:GetOrigin(),		--find position
 		nil,					--find entity
@@ -307,32 +306,37 @@ local function GetHookedUnit(caster, head , plyid)
 		0, FIND_CLOSEST,
 		false
 	)
-	
 	-- remove all useless untis
 	if #tuHookedUnits >= 1 then
 		for k,v in pairs(tuHookedUnits) do
+			
 			print("unitunitname " .. tostring(k)..":"..v:GetUnitName())
 
 			local va = false
 			for s,t in pairs (tPossibleHookTargetName) do
 				if v:GetUnitName() == t then
 					-- the unit in the table , a valid hook unit
+					print("valid unit found")
 					va = true
 				end
 			end
 			if ( not va ) or ( v == caster ) then
 				-- not a valid unit , remove
-				print("remove")
-				table.remove(tuHookedUnits , k)
+				print("remove invalid unit")
+				print("v == caster:" ..tostring( v == caster))
+				tuHookedUnits[k] = nil
 			end
 		end
 	end
 	
 	-- if there is units left then catch it
-	if #tuHookedUnits >= 1 then
-		-- return the nearest unit
-		return tuHookedUnits[1]
+	for k,v in pairs(tuHookedUnits) do
+		if v ~= nil then
+			print("return hooked unit"..v:GetUnitName())
+			return v
+		end
 	end
+	
 	return nil
 end
 
@@ -367,7 +371,7 @@ end
 -- catch the hook unit
 local function HookUnit( target , caster ,plyid )
 	print ( "hooked something" )
-	print ( "the enemy name "..target:GetName())
+	print ( "the enemy name "..target:GetUnitName())
 	
 	--if the unit is already hooked by someone
 	if target:HasModifier("modifier_pudgewars_hooked") then
@@ -870,5 +874,34 @@ function OnToggleHookType( keys )
 		local ABILITY_OUTTER_HOOK = caster:FindAbilityByName("ability_pudgewars_toggle_hook")
 		ABILITY_OUTTER_HOOK:__KeyValueFromString("AbilityTextureName","pudgewars_toggle_outter_hook_on")
 		tbPlayerOutterHook[nPlayerID] = true
+	end
+end
+
+function PlantABomb(keys)
+	PrintTable(keys)
+	local caster = EntIndexToHScript(keys.caster_entindex)
+	local nPlayerID = caster:GetPlayerID()
+	local returnPos = nil
+
+	if tHookElements[nPlayerID].Head.unit then
+		print("there is a head,plant bomb at head")
+		returnPos = tHookElements[nPlayerID].Head.unit:GetOrigin()
+	else
+		returnPos = caster:GetOrigin()
+	end
+	local unit =CreateUnitByName(
+		"npc_dota2x_pudgewars_unit_bomb",
+		returnPos,
+		false,
+		nil,
+		nil,
+		caster:GetTeam())
+	unit:AddNewModifier(unit,nil,"modifier_phased",{})
+end
+function ThinkAboutBombTriggered(keys)
+	if not ThinkAboutBombTriggeredprinted then
+		print("thinkaboutbombtriggered")
+		ThinkAboutBombTriggeredprinted = ture
+		PrintTable(keys)
 	end
 end
