@@ -15,7 +15,7 @@ function initHookData()
 	tnHookDamage  = {175 , 250 , 350 , 500  }
 	tnHookLength  = {1400 , 1500 , 1600 , 1800 }
 	tnHookRadius  = {80  , 120  , 150  , 200   }
-	tnHookSpeed   = {0.2 , 0.3 , 0.4 , 0.6  }
+	tnHookSpeed   = {0.2 , 0.3 , 0.4 , 0.5  }
 
 	tnUpgradeHookDamageCost = {500 , 1000 , 1500 , 2000  }
 	tnUpgradeHookLengthCost = {500 , 1000 , 1500 , 2000  }
@@ -159,14 +159,19 @@ function OnHookStart(keys)
 	
 	--define the hook model according to player kill streak
 	local killStreak = PlayerResource:GetStreak(nPlayerID)
-	if killStreak < 2 then
-		hookType = tnHookTypeString[1]
-	elseif killStreak < 4 then
-		hookType = tnHookTypeString[2]
-	elseif killStreak <6 then
-		hookType = tnHookTypeString[3]
+	if killStreak then	
+		if killStreak < 2 then
+			hookType = tnHookTypeString[1]
+		elseif killStreak < 4 then
+			hookType = tnHookTypeString[2]
+		elseif killStreak <6 then
+			hookType = tnHookTypeString[3]
+		else
+			hookType = tnHookTypeString[4]
+		end
 	else
-		hookType = tnHookTypeString[4]
+		print("no kill streak!")
+		hookType = tnHookTypeString[1]
 	end
 	
 	-- create the hook head
@@ -182,7 +187,8 @@ function OnHookStart(keys)
 		--print("failed to create hook head")
 	else
 		-- the head ai, currently think about walls only
-		unit:SetContextThink("hookheadthink","HookHeadThink",0.1)
+		unit:SetContextThink("hookheadthink",Dynamic_Wrap( PudgeWarsGameMode, 'HookHeadThink' ),0.1)
+
 		
 		-- store the head
 		tHookElements[nPlayerID].Head.unit = unit

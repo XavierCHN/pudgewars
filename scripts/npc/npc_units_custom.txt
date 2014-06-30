@@ -4,7 +4,7 @@
 	"Version"	"1"
   	"npc_dota2x_pudgewars_unit_pudgehook_lv4"
   	{
-  		"model"					"models/items/pudge/pudge_skelton_hook.mdl"
+  		"model"					"models/items/pudge/pudge_skeleton_hook.mdl"
   		"BaseClass"				"npc_dota_creep_neutral"
   		"Ability1"				"ability_dota2x_pudgewars_hook_dummy"
   		"Ability2"				"ability_dota2x_pudgewars_hook_applier"
@@ -17,7 +17,7 @@
   	}
   	"npc_dota2x_pudgewars_unit_pudgehook_lv3"
   	{
-  		"model"					"models/items/pudge/whalehook.mdl"
+  		"model"					"models/items/pudge/whale_hook.mdl"
   		"BaseClass"				"npc_dota_creep_neutral"
   		"Ability1"				"ability_dota2x_pudgewars_hook_dummy"
   		"Ability2"				"ability_dota2x_pudgewars_hook_applier"

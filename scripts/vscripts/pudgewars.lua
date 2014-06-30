@@ -107,7 +107,7 @@ end
 function PudgeWarsGameMode:InitGoldAndChestTimer( ... )
     if self.timers["gold_spawn_timer"] == nil then
         self:CreateTimer("gold_spawn_timer",{
-            endTime = GameRules:GetGameTime() + 1,--math.random( 10 , 20 ),
+            endTime = GameRules:GetGameTime() + math.random( 50 , 70 ),
             useGameTime = true,
             continousTimer = true,
             callback = function(pudgewars, args)
@@ -130,7 +130,7 @@ function PudgeWarsGameMode:InitGoldAndChestTimer( ... )
     end
     if self.timers["chest_spawn_timer"] == nil then
         self:CreateTimer("chest_spawn_timer",{
-            endTime = GameRules:GetGameTime() + math.random( 30 , 60 ),
+            endTime = GameRules:GetGameTime() + math.random( 110, 130 ),
             useGameTime = true,
             continousTimer = true,
             callback = function(pudgewars, args)
@@ -177,16 +177,11 @@ function PudgeWarsGameMode:Think()
             PudgeWarsGameMode.timers[k] = nil
             local status, continousTimer = pcall(v.callback, PudgeWarsGameMode, v)
             
-            print("==========================")
-            print(tostring(status))
-            print("----------------------------")
-            print(tostring(continousTimer))
             -- Make sure it worked
             if status then
                 -- Check if it needs to loop
                 if v.continousTimer then
                     -- Change it's end time
-                    print("start a continous timer")
                     PudgeWarsGameMode:RemoveTimer(k)
                     PudgeWarsGameMode:CreateTimer(k,v)
                 end
@@ -247,6 +242,7 @@ function PudgeWarsGameMode:AutoAssignPlayer(keys)
                 ABILITY = heroEntity:FindAbilityByName("ability_pudgewars_upgrade_speed")
                 if ABILITY then ABILITY:SetLevel(1) end
                 heroEntity:SetAbilityPoints(0)
+                print("STREAK"..tostring(PlayerResource:GetStreak(playerID)))
             end
         end
     })

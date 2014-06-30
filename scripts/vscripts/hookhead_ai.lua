@@ -4,7 +4,7 @@ function AddWall(keys)
   print("an wall add to game")
   PrintTable(keys)
   local caster =  EntToHscript(keys.caster_entindex)
-  locla point  = keys.target_points[1]
+  local point  = keys.target_points[1]
   if not (caster and point) then
     print("caster or point invalid")
     return
@@ -35,14 +35,14 @@ end
 function ThinkOfWallDisappear()
   local caster =  EntToHscript(keys.caster_entindex)
   for k,v in pairs(tHookBlockWalls) do
-    if v.onwer = caster then
+    if v.onwer == caster then
     	print("an wall removed"..v.id)
     	table.remove(tHookBlockWalls,k)
     end
   end
 end
 
-function HookHeadTHink()
+function PudgeWarsGameMode:HookHeadTHink()
   PrintTable(keys)
   
   if keys.think_entity == nil then
@@ -56,7 +56,7 @@ function HookHeadTHink()
   for k,v in pairs(tHookBlockWalls) do
     local triggerLength = 50
     local tHook = {
-      vStart = thisEntity:GetOrigin()
+      vStart = thisEntity:GetOrigin(),
       vEnd   = thisEntity:GetOrigin() + thisEntity:GetForwardVector() * triggerLength
     }
     local cross = thinkCross(tHook , v)
