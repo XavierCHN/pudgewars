@@ -23,7 +23,7 @@
     "AbilityUnitDamageType"     "DAMAGE_TYPE_PURE"
     "AbilityCastAnimation"      "pudge_meat_hook_start"
 
-    "OnAbilityPhaseStart"
+    "OnSpellStart"
     {
       "RunScript"
       {
@@ -41,6 +41,7 @@
     {
       "pudgewars_setting_hook"
       {
+        "RemoveOnDeath" "0"
         "IsHidden"  "1"
         "Duration"  "4"
         "ThinkInterval" "0.04"
@@ -141,6 +142,7 @@
     {
       "modifier_pudgewars_pudgemeathook_think_interval"
       {
+        "RemoveOnDeath"     "0"
         "IsHidden"          "1"
         "Duration"          "13"
         "ThinkInterval"     "0.02"

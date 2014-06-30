@@ -104,57 +104,6 @@ function PudgeWarsGameMode:CaptureGameMode()
 
     end 
 end
-function PudgeWarsGameMode:InitGoldAndChestTimer( ... )
-    if self.timers["gold_spawn_timer"] == nil then
-        self:CreateTimer("gold_spawn_timer",{
-            endTime = GameRules:GetGameTime() + math.random( 50 , 70 ),
-            useGameTime = true,
-            continousTimer = true,
-            callback = function(pudgewars, args)
-                print("[PudgeWars] Spawning Gold")
-                    local vGoldSpawnPos = Vector(0,-1200,100)
-                    local vGoldMoveTarget = Vector(0,1200,100)
-                    local unit = CreateUnitByName(
-                        "npc_dota2x_pudgewars_gold"
-                        ,vGoldSpawnPos
-                        ,true
-                        ,nil
-                        ,nil
-                        ,DOTA_TEAM_NEUTRALS
-                    )
-                    unit:SetInitialGoalEntity(self.eChestSpawner)
-                    unit:SetMustReachEachGoalEntity(true)
-                return true
-            end
-        })
-    end
-    if self.timers["chest_spawn_timer"] == nil then
-        self:CreateTimer("chest_spawn_timer",{
-            endTime = GameRules:GetGameTime() + math.random( 110, 130 ),
-            useGameTime = true,
-            continousTimer = true,
-            callback = function(pudgewars, args)
-                print("[PudgeWars] Spawning Chest")
-                if self.eGoldSpawner and self.eChestSpawner then
-                    local vChestSpawnPos = Vector(0,1200,100)
-                    local vChestMoveTarget =  Vector(0,-1200,100)
-                    local unit = CreateUnitByName(
-                        "npc_dota2x_pudgewars_chest"
-                        ,vChestSpawnPos
-                        ,true
-                        ,nil
-                        ,nil
-                        ,DOTA_TEAM_NEUTRALS
-                    )
-                    unit:SetInitialGoalEntity(self.eGoldSpawner)
-                    unit:SetMustReachEachGoalEntity(true)
-                else
-                    print('err gold spawner or chest spawner not found on the map')
-                end
-            end
-        })
-    end
-end
 
 function PudgeWarsGameMode:Think()
     if GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then
@@ -178,15 +127,7 @@ function PudgeWarsGameMode:Think()
             local status, continousTimer = pcall(v.callback, PudgeWarsGameMode, v)
             
             -- Make sure it worked
-            if status then
-                -- Check if it needs to loop
-                if v.continousTimer then
-                    -- Change it's end time
-                    PudgeWarsGameMode:RemoveTimer(k)
-                    PudgeWarsGameMode:CreateTimer(k,v)
-                end
-
-            else
+            if not status then
                 -- Nope, handle the error
                 PudgeWarsGameMode:HandleEventError('Timer', k, continousTimer)
             end
@@ -242,7 +183,6 @@ function PudgeWarsGameMode:AutoAssignPlayer(keys)
                 ABILITY = heroEntity:FindAbilityByName("ability_pudgewars_upgrade_speed")
                 if ABILITY then ABILITY:SetLevel(1) end
                 heroEntity:SetAbilityPoints(0)
-                print("STREAK"..tostring(PlayerResource:GetStreak(playerID)))
             end
         end
     })

@@ -161,7 +161,11 @@ function OnHookStart(keys)
 	
 	-- the player is releasing an outter hook?
 	local hasModifieroh = caster:HasModifier("pudgewars_outter_hook")
-	if not hasModifieroh then targetPoint = caster:GetOrigin() end
+	if not hasModifieroh then 
+		hookSetPoint = caster:GetOrigin() 
+	else
+		hookSetPoint = targetPoint
+	end
 	
 	--define the hook model according to player kill streak
 	local killStreak = PlayerResource:GetStreak(nPlayerID)
@@ -183,7 +187,7 @@ function OnHookStart(keys)
 	-- create the hook head
 	local unit = CreateUnitByName(
 		 hookType
-		,targetPoint
+		,hookSetPoint
 		,false
 		,caster
 		,caster
@@ -194,7 +198,6 @@ function OnHookStart(keys)
 	else
 		-- the head ai, currently think about walls only
 		unit:SetContextThink("hookheadthink",Dynamic_Wrap( PudgeWarsGameMode, 'HookHeadThink' ),0.1)
-
 		
 		-- store the head
 		tHookElements[nPlayerID].Head.unit = unit
@@ -205,6 +208,7 @@ function OnHookStart(keys)
 		-- set head forward vector
 		local diffVec = targetPoint - caster:GetOrigin()
 		diffVec.z = 0
+		print("diffVec "..tostring(diffVec))
 		unit:SetForwardVector(diffVec:Normalized())
 		
 		-- catch the head position
@@ -539,35 +543,6 @@ function OnReleaseHook( keys )
 			caster:AddAbility("ability_pudgewars_hook")
 		end
 
-		--[[
-		local oPudgePos = tvPlayerPudgeLastPos[nPlayerID]
-		local nowPos = caster:GetOrigin()
-		local longerCount = distance(oPudgePos,nowPos)/(PER_HOOK_BODY_LENGTH * tnPlayerHookSpeed[nPlayerID] )
-		longerCount = math.floor(longerCount)
-		if tHookElements[nPlayerID].longerBody == nil then tHookElements[nPlayerID].longerBody ={} end
-		if longerCount > #tHookElements[nPlayerID].longerBody then
-			for j = longerCount-#tHookElements[nPlayerID].longerBody,1,-1 do
-				
-				local fxi = ParticleManager:CreateParticle( tnPlayerHookBDType[ nPlayerID ], PATTACH_CUSTOMORIGIN, caster )
-				local pas = {
-			    	index = fxi,
-			    	vec = nil,
-				}
-				table.insert(tHookElements[nPlayerID].longerBody,1,pas)
-			end
-		end
-		for i = 1,#tHookElements[nPlayerID].longerBody do
-			local posDiff = oPudgePos - nowPos
-			local x = posDiff.x * (i/longerCount-#tHookElements[nPlayerID].longerBody)
-			local y = posDiff.y * (i/longerCount-#tHookElements[nPlayerID].longerBody)
-			local vec3 = Vector(x + nowPos.x,y+nowPos.y,150)
-			local incs = tHookElements[nPlayerID].longerBody[i].index
-			ParticleManager:SetParticleControl(incs,0,vec3)
-			ParticleManager:SetParticleControl(incs,1,vec3)
-			ParticleManager:SetParticleControl(incs,2,vec3)
-			ParticleManager:SetParticleControl(incs,3,vec3)
-			tHookElements[nPlayerID].longerBody[i].vec = vec3
-		end]]
 		if uHead ~= nil and 
 			tHookElements[nPlayerID].Target == nil and
 			not tbPlayerHookingBack[nPlayerID] then
@@ -638,14 +613,6 @@ function OnReleaseHook( keys )
 
 			tvPlayerPudgeLastPos[nPlayerID] = caster:GetOrigin()
 		else
-			--[[
-			if tHookElements[nPlayerID].longerBody ~= nil then
-				for i = #tHookElements[nPlayerID].Body,1,-1 do
-					table.insert(tHookElements[nPlayerID].Body,1,tHookElements[nPlayerID].Body[i])
-				end
-				tHookElements[nPlayerID].longerBody = nil
-			end
-			]]
 			local backVec = tHookElements[nPlayerID].Body[#tHookElements[nPlayerID].Body].vec
 			local fVec = tHookElements[nPlayerID].Body[#tHookElements[nPlayerID].Body].fvec
 			local paIndex = tHookElements[nPlayerID].Body[#tHookElements[nPlayerID].Body].index
