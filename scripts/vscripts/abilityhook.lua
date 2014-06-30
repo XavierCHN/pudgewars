@@ -169,6 +169,8 @@ function OnHookStart(keys)
 	if not unit then
 		--print("failed to create hook head")
 	else
+		-- the head ai, currently think about walls only
+		unit:SetContextThink("hookheadthink","HookHeadThink",0.1)
 		-- store the head
 		tHookElements[nPlayerID].Head.unit = unit
 		unit:SetModelScale((tnPlayerHookRadius[nPlayerID]/80)*0.8,0)
