@@ -1082,23 +1082,93 @@
     "item_pudge_techies_explosive_barrel1"
     {
         "ID"       "1744"
+        "BaseClass"                     "item_datadriven"
+        "AbilityCastRange"              "2500"
+        "AbilityCastPoint"              "0.0 0.0 0.0 0.0 0.0 0.0"
+        "AbilityCooldown"               "20"
+        "AbilityManaCost"               "0 0 0 0 0"
+        "AbilityModifierSupportValue"   "0.25"
+        "AbilityTextureName"            "item_pudge_tiny_arm5"
 
-"Modifiers"
-"modifier_bomb_fuse"
-"Passive"
-OnCreated
-delayaction
-CreateThinker
-"modifier_bomb_trigger"
-thinkinterval 0.1
-onintervalthink
-dealdamage
-targer
-center caster
-radius
-ondamage
-removeunit
-caster
-}
+        "ItemCost"                      "750"
+        "ItemInitialCharges"            "0"
+        "ItemKillable"                  "0"
+        "ItemDroppable"                 "1"
+        "ItemSellable"                  "1"
+        "ItemRequiresCharges"           "0"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                      "1"
 
+        "MaxUpgradeLevel"               "5"
+        "ItemBaseLevel"                 "5"
+        "Modifiers"
+        {
+            "modifier_bomb_fuse"
+            {
+                "OnCreated"
+                {
+                    "DelayAction"
+                    {
+                        "Delay" "%bomb_trigger_delay"
+                        "ActOnTarget"
+                        {
+                            "Target"    "CASTER"
+                            "Action"
+                            {
+                                "ApplyModifier"
+                                {
+                                    "ModifierName"  "modifier_bomb_tick"
+                                    "Target"    "CASTER"
+                                }
+                                "ApplyModifier"
+                                {
+                                    "ModifierName"  "modifier_bomb_destroyer"
+                                    "Target"    "CASTER"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            "modifier_bomb_tick"
+            {
+                "Passive"           "1"
+                "ThinkInterval"     "0.1"
+                "OnIntervalThink"
+                {
+                    "Damage"
+                    {
+                        "Target"
+                        {
+                            "Center"    "CASTER"
+                            "Radius"    "%bomb_radius"
+                            "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                            "Types"     "DOTA_UNIT_TARGET_HERO"
+                        }
+                        "OnDamage"
+                        {
+                            "RemoveUnit"
+                            {
+                                "Target"    "CASTER"
+                            }
+                        }
+                    }
+                }
+            }
+            "modifier_bomb_destroyer"
+            {
+                "ThinkInterval"     "%bomb_duration"
+                "OnIntervalThink"
+                {
+                    "RemoveUnit"
+                    {
+                        "Target"        "CASTER"
+                    }
+                }
+            }
+        }
+    }
 }
