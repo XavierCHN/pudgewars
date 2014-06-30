@@ -103,6 +103,7 @@
   		"model"					"models/heroes/rattletrap/rattletrap_cog.mdl"
   		"BaseClass"				"npc_dota_creep_neutral"
   		"Ability1"				"ability_dota2x_pudgewars_hook_dummy"
+  		"Ability2"				"ability_pudgewars_bomb_bomb"
   		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
   		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
   		"VisionDaytimeRange"	"0"
