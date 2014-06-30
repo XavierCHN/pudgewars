@@ -15,7 +15,13 @@ function initHookData()
 	tnHookDamage  = {175 , 250 , 350 , 500  }
 	tnHookLength  = {1400 , 1500 , 1600 , 1800 }
 	tnHookRadius  = {80  , 120  , 150  , 200   }
-	tnHookSpeed   = {0.2 , 0.3 , 0.4 , 0.5  }
+	tnHookSpeed   = {0.10 , 0.14 , 0.18 , 0.22  }
+
+	if developmentmode then tnHookDamage = {0,0,0,0} end
+	if developmentmode then tnHookLength = {0,0,0,0} end
+	if developmentmode then tnHookRadius = {0,0,0,0} end
+	if developmentmode then tnHookSpeed = {0,0,0,0} end
+
 
 	tnUpgradeHookDamageCost = {500 , 1000 , 1500 , 2000  }
 	tnUpgradeHookLengthCost = {500 , 1000 , 1500 , 2000  }
@@ -32,7 +38,7 @@ function initHookData()
 	tnPlayerHookType    = {}
 	tnPlayerKillStreak  = {}
 
-	PER_HOOK_BODY_LENGTH = 80
+	PER_HOOK_BODY_LENGTH = 100
 
 	tnHookTypeString = {
 		[1] = "npc_dota2x_pudgewars_unit_pudgehook_lv1",	-- normal hook

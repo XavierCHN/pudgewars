@@ -201,6 +201,7 @@
 			//
 			"particlefile"				"particles/particle_quas_on_bloodseeker_rupture_lv.pcf"	//particle name the_quas_trail
 			"particlefile"					"particles/particle_wex_on_bloodseeker.pcf"	//particle name the_wex_trail
+			"particlefile"					"particles/hook_chain.pcf"
 			"particlefile"					"particles/particle_exort_on_bloodseeker.pcf"	//particle name the_exort_trail
 			//"particlefile"				"particles/units/heroes/hero_antimage.pcf"
 			//"particlefile"				"particles/units/heroes/hero_axe.pcf"

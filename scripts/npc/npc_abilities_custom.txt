@@ -23,7 +23,7 @@
     "AbilityUnitDamageType"     "DAMAGE_TYPE_PURE"
     "AbilityCastAnimation"      "pudge_meat_hook_start"
 
-    "OnSpellStart"
+    "OnAbilityPhaseStart"
     {
       "RunScript"
       {
