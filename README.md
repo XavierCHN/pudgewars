@@ -232,7 +232,7 @@
 </h2>
 <blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;">
 	<span style="font-family:Microsoft YaHei;font-size:18px;">BMD：提供的[DOTA2RPG概要](https://github.com/bmddota/barebones)<br />
-	<span style="font-family:Microsoft YaHei;font-size:18px;">BMD：[DOTA2 BAREBONES](https://github.com/bmddota/barebones)
-	</span><span style="font-family:Microsoft YaHei;font-size:18px;">Z-Machine：提供的[RiverOfSouls基础地形](https://github.com/Z-Machine/RiverOfSouls)</span><br />
+	<span style="font-family:Microsoft YaHei;font-size:18px;">BMD：[DOTA2 BAREBONES](https://github.com/bmddota/barebones)</span><br />
+	<span style="font-family:Microsoft YaHei;font-size:18px;">Z-Machine：提供的[RiverOfSouls基础地形](https://github.com/Z-Machine/RiverOfSouls)</span><br />
 	</span><span style="font-family:Microsoft YaHei;font-size:18px;">Z-Machine：Base of[RiverOfSouls](https://github.com/Z-Machine/RiverOfSouls)</span>
 </blockquote>
