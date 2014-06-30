@@ -159,7 +159,9 @@ function OnHookStart(keys)
 	if not tbPlayerNeverHookB4[nPlayerID] then
 		if not tbPlayerFinishedHook[nPlayerID] then
 			print("invalid hook")
+                     return
 		end
+              tbPlayerNeverHookB4[nPlayerID] = false
 	end
 	--init hook parameters
 	tbPlayerHooking[nPlayerID] = false
