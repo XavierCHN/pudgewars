@@ -146,17 +146,15 @@ function OnHookStart(keys)
 	--PrintTable(keys)
 	print("player "..nPlayerID.." Start A Hook")
 
-	--create the hook head
+	--init hook parameters
 	tbPlayerHooking[nPlayerID] = false
 	tbPlayerFinishedHook[nPlayerID] = false
 	tbPlayerHookingBack[nPlayerID] = false
 	tHookElements[nPlayerID].Target = nil
-
 	tHookElements[nPlayerID].CurrentLength = nil
-	local hasModifieroh = false
-	if caster:HasModifier("pudgewars_outter_hook") then
-		hasModifieroh = true
-	end
+	
+	-- the player is releasing an outter hook?
+	local hasModifieroh = caster:HasModifier("pudgewars_outter_hook")
 	if not hasModifieroh then targetPoint = caster:GetOrigin() end
 	
 	--define the hook model according to player kill streak
@@ -171,6 +169,7 @@ function OnHookStart(keys)
 		hookType = tnHookTypeString[4]
 	end
 	
+	-- create the hook head
 	local unit = CreateUnitByName(
 		 hookType
 		,targetPoint
@@ -184,15 +183,22 @@ function OnHookStart(keys)
 	else
 		-- the head ai, currently think about walls only
 		unit:SetContextThink("hookheadthink","HookHeadThink",0.1)
+		
 		-- store the head
 		tHookElements[nPlayerID].Head.unit = unit
+		
+		-- set the head model scale to the hook radius
 		unit:SetModelScale((tnPlayerHookRadius[nPlayerID]/80)*0.8,0)
+	
+		-- set head forward vector
 		local diffVec = targetPoint - caster:GetOrigin()
 		diffVec.z = 0
 		unit:SetForwardVector(diffVec:Normalized())
+		
 		-- catch the head position
 		local vOrigin = unit:GetOrigin()
 		tvPlayerPudgeLastPos[nPlayerID] = caster:GetOrigin()
+		
 		--create and store the first body		
 		local nFXIndex = ParticleManager:CreateParticle( tnPlayerHookBDType[ nPlayerID ] , PATTACH_CUSTOMORIGIN, caster )
 		vOrigin.z = vOrigin.z + 150
