@@ -158,8 +158,21 @@ function OnHookStart(keys)
 		hasModifieroh = true
 	end
 	if not hasModifieroh then targetPoint = caster:GetOrigin() end
+	
+	--define the hook model according to player kill streak
+	local killStreak = PlayerResource:GetStreak(nPlayerID)
+	if killStreak < 2 then
+		hookType = tnHookTypeString[1]
+	elseif killStreak < 4 then
+		hookType = tnHookTypeString[2]
+	elseif killStreak <6 then
+		hookType = tnHookTypeString[3]
+	else
+		hookType = tnHookTypeString[4]
+	end
+	
 	local unit = CreateUnitByName(
-		"npc_dota2x_pudgewars_unit_pudgehook_lv1"
+		 hookType
 		,targetPoint
 		,false
 		,caster
