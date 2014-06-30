@@ -10,6 +10,7 @@ function initHookData()
 	tbPlayerFinishedHook = {}
 	tbPlayerHookingBack  = {}
 	tbPlayerHooking      = {}
+	tbPlayerNeverHookB4  = {}
 
 	tHookElements = tHookElements or {}
 	tnHookDamage  = {175 , 250 , 350 , 500  }
@@ -80,6 +81,7 @@ function initHookData()
 		tnPlayerHookDamage[i] = 175
 
 		tbPlayerOutterHook[i] = false
+		tbPlayerNeverHookB4[i] = true
 
 	end
 	PudgeWarsGameMode:CreateTimer("Create_Test_units",{
@@ -145,13 +147,20 @@ local function distance(a, b)
 end
 
 function OnHookStart(keys)
+	
+	
+
 	local targetPoint = keys.target_points[1]
 	local caster = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = keys.unit:GetPlayerID()
 
 	--PrintTable(keys)
 	print("player "..nPlayerID.." Start A Hook")
-
+	if not tbPlayerNeverHookB4[nPlayerID] then
+		if not tbPlayerFinishedHook[nPlayerID] then
+			print("invalid hook")
+		end
+	end
 	--init hook parameters
 	tbPlayerHooking[nPlayerID] = false
 	tbPlayerFinishedHook[nPlayerID] = false
