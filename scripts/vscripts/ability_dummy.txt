@@ -1,0 +1,57 @@
+"OnSpellStart"
+{
+	"CreateThinker"
+	{
+		"ModifierName"	"pudgewars_wall_thinker"
+		"Target"		"POINT"
+	}
+	"RunScript"
+	{
+		"ScriptFile"	"hookhead_ai"
+		"Function"		"AddWall"
+		"Target"		"POINT"
+	}
+}
+"Modifiers"
+{
+	"pudgewars_wall_thinker"
+	{
+		"duration"			"%duration"
+		"ThinkInterval"		"0.25"
+		"OnIntervalThink"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_pudgewars_ask_to_turn"
+				"Target"
+				{
+					"Center"	"TARGET"
+					"Line"
+					{
+						"Length"	"%wall_length"
+						"Thickness"	"50"
+					}
+					"Teams"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+					"Types"			"DOTA_UNIT_TARGET_BASIC"
+				}
+			}
+		}
+	}
+	"OnCreated"
+	{
+		"AttachEffect"
+		{
+			"Target"		"TARGET"
+			"EffectName"	"dark_seer_wall_of_replica"
+			"EffectAttachType"	"start_at_customorigin"
+			"EffectLineTarget"	"TARGET"
+			"EffectLineLength"	"%width"
+		}
+	}
+	"modifier_pudgewars_ask_to_turn"
+	{
+		"Passive"		"1"
+		"IsHiddeden"	"1"
+		"Duration"		"1"	
+	}
+}
