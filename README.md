@@ -1,39 +1,45 @@
 <p>
 </p>
 <h1>
-	<span style="font-family:Microsoft YaHei;font-size:32px;">钩肥大战</span>
+	<span style="font-family:Microsoft YaHei;font-size:32px;">钩肥大战 Pudge Wars</span>
 </h1>
 <span style="font-family:Microsoft YaHei;"><span style="font-size:18px;">&nbsp;源自WAR3的钩肥大战，进行了一定程度的创新。</span><br />
+<span style="font-family:Microsoft YaHei;"><span style="font-size:18px;">&nbsp;DOTA 2 PUDGE　WARS inspired from wc3 pudgewars with a certain degree of innovation。</span>
 <br />
 </span>
 <h2>
-	<span style="font-family:Microsoft YaHei;"><span style="font-size:24px;">特性</span></span>
+	<span style="font-family:Microsoft YaHei;"><span style="font-size:24px;">特性 Features</span></span>
 </h2>
 <span style="font-family:Microsoft YaHei;"><br />
 </span>
 <h3>
-	<span style="font-family:Microsoft YaHei;"><span style="font-size:18px;">&nbsp;屠夫技能</span></span>
+	<span style="font-family:Microsoft YaHei;"><span style="font-size:18px;">&nbsp;屠夫技能 Pudge Skills</span></span>
 </h3>
 <blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;">
 	<p>
-		<span style="font-family:Microsoft YaHei;font-size:18px;">&nbsp;钩！</span>
+		<span style="font-family:Microsoft YaHei;font-size:18px;">&nbsp;钩！</span><br />
+		<span style="font-family:Microsoft YaHei;font-size:18px;">&nbsp;Hook!</span>
 	</p>
 </blockquote>
 <blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;">
 	<blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;">
 		<p>
 			<span style="font-family:Microsoft YaHei;font-size:18px;">向一个单位发出一道血腥的肉钩。勾住第一个遭遇的单位，并将它拖至释放地点，如果是敌人的话，将造成伤害。</span>
+			<span style="font-family:Microsoft YaHei;font-size:18px;">Release a hook at position and hook the first unit, pull it back to the position hook start, deal damage if it's an enemy.</span>
 		</p>
 	</blockquote>
 	<blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;">
 		<p>
-			<span style="font-family:Microsoft YaHei;font-size:18px;">可以使用技能进行升级。</span>
+			<span style="font-family:Microsoft YaHei;font-size:18px;">可以使用技能进行升级。</span><br />
+			<span style="font-family:Microsoft YaHei;font-size:18px;">upgrade with skill</span><br />
 		</p>
 	</blockquote>
 </blockquote>
 <blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;">
 	<p>
 		<span style="font-family:Microsoft YaHei;font-size:18px;">出！<br />
+		</span><br />
+		<span style="font-family:Microsoft YaHei;font-size:18px;">Release!<br />
 		</span>
 	</p>
 </blockquote>
