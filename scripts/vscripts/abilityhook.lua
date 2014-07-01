@@ -661,8 +661,13 @@ function OnReleaseHook( keys )
 				if diffVec.x == 0 and diffVec.y == 0
 				and  headFV.x == 0 and headFV.y == 0 then
 						print("WARNING: HOOK HEAD IS NOT MOVING")
-						say(nil,"出现致命错误，钩子将不会移动，取消错误的钩子释放...",false)
+						say(nil,"FATAL ERROR:钩子将不会移动，取消错误的钩子释放...",false)
 						tbPlayerHookingBack[nPlayerID] = true
+				end
+				if headFV.x == 0 and headFV.y == 0 then
+					print("WARNING: HOOK HEAD IS NOT MOVING")
+					say(nil,"FATAL ERROR:钩子朝向错误，取消错误的钩子释放...",false)
+					tbPlayerHookingBack[nPlayerID] = true
 				end
 				
 				if tHookElements[nPlayerID].CurrentLength < 30 then diffVec = Vector(0,0,0) end
