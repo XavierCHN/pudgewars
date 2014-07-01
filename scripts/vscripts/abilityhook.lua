@@ -18,12 +18,6 @@ function initHookData()
 	tnHookRadius  = {80  , 120  , 150  , 200   }
 	tnHookSpeed   = {0.10 , 0.14 , 0.18 , 0.22  }
 
-	if developmentmode then tnHookDamage = {0,0,0,0} end
-	if developmentmode then tnHookLength = {0,0,0,0} end
-	if developmentmode then tnHookRadius = {0,0,0,0} end
-	if developmentmode then tnHookSpeed = {0,0,0,0} end
-
-
 	tnUpgradeHookDamageCost = {500 , 1000 , 1500 , 2000  }
 	tnUpgradeHookLengthCost = {500 , 1000 , 1500 , 2000  }
 	tnUpgradeHookRadiusCost = {500 , 1000 , 1500 , 2000  }
@@ -145,39 +139,10 @@ local function distance(a, b)
 
     return math.sqrt(xx*xx + yy*yy)
 end
-
-function OnHookStart(keys)
-
-
-	
-	local targetPoint = keys.target_points[1]
-	local caster = EntIndexToHScript(keys.caster_entindex)
-	local nPlayerID = keys.unit:GetPlayerID()
-
-	--PrintTable(keys)
-	print("player "..nPlayerID.." Start A Hook")
-	if not tbPlayerNeverHookB4[nPlayerID] then
-		if not tbPlayerFinishedHook[nPlayerID] then
-			print("invalid hook")
-		end
-	end
-	--init hook parameters
-	tbPlayerHooking[nPlayerID] = false
-	tbPlayerFinishedHook[nPlayerID] = false
-	tbPlayerHookingBack[nPlayerID] = false
-	tHookElements[nPlayerID].Target = nil
-	tHookElements[nPlayerID].CurrentLength = nil
-	
-	-- the player is releasing an outter hook?
-	local hasModifieroh = caster:HasModifier("pudgewars_outter_hook")
-	if not hasModifieroh then 
-		hookSetPoint = caster:GetOrigin() 
-	else
-		hookSetPoint = targetPoint
-	end
-	
+local function GetHookType(nPlayerID)
 	--define the hook model according to player kill streak
 	local killStreak = PlayerResource:GetStreak(nPlayerID)
+	local hookType
 	if killStreak then	
 		if killStreak < 2 then
 			hookType = tnHookTypeString[1]
@@ -192,10 +157,39 @@ function OnHookStart(keys)
 		print("no kill streak!")
 		hookType = tnHookTypeString[1]
 	end
+	return hookType
+end
+
+function OnHookStart(keys)
+<<<<<<< HEAD
+=======
 	
+	local targetPoint = keys.target_points[1]
+	local caster = EntIndexToHScript(keys.caster_entindex)
+	local nPlayerID = keys.unit:GetPlayerID()
+
+	--PrintTable(keys)
+	print("player "..nPlayerID.." Start A Hook")
+	if not tbPlayerNeverHookB4[nPlayerID] then
+		if not tbPlayerFinishedHook[nPlayerID] then
+			print("invalid hook")
+                     return
+		end
+              tbPlayerNeverHookB4[nPlayerID] = false
+	end
+	
+	--init hook parameters
+	tbPlayerHooking[nPlayerID] = false
+	tbPlayerFinishedHook[nPlayerID] = false
+	tbPlayerHookingBack[nPlayerID] = false
+	tHookElements[nPlayerID].Target = nil
+	tHookElements[nPlayerID].CurrentLength = nil
+	
+	hookSetPoint = caster:GetOrigin()
+
 	-- create the hook head
 	local unit = CreateUnitByName(
-		 hookType
+		 GetHookType(nPlayerID)
 		,hookSetPoint
 		,false
 		,caster
@@ -243,22 +237,105 @@ function OnHookStart(keys)
 		tHookElements[nPlayerID].Head.index = tnFXIndex
 		
 		--remove the set ability and add release ability
-			caster:RemoveAbility("ability_pudgewars_hook")
-			caster:AddAbility("ability_pudgewars_release_hook")
-			ABILITY_RELEASE_HOOK = caster:FindAbilityByName("ability_pudgewars_release_hook")
-			ABILITY_RELEASE_HOOK:SetLevel(1)
-		
-		-- release the hook immediately if hot outter hook
-		if not hasModifieroh then
+		caster:RemoveAbility("ability_pudgewars_set_hook")
+		caster:AddAbility("ability_pudgewars_release_hook")
+		ABILITY_RELEASE_HOOK = caster:FindAbilityByName("ability_pudgewars_release_hook")
+		ABILITY_RELEASE_HOOK:SetLevel(1)
+	end
 
-			ExecuteOrderFromTable({
-				UnitIndex = caster:entindex(),
-				OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-				AbilityIndex = ABILITY_RELEASE_HOOK:entindex(),
-				Queue = false
-			})
-			
+end
+
+function OnHookSet(keys)
+>>>>>>> origin/master
+
+
+	
+	local targetPoint = keys.target_points[1]
+	local caster = EntIndexToHScript(keys.caster_entindex)
+	local nPlayerID = keys.unit:GetPlayerID()
+
+	--PrintTable(keys)
+	print("player "..nPlayerID.." Start A Hook")
+	if not tbPlayerNeverHookB4[nPlayerID] then
+		if not tbPlayerFinishedHook[nPlayerID] then
+			print("invalid hook")
+                     return
 		end
+              tbPlayerNeverHookB4[nPlayerID] = false
+	end
+	
+	--init hook parameters
+	tbPlayerHooking[nPlayerID] = false
+	tbPlayerFinishedHook[nPlayerID] = false
+	tbPlayerHookingBack[nPlayerID] = false
+	tHookElements[nPlayerID].Target = nil
+	tHookElements[nPlayerID].CurrentLength = nil
+	
+	
+	-- the player is releasing an outter hook?
+	local hasModifieroh = caster:HasModifier("pudgewars_outter_hook")
+	if hasModifieroh then 
+		hookSetPoint = targetPoint
+	else
+		hookSetPoint = caster:GetOrigin()
+	end
+	
+	
+	
+	-- create the hook head
+	local unit = CreateUnitByName(
+		 GetHookType(nPlayerID)
+		,hookSetPoint
+		,false
+		,caster
+		,caster
+		,caster:GetTeam()
+		)
+	if not unit then
+		--print("failed to create hook head")
+	else
+		-- the head ai, currently think about walls only
+		unit:SetContextThink("hookheadthink",Dynamic_Wrap( PudgeWarsGameMode, 'HookHeadThink' ),0.1)
+		
+		-- store the head
+		tHookElements[nPlayerID].Head.unit = unit
+		
+		-- set the head model scale to the hook radius
+		unit:SetModelScale((tnPlayerHookRadius[nPlayerID]/80)*0.8,0)
+	
+		-- set head forward vector
+		local diffVec = targetPoint - caster:GetOrigin()
+		diffVec.z = 0
+		print("diffVec "..tostring(diffVec))
+		unit:SetForwardVector(diffVec:Normalized())
+		
+		-- catch the head position
+		local vOrigin = unit:GetOrigin()
+		tvPlayerPudgeLastPos[nPlayerID] = caster:GetOrigin()
+		
+		--create and store the first body particles ,vector and forward vector
+		local nFXIndex = ParticleManager:CreateParticle( tnPlayerHookBDType[ nPlayerID ] , PATTACH_CUSTOMORIGIN, caster )
+		vOrigin.z = vOrigin.z + 150
+		ParticleManager:SetParticleControl( nFXIndex, 0, vOrigin )
+		ParticleManager:SetParticleControl( nFXIndex, 1, vOrigin )
+		ParticleManager:SetParticleControl( nFXIndex, 2, vOrigin )
+		ParticleManager:SetParticleControl( nFXIndex, 3, vOrigin )
+		tHookElements[nPlayerID].Body[1] = {
+		    index = nFXIndex,
+		    vec = vOrigin,
+		    fvec = caster:GetForwardVector()
+		}
+
+		-- create the head trail particle
+		tnFXIndex = ParticleManager:CreateParticle( "the_quas_trail" , PATTACH_CUSTOMORIGIN, caster )
+		ParticleManager:SetParticleControl( tnFXIndex, 0, vOrigin )
+		tHookElements[nPlayerID].Head.index = tnFXIndex
+		
+		--remove the set ability and add release ability
+		caster:RemoveAbility("ability_pudgewars_set_hook")
+		caster:AddAbility("ability_pudgewars_release_hook")
+		ABILITY_RELEASE_HOOK = caster:FindAbilityByName("ability_pudgewars_release_hook")
+		ABILITY_RELEASE_HOOK:SetLevel(1)
 	end
 end
 
@@ -547,13 +624,13 @@ function OnReleaseHook( keys )
 		tbPlayerHooking[nPlayerID] = true
 		
 		-- clear outter hook modifiers and ability
-		local ABILITY_SETTING_HOOK_DIRECTION = caster:FindAbilityByName("ability_pudgewars_release_hook")
+		local ABILITY_RELEASE_HOOK = caster:FindAbilityByName("ability_pudgewars_release_hook")
 		if caster:HasModifier( "pudgewars_setting_hook" ) then caster:RemoveModifierByName("pudgewars_setting_hook") end
-		if ABILITY_SETTING_HOOK_DIRECTION then 
-			local ABILITY_HOOK = caster:FindAbilityByName("ability_pudgewars_hook")
-			if ABILITY_HOOK then ABILITY_HOOK:SetLevel(1) end
+		if ABILITY_RELEASE_HOOK then 
 			caster:RemoveAbility("ability_pudgewars_release_hook")
 			caster:AddAbility("ability_pudgewars_hook")
+			local ABILITY_HOOK = caster:FindAbilityByName("ability_pudgewars_hook")
+			if ABILITY_HOOK then ABILITY_HOOK:SetLevel(1) end
 		end
 
 		if uHead ~= nil and 
@@ -585,6 +662,12 @@ function OnReleaseHook( keys )
 			else
 				
 				-- if the hook is going out
+				-- THINK ABOUT HEAD FORWARD VECTOR FATAL ERROR
+				if headFV.x == 0 and headFV.y == 0 then
+					print("WARNING: HOOK HEAD IS NOT MOVING")
+					say(nil,"FATAL ERROR:钩子朝向错误，取消错误的钩子释放...",false)
+					tbPlayerHookingBack[nPlayerID] = true
+				end
 				
 				if tHookElements[nPlayerID].CurrentLength < 30 then diffVec = Vector(0,0,0) end
 				local vec3 = Vector(
@@ -672,8 +755,8 @@ function OnReleaseHook( keys )
 				tHookElements[nPlayerID].CurrentLength = nil
 				local offsetVecs = Vector(0,0,-300)
 				ParticleManager:SetParticleControl( paHead, 0, tHookElements[nPlayerID].Head.unit:GetOrigin() + offsetVecs)
-				PudgeWarsGameMode:CreateTimer("",{
-					endTime = Time() + 0.5,
+				PudgeWarsGameMode:CreateTimer("release_hook_head_particle_out"..tostring(nPlayerID),{
+					endTime = Time() + 0.1,
 					callback = function()
 						ParticleManager:SetParticleControl( paHead, 0, WORLDMAX_VEC)
 						ParticleManager:ReleaseParticleIndex(paHead)
@@ -873,16 +956,15 @@ end
 function OnToggleHookType( keys )
 	local caster = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = caster:GetPlayerID()
-	if tbPlayerOutterHook[nPlayerID] then
-		--print("change from on to off")
-		local ABILITY_OUTTER_HOOK = caster:FindAbilityByName("ability_pudgewars_toggle_hook")
-		ABILITY_OUTTER_HOOK:__KeyValueFromString("AbilityTextureName","pudgewars_toggle_outter_hook_off")
-		tbPlayerOutterHook[nPlayerID] = false
-	else
-		--print("change from of to on")
-		local ABILITY_OUTTER_HOOK = caster:FindAbilityByName("ability_pudgewars_toggle_hook")
-		ABILITY_OUTTER_HOOK:__KeyValueFromString("AbilityTextureName","pudgewars_toggle_outter_hook_on")
-		tbPlayerOutterHook[nPlayerID] = true
+
+	local ABILITY_START_HOOK = caster:FindAbilityByName("ability_pudgewars_hook")
+	if ABILITY_START_HOOK then
+		caster:RemoveAbility("ability_pudgewars_hook")
+		caster:AddAbility("ability_pudgewars_set_hook")
+		local ABILITY_SET_HOOK = caster:FindAbilityByName("ability_pudgewars_set_hook")
+		if ABILITY_SET_HOOK then
+			ABILITY_SET_HOOK:SetLevel(1)
+		end
 	end
 end
 
