@@ -145,10 +145,27 @@ local function distance(a, b)
 
     return math.sqrt(xx*xx + yy*yy)
 end
-
-function OnHookStart(keys)
-	
-	
+local function GetHookType(nPlayerID)
+	--define the hook model according to player kill streak
+	local killStreak = PlayerResource:GetStreak(nPlayerID)
+	local hookType
+	if killStreak then	
+		if killStreak < 2 then
+			hookType = tnHookTypeString[1]
+		elseif killStreak < 4 then
+			hookType = tnHookTypeString[2]
+		elseif killStreak <6 then
+			hookType = tnHookTypeString[3]
+		else
+			hookType = tnHookTypeString[4]
+		end
+	else
+		print("no kill streak!")
+		hookType = tnHookTypeString[1]
+	end
+	return hookType
+end
+function OnHookSet(keys)
 
 	local targetPoint = keys.target_points[1]
 	local caster = EntIndexToHScript(keys.caster_entindex)
@@ -170,34 +187,20 @@ function OnHookStart(keys)
 	tHookElements[nPlayerID].Target = nil
 	tHookElements[nPlayerID].CurrentLength = nil
 	
+	
 	-- the player is releasing an outter hook?
 	local hasModifieroh = caster:HasModifier("pudgewars_outter_hook")
-	if not hasModifieroh then 
-		hookSetPoint = caster:GetOrigin() 
-	else
+	if hasModifieroh then 
 		hookSetPoint = targetPoint
+	else
+		hookSetPoint = caster:GetOrigin()
 	end
 	
-	--define the hook model according to player kill streak
-	local killStreak = PlayerResource:GetStreak(nPlayerID)
-	if killStreak then	
-		if killStreak < 2 then
-			hookType = tnHookTypeString[1]
-		elseif killStreak < 4 then
-			hookType = tnHookTypeString[2]
-		elseif killStreak <6 then
-			hookType = tnHookTypeString[3]
-		else
-			hookType = tnHookTypeString[4]
-		end
-	else
-		print("no kill streak!")
-		hookType = tnHookTypeString[1]
-	end
+	
 	
 	-- create the hook head
 	local unit = CreateUnitByName(
-		 hookType
+		 GetHookType(nPlayerID)
 		,hookSetPoint
 		,false
 		,caster
@@ -245,22 +248,10 @@ function OnHookStart(keys)
 		tHookElements[nPlayerID].Head.index = tnFXIndex
 		
 		--remove the set ability and add release ability
-			caster:RemoveAbility("ability_pudgewars_hook")
-			caster:AddAbility("ability_pudgewars_release_hook")
-			ABILITY_RELEASE_HOOK = caster:FindAbilityByName("ability_pudgewars_release_hook")
-			ABILITY_RELEASE_HOOK:SetLevel(1)
-		
-		-- release the hook immediately if hot outter hook
-		if not hasModifieroh then
-
-			ExecuteOrderFromTable({
-				UnitIndex = caster:entindex(),
-				OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-				AbilityIndex = ABILITY_RELEASE_HOOK:entindex(),
-				Queue = false
-			})
-			
-		end
+		caster:RemoveAbility("ability_pudgewars_set_hook")
+		caster:AddAbility("ability_pudgewars_release_hook")
+		ABILITY_RELEASE_HOOK = caster:FindAbilityByName("ability_pudgewars_release_hook")
+		ABILITY_RELEASE_HOOK:SetLevel(1)
 	end
 end
 
