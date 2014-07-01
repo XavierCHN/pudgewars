@@ -1115,4 +1115,100 @@
             }
         }
     }
+    "item_pudge_earthshaker_totem1"
+    {
+        "ID"                            "1745"
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "item_pudge_earthshaker_totem1"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityCastRange"              "500 700 900 1100 1300"
+        "AbilityCastPoint"              "0.1 0.1 0.1 0.1 0.1"
+        "AbilityCooldown"               "70.0 70.0 70.0 70.0 70.0"
+        "AbilityManaCost"               "75 75 75 75 75"
+
+        "ItemCost"                      "750"
+        "ItemInitialCharges"            "0"
+        "ItemKillable"                  "0"
+        "ItemDroppable"                 "1"
+        "ItemSellable"                  "1"
+        "ItemRequiresCharges"           "0"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                      "1"
+
+        "MaxUpgradeLevel"               "5"
+        "ItemBaseLevel"                 "1"
+
+        "OnSpellStart"
+        {
+          "CreateThinker"
+          {
+            "ModifierName"  "modifier_pudgewars_wall_applier"
+            "Target"    "POINT"
+          }
+        }
+        "Modifiers"
+        {
+            "modifier_pudgewars_wall_applier"
+            {
+                "Duration" "%duration"
+                "ThinkInterval" "0.25"
+                "OnIntervalThink"
+                {
+                    "ActOnTargets"
+                    {
+                        "Target"    //"CASTER"
+                        {
+                            "Center"  "TARGET"
+                            "Line"
+                            {
+                                "Length"  "1000"
+                                "Thickness" "50"
+                            }
+                            "Teams"   "DOTA_UNIT_TARGET_TEAM_BOTH"
+                            "Types"   "DOTA_UNIT_TARGET_CREEP"
+                        }
+                        "Action"
+                        {
+                            "ApplyModifier"
+                            {
+                                "ModifierName"  "modifier_pudgewars_ask_to_turn"
+                                
+                            }
+                            "ApplyModifier"
+                            {
+                                "ModifierName"  "modifier_turn_delay"
+                            }
+                        }
+                    }
+                }
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "Target"      "TARGET"
+                        "EffectName"    "dark_seer_wall_of_replica"
+                        "EffectAttachType"  "start_at_customorigin"
+                        "EffectLineTarget"  "TARGET"
+                        "EffectLineLength"  "%width"
+                    }
+                }
+            }
+            "modifier_pudgewars_ask_to_turn"
+            {
+                "Duration" "1"
+                "Hidden"    "0"
+                "Passive"   "0"
+            }
+            "modifier_turn_delay"
+            {
+                "Duration"  "0.2"
+                "Hidden"    "0"
+                "Passive"   "0"
+            }
+        }
+    }
 }

@@ -39,7 +39,7 @@ function PudgeWarsGameMode:InitGameMode()
     ListenToGameEvent('player_connect_full', Dynamic_Wrap(PudgeWarsGameMode, 'AutoAssignPlayer'), self)
     --ListenToGameEvent('player_disconnect', Dynamic_Wrap(PudgeWarsGameMode, 'CleanupPlayer'), self)
     --ListenToGameEvent('dota_item_purchased', Dynamic_Wrap(PudgeWarsGameMode, 'ShopReplacement'), self)
-    --ListenToGameEvent('player_say', Dynamic_Wrap(PudgeWarsGameMode, 'PlayerSay'), self)
+    ListenToGameEvent('player_say', Dynamic_Wrap(PudgeWarsGameMode, 'PlayerSay'), self)
     --ListenToGameEvent('player_connect', Dynamic_Wrap(PudgeWarsGameMode, 'PlayerConnect'), self)
     --ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(PudgeWarsGameMode, 'AbilityUsed'), self)
     
@@ -120,6 +120,7 @@ function PudgeWarsGameMode:Think()
         end
         if (bUseGameTime and GameRules:GetGameTime() > v.endTime) or (not bUseGameTime and Time() > v.endTime) then
             PudgeWarsGameMode.timers[k] = nil
+            print("timer"..tostring(k).."triggered")
             local status, continousTimer = pcall(v.callback, PudgeWarsGameMode, v)
             
             -- Make sure it worked
@@ -222,4 +223,17 @@ end
 
 function PudgeWarsGameMode:OnEntityKilled(keys)
     PrintTable(keys)
+end
+
+
+function PudgeWarsGameMode:PlayerSay(keys)
+    PrintTable(keys)
+    local speakstring = keys.text
+    if string.find(speakstring,"CreateTestHero") then
+        local heroEntity = CreateUnitByName("npc_dota_hero_pudge",Vector(-1500,-800,0),true,nil,nil,DOTA_TEAM_BADGUYS)
+        if heroEntity then
+            print("hero entity created")
+        end
+    end
+    
 end

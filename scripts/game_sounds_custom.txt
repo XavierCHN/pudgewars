@@ -16,3 +16,12 @@
 	"pitch"			"95, 105"
 	"wave"		    "mini_rosh_firebreath.wav"
 }
+
+"PudgeWars.Head.Shot"
+{
+	"channel"	"CHAN_STATIC"
+	"volume"	"1"
+	"soundlevel"  	"SNDLVL_90dB"
+	"pitch"			"95, 105"
+	"wave"			"gameplay/headshot.wav"
+}

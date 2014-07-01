@@ -99,8 +99,8 @@ function initHookData()
 						false,
 						nil,
 						nil,
-						DOTA_TEAM_GOODGUYS)
-					--[[
+						DOTA_TEAM_BADGUYS)
+					
 					local dummy = CreateUnitByName("npc_dota2x_pudgewars_unit_dummy", 
 						caster:GetAbsOrigin(), false, caster, caster, DOTA_TEAM_GOODGUYS)
 					if dummy then print("test dummy unit created") end
@@ -122,7 +122,7 @@ function initHookData()
 							dummy:Destroy()
 						end
 					})
-					]]
+					
 					
 				end
 				--PrintTable(tPossibleHookTargetName)
@@ -161,9 +161,7 @@ local function GetHookType(nPlayerID)
 end
 
 function OnHookStart(keys)
-<<<<<<< HEAD
-=======
-	
+
 	local targetPoint = keys.target_points[1]
 	local caster = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = keys.unit:GetPlayerID()
@@ -246,8 +244,6 @@ function OnHookStart(keys)
 end
 
 function OnHookSet(keys)
->>>>>>> origin/master
-
 
 	
 	local targetPoint = keys.target_points[1]
@@ -437,20 +433,21 @@ function dealLastHit( caster,target )
 	ABILITY_LAST_HIT:SetLevel(1)
 	dummy:CastAbilityOnTarget(target, ABILITY_LAST_HIT, 0 )
 
-	PudgeWarsGameMode:CreateTimer("last_hit",{
+	PudgeWarsGameMode:CreateTimer("last_hit"..tostring(dummy)..tostring(GameRules:GetGameTime()),{
 		endTime = Time() + 1,
 		callback = function()
+			print("removing dummy unit")
 			dummy:Destroy()
 			if target:IsAlive() then
 				print("WARNING! THE UNIT IS STILL ALIVE")
-				target:ForceKill(false)
+				--target:ForceKill(false)
 			end
 		end
 	})
 	
 	-- print the kill streak -- testing
 	for i = 0,9 do
-		print("current kill streak: "..i..PlayerResource:GetStreak(i))
+		print("current kill streak: "..i.." :"..PlayerResource:GetStreak(i))
 	end
 end
 
@@ -768,6 +765,12 @@ function OnReleaseHook( keys )
 				tHookElements[nPlayerID].Target = nil
 				tbPlayerFinishedHook[nPlayerID] = true
 				tvPlayerPudgeLastPos[nPlayerID] = nil
+				if caster:HasModifier("modifier_pudgewars_pudgemeathook_think_interval") then
+					caster:RemoveModifierByName("modifier_pudgewars_pudgemeathook_think_interval")
+				end
+				if caster:HasModifier("modifier_pudgewars_hook_think_interval") then
+					caster:RemoveModifierByName("modifier_pudgewars_hook_think_interval")
+				end
 			end
 		end
 	end	
@@ -959,7 +962,9 @@ function OnToggleHookType( keys )
 
 	local ABILITY_START_HOOK = caster:FindAbilityByName("ability_pudgewars_hook")
 	if ABILITY_START_HOOK then
+		print("remove ability")
 		caster:RemoveAbility("ability_pudgewars_hook")
+		print("add ability")
 		caster:AddAbility("ability_pudgewars_set_hook")
 		local ABILITY_SET_HOOK = caster:FindAbilityByName("ability_pudgewars_set_hook")
 		if ABILITY_SET_HOOK then
