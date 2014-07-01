@@ -661,7 +661,7 @@ function OnReleaseHook( keys )
 				if diffVec.x == 0 and diffVec.y == 0
 				and  headFV.x == 0 and headFV.y == 0 then
 						print("WARNING: HOOK HEAD IS NOT MOVING")
-						say("出现致命错误，钩子将不会移动，取消错误的钩子释放...")
+						say(nil,"出现致命错误，钩子将不会移动，取消错误的钩子释放...",false)
 						tbPlayerHookingBack[nPlayerID] = true
 				end
 				
