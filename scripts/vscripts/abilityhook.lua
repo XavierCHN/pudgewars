@@ -18,12 +18,6 @@ function initHookData()
 	tnHookRadius  = {80  , 120  , 150  , 200   }
 	tnHookSpeed   = {0.10 , 0.14 , 0.18 , 0.22  }
 
-	if developmentmode then tnHookDamage = {0,0,0,0} end
-	if developmentmode then tnHookLength = {0,0,0,0} end
-	if developmentmode then tnHookRadius = {0,0,0,0} end
-	if developmentmode then tnHookSpeed = {0,0,0,0} end
-
-
 	tnUpgradeHookDamageCost = {500 , 1000 , 1500 , 2000  }
 	tnUpgradeHookLengthCost = {500 , 1000 , 1500 , 2000  }
 	tnUpgradeHookRadiusCost = {500 , 1000 , 1500 , 2000  }
@@ -180,6 +174,7 @@ function OnHookSet(keys)
 		end
               tbPlayerNeverHookB4[nPlayerID] = false
 	end
+	
 	--init hook parameters
 	tbPlayerHooking[nPlayerID] = false
 	tbPlayerFinishedHook[nPlayerID] = false
