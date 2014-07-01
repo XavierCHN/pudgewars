@@ -619,13 +619,13 @@ function OnReleaseHook( keys )
 		tbPlayerHooking[nPlayerID] = true
 		
 		-- clear outter hook modifiers and ability
-		local ABILITY_SETTING_HOOK_DIRECTION = caster:FindAbilityByName("ability_pudgewars_release_hook")
+		local ABILITY_RELEASE_HOOK = caster:FindAbilityByName("ability_pudgewars_release_hook")
 		if caster:HasModifier( "pudgewars_setting_hook" ) then caster:RemoveModifierByName("pudgewars_setting_hook") end
-		if ABILITY_SETTING_HOOK_DIRECTION then 
-			local ABILITY_HOOK = caster:FindAbilityByName("ability_pudgewars_hook")
-			if ABILITY_HOOK then ABILITY_HOOK:SetLevel(1) end
+		if ABILITY_RELEASE_HOOK then 
 			caster:RemoveAbility("ability_pudgewars_release_hook")
 			caster:AddAbility("ability_pudgewars_hook")
+			local ABILITY_HOOK = caster:FindAbilityByName("ability_pudgewars_hook")
+			if ABILITY_HOOK then ABILITY_HOOK:SetLevel(1) end
 		end
 
 		if uHead ~= nil and 
@@ -657,6 +657,13 @@ function OnReleaseHook( keys )
 			else
 				
 				-- if the hook is going out
+				
+				if diffVec.x == 0 and diffVec.y == 0
+				and  headFV.x == 0 and headFV.y == 0 then
+						print("WARNING: HOOK HEAD IS NOT MOVING")
+						say("出现致命错误，钩子将不会移动，取消错误的钩子释放...")
+						tbPlayerHookingBack[nPlayerID] = true
+				end
 				
 				if tHookElements[nPlayerID].CurrentLength < 30 then diffVec = Vector(0,0,0) end
 				local vec3 = Vector(
