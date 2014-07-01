@@ -750,8 +750,8 @@ function OnReleaseHook( keys )
 				tHookElements[nPlayerID].CurrentLength = nil
 				local offsetVecs = Vector(0,0,-300)
 				ParticleManager:SetParticleControl( paHead, 0, tHookElements[nPlayerID].Head.unit:GetOrigin() + offsetVecs)
-				PudgeWarsGameMode:CreateTimer("",{
-					endTime = Time() + 0.5,
+				PudgeWarsGameMode:CreateTimer("release_hook_head_particle_out"..tostring(nPlayerID),{
+					endTime = Time() + 0.1,
 					callback = function()
 						ParticleManager:SetParticleControl( paHead, 0, WORLDMAX_VEC)
 						ParticleManager:ReleaseParticleIndex(paHead)
