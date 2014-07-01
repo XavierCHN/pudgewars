@@ -861,16 +861,15 @@ end
 function OnToggleHookType( keys )
 	local caster = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = caster:GetPlayerID()
-	if tbPlayerOutterHook[nPlayerID] then
-		--print("change from on to off")
-		local ABILITY_OUTTER_HOOK = caster:FindAbilityByName("ability_pudgewars_toggle_hook")
-		ABILITY_OUTTER_HOOK:__KeyValueFromString("AbilityTextureName","pudgewars_toggle_outter_hook_off")
-		tbPlayerOutterHook[nPlayerID] = false
-	else
-		--print("change from of to on")
-		local ABILITY_OUTTER_HOOK = caster:FindAbilityByName("ability_pudgewars_toggle_hook")
-		ABILITY_OUTTER_HOOK:__KeyValueFromString("AbilityTextureName","pudgewars_toggle_outter_hook_on")
-		tbPlayerOutterHook[nPlayerID] = true
+
+	local ABILITY_START_HOOK = caster:FindAbilityByName("ability_pudgewars_hook")
+	if ABILITY_START_HOOK then
+		caster:RemoveAbility("ability_pudgewars_hook")
+		caster:AddAbility("ability_pudgewars_set_hook")
+		local ABILITY_SET_HOOK = caster:FindAbilityByName("ability_pudgewars_set_hook")
+		if ABILITY_SET_HOOK then
+			ABILITY_SET_HOOK:SetLevel(1)
+		end
 	end
 end
 
