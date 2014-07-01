@@ -28,7 +28,33 @@
         "Function"          "OnHookStart"
         "Target"            "POINT"
       }
+      "ApplyModifier"
+      {
+        "Target"    "CASTER"
+        "ModifierName"    "modifier_pudgewars_pudgemeathook_think_interval"
+      }
     }
+    "Modifiers"
+    {
+      "modifier_pudgewars_pudgemeathook_think_interval"
+      {
+        "RemoveOnDeath"     "0"
+        "IsHidden"          "1"
+        "Duration"          "13"
+        "ThinkInterval"     "0.02"
+        "OnIntervalThink"
+        {
+          "RunScript"
+          {
+            "ScriptFile"        "scripts/vscripts/abilityhook.lua"
+            "Function"          "OnReleaseHook"
+            "Caster"            "CASTER"
+            "Target"            "POINT"
+          }
+        }
+      }
+    }
+  }
   
   
   
