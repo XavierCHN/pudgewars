@@ -3,10 +3,38 @@
 "DOTAAbilities"
 {
 	"Version"		"1"
+  "ability_pudgewars_hook"
+  {
+    "ID"    "1999"
+    "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_POINT"
+    "BaseClass"           "ability_datadriven"
+    "AbilityTextureName"      "ability_pudgewars_hook"
+    "MaxLevel"          "1"
 
-  // the hook ability
+    // Stats
+    //----------------------------------------------------------------
+    "AbilityCastRange"        "1200"
+    "AbilityManaCost"         "95"
+    "AbilityCastPoint"        "0.3"
+    "AbilityCooldown"         "15"
+    "AbilityUnitDamageType"     "DAMAGE_TYPE_PURE"
+    "AbilityCastAnimation"      "pudge_meat_hook_start"
+
+    "OnSpellStart"
+    {
+      "RunScript"
+      {
+        "ScriptFile"        "scripts/vscripts/abilityhook.lua"
+        "Function"          "OnHookStart"
+        "Target"            "POINT"
+      }
+    }
+  
+  
+  
+  // the set hook ability
   //----------------------------------------------------------------
-	"ability_pudgewars_hook"
+  "ability_pudgewars_set_hook"
   {
     "ID"    "2000"
     "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_POINT"
@@ -28,7 +56,7 @@
       "RunScript"
       {
         "ScriptFile"        "scripts/vscripts/abilityhook.lua"
-        "Function"          "OnHookStart"
+        "Function"          "OnHookSet"
         "Target"            "POINT"
       }
       "ApplyModifier"
@@ -85,15 +113,11 @@
         "Target"      "CASTER"
         "ModifierName"  "pudgewars_outter_hook"
       }
-      //"RunScript"
-      //{
-      //  "ScriptFile"        "scripts/vscripts/abilityhook.lua"
-      //  "Function"          "OnToggleHookType"
-      //}
-      //"AttachEffect"
-      //{
-      //  
-      //}
+      "RunScript"
+      {
+        "ScriptFile"        "scripts/vscripts/abilityhook.lua"
+        "Function"          "OnToggleHookType"
+      }
     }
     "Modifiers"
     {
