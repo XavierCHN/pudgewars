@@ -159,6 +159,90 @@ local function GetHookType(nPlayerID)
 	end
 	return hookType
 end
+
+function OnHookStart(keys)
+	
+	local targetPoint = keys.target_points[1]
+	local caster = EntIndexToHScript(keys.caster_entindex)
+	local nPlayerID = keys.unit:GetPlayerID()
+
+	--PrintTable(keys)
+	print("player "..nPlayerID.." Start A Hook")
+	if not tbPlayerNeverHookB4[nPlayerID] then
+		if not tbPlayerFinishedHook[nPlayerID] then
+			print("invalid hook")
+                     return
+		end
+              tbPlayerNeverHookB4[nPlayerID] = false
+	end
+	
+	--init hook parameters
+	tbPlayerHooking[nPlayerID] = false
+	tbPlayerFinishedHook[nPlayerID] = false
+	tbPlayerHookingBack[nPlayerID] = false
+	tHookElements[nPlayerID].Target = nil
+	tHookElements[nPlayerID].CurrentLength = nil
+	
+	hookSetPoint = caster:GetOrigin()
+
+	-- create the hook head
+	local unit = CreateUnitByName(
+		 GetHookType(nPlayerID)
+		,hookSetPoint
+		,false
+		,caster
+		,caster
+		,caster:GetTeam()
+		)
+	if not unit then
+		--print("failed to create hook head")
+	else
+		-- the head ai, currently think about walls only
+		unit:SetContextThink("hookheadthink",Dynamic_Wrap( PudgeWarsGameMode, 'HookHeadThink' ),0.1)
+		
+		-- store the head
+		tHookElements[nPlayerID].Head.unit = unit
+		
+		-- set the head model scale to the hook radius
+		unit:SetModelScale((tnPlayerHookRadius[nPlayerID]/80)*0.8,0)
+	
+		-- set head forward vector
+		local diffVec = targetPoint - caster:GetOrigin()
+		diffVec.z = 0
+		print("diffVec "..tostring(diffVec))
+		unit:SetForwardVector(diffVec:Normalized())
+		
+		-- catch the head position
+		local vOrigin = unit:GetOrigin()
+		tvPlayerPudgeLastPos[nPlayerID] = caster:GetOrigin()
+		
+		--create and store the first body particles ,vector and forward vector
+		local nFXIndex = ParticleManager:CreateParticle( tnPlayerHookBDType[ nPlayerID ] , PATTACH_CUSTOMORIGIN, caster )
+		vOrigin.z = vOrigin.z + 150
+		ParticleManager:SetParticleControl( nFXIndex, 0, vOrigin )
+		ParticleManager:SetParticleControl( nFXIndex, 1, vOrigin )
+		ParticleManager:SetParticleControl( nFXIndex, 2, vOrigin )
+		ParticleManager:SetParticleControl( nFXIndex, 3, vOrigin )
+		tHookElements[nPlayerID].Body[1] = {
+		    index = nFXIndex,
+		    vec = vOrigin,
+		    fvec = caster:GetForwardVector()
+		}
+
+		-- create the head trail particle
+		tnFXIndex = ParticleManager:CreateParticle( "the_quas_trail" , PATTACH_CUSTOMORIGIN, caster )
+		ParticleManager:SetParticleControl( tnFXIndex, 0, vOrigin )
+		tHookElements[nPlayerID].Head.index = tnFXIndex
+		
+		--remove the set ability and add release ability
+		caster:RemoveAbility("ability_pudgewars_set_hook")
+		caster:AddAbility("ability_pudgewars_release_hook")
+		ABILITY_RELEASE_HOOK = caster:FindAbilityByName("ability_pudgewars_release_hook")
+		ABILITY_RELEASE_HOOK:SetLevel(1)
+	end
+
+end
+
 function OnHookSet(keys)
 
 	local targetPoint = keys.target_points[1]
