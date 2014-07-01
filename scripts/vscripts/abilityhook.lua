@@ -147,9 +147,9 @@ local function distance(a, b)
 end
 
 function OnHookStart(keys)
-	
-	
 
+
+	
 	local targetPoint = keys.target_points[1]
 	local caster = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = keys.unit:GetPlayerID()
