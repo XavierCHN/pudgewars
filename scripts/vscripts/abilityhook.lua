@@ -993,11 +993,71 @@ function PlantABomb(keys)
 		nil,
 		caster:GetTeam())
 	unit:AddNewModifier(unit,nil,"modifier_phased",{})
+		
+	local item_bomb = ItemThinker:FindItemFuzzy(caster,"item_pudge_techies_explosive_barrel")
+	if item_bomb then
+		local itemLevel = string.sub(item_bomb,-1,-1)
+		print("ITEM LATERN FOUND LV :"..tostring(itemLevel))
+			unit:AddAbility("ability_make_bomb_a_bomb")
+		local ABILITY_BOMB = unit:FindAbilityByName("ability_make_bomb_a_bomb")
+		if ABILITY_BOMB then
+			print("bomb level set")
+			ABILITY:SetLevel(itemLevel)
+		else
+			print("UNIT ABILITY NOT FOUND")
+		end
+	else
+		print("FATAL: FAILD TO FIND ITEM BOMB")
+	end
 end
 function ThinkAboutBombTriggered(keys)
 	if not ThinkAboutBombTriggeredprinted then
 		print("thinkaboutbombtriggered")
 		ThinkAboutBombTriggeredprinted = ture
 		PrintTable(keys)
+	end
+	local caster = EntIndedxToHscript(keys.caster_entindex)
+	local center = caster:GetOrigin()
+	local ability = caster:FindAbilityByName("ability_make_bomb_a_bomb")
+	local radius = ability:GetSpecialValueFor("Radius")
+	local dmg = ability:GetSpecialValueFor("bomb_damage")
+	
+	local triggeredUnits = nil
+	triggeredUnits = FindUnitsInRadius(
+		caster:GetTeam(),		--caster team
+		center,		--find position
+		nil,					--find entity
+		radius,			--find radius
+		DOTA_UNIT_TARGET_TEAM_ENEMY,
+		DOTA_UNIT_TARGET_ALL, 
+		0, FIND_CLOSEST,
+		false
+	)
+	local triggered = false
+	if triggeredUnits then
+		for k,v in pairs(triggeredUnits) do
+			if v:GetUnitName() ~= "npc_dota_hero_pudge" then
+				v = nil
+			else
+				triggered = true
+			end
+	end
+	if triggered then
+		print("bomb triggered")
+		for k,v in pairs(triggeredUnits) do
+			if v ~= nil then
+				local health = v:GetHealth()
+				if dmg > health then
+					PudgeWarsGameMode:CreateTimer("bomb_last_hit"..tostring(GameRules:GetGameTime()),{
+						endTime = Time()
+						callback = function()
+							dealLastHit(caster,v)
+						end
+					})
+				else
+					v:SetHealth(v:GetHealth() - dmg)
+				end
+			end
+		end
 	end
 end
