@@ -102,7 +102,7 @@
   	{
   		"model"					"models/heroes/rattletrap/rattletrap_cog.mdl"
   		"BaseClass"				"npc_dota_creep_neutral"
-  		"Ability1"				"ability_make_bomb_a_bomb"
+  		//"Ability1"				"ability_make_bomb_a_bomb"
   		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
   		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
   		"VisionDaytimeRange"	"0"
