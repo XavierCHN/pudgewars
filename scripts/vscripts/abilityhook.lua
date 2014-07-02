@@ -33,6 +33,7 @@ function initHookData()
 	tnPlayerHookType    = {}
 	tnPlayerKillStreak  = {}
 
+
 	PER_HOOK_BODY_LENGTH = 100
 
 	tnHookTypeString = {
@@ -110,7 +111,7 @@ function initHookData()
 					ABILITY_HOOK_APPLIER:SetLevel(1)
 	
 					dummy:CastAbilityOnTarget(caster, ABILITY_HOOK_APPLIER, 0 )
-					PudgeWarsGameMode:CreateTimer("damage_dealer_"..tostring(k)..tostring(GameRules:GetGameTime()),
+					PudgeWarsGameMode:CreateTimer("timer_test_unit_spawn_"..tostring(k)..tostring(GameRules:GetGameTime()),
 					{
 						endTime = Time() + 0.5,
 						callback = function()
@@ -168,12 +169,15 @@ function OnHookStart(keys)
 
 	--PrintTable(keys)
 	print("player "..nPlayerID.." Start A Hook")
-	if not tbPlayerNeverHookB4[nPlayerID] then
-		if not tbPlayerFinishedHook[nPlayerID] then
-			print("invalid hook")
-                     return
+
+	if tHookElements[nPlayerID].Head.unit ~= nil then
+		print("invalid hook")
+		local ABILITY_HOOK = caster:FindAbilityByName("ability_pudgewars_hook")
+		if ABILITY_HOOK then
+			print("refresh hook cooldown")
+			ABILITY_HOOK:EndCooldown()
 		end
-              tbPlayerNeverHookB4[nPlayerID] = false
+		return
 	end
 	
 	--init hook parameters
@@ -245,19 +249,24 @@ end
 
 function OnHookSet(keys)
 
-	
 	local targetPoint = keys.target_points[1]
 	local caster = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = keys.unit:GetPlayerID()
-
 	--PrintTable(keys)
 	print("player "..nPlayerID.." Start A Hook")
-	if not tbPlayerNeverHookB4[nPlayerID] then
-		if not tbPlayerFinishedHook[nPlayerID] then
-			print("invalid hook")
-                     return
+	if tHookElements[nPlayerID].Head.unit ~= nil then
+		print("invalid hook")
+		local ABILITY_SET_HOOK = caster:FindAbilityByName("ability_pudgewars_hook")
+		if ABILITY_SET_HOOK then
+			PudgeWarsGameMode:CreateTimer("clear_ability_cooldown_"..tostring(nPlayerID)..tostring(ABILITY_SET_HOOK),{
+			endTime = Time() + 1,
+			callback = function()
+				print("refresh hook cooldown")
+				ABILITY_SET_HOOK:EndCooldown()
+			end
+			})
 		end
-              tbPlayerNeverHookB4[nPlayerID] = false
+		return
 	end
 	
 	--init hook parameters
@@ -1041,6 +1050,7 @@ function ThinkAboutBombTriggered(keys)
 			else
 				triggered = true
 			end
+		end
 	end
 	if triggered then
 		print("bomb triggered")
@@ -1049,7 +1059,7 @@ function ThinkAboutBombTriggered(keys)
 				local health = v:GetHealth()
 				if dmg > health then
 					PudgeWarsGameMode:CreateTimer("bomb_last_hit"..tostring(GameRules:GetGameTime()),{
-						endTime = Time()
+						endTime = Time(),
 						callback = function()
 							dealLastHit(caster,v)
 						end
