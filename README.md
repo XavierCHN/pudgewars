@@ -8,6 +8,16 @@
 <br />
 </span>
 <h2>
+	<span style="font-family:Microsoft YaHei;font-size:18px;">测试方法 How to start a game</span>
+</h2>
+<blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;">
+	<span style="font-family:Microsoft YaHei;font-size:18px;">下载`Zip`文件夹<br />
+	</span><span style="font-family:Microsoft YaHei;font-size:18px;">解压到`dota 2 beta/dota/addons`<br />
+	</span><span style="font-family:Microsoft YaHei;font-size:18px;">将文件夹从`pudgewars - master`改为`pudgewars`<br />
+	</span><span style="font-family:Microsoft YaHei;font-size:18px;">将`pudgewars`文件夹下面的`x.cfg`拷贝到`dota 2 beta/dota/cfg`<br />
+	</span><span style="font-family:Microsoft YaHei;font-size:18px;">启动游戏，控制台输入`exec x`即可开始单机测试。</span>
+</blockquote>
+<h2>
 	<span style="font-family:Microsoft YaHei;"><span style="font-size:24px;">特性 Features</span></span>
 </h2>
 <span style="font-family:Microsoft YaHei;"><br />
@@ -194,16 +204,7 @@
 </p>
 <br />
 
-<h2>
-	<span style="font-family:Microsoft YaHei;font-size:18px;">怎么开始玩？ How to start a game</span>
-</h2>
-<blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;">
-	<span style="font-family:Microsoft YaHei;font-size:18px;">下载Zip文件夹<br />
-	</span><span style="font-family:Microsoft YaHei;font-size:18px;">解压到dota 2 beta/dota/addons<br />
-	</span><span style="font-family:Microsoft YaHei;font-size:18px;">将文件夹从[pudgewars - master]改为[pudgewars]<br />
-	</span><span style="font-family:Microsoft YaHei;font-size:18px;">将[pudgewars]文件夹下面的[x.cfg]拷贝到[dota 2 beta/dota/cfg]<br />
-	</span><span style="font-family:Microsoft YaHei;font-size:18px;">启动游戏，控制台输入[exec x]</span>
-</blockquote>
+
 <span style="font-family:Microsoft YaHei;font-size:18px;"><br />
 <br />
 </span>
