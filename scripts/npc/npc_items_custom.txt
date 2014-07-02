@@ -1079,9 +1079,65 @@
 
         }
     }
+    "item_recipe_pudge_techies_explosive_barrel2"
+    {
+        "ID"            "1744"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+        "BaseClass"                     "item_recipe_arcane_boots"
+        "ItemCost"                      "1000"  
+        "ItemShopTags"                  ""
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_pudge_techies_explosive_barrel2"
+        "ItemRequirements"
+        {
+            "01"                        "item_pudge_techies_explosive_barrel1"
+        }
+    }
+    "item_recipe_pudge_techies_explosive_barrel3"
+    {
+        "ID"            "1745"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+        "BaseClass"                     "item_recipe_arcane_boots"
+        "ItemCost"                      "1000"  
+        "ItemShopTags"                  ""
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_pudge_techies_explosive_barrel3"
+        "ItemRequirements"
+        {
+            "01"                        "item_pudge_techies_explosive_barrel2"
+        }
+    }
+    "item_recipe_pudge_techies_explosive_barrel4"
+    {
+        "ID"            "1746"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+        "BaseClass"                     "item_recipe_arcane_boots"
+        "ItemCost"                      "1000"  
+        "ItemShopTags"                  ""
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_pudge_techies_explosive_barrel4"
+        "ItemRequirements"
+        {
+            "01"                        "item_pudge_techies_explosive_barrel3"
+        }
+    }
+    "item_recipe_pudge_techies_explosive_barrel5"
+    {
+        "ID"            "1747"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+        "BaseClass"                     "item_recipe_arcane_boots"
+        "ItemCost"                      "1000"  
+        "ItemShopTags"                  ""
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_pudge_techies_explosive_barrel5"
+        "ItemRequirements"
+        {
+            "01"                        "item_pudge_techies_explosive_barrel4"
+        }
+    }
     "item_pudge_techies_explosive_barrel1"
     {
-        "ID"       "1744"
+        "ID"       "1748"
         "BaseClass"                     "item_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityCastRange"              "2500"
@@ -1112,20 +1168,225 @@
             {
                 "ScriptFile"    "scripts/vscripts/abilityhook.lua"
                 "Function"      "PlantABomb"
+                "Level"         "1"
             }
         }
     }
-    "item_pudge_earthshaker_totem1"
+    "item_pudge_techies_explosive_barrel2"
     {
-        "ID"                            "1745"
+        "ID"       "1749"
         "BaseClass"                     "item_datadriven"
-        "AbilityTextureName"            "item_pudge_earthshaker_totem1"
-        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
-        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
-        "AbilityCastRange"              "500 700 900 1100 1300"
-        "AbilityCastPoint"              "0.1 0.1 0.1 0.1 0.1"
-        "AbilityCooldown"               "70.0 70.0 70.0 70.0 70.0"
-        "AbilityManaCost"               "75 75 75 75 75"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCastRange"              "2500"
+        "AbilityCastPoint"              "0.0 0.0 0.0 0.0 0.0"
+        "AbilityCooldown"               "20"
+        "AbilityManaCost"               "0 0 0 0 0"
+        "AbilityModifierSupportValue"   "0.25"
+        "AbilityTextureName"            "pudge_techies_explosive_barrel1"
+
+        "ItemCost"                      "750"
+        "ItemInitialCharges"            "0"
+        "ItemKillable"                  "0"
+        "ItemDroppable"                 "1"
+        "ItemSellable"                  "1"
+        "ItemRequiresCharges"           "0"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                      "1"
+
+        "MaxUpgradeLevel"               "5"
+        "ItemBaseLevel"                 "2"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "scripts/vscripts/abilityhook.lua"
+                "Function"      "PlantABomb"
+                "Level"         "2"
+            }
+        }
+    }
+    "item_pudge_techies_explosive_barrel3"
+    {
+        "ID"       "1750"
+        "BaseClass"                     "item_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCastRange"              "2500"
+        "AbilityCastPoint"              "0.0 0.0 0.0 0.0 0.0"
+        "AbilityCooldown"               "20"
+        "AbilityManaCost"               "0 0 0 0 0"
+        "AbilityModifierSupportValue"   "0.25"
+        "AbilityTextureName"            "pudge_techies_explosive_barrel1"
+
+        "ItemCost"                      "750"
+        "ItemInitialCharges"            "0"
+        "ItemKillable"                  "0"
+        "ItemDroppable"                 "1"
+        "ItemSellable"                  "1"
+        "ItemRequiresCharges"           "0"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                      "1"
+
+        "MaxUpgradeLevel"               "5"
+        "ItemBaseLevel"                 "3"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "scripts/vscripts/abilityhook.lua"
+                "Function"      "PlantABomb"
+                "Level"         "3"
+            }
+        }
+    }
+    "item_pudge_techies_explosive_barrel4"
+    {
+        "ID"       "1751"
+        "BaseClass"                     "item_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCastRange"              "2500"
+        "AbilityCastPoint"              "0.0 0.0 0.0 0.0 0.0"
+        "AbilityCooldown"               "20"
+        "AbilityManaCost"               "0 0 0 0 0"
+        "AbilityModifierSupportValue"   "0.25"
+        "AbilityTextureName"            "pudge_techies_explosive_barrel1"
+
+        "ItemCost"                      "750"
+        "ItemInitialCharges"            "0"
+        "ItemKillable"                  "0"
+        "ItemDroppable"                 "1"
+        "ItemSellable"                  "1"
+        "ItemRequiresCharges"           "0"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                      "1"
+
+        "MaxUpgradeLevel"               "5"
+        "ItemBaseLevel"                 "4"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "scripts/vscripts/abilityhook.lua"
+                "Function"      "PlantABomb"
+                "Level"         "4"
+            }
+        }
+    }
+    "item_pudge_techies_explosive_barrel5"
+    {
+        "ID"       "1752"
+        "BaseClass"                     "item_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCastRange"              "2500"
+        "AbilityCastPoint"              "0.0 0.0 0.0 0.0 0.0"
+        "AbilityCooldown"               "20"
+        "AbilityManaCost"               "0 0 0 0 0"
+        "AbilityModifierSupportValue"   "0.25"
+        "AbilityTextureName"            "pudge_techies_explosive_barrel1"
+
+        "ItemCost"                      "750"
+        "ItemInitialCharges"            "0"
+        "ItemKillable"                  "0"
+        "ItemDroppable"                 "1"
+        "ItemSellable"                  "1"
+        "ItemRequiresCharges"           "0"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                      "1"
+
+        "MaxUpgradeLevel"               "5"
+        "ItemBaseLevel"                 "5"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "scripts/vscripts/abilityhook.lua"
+                "Function"      "PlantABomb"
+                "Level"         "5"
+            }
+        }
+    }
+    "item_recipe_pudge_lycan_paw2"
+    {
+        "ID"        "1753"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+        "BaseClass"                     "item_recipe_arcane_boots"
+        "ItemCost"                      "1000"  
+        "ItemShopTags"                  ""
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_pudge_lycan_paw2"
+        "ItemRequirements"
+        {
+            "01"                        "item_pudge_lycan_paw1"
+        }
+    }
+    "item_recipe_pudge_lycan_paw3"
+    {
+        "ID"        "1754"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+        "BaseClass"                     "item_recipe_arcane_boots"
+        "ItemCost"                      "1000"  
+        "ItemShopTags"                  ""
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_pudge_lycan_paw3"
+        "ItemRequirements"
+        {
+            "01"                        "item_pudge_lycan_paw2"
+        }
+    }
+    "item_recipe_pudge_lycan_paw4"
+    {
+        "ID"        "1755"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+        "BaseClass"                     "item_recipe_arcane_boots"
+        "ItemCost"                      "1000"  
+        "ItemShopTags"                  ""
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_pudge_lycan_paw4"
+        "ItemRequirements"
+        {
+            "01"                        "item_pudge_lycan_paw3"
+        }
+    }
+    "item_recipe_pudge_lycan_paw5"
+    {
+        "ID"        "1756"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+        "BaseClass"                     "item_recipe_arcane_boots"
+        "ItemCost"                      "1000"  
+        "ItemShopTags"                  ""
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_pudge_lycan_paw5"
+        "ItemRequirements"
+        {
+            "01"                        "item_pudge_lycan_paw4"
+        }
+    }
+    "item_pudge_lycan_paw1"
+    {
+        "ID"        "1757"
+        "BaseClass"                     "item_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCastRange"              "2500"
+        "AbilityCastPoint"              "0.0 0.0 0.0 0.0 0.0"
+        "AbilityCooldown"               "20"
+        "AbilityManaCost"               "0 0 0 0 0"
+        "AbilityModifierSupportValue"   "0.25"
+        "AbilityTextureName"            "pudge_lycan_paw1"
 
         "ItemCost"                      "750"
         "ItemInitialCharges"            "0"
@@ -1142,72 +1403,226 @@
         "MaxUpgradeLevel"               "5"
         "ItemBaseLevel"                 "1"
 
-        "OnSpellStart"
-        {
-          "CreateThinker"
-          {
-            "ModifierName"  "modifier_pudgewars_wall_applier"
-            "Target"    "POINT"
-          }
-        }
         "Modifiers"
         {
-            "modifier_pudgewars_wall_applier"
+            "modifier_pudge_lycan_paw"
             {
-                "Duration" "%duration"
-                "ThinkInterval" "0.25"
-                "OnIntervalThink"
+                "Passive"       "1"
+                "IsHidden"      "0"
+                "Properties"
                 {
-                    "ActOnTargets"
-                    {
-                        "Target"    //"CASTER"
-                        {
-                            "Center"  "TARGET"
-                            "Line"
-                            {
-                                "Length"  "1000"
-                                "Thickness" "50"
-                            }
-                            "Teams"   "DOTA_UNIT_TARGET_TEAM_BOTH"
-                            "Types"   "DOTA_UNIT_TARGET_CREEP"
-                        }
-                        "Action"
-                        {
-                            "ApplyModifier"
-                            {
-                                "ModifierName"  "modifier_pudgewars_ask_to_turn"
-                                
-                            }
-                            "ApplyModifier"
-                            {
-                                "ModifierName"  "modifier_turn_delay"
-                            }
-                        }
-                    }
-                }
-                "OnCreated"
-                {
-                    "AttachEffect"
-                    {
-                        "Target"      "TARGET"
-                        "EffectName"    "dark_seer_wall_of_replica"
-                        "EffectAttachType"  "start_at_customorigin"
-                        "EffectLineTarget"  "TARGET"
-                        "EffectLineLength"  "%width"
-                    }
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "%move_speed_bonus"
                 }
             }
-            "modifier_pudgewars_ask_to_turn"
+        }
+        "AbilitySpecial"
+        {
+            "01"
             {
-                "Duration" "1"
-                "Hidden"    "0"
-                "Passive"   "0"
+                "var_type"  "FIELD_INTEGER"
+                "move_speed_bonus"     "20 50 80 110 150"
             }
-            "modifier_turn_delay"
+        }
+    }
+    "item_pudge_lycan_paw2"
+    {
+        "ID"        "1758"
+        "BaseClass"                     "item_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCastRange"              "2500"
+        "AbilityCastPoint"              "0.0 0.0 0.0 0.0 0.0"
+        "AbilityCooldown"               "20"
+        "AbilityManaCost"               "0 0 0 0 0"
+        "AbilityModifierSupportValue"   "0.25"
+        "AbilityTextureName"            "pudge_lycan_paw2"
+
+        "ItemCost"                      "750"
+        "ItemInitialCharges"            "0"
+        "ItemKillable"                  "0"
+        "ItemDroppable"                 "1"
+        "ItemSellable"                  "1"
+        "ItemRequiresCharges"           "0"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                      "1"
+
+        "MaxUpgradeLevel"               "5"
+        "ItemBaseLevel"                 "2"
+
+        "Modifiers"
+        {
+            "modifier_pudge_lycan_paw"
             {
-                "Duration"  "0.2"
-                "Hidden"    "0"
-                "Passive"   "0"
+                "Passive"       "1"
+                "IsHidden"      "0"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "%move_speed_bonus"
+                }
+            }
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"  "FIELD_INTEGER"
+                "move_speed_bonus"     "20 50 80 110 150"
+            }
+        }
+    }    
+    "item_pudge_lycan_paw3"
+    {
+        "ID"        "1759"
+        "BaseClass"                     "item_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCastRange"              "2500"
+        "AbilityCastPoint"              "0.0 0.0 0.0 0.0 0.0"
+        "AbilityCooldown"               "20"
+        "AbilityManaCost"               "0 0 0 0 0"
+        "AbilityModifierSupportValue"   "0.25"
+        "AbilityTextureName"            "pudge_lycan_paw3"
+
+        "ItemCost"                      "750"
+        "ItemInitialCharges"            "0"
+        "ItemKillable"                  "0"
+        "ItemDroppable"                 "1"
+        "ItemSellable"                  "1"
+        "ItemRequiresCharges"           "0"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                      "1"
+
+        "MaxUpgradeLevel"               "5"
+        "ItemBaseLevel"                 "3"
+
+        "Modifiers"
+        {
+            "modifier_pudge_lycan_paw"
+            {
+                "Passive"       "1"
+                "IsHidden"      "0"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "%move_speed_bonus"
+                }
+            }
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"  "FIELD_INTEGER"
+                "move_speed_bonus"     "20 50 80 110 150"
+            }
+        }
+    }
+    "item_pudge_lycan_paw4"
+    {
+        "ID"        "1760"
+        "BaseClass"                     "item_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCastRange"              "2500"
+        "AbilityCastPoint"              "0.0 0.0 0.0 0.0 0.0"
+        "AbilityCooldown"               "20"
+        "AbilityManaCost"               "0 0 0 0 0"
+        "AbilityModifierSupportValue"   "0.25"
+        "AbilityTextureName"            "pudge_lycan_paw4"
+
+        "ItemCost"                      "750"
+        "ItemInitialCharges"            "0"
+        "ItemKillable"                  "0"
+        "ItemDroppable"                 "1"
+        "ItemSellable"                  "1"
+        "ItemRequiresCharges"           "0"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                      "1"
+
+        "MaxUpgradeLevel"               "5"
+        "ItemBaseLevel"                 "4"
+
+        "Modifiers"
+        {
+            "modifier_pudge_lycan_paw"
+            {
+                "Passive"       "1"
+                "IsHidden"      "0"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "%move_speed_bonus"
+                }
+            }
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"  "FIELD_INTEGER"
+                "move_speed_bonus"     "20 50 80 110 150"
+            }
+        }
+    }
+    "item_pudge_lycan_paw5"
+    {
+        "ID"        "1761"
+        "BaseClass"                     "item_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCastRange"              "2500"
+        "AbilityCastPoint"              "0.0 0.0 0.0 0.0 0.0"
+        "AbilityCooldown"               "20"
+        "AbilityManaCost"               "0 0 0 0 0"
+        "AbilityModifierSupportValue"   "0.25"
+        "AbilityTextureName"            "pudge_lycan_paw5"
+
+        "ItemCost"                      "750"
+        "ItemInitialCharges"            "0"
+        "ItemKillable"                  "0"
+        "ItemDroppable"                 "1"
+        "ItemSellable"                  "1"
+        "ItemRequiresCharges"           "0"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                      "1"
+
+        "MaxUpgradeLevel"               "5"
+        "ItemBaseLevel"                 "5"
+
+        "Modifiers"
+        {
+            "modifier_pudge_lycan_paw"
+            {
+                "Passive"       "1"
+                "IsHidden"      "0"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "%move_speed_bonus"
+                }
+            }
+            "modifier_pudge_pycan_paw_hidden"
+            {
+                "Passive"   "1"
+                "IsHidden"  "0"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"      "27"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "12"
+                }
+            }
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"  "FIELD_INTEGER"
+                "move_speed_bonus"     "20 50 80 110 150"
             }
         }
     }
