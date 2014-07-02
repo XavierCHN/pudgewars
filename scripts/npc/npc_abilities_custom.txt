@@ -725,30 +725,20 @@
       {
         "IsHidden"    "0"
         "Duration"    "%bomb_max_time"
-        "AttachEffect"
+        "ThinkInterval"		"0.1"
+        "OnIntervalThink"
         {
-          "EffectName"          "rattletrap_cog_ambient"
-          "Target"              "CASTER"
-          "EffectAttachType"    "follow_origin"
-        }
-        "ThinkInterval"
-        {
-          "Damage"
-          {
-            "Type"    "DAMAGE_TYPE_MAGICAL"
-            "Damage"  "%bomb_damage"
-            "Target"
-            {
-              "Center"  "CASTER"
-              "Radius"  "%bomb_radius"
-              "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-              "Types" "DOTA_UNIT_TARGET_HERO"
-            }
-          }
           "RunScript"
           {
             "ScriptFile"  "scripts/vscripts/abilityhook.lua"
             "Function"    "ThinkAboutBombTriggered"
+          }
+        }
+        "OnDestroy"
+        {
+          "RemoveUnit"
+          {
+            "Target"   "CASTER"
           }
         }
       }
@@ -763,8 +753,7 @@
       "02"
       {
         "var_type"  "FIELD_FLOAT"
-        //TODO
-        "bomb_max_time" "20.0 3.0 4.0 5.0 6.0"
+        "bomb_max_time" "5.0 8.0 10.0 15.0 20.0"
       }
       "03"
       {
@@ -778,96 +767,4 @@
       }
     }
   }
-  "item_pudge_earthshaker_totem1"
-  {
-    "ID"                  "2010"
-    "BaseClass"           "ability_datadriven"
-    "AbilityTextureName"      "pudge_earthshaker_totem1"
-    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT"
-    "AbilityType"         "DOTA_ABILITY_TYPE_ULTIMATE"
-    "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL"
-    
-    // Casting
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityCastRange"        "500 700 900 1100 1300"
-    "AbilityCastPoint"        "0.1 0.1 0.1 0.1 0.1"
-
-    // Time   
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityCooldown"       "70.0 70.0 70.0 70.0 70.0"
-
-    // Cost
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityManaCost"       "75 75 75 75 75"
-
-    "OnSpellStart"
-    {
-      "CreateThinker"
-      {
-        "ModifierName"  "modifier_pudgewars_wall_applier"
-        "Target"    "POINT"
-      }
-    }
-
-    "Modifiers"
-    {
-      "modifier_pudgewars_wall_applier"
-      {
-        "Duration" "%duration"
-        "ThinkInterval" "0.25"
-        "OnIntervalThink"
-        {
-          "ApplyModifier"
-          {
-            "ModifierName"  "modifier_pudgewars_ask_to_turn"
-            "Target"
-            {
-              "Center"  "TARGET"
-              "Line"
-              {
-                "Length"  "1000"
-                "Thickness" "50"
-              }
-              "Teams"   "DOTA_UNIT_TARGET_TEAM_BOTH"
-              "Types"   "DOTA_UNIT_TARGET_CREEP"
-            }
-            "ApplyModifier"
-            {
-              "ModifierName"  "modifier_turn_delay"
-              "Target"
-              {
-                "Center"  "TARGET"
-                "Line"
-                {
-                  "Length"  "1000"
-                  "Thickness" "50"
-                }
-                "Teams"   "DOTA_UNIT_TARGET_TEAM_BOTH"
-                "Types"   "DOTA_UNIT_TARGET_CREEP"
-            }
-          }
-        }
-
-        "OnCreated"
-        {
-          "AttachEffect"
-          {
-            "Target"      "TARGET"
-            "EffectName"    "dark_seer_wall_of_replica"
-            "EffectAttachType"  "start_at_customorigin"
-            "EffectLineTarget"  "TARGET"
-            "EffectLineLength"  "%width"
-          }
-        }
-      }
-      
-      "modifier_pudgewars_ask_to_turn"
-      {
-        "Duration" "1"
-      }
-      "modifier_turn_delay"
-      {
-        "Duration"  "0.2"
-      }
-    }
 }
