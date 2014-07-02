@@ -102,7 +102,8 @@
   	{
   		"model"					"models/heroes/rattletrap/rattletrap_cog.mdl"
   		"BaseClass"				"npc_dota_creep_neutral"
-  		//"Ability1"				"ability_make_bomb_a_bomb"
+  		//"Ability1"				"ability_dota2x_pudgewars_hook_dummy"
+  		"Ability1"				"ability_make_bomb_a_bomb"
   		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
   		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
   		"VisionDaytimeRange"	"0"
@@ -211,6 +212,7 @@
 			"particlefile"					"particles/particle_wex_on_bloodseeker.pcf"	//particle name the_wex_trail
 			"particlefile"					"particles/hook_chain.pcf"
 			"particlefile"					"particles/particle_exort_on_bloodseeker.pcf"	//particle name the_exort_trail
+			"particlefile"					"particles/units/heroes/hero_techies.pcf"
 			//"particlefile"				"particles/units/heroes/hero_antimage.pcf"
 			//"particlefile"				"particles/units/heroes/hero_axe.pcf"
 			//"particlefile"				"particles/units/heroes/hero_bane.pcf"
@@ -333,7 +335,7 @@
 			//"soundfile"				"scripts/game_sounds_heroes/game_sounds_morphling.txt"
 			//"soundfile"				"scripts/game_sounds_heroes/game_sounds_phantom_lancer.txt"
 			//"soundfile"				"scripts/game_sounds_heroes/game_sounds_puck.txt"
-			//"soundfile"				"scripts/game_sounds_heroes/game_sounds_pudge.txt"
+			"soundfile"				"scripts/game_sounds_heroes/game_sounds_pudge.txt"
 			//"soundfile"				"scripts/game_sounds_heroes/game_sounds_razor.txt"
 			//"soundfile"				"scripts/game_sounds_heroes/game_sounds_sandking.txt"
 			//"soundfile"				"scripts/game_sounds_heroes/game_sounds_stormspirit.txt"
@@ -387,7 +389,7 @@
 			//"soundfile"				"scripts/game_sounds_heroes/game_sounds_doombringer.txt"
 			//"soundfile"				"scripts/game_sounds_heroes/game_sounds_ancient_apparition.txt"
 			//"soundfile"				"scripts/game_sounds_heroes/game_sounds_ursa.txt"
-			//"soundfile"				"scripts/game_sounds_heroes/game_sounds_spirit_breaker.txt"
+			"soundfile"				"scripts/game_sounds_heroes/game_sounds_spirit_breaker.txt"
 			//"soundfile"				"scripts/game_sounds_heroes/game_sounds_gyrocopter.txt"
 			//"soundfile"				"scripts/game_sounds_heroes/game_sounds_alchemist.txt"
 			//"soundfile"				"scripts/game_sounds_heroes/game_sounds_invoker.txt"
@@ -427,7 +429,8 @@
 			//"soundfile"				"scripts/game_sounds_heroes/game_sounds_terrorblade.txt"
 			//"soundfile"				"scripts/game_sounds_heroes/game_sounds_phoenix.txt"
 			//"soundfile"					"scripts/game_sounds_heroes/game_sounds_windrunner.txt"
-			//"soundfile"					"scripts/game_sounds_custom.txt"
+			"soundfile"					"scripts/game_sounds_custom.txt"
+			"soundfile"					"scripts/game_sounds_heroes/game_sounds_techies.txt"
 		}
 	}
 }

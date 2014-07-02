@@ -1,7 +1,10 @@
 
 WORLDMAX_VEC = Vector(GetWorldMaxX(),GetWorldMaxY(),0)
 
-
+HEAD_SHOT_SCORE = 2
+DENY_SCORE = 1
+HOOK_KILL_SCORE = 1
+KILL_SCORE = 1
 -- init hook parameters
 function initHookData()
 	tbHookByAlly = {}
@@ -84,6 +87,7 @@ function initHookData()
 		callback = function ()
 			if developmentmode then
 				--print("spawning test units")
+					--[[
 				local testUnitTable = {
 					 "npc_dota_goodguys_melee_rax_bot"
 					,"npc_dota_neutral_blue_dragonspawn_overseer"
@@ -96,12 +100,11 @@ function initHookData()
 					
 					local caster = CreateUnitByName(
 						v,
-						Vector(-1500,-500,0) + RandomVector(400),
+						Vector(-1500,-800,0) + RandomVector(400),
 						false,
 						nil,
 						nil,
 						DOTA_TEAM_BADGUYS)
-					
 					local dummy = CreateUnitByName("npc_dota2x_pudgewars_unit_dummy", 
 						caster:GetAbsOrigin(), false, caster, caster, DOTA_TEAM_GOODGUYS)
 					if dummy then print("test dummy unit created") end
@@ -123,7 +126,7 @@ function initHookData()
 							dummy:Destroy()
 						end
 					})
-					
+					]]
 					
 				end
 				--PrintTable(tPossibleHookTargetName)
@@ -172,11 +175,6 @@ function OnHookStart(keys)
 
 	if tHookElements[nPlayerID].Head.unit ~= nil then
 		print("invalid hook")
-		local ABILITY_HOOK = caster:FindAbilityByName("ability_pudgewars_hook")
-		if ABILITY_HOOK then
-			print("refresh hook cooldown")
-			ABILITY_HOOK:EndCooldown()
-		end
 		return
 	end
 	
@@ -201,6 +199,7 @@ function OnHookStart(keys)
 	if not unit then
 		--print("failed to create hook head")
 	else
+		unit:EmitSound("Hero_Pudge.AttackHookExtend")
 		-- the head ai, currently think about walls only
 		unit:SetContextThink("hookheadthink",Dynamic_Wrap( PudgeWarsGameMode, 'HookHeadThink' ),0.1)
 		
@@ -256,16 +255,6 @@ function OnHookSet(keys)
 	print("player "..nPlayerID.." Start A Hook")
 	if tHookElements[nPlayerID].Head.unit ~= nil then
 		print("invalid hook")
-		local ABILITY_SET_HOOK = caster:FindAbilityByName("ability_pudgewars_hook")
-		if ABILITY_SET_HOOK then
-			PudgeWarsGameMode:CreateTimer("clear_ability_cooldown_"..tostring(nPlayerID)..tostring(ABILITY_SET_HOOK),{
-			endTime = Time() + 1,
-			callback = function()
-				print("refresh hook cooldown")
-				ABILITY_SET_HOOK:EndCooldown()
-			end
-			})
-		end
 		return
 	end
 	
@@ -299,6 +288,7 @@ function OnHookSet(keys)
 	if not unit then
 		--print("failed to create hook head")
 	else
+		unit:EmitSound("Hero_Pudge.AttackHookExtend")
 		-- the head ai, currently think about walls only
 		unit:SetContextThink("hookheadthink",Dynamic_Wrap( PudgeWarsGameMode, 'HookHeadThink' ),0.1)
 		
@@ -371,6 +361,12 @@ function OnSettingHookDirectionTimeUp(keys)
 		ParticleManager:SetParticleControl(body1pa,3,WORLDMAX_VEC)
 		ParticleManager:ReleaseParticleIndex(body1pa)
 	end
+
+	tHookElements[nPlayerID].Head.unit = nil
+	tHookElements[nPlayerID].Body = {}
+	tHookElements[nPlayerID].Target = nil
+	tbPlayerFinishedHook[nPlayerID] = true
+	tvPlayerPudgeLastPos[nPlayerID] = nil
 	
 	--reset the ability
 	if ABILITY_SETTING_HOOK_DIRECTION then 
@@ -382,6 +378,8 @@ function OnSettingHookDirectionTimeUp(keys)
 		local ABILITY_HOOK = caster:FindAbilityByName("ability_pudgewars_hook")
 		if ABILITY_HOOK then ABILITY_HOOK:SetLevel(1) end
 	end
+
+
 end
 
 
@@ -449,169 +447,150 @@ function dealLastHit( caster,target )
 			dummy:Destroy()
 			if target:IsAlive() then
 				print("WARNING! THE UNIT IS STILL ALIVE")
-				--target:ForceKill(false)
 			end
 		end
 	})
-	
-	-- print the kill streak -- testing
-	for i = 0,9 do
-		print("current kill streak: "..i.." :"..PlayerResource:GetStreak(i))
-	end
 end
 
 -- catch the hook unit
 local function HookUnit( target , caster ,plyid )
 	print ( "hooked something" )
 	print ( "the enemy name "..target:GetUnitName())
-	
+	target:EmitSound("Hero_Pudge.AttackHookImpact")
 	--if the unit is already hooked by someone
 	if target:HasModifier("modifier_pudgewars_hooked") then
 		if target:GetTeam() ~= caster:GetTeam() then
 			--HEAD SHOT
 			--print("unit has been hooked and its an enemy")
+			print("head shot fired")
 			dealLastHit(caster,target)
 			local msg = {
 			message = "#pudgewars_head_shot",
 			duration = 1
 			}
-		FireGameEvent('show_center_message',msg)
-			--TODO
-			--EMIT SOUND
-		end
-		if tbHookByAlly[target] then
-			--print("the unit has been hooked by ally")
-			if target:GetTeam() ~= caster:GetTeam() then
-				--HEADSHOT
-				dealLastHit(caster,target)
-				showCenterMessag("#pudgewars_head_shot")
-				local msg = {
-					message = "#pudgewars_head_shot",
-					duration = 1
-					}
-				FireGameEvent('show_center_message',msg)
-				--TODO
-				--EMIT SOUND
-			end
-		else
-			--print("the unit has been hooked by enemy")
-			if target:GetTeam() == caster:GetTeam() then
-				--DENIED
-				dealLastHit(caster,target)
-				local msg = {
-					message = "#pudgewars_head_shot",
-					duration = 1
-					}
-				FireGameEvent('show_center_message',msg)
-				--TODO
-			    --EMIT SOUND
-			end
-		end
-	end
-
-	-- fire particle effect
-	local casterOrigin = caster:GetOrigin()
-	local uOrigin = target:GetOrigin()
-	local nFXIndex = ParticleManager:CreateParticle( "necrolyte_scythe", PATTACH_CUSTOMORIGIN, caster )
-	ParticleManager:SetParticleControl(nFXIndex,0,uOrigin)
-	ParticleManager:SetParticleControl(nFXIndex,1,uOrigin)
-	ParticleManager:SetParticleControl(nFXIndex,2,casterOrigin)
-	ParticleManager:ReleaseParticleIndex(nFXIndex)
-	
-	-- create hook dummy unit
-	local time = GameRules:GetGameTime()
-	local dummy = CreateUnitByName("npc_dota2x_pudgewars_unit_dummy", 
-		target:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber())
-	dummy:AddAbility("ability_dota2x_pudgewars_hook_applier")
-	local ABILITY_HOOK_APPLIER = dummy:FindAbilityByName("ability_dota2x_pudgewars_hook_applier")
-	ABILITY_HOOK_APPLIER:SetLevel(1)
-	-- hook the target, this ability has no damage
-	dummy:CastAbilityOnTarget(target, ABILITY_HOOK_APPLIER, 0 )
-	
-	-- timer to remove unit
-	PudgeWarsGameMode:CreateTimer("damage_dealer_"..tostring(caster)..tostring(GameRules:GetGameTime()),
-	{
-		endTime = Time() + 0.5,
-		callback = function()
-			dummy:Destroy()
-		end
-	})
-
-	-- todo add bonus damage according to hook head refract
-	local dmg = tnPlayerHookDamage[plyid]
-	local bonusdamage = 0
-	
-	-- think about barathon's latern item
-	local itemLatern = ItemThinker:FindItemFuzzy(caster,"item_pudge_barathrum_lantern")
-	if itemLatren then
-		local itemLevel = string.sub(itemLatern,-1,-1)
-		print("ITEM LATERN FOUND LV :"..tostring(itemLevel))
-		-- 15% 20% 25% 30% 45%
-		bonusdamage = (tonumber(itemLevel) * 5 + 10 / 100) * dmg
-	end
-	-- if the player has the barathon latern, add bonus damage
-	dmg = dmg + bonusdamage
-
-
-	--print("dmg = "..tostring(dmg).."playerdi"..tostring(plyid))
-	local hp = target:GetHealth()
-	--print(" hp = "..tostring(hp))
-	if target:GetTeam() ~= caster:GetTeam() then
-		if dmg < hp then
-			-- take away health directly
-			target:SetHealth(hp-dmg)
-			
-			--think about blood seeker's claw
-			local itemBlood = ItemThinker:FindItemFuzzy(caster,"item_pudge_bloodseeker_claw")
-			if itemBlood then
-				local itemLevel = string.sub(itemBlood,-1,-1)
-				print("ITEAM BLOOD SEEKER CLAW FOUND LEVEL:"..itemLevel)
-				local dummy = CreateUnitByName("npc_dota2x_pudgewars_unit_dummy", 
-					target:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber())
-				--if dummy then print("unit created") end
-				dummy:AddAbility("ability_dota2x_pudgewars_bloodsekker_claw")
-				local ABILITY_BLOOD_APPLIER = dummy:FindAbilityByName("ability_dota2x_pudgewars_bloodsekker_claw")
-				--if ABILITY_BLOOD_APPLIER then print("ability_dota2x_pudgewars_bloodsekker_claw ability successful added") end
-				ABILITY_BLOOD_APPLIER:SetLevel(tonumber(itemLevel))
-					
-				dummy:CastAbilityOnTarget(target, ABILITY_BLOOD_APPLIER, 0 )
-				PudgeWarsGameMode:CreateTimer("blood_claw_dealer_"..tostring(caster)..tostring(GameRules:GetGameTime()),
-				{
-					endTime = Time() + 0.5,
-					callback = function()
-						dummy:Destroy()
-					end
-				})
-			end
-		
-			-- think about naix's jaw
-			local itemJaw = ItemThinker:FindItemFuzzy(caster,"item_pudge_naix_jaw")
-			if itemJaw then
-
-				local index = ParticleManager:CreateParticle("life_stealer_infest_emerge_clean_lights_LV",PATTACH_CUSTOMORIGIN,caster)
-				local offsetVec = Vector(0,0,150)
-				ParticleManager:SetParticleControl(index,0,caster:GetOrigin() + offsetVec)
-				ParticleManager:ReleaseParticleIndex(index)
-
-				local itemLevel = string.sub(itemJaw,-1,-1)
-				--print("ITEM JAW FOUND LEVEL:"..itemLevel)
-				local lifestealPercent = (tonumber(itemLevel) * 5 + 5) / 100
-				caster:SetHealth(caster:GetHealth() + dmg * lifestealPercent)
-			end
-			
-		else
-			-- ADD THE ABILITY "ability_deal_the_last_hit" AND DEAL DAMAGE WITH THE SPELL
+			FireGameEvent('show_center_message',msg)
+			AddScore(caster:GetTeam(),HEAD_SHOT_SCORE)
+			caster:EmitSound("PudgeWars.Head.Shot")
+		elseif target:GetTeam() == caster:GetTeam() 
+			and not tbHookByAlly[target] then
+			--DENIED
+			print("deny fired")
 			dealLastHit(caster,target)
+			local msg = {
+				message = "#pudgewars_denied",
+				duration = 1
+				}
+			FireGameEvent('show_center_message',msg)
+			print("team:"..tostring(caster:GetTeam()))
+			AddScore(caster:GetTeam(),DENY_SCORE)
+
+		end
+	else
+		-- fire particle effect
+		local casterOrigin = caster:GetOrigin()
+		local uOrigin = target:GetOrigin()
+		local nFXIndex = ParticleManager:CreateParticle( "necrolyte_scythe", PATTACH_CUSTOMORIGIN, caster )
+		ParticleManager:SetParticleControl(nFXIndex,0,uOrigin)
+		ParticleManager:SetParticleControl(nFXIndex,1,uOrigin)
+		ParticleManager:SetParticleControl(nFXIndex,2,casterOrigin)
+		ParticleManager:ReleaseParticleIndex(nFXIndex)
+		
+		-- create hook dummy unit
+		local time = GameRules:GetGameTime()
+		local dummy = CreateUnitByName("npc_dota2x_pudgewars_unit_dummy", 
+			target:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber())
+		dummy:AddAbility("ability_dota2x_pudgewars_hook_applier")
+		local ABILITY_HOOK_APPLIER = dummy:FindAbilityByName("ability_dota2x_pudgewars_hook_applier")
+		ABILITY_HOOK_APPLIER:SetLevel(1)
+		-- hook the target, this ability has no damage
+		dummy:CastAbilityOnTarget(target, ABILITY_HOOK_APPLIER, 0 )
+		
+		-- timer to remove unit
+		PudgeWarsGameMode:CreateTimer("damage_dealer_"..tostring(caster)..tostring(GameRules:GetGameTime()),
+		{
+			endTime = Time() + 0.5,
+			callback = function()
+				dummy:Destroy()
+			end
+		})
+
+		-- todo add bonus damage according to hook head refract
+		local dmg = tnPlayerHookDamage[plyid]
+		local bonusdamage = 0
+		
+		-- think about barathon's latern item
+		local itemLatern = ItemThinker:FindItemFuzzy(caster,"item_pudge_barathrum_lantern")
+		print("trying to find latern"..tostring(itemlaLatern))
+		if itemLatren then
+			local itemLevel = string.sub(itemLatern,-1,-1)
+			print("ITEM LATERN FOUND LV :"..tostring(itemLevel))
+			-- 15% 20% 25% 30% 45%
+			bonusdamage = (tonumber(itemLevel) * 5 + 10 / 100) * dmg
+			target:EmitSound("Hero_Spirit_Breaker.GreaterBash")
+		end
+		-- if the player has the barathon latern, add bonus damage
+		dmg = dmg + bonusdamage
+
+
+		--print("dmg = "..tostring(dmg).."playerdi"..tostring(plyid))
+		local hp = target:GetHealth()
+		--print(" hp = "..tostring(hp))
+		if target:GetTeam() ~= caster:GetTeam() then
+			if dmg < hp then
+				-- take away health directly
+				target:SetHealth(hp-dmg)
+				
+				--think about blood seeker's claw
+				local itemBlood = ItemThinker:FindItemFuzzy(caster,"item_pudge_bloodseeker_claw")
+				if itemBlood then
+					local itemLevel = string.sub(itemBlood,-1,-1)
+					print("ITEAM BLOOD SEEKER CLAW FOUND LEVEL:"..itemLevel)
+					local dummy = CreateUnitByName("npc_dota2x_pudgewars_unit_dummy", 
+						target:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber())
+					--if dummy then print("unit created") end
+					dummy:AddAbility("ability_dota2x_pudgewars_bloodsekker_claw")
+					local ABILITY_BLOOD_APPLIER = dummy:FindAbilityByName("ability_dota2x_pudgewars_bloodsekker_claw")
+					--if ABILITY_BLOOD_APPLIER then print("ability_dota2x_pudgewars_bloodsekker_claw ability successful added") end
+					ABILITY_BLOOD_APPLIER:SetLevel(tonumber(itemLevel))
+						
+					dummy:CastAbilityOnTarget(target, ABILITY_BLOOD_APPLIER, 0 )
+					PudgeWarsGameMode:CreateTimer("blood_claw_dealer_"..tostring(caster)..tostring(GameRules:GetGameTime()),
+					{
+						endTime = Time() + 0.5,
+						callback = function()
+							dummy:Destroy()
+						end
+					})
+				end
+			
+				-- think about naix's jaw
+				local itemJaw = ItemThinker:FindItemFuzzy(caster,"item_pudge_naix_jaw")
+				if itemJaw then
+
+					local index = ParticleManager:CreateParticle("life_stealer_infest_emerge_clean_lights_LV",PATTACH_CUSTOMORIGIN,caster)
+					local offsetVec = Vector(0,0,150)
+					ParticleManager:SetParticleControl(index,0,caster:GetOrigin() + offsetVec)
+					ParticleManager:ReleaseParticleIndex(index)
+
+					local itemLevel = string.sub(itemJaw,-1,-1)
+					--print("ITEM JAW FOUND LEVEL:"..itemLevel)
+					local lifestealPercent = (tonumber(itemLevel) * 5 + 5) / 100
+					caster:SetHealth(caster:GetHealth() + dmg * lifestealPercent)
+				end
+				
+			else
+				-- ADD THE ABILITY "ability_deal_the_last_hit" AND DEAL DAMAGE WITH THE SPELL
+				dealLastHit(caster,target)
+			end
+		end
+		
+		--THINK ABOUT HEADSHOT AND DENY
+		if target:GetTeam() == caster:GetTeam() then
+			tbHookByAlly[target] = true
+		else
+			tbHookByAlly[target] = false
 		end
 	end
-	
-	--THINK ABOUT HEADSHOT AND DENY
-	if target:GetTeam() == caster:GetTeam() then
-		tbHookByAlly[target] = true
-	else
-		tbHookByAlly[target] = false
-	end
-
 	
 	return 1
 end
@@ -623,6 +602,7 @@ function OnReleaseHook( keys )
 	
 		if tHookElements[nPlayerID] == nil then print("hook elements not found returning") return end
 		local uHead = tHookElements[nPlayerID].Head.unit
+		if not uHead then return print("FATAL: UNIT HEAD NOT FOUND")  end
 		local headOrigin = uHead:GetOrigin()
 		local paHead = tHookElements[nPlayerID].Head.index
 		local headFV = uHead:GetForwardVector()
@@ -1002,16 +982,16 @@ function PlantABomb(keys)
 		nil,
 		caster:GetTeam())
 	unit:AddNewModifier(unit,nil,"modifier_phased",{})
-		
+	unit:EmitSound("Hero_Techies.LandMine.Plant")
 	local item_bomb = ItemThinker:FindItemFuzzy(caster,"item_pudge_techies_explosive_barrel")
 	if item_bomb then
 		local itemLevel = string.sub(item_bomb,-1,-1)
 		print("ITEM LATERN FOUND LV :"..tostring(itemLevel))
-			unit:AddAbility("ability_make_bomb_a_bomb")
+			--unit:AddAbility("ability_make_bomb_a_bomb")
 		local ABILITY_BOMB = unit:FindAbilityByName("ability_make_bomb_a_bomb")
 		if ABILITY_BOMB then
 			print("bomb level set")
-			ABILITY:SetLevel(itemLevel)
+			ABILITY:SetLevel(tonumber(itemLevel))
 		else
 			print("UNIT ABILITY NOT FOUND")
 		end
@@ -1020,12 +1000,12 @@ function PlantABomb(keys)
 	end
 end
 function ThinkAboutBombTriggered(keys)
+	print("thinkaboutbombtriggered")
 	if not ThinkAboutBombTriggeredprinted then
-		print("thinkaboutbombtriggered")
 		ThinkAboutBombTriggeredprinted = ture
 		PrintTable(keys)
 	end
-	local caster = EntIndedxToHscript(keys.caster_entindex)
+	local caster = EntIndexToHScript(keys.caster_entindex)
 	local center = caster:GetOrigin()
 	local ability = caster:FindAbilityByName("ability_make_bomb_a_bomb")
 	local radius = ability:GetSpecialValueFor("Radius")
@@ -1036,7 +1016,8 @@ function ThinkAboutBombTriggered(keys)
 		caster:GetTeam(),		--caster team
 		center,		--find position
 		nil,					--find entity
-		radius,			--find radius
+		200,			--find radius
+		--DOTA_UNIT_TARGET_TEAM_BOTH,
 		DOTA_UNIT_TARGET_TEAM_ENEMY,
 		DOTA_UNIT_TARGET_ALL, 
 		0, FIND_CLOSEST,
@@ -1045,6 +1026,7 @@ function ThinkAboutBombTriggered(keys)
 	local triggered = false
 	if triggeredUnits then
 		for k,v in pairs(triggeredUnits) do
+			print("bomb_test_triggered by :"..v:GetUnitName())
 			if v:GetUnitName() ~= "npc_dota_hero_pudge" then
 				v = nil
 			else
@@ -1053,9 +1035,9 @@ function ThinkAboutBombTriggered(keys)
 		end
 	end
 	if triggered then
-		print("bomb triggered")
 		for k,v in pairs(triggeredUnits) do
 			if v ~= nil then
+				v:EmitSound("Hero_Techies.LandMine.Detonate")
 				local health = v:GetHealth()
 				if dmg > health then
 					PudgeWarsGameMode:CreateTimer("bomb_last_hit"..tostring(GameRules:GetGameTime()),{
@@ -1069,5 +1051,20 @@ function ThinkAboutBombTriggered(keys)
 				end
 			end
 		end
+
+		-- create boooooooooom particle effect
+		local bombPos = caster:GetOrigin()
+		local paindex = ParticleManager:CreateParticle("techies_land_mine_explode",PATTACH_CUSTOMORIGIN,caster)
+		ParticleManager:SetParticleControl(paindex,0,bombPos)
+		ParticleManager:ReleaseParticleIndex(paindex)
+		-- remove the bomb
+		caster:Destroy()
+
 	end
+end
+
+function AddScore(team,score)
+	PudgeWarsGameMode:AddPudgeWarsScore(team,score)
+	GameMode:SetTopBarTeamValue(DOTA_TEAM_GOODGUYS,PudgeWarsGameMode:GetPudgeWarsScore(DOTA_TEAM_GOODGUYS))
+	GameMode:SetTopBarTeamValue(DOTA_TEAM_BADGUYS,PudgeWarsGameMode:GetPudgeWarsScore(DOTA_TEAM_BADGUYS))
 end

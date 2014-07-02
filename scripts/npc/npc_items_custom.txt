@@ -287,7 +287,7 @@
         "ItemBaseLevel"                 "1"
         "Modifiers"
         {
-            "modifier_item_bloodseeker_claw"
+            "modifier_item_bloodseeker_claw_1"
             {
                 "IsHidden"  "0"
                 "Passive"   "1"
@@ -333,7 +333,7 @@
 
         "Modifiers"
         {
-            "modifier_item_bloodseeker_claw"
+            "modifier_item_bloodseeker_claw_2"
             {
                 "IsHidden"  "0"
                 "Passive"   "1"
@@ -380,7 +380,7 @@
 
         "Modifiers"
         {
-            "modifier_item_bloodseeker_claw"
+            "modifier_item_bloodseeker_claw_3"
             {
                 "IsHidden"  "0"
                 "Passive" "1"
@@ -489,7 +489,7 @@
 
         "Modifiers"
         {
-            "modifier_item_naix_life_steal"
+            "modifier_item_naix_life_steal_1"
             {
                 "IsHidden"  "0"
                 "Passive" "1"
@@ -536,7 +536,7 @@
 
         "Modifiers"
         {
-            "modifier_item_naix_life_steal"
+            "modifier_item_naix_life_steal_2"
             {
                 "IsHidden"  "0"
                 "Passive" "1"
@@ -583,7 +583,7 @@
 
         "Modifiers"
         {
-            "modifier_item_naix_life_steal"
+            "modifier_item_naix_life_steal_3"
             {
                 "IsHidden"  "0"
                 "Passive" "1"
@@ -630,7 +630,7 @@
 
         "Modifiers"
         {
-            "modifier_item_naix_life_steal"
+            "modifier_item_naix_life_steal_4"
             {
                 "IsHidden"  "0"
                 "Passive" "1"
@@ -677,11 +677,12 @@
 
         "Modifiers"
         {
-            "modifier_item_naix_life_steal"
+            "modifier_item_naix_life_steal_5"
             {
                 "IsHidden"  "0"
                 "Passive" "1"
             }
+
         }
         "AbilitySpecial"
         {
@@ -1405,13 +1406,13 @@
 
         "Modifiers"
         {
-            "modifier_pudge_lycan_paw"
+            "modifier_pudge_lycan_paw_1"
             {
                 "Passive"       "1"
                 "IsHidden"      "0"
                 "Properties"
                 {
-                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "%move_speed_bonus"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"      "20"
                 }
             }
         }
@@ -1453,13 +1454,13 @@
 
         "Modifiers"
         {
-            "modifier_pudge_lycan_paw"
+            "modifier_pudge_lycan_paw_2"
             {
                 "Passive"       "1"
                 "IsHidden"      "0"
                 "Properties"
                 {
-                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "%move_speed_bonus"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"      "50"
                 }
             }
         }
@@ -1501,13 +1502,13 @@
 
         "Modifiers"
         {
-            "modifier_pudge_lycan_paw"
+            "modifier_pudge_lycan_paw_3"
             {
                 "Passive"       "1"
                 "IsHidden"      "0"
                 "Properties"
                 {
-                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "%move_speed_bonus"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"      "80"
                 }
             }
         }
@@ -1549,13 +1550,13 @@
 
         "Modifiers"
         {
-            "modifier_pudge_lycan_paw"
+            "modifier_pudge_lycan_paw_4"
             {
                 "Passive"       "1"
                 "IsHidden"      "0"
                 "Properties"
                 {
-                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "%move_speed_bonus"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"      "110"
                 }
             }
         }
@@ -1597,13 +1598,13 @@
 
         "Modifiers"
         {
-            "modifier_pudge_lycan_paw"
+            "modifier_pudge_lycan_paw_5"
             {
                 "Passive"       "1"
                 "IsHidden"      "0"
                 "Properties"
                 {
-                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "%move_speed_bonus"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"      "150"
                 }
             }
             "modifier_pudge_pycan_paw_hidden"
@@ -1679,7 +1680,6 @@
     "item_pudge_flask1"
     {
         "ID"        "1763"
-        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
         "Model"                         "models/props_gameplay/salve_blue.mdl"
         "BaseClass"                     "item_datadriven"

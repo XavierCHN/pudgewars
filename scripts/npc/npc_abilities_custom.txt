@@ -16,9 +16,10 @@
     "AbilityCastRange"        "1200"
     "AbilityManaCost"         "95"
     "AbilityCastPoint"        "0.3"
-    "AbilityCooldown"         "0"
+    "AbilityCooldown"         "8"
     "AbilityUnitDamageType"     "DAMAGE_TYPE_PURE"
     "AbilityCastAnimation"      "pudge_meat_hook_start"
+    "AbilitySharedCooldown"     "pudgewars_hook"
 
     "OnSpellStart"
     {
@@ -40,7 +41,7 @@
       {
         "RemoveOnDeath"     "0"
         "IsHidden"          "0"
-        "Duration"          "13"
+        "Duration"          "8"
         "ThinkInterval"     "0.02"
         "OnIntervalThink"
         {
@@ -73,9 +74,10 @@
     "AbilityCastRange"        "1200"
     "AbilityManaCost"         "95"
     "AbilityCastPoint"        "0.3"
-    "AbilityCooldown"         "15"
+    "AbilityCooldown"         "8"
     "AbilityUnitDamageType"     "DAMAGE_TYPE_PURE"
     "AbilityCastAnimation"      "pudge_meat_hook_start"
+    "AbilitySharedCooldown"     "pudgewars_hook"
 
     "OnSpellStart"
     {
@@ -194,7 +196,7 @@
       {
         "RemoveOnDeath"     "0"
         "IsHidden"          "1"
-        "Duration"          "13"
+        "Duration"          "15"
         "ThinkInterval"     "0.02"
         "OnIntervalThink"
         {
@@ -686,21 +688,22 @@
     "BaseClass"     "ability_datadriven"
     "MaxLevel"      "5"
 
-    "precache"
-    {
-      "particlefile" "particles/units/heroes/hero_rattletrap.pcf"
-    }
+    //"precache"
+    //{
+    //  "particlefile" "particles/units/heroes/hero_rattletrap.pcf"
+    //}
 
     "Modifiers"
     {
-      "modifier_bomb_invisible"
-      {
-        "Passive" "1"
-        "States"  
-        {
-          "MODIFIER_STATE_INVISIBLE" "MODIFIER_STATE_VALUE_ENABLED"
-        }
-      }
+      //"modifier_bomb_invisible"
+      //{
+      //  "Passive" "1"
+      //  "IsHidden"  "0"
+      //  "States"  
+      //  {
+      //    "MODIFIER_STATE_INVISIBLE" "MODIFIER_STATE_VALUE_ENABLED"
+      //  }
+      //}
       "pudgewars_bomb_fuse"
       {
         "Passive"     "1"

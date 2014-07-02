@@ -75,11 +75,38 @@ function PudgeWarsGameMode:InitGameMode()
     self.vDire = {}
     self.vPlayerHeroData = {}
 
+    self.RadiantScore = 0
+    self.DireScore = 0
+
     initHookData()
     self.t0 = 0
     PrecacheUnitByName('npc_precache_everything')
     print('[PudgeWars] Done loading PudgeWars gamemode!\n\n')
 
+end
+
+function PudgeWarsGameMode:GetPudgeWarsScore(team)
+    if team == DOTA_TEAM_GOODGUYS then
+        return self.RadiantScore
+    elseif team == DOTA_TEAM_BADGUYS then
+        return self.DireScore
+    else
+        print("invalid request")
+        return nil
+    end
+end
+
+function PudgeWarsGameMode:AddPudgeWarsScore(team,value)
+    if team == DOTA_TEAM_GOODGUYS then
+        self.RadiantScore = self.RadiantScore + value
+        return 1
+    elseif team == DOTA_TEAM_BADGUYS then
+        self.DireScore = self.DireScore + value
+        return 2
+    else
+        print("invalid request")
+        return nil
+    end
 end
 
 function PudgeWarsGameMode:CaptureGameMode()
@@ -223,6 +250,14 @@ end
 
 function PudgeWarsGameMode:OnEntityKilled(keys)
     PrintTable(keys)
+    local killedUnit = EntIndexToHScript(keys.entindex_killed)
+    if killedUnit:GetUnitName() == "npc_dota_hero_pudge" or 
+        killedUnit:GetUnitName() == "npc_dota2x_pudgewars_pudge" then
+        if killedUnit:GetTeam() == DOTA_TEAM_GOODGUYS then self:AddPudgeWarsScore(DOTA_TEAM_BADGUYS,1) end
+        if killedUnit:GetTeam() == DOTA_TEAM_BADGUYS then self:AddPudgeWarsScore(DOTA_TEAM_GOODGUYS,1) end
+        GameMode:SetTopBarTeamValue(DOTA_TEAM_GOODGUYS,PudgeWarsGameMode:GetPudgeWarsScore(DOTA_TEAM_GOODGUYS))
+        GameMode:SetTopBarTeamValue(DOTA_TEAM_BADGUYS,PudgeWarsGameMode:GetPudgeWarsScore(DOTA_TEAM_BADGUYS))
+    end
 end
 
 
