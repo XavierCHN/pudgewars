@@ -1,75 +1,63 @@
 
 WORLDMAX_VEC = Vector(GetWorldMaxX(),GetWorldMaxY(),0)
+PER_HOOK_BODY_LENGTH = 100
 
 HEAD_SHOT_SCORE = 2
 DENY_SCORE = 1
 HOOK_KILL_SCORE = 1
 KILL_SCORE = 1
+
+tnHookDamage  = {175 , 250 , 350 , 500  }
+tnHookLength  = {1400 , 1500 , 1600 , 1800 }
+tnHookRadius  = {80  , 120  , 150  , 200   }
+tnHookSpeed   = {0.10 , 0.14 , 0.18 , 0.22  }
+
+tnUpgradeHookDamageCost = {500 , 1000 , 1500 , 2000  }
+tnUpgradeHookLengthCost = {500 , 1000 , 1500 , 2000  }
+tnUpgradeHookRadiusCost = {500 , 1000 , 1500 , 2000  }
+tnUpgradeHookSpeedCost  = {500 , 1000 , 1500 , 2000  }
+
+tnHookTypeString = {
+	[1] = "npc_dota2x_pudgewars_unit_pudgehook_lv1",	-- normal hook
+	[2] = "npc_dota2x_pudgewars_unit_pudgehook_lv2",	-- black death hook
+	[3] = "npc_dota2x_pudgewars_unit_pudgehook_lv3",	-- whale hook
+	[4] = "npc_dota2x_pudgewars_unit_pudgehook_lv4"		-- skelton hook
+}
+
+tnHookParticleString = {
+	[1] = "invoker_quas_orb",
+	[2] = "invoker_wex_orb",
+	[3] = "invoker_exort_orb"
+}
+
+tPossibleHookTargetName = {
+	"npc_dota_hero_pudge",
+	"npc_dota2x_pudgewars_chest",
+	"npc_dota2x_pudgewars_gold"
+}
+
 -- init hook parameters
 function initHookData()
-	tbHookByAlly = {}
-
-	tbPlayerOutterHook   = {}
 	tbPlayerFinishedHook = {}
 	tbPlayerHookingBack  = {}
 	tbPlayerHooking      = {}
-	tbPlayerNeverHookB4  = {}
-
+	tnPlayerHookDamage   = {}
+	tnPlayerHookLength   = {}
+	tnPlayerHookRadius   = {}
+	tnPlayerHookSpeed    = {}
+	tnPlayerHookType     = {}
+	tnPlayerHookBDType   = {}
+	tvPlayerPudgeLastPos = {}
+	tnPlayerHookType     = {}
+	tnPlayerKillStreak   = {}
+	tbHookByAlly         = {}
 	tHookElements = tHookElements or {}
-	tnHookDamage  = {175 , 250 , 350 , 500  }
-	tnHookLength  = {1400 , 1500 , 1600 , 1800 }
-	tnHookRadius  = {80  , 120  , 150  , 200   }
-	tnHookSpeed   = {0.10 , 0.14 , 0.18 , 0.22  }
-
-	tnUpgradeHookDamageCost = {500 , 1000 , 1500 , 2000  }
-	tnUpgradeHookLengthCost = {500 , 1000 , 1500 , 2000  }
-	tnUpgradeHookRadiusCost = {500 , 1000 , 1500 , 2000  }
-	tnUpgradeHookSpeedCost  = {500 , 1000 , 1500 , 2000  }
-
-	tnPlayerHookDamage  = {}
-	tnPlayerHookLength  = {}
-	tnPlayerHookRadius  = {}
-	tnPlayerHookSpeed   = {}
-	tnPlayerHookType    = {}
-	tnPlayerHookBDType  = {}
-	tvPlayerPudgeLastPos  = {}
-	tnPlayerHookType    = {}
-	tnPlayerKillStreak  = {}
-
-
-	PER_HOOK_BODY_LENGTH = 100
-
-	tnHookTypeString = {
-		[1] = "npc_dota2x_pudgewars_unit_pudgehook_lv1",	-- normal hook
-		[2] = "npc_dota2x_pudgewars_unit_pudgehook_lv2",	-- black death hook
-		[3] = "npc_dota2x_pudgewars_unit_pudgehook_lv3",	-- whale hook
-		[4] = "npc_dota2x_pudgewars_unit_pudgehook_lv4"		-- skelton hook
-	}
-
-	tnHookParticleString = {
-		[1] = "invoker_quas_orb",
-		[2] = "invoker_wex_orb",
-		[3] = "invoker_exort_orb"
-	}
-
-	tPossibleHookTargetName = {
-		"npc_dota_hero_pudge",
-		"npc_dota2x_pudgewars_chest",
-		"npc_dota2x_pudgewars_gold"
-	}
 	for i = 0,9 do
 		tHookElements[i] = {
-			Head = {
-				unit = nil,
-				paIndex = nil
-			},
-			Target = nil,
-			CurrentLength = nil,
+			Head = {unit = nil , paIndex = nil },
 			Body = {},
-			longerBody = {
-				vec = nil,
-				index = nil
-			}
+			Target = nil,
+			CurrentLength = nil
 		}
 		tnPlayerHookType[i] = tnHookTypeString[1]
 		tnPlayerHookBDType[i] = tnHookParticleString[1]
@@ -77,20 +65,13 @@ function initHookData()
 		tnPlayerHookLength[i] = 1400
 		tnPlayerHookSpeed[i] = 0.2
 		tnPlayerHookDamage[i] = 175
-
-		tbPlayerOutterHook[i] = false
-		tbPlayerNeverHookB4[i] = true
-
 	end
-
 	print("[pudgewars] finish init hook data")
 end
 
 local function distance(a, b)
-    -- Pythagorian distance
     local xx = (a.x-b.x)
     local yy = (a.y-b.y)
-
     return math.sqrt(xx*xx + yy*yy)
 end
 local function GetHookType(nPlayerID)
@@ -108,66 +89,43 @@ local function GetHookType(nPlayerID)
 			hookType = tnHookTypeString[4]
 		end
 	else
-		--print("no kill streak!")
 		hookType = tnHookTypeString[1]
 	end
 	return hookType
 end
-
-function OnHookStart(keys)
-	local targetPoint = keys.target_points[1]
-	local caster = EntIndexToHScript(keys.caster_entindex)
-	local nPlayerID = keys.unit:GetPlayerID()
-
-	--PrintTable(keys)
-	--print("player "..nPlayerID.." Start A Hook")
-
-	if tHookElements[nPlayerID].Head.unit ~= nil then
-		--print("invalid hook")
-		return
-	end
-	
+local function InitHookParameters(nPlayerID)
 	--init hook parameters
 	tbPlayerHooking[nPlayerID] = false
 	tbPlayerFinishedHook[nPlayerID] = false
 	tbPlayerHookingBack[nPlayerID] = false
 	tHookElements[nPlayerID].Target = nil
 	tHookElements[nPlayerID].CurrentLength = nil
-	
-	hookSetPoint = caster:GetOrigin()
-
+end
+function OnHookStart(keys)
+	local targetPoint = keys.target_points[1]
+	local caster = EntIndexToHScript(keys.caster_entindex)
+	local nPlayerID = keys.unit:GetPlayerID()
+	-- if there is already a hook, return
+	if tHookElements[nPlayerID].Head.unit ~= nil then return end
+	InitHookParameters(nPlayerID)
 	-- create the hook head
 	local unit = CreateUnitByName(
 		 GetHookType(nPlayerID)
-		,hookSetPoint
-		,false
-		,caster
-		,caster
-		,caster:GetTeam()
-		)
-	if not unit then
-		--print("failed to create hook head")
-	else
+		,caster:GetOrigin()
+		,false,caster,caster,caster:GetTeam())
+	if unit then
 		unit:EmitSound("Hero_Pudge.AttackHookExtend")
-		-- the head ai, currently think about walls only
-		unit:SetContextThink("hookheadthink",Dynamic_Wrap( PudgeWarsGameMode, 'HookHeadThink' ),0.1)
-		
 		-- store the head
 		tHookElements[nPlayerID].Head.unit = unit
-		
 		-- set the head model scale to the hook radius
 		unit:SetModelScale((tnPlayerHookRadius[nPlayerID]/80)*0.8,0)
-	
 		-- set head forward vector
 		local diffVec = targetPoint - caster:GetOrigin()
 		diffVec.z = 0
-		--print("diffVec "..tostring(diffVec))
 		unit:SetForwardVector(diffVec:Normalized())
-		
 		-- catch the head position
 		local vOrigin = unit:GetOrigin()
 		tvPlayerPudgeLastPos[nPlayerID] = caster:GetOrigin()
-		
 		--create and store the first body particles ,vector and forward vector
 		local nFXIndex = ParticleManager:CreateParticle( tnPlayerHookBDType[ nPlayerID ] , PATTACH_CUSTOMORIGIN, caster )
 		vOrigin.z = vOrigin.z + 150
@@ -180,83 +138,47 @@ function OnHookStart(keys)
 		    vec = vOrigin,
 		    fvec = caster:GetForwardVector()
 		}
-
 		-- create the head trail particle
 		tnFXIndex = ParticleManager:CreateParticle( "the_quas_trail" , PATTACH_CUSTOMORIGIN, caster )
 		ParticleManager:SetParticleControl( tnFXIndex, 0, vOrigin )
 		tHookElements[nPlayerID].Head.index = tnFXIndex
-		
 		--remove the set ability and add release ability
 		caster:RemoveAbility("ability_pudgewars_set_hook")
 		caster:AddAbility("ability_pudgewars_release_hook")
 		ABILITY_RELEASE_HOOK = caster:FindAbilityByName("ability_pudgewars_release_hook")
 		ABILITY_RELEASE_HOOK:SetLevel(1)
 	end
-	PrintTable(keys)
 end
 
 function OnHookSet(keys)
-
 	local targetPoint = keys.target_points[1]
 	local caster = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = keys.unit:GetPlayerID()
-	--PrintTable(keys)
 	print("player "..nPlayerID.." Start A Hook")
+	-- if there is a hook already, return
 	if tHookElements[nPlayerID].Head.unit ~= nil then
-		--print("invalid hook")
 		return
 	end
-	
-	--init hook parameters
-	tbPlayerHooking[nPlayerID] = false
-	tbPlayerFinishedHook[nPlayerID] = false
-	tbPlayerHookingBack[nPlayerID] = false
-	tHookElements[nPlayerID].Target = nil
-	tHookElements[nPlayerID].CurrentLength = nil
-	
-	
-	-- the player is releasing an outter hook?
-	local hasModifieroh = caster:HasModifier("pudgewars_outter_hook")
-	if hasModifieroh then 
-		hookSetPoint = targetPoint
-	else
-		hookSetPoint = caster:GetOrigin()
-	end
-	
-	
-	
+	-- init hook parameters
+	InitHookParameters(nPlayerID)
 	-- create the hook head
 	local unit = CreateUnitByName(
 		 GetHookType(nPlayerID)
-		,hookSetPoint
-		,false
-		,caster
-		,caster
-		,caster:GetTeam()
-		)
-	if not unit then
-		--print("failed to create hook head")
-	else
+		,targetPoint
+		,false,caster,caster,caster:GetTeam())
+	if unit then
 		unit:EmitSound("Hero_Pudge.AttackHookExtend")
-		-- the head ai, currently think about walls only
-		unit:SetContextThink("hookheadthink",Dynamic_Wrap( PudgeWarsGameMode, 'HookHeadThink' ),0.1)
-		
 		-- store the head
 		tHookElements[nPlayerID].Head.unit = unit
-		
 		-- set the head model scale to the hook radius
 		unit:SetModelScale((tnPlayerHookRadius[nPlayerID]/80)*0.8,0)
-	
 		-- set head forward vector
 		local diffVec = targetPoint - caster:GetOrigin()
 		diffVec.z = 0
-		print("diffVec "..tostring(diffVec))
 		unit:SetForwardVector(diffVec:Normalized())
-		
 		-- catch the head position
 		local vOrigin = unit:GetOrigin()
 		tvPlayerPudgeLastPos[nPlayerID] = caster:GetOrigin()
-		
 		--create and store the first body particles ,vector and forward vector
 		local nFXIndex = ParticleManager:CreateParticle( tnPlayerHookBDType[ nPlayerID ] , PATTACH_CUSTOMORIGIN, caster )
 		vOrigin.z = vOrigin.z + 150
@@ -269,12 +191,10 @@ function OnHookSet(keys)
 		    vec = vOrigin,
 		    fvec = caster:GetForwardVector()
 		}
-
 		-- create the head trail particle
 		tnFXIndex = ParticleManager:CreateParticle( "the_quas_trail" , PATTACH_CUSTOMORIGIN, caster )
 		ParticleManager:SetParticleControl( tnFXIndex, 0, vOrigin )
 		tHookElements[nPlayerID].Head.index = tnFXIndex
-
 		--remove the set ability and add release ability
 		caster:RemoveAbility("ability_pudgewars_set_hook")
 		caster:AddAbility("ability_pudgewars_release_hook")
@@ -310,7 +230,6 @@ function OnSettingHookDirectionTimeUp(keys)
 		ParticleManager:SetParticleControl(body1pa,3,WORLDMAX_VEC)
 		ParticleManager:ReleaseParticleIndex(body1pa)
 	end
-	
 	--reset the ability
 	if ABILITY_SETTING_HOOK_DIRECTION then
 
@@ -350,21 +269,13 @@ local function GetHookedUnit(caster, head , plyid)
 	-- remove all useless untis
 	if #tuHookedUnits >= 1 then
 		for k,v in pairs(tuHookedUnits) do
-			
-			--print("unitunitname " .. tostring(k)..":"..v:GetUnitName())
-
 			local va = false
 			for s,t in pairs (tPossibleHookTargetName) do
 				if v:GetUnitName() == t then
-					-- the unit in the table , a valid hook unit
-					print("valid unit found")
 					va = true
 				end
 			end
 			if ( not va ) or ( v == caster ) then
-				-- not a valid unit , remove
-				--print("remove invalid unit")
-				--print("v == caster:" ..tostring( v == caster))
 				tuHookedUnits[k] = nil
 			end
 		end
@@ -373,11 +284,9 @@ local function GetHookedUnit(caster, head , plyid)
 	-- if there is units left then catch it
 	for k,v in pairs(tuHookedUnits) do
 		if v ~= nil then
-			--print("return hooked unit"..v:GetUnitName())
 			return v
 		end
 	end
-	
 	return nil
 end
 
@@ -955,11 +864,6 @@ function PlantABomb(keys)
 end
 
 function ThinkAboutBombTriggered(keys)
-	--print("thinkaboutbombtriggered")
-	--if not ThinkAboutBombTriggeredprinted then
-	--	ThinkAboutBombTriggeredprinted = ture
-	--	PrintTable(keys)
-	--end
 	local caster = EntIndexToHScript(keys.caster_entindex)
 	local center = caster:GetOrigin()
 	local ability = caster:FindAbilityByName("ability_make_bomb_a_bomb")
