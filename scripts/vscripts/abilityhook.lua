@@ -159,7 +159,7 @@ local function GetHookType(nPlayerID)
 			hookType = tnHookTypeString[4]
 		end
 	else
-		print("no kill streak!")
+		--print("no kill streak!")
 		hookType = tnHookTypeString[1]
 	end
 	return hookType
@@ -172,10 +172,10 @@ function OnHookStart(keys)
 	local nPlayerID = keys.unit:GetPlayerID()
 
 	--PrintTable(keys)
-	print("player "..nPlayerID.." Start A Hook")
+	--print("player "..nPlayerID.." Start A Hook")
 
 	if tHookElements[nPlayerID].Head.unit ~= nil then
-		print("invalid hook")
+		--print("invalid hook")
 		return
 	end
 	
@@ -213,7 +213,7 @@ function OnHookStart(keys)
 		-- set head forward vector
 		local diffVec = targetPoint - caster:GetOrigin()
 		diffVec.z = 0
-		print("diffVec "..tostring(diffVec))
+		--print("diffVec "..tostring(diffVec))
 		unit:SetForwardVector(diffVec:Normalized())
 		
 		-- catch the head position
@@ -255,7 +255,7 @@ function OnHookSet(keys)
 	--PrintTable(keys)
 	print("player "..nPlayerID.." Start A Hook")
 	if tHookElements[nPlayerID].Head.unit ~= nil then
-		print("invalid hook")
+		--print("invalid hook")
 		return
 	end
 	
@@ -394,7 +394,7 @@ local function GetHookedUnit(caster, head , plyid)
 	if #tuHookedUnits >= 1 then
 		for k,v in pairs(tuHookedUnits) do
 			
-			print("unitunitname " .. tostring(k)..":"..v:GetUnitName())
+			--print("unitunitname " .. tostring(k)..":"..v:GetUnitName())
 
 			local va = false
 			for s,t in pairs (tPossibleHookTargetName) do
@@ -406,8 +406,8 @@ local function GetHookedUnit(caster, head , plyid)
 			end
 			if ( not va ) or ( v == caster ) then
 				-- not a valid unit , remove
-				print("remove invalid unit")
-				print("v == caster:" ..tostring( v == caster))
+				--print("remove invalid unit")
+				--print("v == caster:" ..tostring( v == caster))
 				tuHookedUnits[k] = nil
 			end
 		end
@@ -416,7 +416,7 @@ local function GetHookedUnit(caster, head , plyid)
 	-- if there is units left then catch it
 	for k,v in pairs(tuHookedUnits) do
 		if v ~= nil then
-			print("return hooked unit"..v:GetUnitName())
+			--print("return hooked unit"..v:GetUnitName())
 			return v
 		end
 	end
@@ -438,10 +438,10 @@ function dealLastHit( caster,target )
 	PudgeWarsGameMode:CreateTimer("last_hit"..tostring(dummy)..tostring(GameRules:GetGameTime()),{
 		endTime = Time() + 1,
 		callback = function()
-			print("removing dummy unit")
+			--print("removing dummy unit")
 			dummy:Destroy()
 			if target:IsAlive() then
-				print("WARNING! THE UNIT IS STILL ALIVE")
+				--print("WARNING! THE UNIT IS STILL ALIVE")
 			end
 		end
 	})
@@ -449,15 +449,15 @@ end
 
 -- catch the hook unit
 local function HookUnit( target , caster ,plyid )
-	print ( "hooked something" )
-	print ( "the enemy name "..target:GetUnitName())
+	--print ( "hooked something" )
+	--print ( "the enemy name "..target:GetUnitName())
 	target:EmitSound("Hero_Pudge.AttackHookImpact")
 	--if the unit is already hooked by someone
 	if target:HasModifier("modifier_pudgewars_hooked") then
 		if target:GetTeam() ~= caster:GetTeam() then
 			--HEAD SHOT
 			--print("unit has been hooked and its an enemy")
-			print("head shot fired")
+			--print("head shot fired")
 			dealLastHit(caster,target)
 			local msg = {
 			message = "#pudgewars_head_shot",
@@ -469,14 +469,14 @@ local function HookUnit( target , caster ,plyid )
 		elseif target:GetTeam() == caster:GetTeam() 
 			and not tbHookByAlly[target] then
 			--DENIED
-			print("deny fired")
+			--print("deny fired")
 			dealLastHit(caster,target)
 			local msg = {
 				message = "#pudgewars_denied",
 				duration = 1
 				}
 			FireGameEvent('show_center_message',msg)
-			print("team:"..tostring(caster:GetTeam()))
+			--print("team:"..tostring(caster:GetTeam()))
 			AddScore(caster:GetTeam(),DENY_SCORE)
 
 		end
@@ -515,7 +515,7 @@ local function HookUnit( target , caster ,plyid )
 		
 		-- think about barathon's latern item
 		local itemLatern = ItemThinker:FindItemFuzzy(caster,"item_pudge_barathrum_lantern")
-		print("trying to find latern"..tostring(itemlaLatern))
+		--print("trying to find latern"..tostring(itemlaLatern))
 		if itemLatren then
 			local itemLevel = string.sub(itemLatern,-1,-1)
 			print("ITEM LATERN FOUND LV :"..tostring(itemLevel))
@@ -645,7 +645,7 @@ function OnReleaseHook( keys )
 				-- THINK ABOUT HEAD FORWARD VECTOR FATAL ERROR
 				if headFV.x == 0 and headFV.y == 0 then
 					print("WARNING: HOOK HEAD IS NOT MOVING")
-					say(nil,"FATAL ERROR:钩子朝向错误，取消错误的钩子释放...",false)
+					say(nil," =>致命错误:钩子朝向错误，取消错误的钩子释放...",false)
 					tbPlayerHookingBack[nPlayerID] = true
 				end
 				
@@ -761,7 +761,7 @@ end
 
 -- upgrade hook functions below
 function OnUpgradeHookDamage(keys)
-	print("upgrading damage")
+	--print("upgrading damage")
 	--PrintTable(keys)
 	local caster    = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = caster:GetPlayerID()
@@ -784,7 +784,7 @@ function OnUpgradeHookDamage(keys)
 end
 
 function OnUpgradeHookRadius( keys )
-	print("upgrading radius")
+	--print("upgrading radius")
 
 	--PrintTable(keys)
 	local caster    = EntIndexToHScript(keys.caster_entindex)
@@ -809,7 +809,7 @@ function OnUpgradeHookRadius( keys )
 end
 
 function OnUpgradeHookLength( keys )
-	print("upgrading length")
+	--print("upgrading length")
 
 	--PrintTable(keys)
 	local caster    = EntIndexToHScript(keys.caster_entindex)
@@ -834,7 +834,7 @@ function OnUpgradeHookLength( keys )
 end
 
 function OnUpgradeHookSpeed( keys )
-	print("upgrading speed")
+	--print("upgrading speed")
 
 	--PrintTable(keys)
 	local caster    = EntIndexToHScript(keys.caster_entindex)
@@ -945,9 +945,9 @@ function OnToggleHookType( keys )
 
 	local ABILITY_START_HOOK = caster:FindAbilityByName("ability_pudgewars_hook")
 	if ABILITY_START_HOOK then
-		print("remove ability")
+		--print("remove ability")
 		caster:RemoveAbility("ability_pudgewars_hook")
-		print("add ability")
+		--print("add ability")
 		caster:AddAbility("ability_pudgewars_set_hook")
 		local ABILITY_SET_HOOK = caster:FindAbilityByName("ability_pudgewars_set_hook")
 		if ABILITY_SET_HOOK then
@@ -957,13 +957,13 @@ function OnToggleHookType( keys )
 end
 
 function PlantABomb(keys)
-	PrintTable(keys)
+	--PrintTable(keys)
 	local caster = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = caster:GetPlayerID()
 	local returnPos = nil
 
 	if tHookElements[nPlayerID].Head.unit then
-		print("there is a head,plant bomb at head")
+		--print("there is a head,plant bomb at head")
 		returnPos = tHookElements[nPlayerID].Head.unit:GetOrigin()
 	else
 		returnPos = caster:GetOrigin()
@@ -984,7 +984,7 @@ function PlantABomb(keys)
 			--unit:AddAbility("ability_make_bomb_a_bomb")
 		local ABILITY_BOMB = unit:FindAbilityByName("ability_make_bomb_a_bomb")
 		if ABILITY_BOMB then
-			print("bomb level set")
+			--print("bomb level set")
 			ABILITY:SetLevel(tonumber(itemLevel))
 		else
 			print("UNIT ABILITY NOT FOUND")
@@ -995,11 +995,11 @@ function PlantABomb(keys)
 end
 
 function ThinkAboutBombTriggered(keys)
-	print("thinkaboutbombtriggered")
-	if not ThinkAboutBombTriggeredprinted then
-		ThinkAboutBombTriggeredprinted = ture
-		PrintTable(keys)
-	end
+	--print("thinkaboutbombtriggered")
+	--if not ThinkAboutBombTriggeredprinted then
+	--	ThinkAboutBombTriggeredprinted = ture
+	--	PrintTable(keys)
+	--end
 	local caster = EntIndexToHScript(keys.caster_entindex)
 	local center = caster:GetOrigin()
 	local ability = caster:FindAbilityByName("ability_make_bomb_a_bomb")
@@ -1021,7 +1021,7 @@ function ThinkAboutBombTriggered(keys)
 	local triggered = false
 	if triggeredUnits then
 		for k,v in pairs(triggeredUnits) do
-			print("bomb_test_triggered by :"..v:GetUnitName())
+			--print("bomb_test_triggered by :"..v:GetUnitName())
 			if v:GetUnitName() ~= "npc_dota_hero_pudge" then
 				v = nil
 			else
