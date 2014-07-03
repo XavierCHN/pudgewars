@@ -873,7 +873,7 @@ function OnUpgradeHookDamageFinished( keys )
 	else
 		-- upgrade the hook data and spend gold
 		hHookAbility:SetLevel( nCurrentLevel + 1 )
-		if developmentmode then nUpgradeCost = -10000 end
+		--if developmentmode then nUpgradeCost = -10000 end
 		PlayerResource:SpendGold( nPlayerID , nUpgradeCost , 0 )
 		tnPlayerHookDamage[ nPlayerID ] =  tnHookDamage[ nCurrentLevel + 1 ]
 	end

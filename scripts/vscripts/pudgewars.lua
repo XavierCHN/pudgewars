@@ -1,6 +1,6 @@
 print("![PudgeWars] Hello World")
 
-developmentmode = true
+developmentmode = false
 TIMER_USE_GAME_TIME =  true
 
 STARTING_GOLD = 50000
