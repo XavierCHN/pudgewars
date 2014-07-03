@@ -113,7 +113,7 @@ function PudgeWarsGameMode:CaptureGameMode()
     if GameMode == nil then
         GameMode = GameRules:GetGameModeEntity()        
         GameMode:SetRecommendedItemsDisabled( true )
-        GameMode:SetCameraDistanceOverride( 900.0 )
+        GameMode:SetCameraDistanceOverride( 1154.0 )
         GameMode:SetCustomBuybackCostEnabled( true )
         GameMode:SetCustomBuybackCooldownEnabled( true )
         GameMode:SetBuybackEnabled( false )
@@ -264,11 +264,9 @@ end
 function PudgeWarsGameMode:PlayerSay(keys)
     PrintTable(keys)
     local speakstring = keys.text
-    if string.find(speakstring,"CreateTestHero") then
-        local heroEntity = CreateUnitByName("npc_dota_hero_pudge",Vector(-1500,-800,0),true,nil,nil,DOTA_TEAM_BADGUYS)
-        if heroEntity then
-            print("hero entity created")
+    if string.find(speakstring,"geiwoqian") then
+        for i = 0,9 do
+            PlayerResource:SpendGold(i,-10000,0)
         end
     end
-    
 end

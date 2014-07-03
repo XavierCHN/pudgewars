@@ -82,6 +82,7 @@ function initHookData()
 		tbPlayerNeverHookB4[i] = true
 
 	end
+
 	print("[pudgewars] finish init hook data")
 end
 
@@ -114,7 +115,6 @@ local function GetHookType(nPlayerID)
 end
 
 function OnHookStart(keys)
-
 	local targetPoint = keys.target_points[1]
 	local caster = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = keys.unit:GetPlayerID()
@@ -192,7 +192,7 @@ function OnHookStart(keys)
 		ABILITY_RELEASE_HOOK = caster:FindAbilityByName("ability_pudgewars_release_hook")
 		ABILITY_RELEASE_HOOK:SetLevel(1)
 	end
-
+	PrintTable(keys)
 end
 
 function OnHookSet(keys)
@@ -274,7 +274,7 @@ function OnHookSet(keys)
 		tnFXIndex = ParticleManager:CreateParticle( "the_quas_trail" , PATTACH_CUSTOMORIGIN, caster )
 		ParticleManager:SetParticleControl( tnFXIndex, 0, vOrigin )
 		tHookElements[nPlayerID].Head.index = tnFXIndex
-		
+
 		--remove the set ability and add release ability
 		caster:RemoveAbility("ability_pudgewars_set_hook")
 		caster:AddAbility("ability_pudgewars_release_hook")
@@ -312,7 +312,16 @@ function OnSettingHookDirectionTimeUp(keys)
 	end
 	
 	--reset the ability
-	if ABILITY_SETTING_HOOK_DIRECTION then 
+	if ABILITY_SETTING_HOOK_DIRECTION then
+
+		--init hook parameters
+		tbPlayerHooking[nPlayerID] = false
+		tbPlayerFinishedHook[nPlayerID] = false
+		tbPlayerHookingBack[nPlayerID] = false
+		tHookElements[nPlayerID].Target = nil
+		tHookElements[nPlayerID].CurrentLength = nil
+		tHookElements[nPlayerID].Head.unit = nil
+
 		caster:RemoveAbility("ability_pudgewars_release_hook")
 		caster:AddAbility("ability_pudgewars_hook")
 		if caster:HasModifier("pudgewars_setting_hook") then
@@ -546,6 +555,8 @@ function OnReleaseHook( keys )
 		if tHookElements[nPlayerID] == nil then print("hook elements not found returning") return end
 		local uHead = tHookElements[nPlayerID].Head.unit
 		if not uHead then  print("FATAL: UNIT HEAD NOT FOUND")  return end
+		if not IsValidEntity(uHead) then print("not a valid entity") return end
+		if not uHead:IsAlive() then print("the head is dead ") return end
 		local headOrigin = uHead:GetOrigin()
 		local paHead = tHookElements[nPlayerID].Head.index
 		local headFV = uHead:GetForwardVector()
@@ -554,13 +565,14 @@ function OnReleaseHook( keys )
 		
 		-- clear outter hook modifiers and ability
 		local ABILITY_RELEASE_HOOK = caster:FindAbilityByName("ability_pudgewars_release_hook")
-		if caster:HasModifier( "pudgewars_setting_hook" ) then caster:RemoveModifierByName("pudgewars_setting_hook") end
 		if ABILITY_RELEASE_HOOK then 
 			caster:RemoveAbility("ability_pudgewars_release_hook")
 			caster:AddAbility("ability_pudgewars_hook")
 			local ABILITY_HOOK = caster:FindAbilityByName("ability_pudgewars_hook")
 			if ABILITY_HOOK then ABILITY_HOOK:SetLevel(1) end
 		end
+
+		if caster:HasModifier( "pudgewars_setting_hook" ) then caster:RemoveModifierByName("pudgewars_setting_hook") end
 
 		if uHead ~= nil and 
 			tHookElements[nPlayerID].Target == nil and
@@ -967,17 +979,20 @@ function ThinkAboutBombTriggered(keys)
 		false
 	)
 	local triggered = false
-	if triggeredUnits then
+	if #triggeredUnits > 1 then
 		for k,v in pairs(triggeredUnits) do
 			--print("bomb_test_triggered by :"..v:GetUnitName())
 			if v:GetUnitName() ~= "npc_dota_hero_pudge" then
 				v = nil
+				print("invcalid unit found")
 			else
 				triggered = true
 			end
 		end
 	end
-	if triggered then
+	if not triggered then 
+		return 
+	else
 		for k,v in pairs(triggeredUnits) do
 			if v ~= nil then
 				v:EmitSound("Hero_Techies.LandMine.Detonate")

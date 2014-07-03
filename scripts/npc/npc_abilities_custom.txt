@@ -29,11 +29,19 @@
         "Function"          "OnHookStart"
         "Target"            "POINT"
       }
-      "ApplyModifier"
-      {
-        "Target"    "CASTER"
-        "ModifierName"    "modifier_pudgewars_hook_think_interval"
-      }
+      //"DelayedAction"
+      //{
+        //"Delay"   "0.3"
+        //"Action"
+        //{
+          "ApplyModifier"
+          {
+            "Target"    "CASTER"
+            "ModifierName"    "modifier_pudgewars_hook_think_interval"
+          }
+        //}
+      //}
+      
     }
     "Modifiers"
     {
@@ -66,7 +74,7 @@
     "ID"    "2000"
     "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_POINT"
     "BaseClass"           "ability_datadriven"
-    "AbilityTextureName"      "ability_pudgewars_hook"
+    "AbilityTextureName"      "pudgewars_toggle_outter_hook_on"
     "MaxLevel"          "1"
 
     // Stats
