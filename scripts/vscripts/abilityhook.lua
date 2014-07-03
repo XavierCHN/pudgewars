@@ -332,6 +332,17 @@ function OnHookSet(keys)
 		caster:AddAbility("ability_pudgewars_release_hook")
 		ABILITY_RELEASE_HOOK = caster:FindAbilityByName("ability_pudgewars_release_hook")
 		ABILITY_RELEASE_HOOK:SetLevel(1)
+
+
+		PudgeWarsGameMode:CreateTimer("Pudgears_set_hook_timeout"..tostring(caster),{
+			endTime = Time() + 4,
+			callback = function()
+				if caster:HasAbility("ability_pudgewars_release_hook") then
+					print("hook not released remove dummies")
+					OnSettingHookDirectionTimeUp(keys)
+				end
+			end
+			})
 	end
 end
 
@@ -353,7 +364,7 @@ function OnSettingHookDirectionTimeUp(keys)
 	local body1pa = tHookElements[nPlayerID].Body[1].index
 	local ABILITY_SETTING_HOOK_DIRECTION = caster:FindAbilityByName("ability_pudgewars_release_hook")
 	if not tbPlayerHooking[nPlayerID] then
-		head:Remove()
+		head:ForceKill(false)
 		ParticleManager:SetParticleControl(headpa,0,WORLDMAX_VEC)
 		ParticleManager:ReleaseParticleIndex(headpa)
 		ParticleManager:SetParticleControl(body1pa,0,WORLDMAX_VEC)
@@ -363,6 +374,12 @@ function OnSettingHookDirectionTimeUp(keys)
 		ParticleManager:ReleaseParticleIndex(body1pa)
 	end
 	
+		tbPlayerHooking[nPlayerID] = false
+		tbPlayerFinishedHook[nPlayerID] = false
+		tbPlayerHookingBack[nPlayerID] = false
+		tHookElements[nPlayerID].Target = nil
+		tHookElements[nPlayerID].CurrentLength = nil
+
 	--reset the ability
 	if ABILITY_SETTING_HOOK_DIRECTION then 
 		caster:RemoveAbility("ability_pudgewars_release_hook")
@@ -598,6 +615,7 @@ function OnReleaseHook( keys )
 		if tHookElements[nPlayerID] == nil then print("hook elements not found returning") return end
 		local uHead = tHookElements[nPlayerID].Head.unit
 		if not uHead then  print("FATAL: UNIT HEAD NOT FOUND")  return end
+		print(tostring(uHead))
 		local headOrigin = uHead:GetOrigin()
 		local paHead = tHookElements[nPlayerID].Head.index
 		local headFV = uHead:GetForwardVector()
@@ -606,7 +624,9 @@ function OnReleaseHook( keys )
 		
 		-- clear outter hook modifiers and ability
 		local ABILITY_RELEASE_HOOK = caster:FindAbilityByName("ability_pudgewars_release_hook")
-		if caster:HasModifier( "pudgewars_setting_hook" ) then caster:RemoveModifierByName("pudgewars_setting_hook") end
+		if caster:HasModifier( "pudgewars_setting_hook" ) then 
+			caster:RemoveModifierByName("pudgewars_setting_hook") 
+		end
 		if ABILITY_RELEASE_HOOK then 
 			caster:RemoveAbility("ability_pudgewars_release_hook")
 			caster:AddAbility("ability_pudgewars_hook")
