@@ -195,7 +195,7 @@
       "modifier_pudgewars_pudgemeathook_think_interval"
       {
         "RemoveOnDeath"     "0"
-        "IsHidden"          "1"
+        "IsHidden"          "0"
         "Duration"          "15"
         "ThinkInterval"     "0.02"
         "OnIntervalThink"
@@ -695,15 +695,16 @@
 
     "Modifiers"
     {
-      //"modifier_bomb_invisible"
-      //{
-      //  "Passive" "1"
-      //  "IsHidden"  "0"
-      //  "States"  
-      //  {
-      //    "MODIFIER_STATE_INVISIBLE" "MODIFIER_STATE_VALUE_ENABLED"
-      //  }
-      //}
+      "modifier_bomb_invisible"
+      {
+        "Passive" "1"
+        "IsHidden"  "0"
+        "Duration"  "20"
+        "States"  
+        {
+          "MODIFIER_STATE_INVISIBLE" "MODIFIER_STATE_VALUE_ENABLED"
+        }
+      }
       "pudgewars_bomb_fuse"
       {
         "Passive"     "1"

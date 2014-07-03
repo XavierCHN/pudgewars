@@ -1681,6 +1681,7 @@
     {
         "ID"        "1763"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "Model"                         "models/props_gameplay/salve_blue.mdl"
         "BaseClass"                     "item_datadriven"
         "AbilityTextureName"            "pudge_flask1"

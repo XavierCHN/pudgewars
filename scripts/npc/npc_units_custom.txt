@@ -10,8 +10,8 @@
   		"Ability2"				"ability_dota2x_pudgewars_hook_applier"
   		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
   		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_FLY"
-  		"VisionDaytimeRange"	"0"
-  		"VisionNighttimeRange"	"0"
+  		"VisionDaytimeRange"	"100"
+  		"VisionNighttimeRange"	"100"
   		"HasInventory"			"0"
   		"WakesNeutrals"			"0"
   	}
@@ -24,8 +24,8 @@
   		"Ability3"				"ability_deal_the_last_hit"
   		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
   		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_FLY"
-  		"VisionDaytimeRange"	"0"
-  		"VisionNighttimeRange"	"0"
+  		"VisionDaytimeRange"	"100"
+  		"VisionNighttimeRange"	"100"
   		"HasInventory"			"0"
   		"WakesNeutrals"			"0"
   	}
@@ -38,8 +38,8 @@
   		"Ability3"				"ability_deal_the_last_hit"
   		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
   		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_FLY"
-  		"VisionDaytimeRange"	"0"
-  		"VisionNighttimeRange"	"0"
+  		"VisionDaytimeRange"	"100"
+  		"VisionNighttimeRange"	"100"
   		"HasInventory"			"0"
   		"WakesNeutrals"			"0"
   	}
@@ -52,8 +52,8 @@
   		"Ability3"				"ability_deal_the_last_hit"
   		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
   		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_FLY"
-  		"VisionDaytimeRange"	"0"
-  		"VisionNighttimeRange"	"0"
+  		"VisionDaytimeRange"	"100"
+  		"VisionNighttimeRange"	"100"
   		"HasInventory"			"0"
   		"WakesNeutrals"			"0"
   	}
@@ -67,8 +67,8 @@
   		"Ability3"				"ability_deal_the_last_hit"
   		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
   		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_FLY"
-  		"VisionDaytimeRange"	"0"
-  		"VisionNighttimeRange"	"0"
+  		"VisionDaytimeRange"	"100"
+  		"VisionNighttimeRange"	"100"
   		"HasInventory"			"0"
   		"WakesNeutrals"			"0"
   	}
@@ -115,7 +115,7 @@
   	{
   		"BaseClass"				"npc_dota_creep_neutral"
   		"Model"					"models/development/invisiblebox.mdl"
-  		//"Ability1"				"ability_dota2x_pudgewars_hook_dummy"
+  		"Ability1"				"ability_dota2x_pudgewars_hook_dummy"
   		
   		"VisionDaytimeRange"	"1000"
   		"VisionNighttimeRange"	"1000"

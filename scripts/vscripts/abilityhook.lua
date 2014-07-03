@@ -362,12 +362,6 @@ function OnSettingHookDirectionTimeUp(keys)
 		ParticleManager:SetParticleControl(body1pa,3,WORLDMAX_VEC)
 		ParticleManager:ReleaseParticleIndex(body1pa)
 	end
-
-	tHookElements[nPlayerID].Head.unit = nil
-	tHookElements[nPlayerID].Body = {}
-	tHookElements[nPlayerID].Target = nil
-	tbPlayerFinishedHook[nPlayerID] = true
-	tvPlayerPudgeLastPos[nPlayerID] = nil
 	
 	--reset the ability
 	if ABILITY_SETTING_HOOK_DIRECTION then 
@@ -603,7 +597,7 @@ function OnReleaseHook( keys )
 	
 		if tHookElements[nPlayerID] == nil then print("hook elements not found returning") return end
 		local uHead = tHookElements[nPlayerID].Head.unit
-		if not uHead then return print("FATAL: UNIT HEAD NOT FOUND")  end
+		if not uHead then  print("FATAL: UNIT HEAD NOT FOUND")  return end
 		local headOrigin = uHead:GetOrigin()
 		local paHead = tHookElements[nPlayerID].Head.index
 		local headFV = uHead:GetForwardVector()
@@ -645,9 +639,8 @@ function OnReleaseHook( keys )
 			then
 				-- turn it back
 				tbPlayerHookingBack[nPlayerID] = true
-				return 
+				--return 
 			else
-				
 				-- if the hook is going out
 				-- THINK ABOUT HEAD FORWARD VECTOR FATAL ERROR
 				if headFV.x == 0 and headFV.y == 0 then
@@ -779,14 +772,14 @@ function OnUpgradeHookDamage(keys)
 	local nCurrentGold  = PlayerResource:GetGold(nPlayerID)
 	if nCurrentLevel == 4 then
 		caster:Stop()
-		Say(caster:GetOwner(),"#Upgrading_hook_damage_max_level",false)
+		Say(caster:GetOwner()," =>伤害已经达到最大等级。",false)
 		return
 	end
 
 	-- if the player has not enough gold then stop him from channeling
 	if nUpgradeCost > nCurrentGold then
 		caster:Stop()
-		Say(caster:GetOwner(),"#Upgrading_hook_damage_not_enough_gold",false)
+		Say(caster:GetOwner()," =>金钱不足，升级钩子伤害失败！",false)
 	end
 end
 
@@ -804,14 +797,14 @@ function OnUpgradeHookRadius( keys )
 
 	if nCurrentLevel == 4 then
 		caster:Stop()
-		Say(caster:GetOwner(),"#Upgrading_hook_radius_max_level",false)
+		Say(caster:GetOwner()," =>范围已经达到最大等级。",false)
 		return
 	end
 
 	-- if the player has not enough gold then stop him from channeling
 	if nUpgradeCost > nCurrentGold then
 		caster:Stop()
-		Say(caster:GetOwner(),"#Upgrading_hook_radius_not_enough_gold",false)
+		Say(caster:GetOwner()," =>金钱不足，升级钩子范围失败！",false)
 	end
 end
 
@@ -829,14 +822,14 @@ function OnUpgradeHookLength( keys )
 
 	if nCurrentLevel == 4 then
 		caster:Stop()
-		Say(caster:GetOwner(),"#Upgrading_hook_length_max_level",false)
+		Say(caster:GetOwner()," =>长度已经达到最大等级。",false)
 		return
 	end
 
 	-- if the player has not enough gold then stop him from channeling
 	if nUpgradeCost > nCurrentGold then
 		caster:Stop()
-		Say(caster:GetOwner(),"#Upgrading_hook_length_not_enough_gold",false)
+		Say(caster:GetOwner()," =>金钱不足，升级钩子长度失败！",false)
 	end
 end
 
@@ -854,14 +847,14 @@ function OnUpgradeHookSpeed( keys )
 
 	if nCurrentLevel == 4 then
 		caster:Stop()
-		Say(caster:GetOwner(),"#Upgrading_hook_speed_max_level",false)
+		Say(caster:GetOwner()," =>速度已经达到最大等级。",false)
 		return
 	end
 
 	-- if the player has not enough gold then stop him from channeling
 	if nUpgradeCost > nCurrentGold then
 		caster:Stop()
-		Say(caster:GetOwner(),"#Upgrading_hook_speed_not_enough_gold",false)
+		Say(caster:GetOwner()," =>金钱不足，升级钩子速度失败！",false)
 	end
 end
 
@@ -876,7 +869,7 @@ function OnUpgradeHookDamageFinished( keys )
 	local nUpgradeCost  = tnUpgradeHookDamageCost[nCurrentLevel]
 	
 	if nUpgradeCost > PlayerResource:GetGold(nPlayerID) then
-		Say(caster:GetOwner(),"#Upgrading_hook_damage_fail_to_spend_gold",false)
+		Say(caster:GetOwner()," =>金钱不足，升级钩子伤害失败",false)
 	else
 		-- upgrade the hook data and spend gold
 		hHookAbility:SetLevel( nCurrentLevel + 1 )
@@ -897,7 +890,7 @@ function OnUpgradeHookRadiusFinished( keys )
 	local nCurrentLevel = hHookAbility:GetLevel()
 	local nUpgradeCost  = tnUpgradeHookRadiusCost[nCurrentLevel]
 	if nUpgradeCost > PlayerResource:GetGold(nPlayerID) then
-		Say(caster:GetOwner(),"#Upgrading_hook_radius_fail_to_spend_gold",false)
+		Say(caster:GetOwner()," =>金钱不足，升级钩子范围失败！",false)
 	else
 		-- upgrade the hook data and spend gold
 		hHookAbility:SetLevel( nCurrentLevel + 1 )
@@ -916,7 +909,7 @@ function OnUpgradeHookLengthFinished( keys )
 	local nCurrentLevel = hHookAbility:GetLevel()
 	local nUpgradeCost  = tnUpgradeHookLengthCost[nCurrentLevel]
 	if nUpgradeCost > PlayerResource:GetGold(nPlayerID) then
-		Say(caster:GetOwner(),"#Upgrading_hook_length_fail_to_spend_gold",false)
+		Say(caster:GetOwner()," =>金钱不足，升级钩子长度失败！",false)
 	else
 		-- upgrade the hook data and spend gold
 		hHookAbility:SetLevel( nCurrentLevel + 1 )
@@ -937,7 +930,7 @@ function OnUpgradeHookSpeedFinished( keys )
 
 	local nUpgradeCost  = tnUpgradeHookSpeedCost[nCurrentLevel]
 	if nUpgradeCost > PlayerResource:GetGold(nPlayerID) then
-		Say(caster:GetOwner(),"#Upgrading_hook_speed_fail_to_spend_gold",false)
+		Say(caster:GetOwner()," =>金钱不足，升级钩子速度失败！",false)
 	else
 		-- upgrade the hook data and spend gold
 		hHookAbility:SetLevel( nCurrentLevel + 1 )
@@ -1000,6 +993,7 @@ function PlantABomb(keys)
 		print("FATAL: FAILD TO FIND ITEM BOMB")
 	end
 end
+
 function ThinkAboutBombTriggered(keys)
 	print("thinkaboutbombtriggered")
 	if not ThinkAboutBombTriggeredprinted then
