@@ -82,6 +82,7 @@ function initHookData()
 		tbPlayerNeverHookB4[i] = true
 
 	end
+	--[[
 	PudgeWarsGameMode:CreateTimer("Create_Test_units",{
 		endTime = Time(),
 		callback = function ()
@@ -126,13 +127,13 @@ function initHookData()
 							dummy:Destroy()
 						end
 					})
-					]]
+					
 					
 				end
 				--PrintTable(tPossibleHookTargetName)
 			end
 		end
-	})
+	})]]
 	print("[pudgewars] finish init hook data")
 end
 
