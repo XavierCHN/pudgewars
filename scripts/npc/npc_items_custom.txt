@@ -1636,7 +1636,7 @@
         "ItemKillable"                  "0"
         "ItemSellable"                  "1"
         "ItemDroppable"                 "1"
-        "AbilityCastRange"              "1000"
+        "AbilityCastRange"              "4000"
         "AbilityCastPoint"              "0.0"
 
         "AbilityManaCost"               "20"
