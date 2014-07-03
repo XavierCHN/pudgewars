@@ -109,14 +109,14 @@
             "Function"        "OnSettingHookDirection"
           }
         }
-        //"OnDestroy"
-        //{
-        //  "RunScript"
-        //  {
-        //    "ScriptFile"      "scripts/vscripts/abilityhook.lua"
-        //    "Function"        "OnSettingHookDirectionTimeUp"
-        //  }
-        //}
+        "OnDestroy"
+        {
+          "RunScript"
+          {
+            "ScriptFile"      "scripts/vscripts/abilityhook.lua"
+            "Function"        "OnSettingHookDirectionTimeUp"
+          }
+        }
       }
     }
     
