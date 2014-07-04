@@ -105,6 +105,7 @@ function OnHookStart(keys)
 	local targetPoint = keys.target_points[1]
 	local caster = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = keys.unit:GetPlayerID()
+	print("player "..nPlayerID.." start A Hook")
 	-- if there is already a hook, return
 	if tHookElements[nPlayerID].Head.unit ~= nil then return end
 	InitHookParameters(nPlayerID)
@@ -142,11 +143,6 @@ function OnHookStart(keys)
 		tnFXIndex = ParticleManager:CreateParticle( "the_quas_trail" , PATTACH_CUSTOMORIGIN, caster )
 		ParticleManager:SetParticleControl( tnFXIndex, 0, vOrigin )
 		tHookElements[nPlayerID].Head.index = tnFXIndex
-		--remove the set ability and add release ability
-		caster:RemoveAbility("ability_pudgewars_set_hook")
-		caster:AddAbility("ability_pudgewars_release_hook")
-		ABILITY_RELEASE_HOOK = caster:FindAbilityByName("ability_pudgewars_release_hook")
-		ABILITY_RELEASE_HOOK:SetLevel(1)
 	end
 end
 
@@ -154,7 +150,7 @@ function OnHookSet(keys)
 	local targetPoint = keys.target_points[1]
 	local caster = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = keys.unit:GetPlayerID()
-	print("player "..nPlayerID.." Start A Hook")
+	print("player "..nPlayerID.." set A Hook")
 	-- if there is a hook already, return
 	if tHookElements[nPlayerID].Head.unit ~= nil then
 		return
