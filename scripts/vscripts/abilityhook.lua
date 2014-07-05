@@ -921,6 +921,15 @@ function ThinkAboutBombTriggered(keys)
 	end
 end
 
+function OnBombSetFinished( keys )
+	local caster = EntIndexToHScript(keys.caster_entindex)
+	if caster then
+		local sc = caster:GetModelScale()
+		sc = sc * 2
+		caster:SetModelScale(sc,0)
+	end
+end
+
 function AddScore(team,score)
 	PudgeWarsGameMode:AddPudgeWarsScore(team,score)
 	GameMode:SetTopBarTeamValue(DOTA_TEAM_GOODGUYS,PudgeWarsGameMode:GetPudgeWarsScore(DOTA_TEAM_GOODGUYS))

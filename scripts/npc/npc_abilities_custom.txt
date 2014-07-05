@@ -731,6 +731,14 @@
             "Target"  "CASTER"
             "ModifierName"  "pudgewars_bomb_fuse"
           }
+          "OnDestroy"
+          {
+            "RunScript"
+            {
+              "ScriptFile"      "scripts/vscripts/abilityhook.lua"
+              "Function"        "OnBombSetFinished"
+            }
+          }
         }
       }
       "pudgewars_bomb_trigger"
