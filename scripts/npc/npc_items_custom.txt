@@ -2661,7 +2661,7 @@
             "01"
             {
                 "var_type"          "FIELD_FLOAT"
-                "bonus_damage_per_turn"   "60.0 70.0 80.0 90.0 100.0"
+                "bonus_damage_per_turn"   "100.0 150.0 200.0 250.0 300.0"
             }
         }
     }
@@ -2708,7 +2708,7 @@
             "01"
             {
                 "var_type"          "FIELD_FLOAT"
-                "bonus_damage_per_turn"   "60.0 70.0 80.0 90.0 100.0"
+                "bonus_damage_per_turn"   "100.0 150.0 200.0 250.0 300.0"
             }
         }
     }
@@ -2755,7 +2755,7 @@
             "01"
             {
                 "var_type"          "FIELD_FLOAT"
-                "bonus_damage_per_turn"   "60.0 70.0 80.0 90.0 100.0"
+                "bonus_damage_per_turn"   "100.0 150.0 200.0 250.0 300.0"
             }
         }
     }
@@ -2802,7 +2802,7 @@
             "01"
             {
                 "var_type"          "FIELD_FLOAT"
-                "bonus_damage_per_turn"   "60.0 70.0 80.0 90.0 100.0"
+                "bonus_damage_per_turn"   "100.0 150.0 200.0 250.0 300.0"
             }
         }
     }
@@ -2849,7 +2849,7 @@
             "01"
             {
                 "var_type"          "FIELD_FLOAT"
-                "bonus_damage_per_turn"   "60.0 70.0 80.0 90.0 100.0"
+                "bonus_damage_per_turn"   "100.0 150.0 200.0 250.0 300.0"
             }
         }
     }
