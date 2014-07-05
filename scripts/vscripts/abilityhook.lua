@@ -291,6 +291,7 @@ end
 function dealLastHit( caster,target )
 	local dummy = CreateUnitByName("npc_dota2x_pudgewars_unit_dummy", 
 		target:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber())
+	dummy:SetOwner(caster)
 	--if dummy then print("unit created") end
 	dummy:AddAbility("ability_deal_the_last_hit")
 	local ABILITY_LAST_HIT = dummy:FindAbilityByName("ability_deal_the_last_hit")
