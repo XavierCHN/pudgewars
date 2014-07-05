@@ -1183,7 +1183,7 @@
         "AbilityCooldown"               "20"
         "AbilityManaCost"               "0 0 0 0 0"
         "AbilityModifierSupportValue"   "0.25"
-        "AbilityTextureName"            "pudge_techies_explosive_barrel1"
+        "AbilityTextureName"            "pudge_techies_explosive_barrel2"
 
         "ItemCost"                      "750"
         "ItemInitialCharges"            "0"
@@ -1220,7 +1220,7 @@
         "AbilityCooldown"               "20"
         "AbilityManaCost"               "0 0 0 0 0"
         "AbilityModifierSupportValue"   "0.25"
-        "AbilityTextureName"            "pudge_techies_explosive_barrel1"
+        "AbilityTextureName"            "pudge_techies_explosive_barrel3"
 
         "ItemCost"                      "750"
         "ItemInitialCharges"            "0"
@@ -1257,7 +1257,7 @@
         "AbilityCooldown"               "20"
         "AbilityManaCost"               "0 0 0 0 0"
         "AbilityModifierSupportValue"   "0.25"
-        "AbilityTextureName"            "pudge_techies_explosive_barrel1"
+        "AbilityTextureName"            "pudge_techies_explosive_barrel4"
 
         "ItemCost"                      "750"
         "ItemInitialCharges"            "0"
@@ -1294,7 +1294,7 @@
         "AbilityCooldown"               "20"
         "AbilityManaCost"               "0 0 0 0 0"
         "AbilityModifierSupportValue"   "0.25"
-        "AbilityTextureName"            "pudge_techies_explosive_barrel1"
+        "AbilityTextureName"            "pudge_techies_explosive_barrel5"
 
         "ItemCost"                      "750"
         "ItemInitialCharges"            "0"
