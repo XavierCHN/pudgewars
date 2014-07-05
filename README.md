@@ -1,7 +1,7 @@
 <p>
 </p>
 <h1>
-	<span style="font-family:Microsoft YaHei;font-size:32px;">钩肥大战 Pudge Wars</span>
+	<span style="font-family:Microsoft YaHei;font-size:32px;">钩肥大战 Pudge Wars <br />Alpha 1.0.0</span>
 </h1>
 <span style="font-family:Microsoft YaHei;"><span style="font-size:18px;">&nbsp;源自WAR3的钩肥大战，进行了一定程度的创新。</span><br />
 <span style="font-family:Microsoft YaHei;"><span style="font-size:18px;">&nbsp;DOTA 2 PUDGE　WARS inspired from wc3 pudgewars with a certain degree of innovation。</span>
