@@ -6,7 +6,7 @@
     	"item"		"item_pudge_bloodseeker_claw1"
     	"item"		"item_pudge_naix_jaw1"
     	//"item"		"item_pudge_ricochet_turbine1"
-    	//"item"		"item_pudge_tiny_arm1"
+    	"item"		"item_pudge_tiny_arm1"
 	}
 
 	"attributes"

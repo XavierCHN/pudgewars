@@ -140,6 +140,14 @@ function PudgeWarsGameMode:Think()
     local dt = now - PudgeWarsGameMode.t0
     PudgeWarsGameMode.t0 = now
 
+    for i = 0,9 do
+        local ply = EntIndexToHScript(i+1)
+        local heroEntity = ply:GetAssignedHero()
+        if heroEntity:GetAbilityPoints(i) > 0 then
+            heroEntity:SetAbilityPoints(0)
+        end
+    end
+
     for k,v in pairs(PudgeWarsGameMode.timers) do
         local bUseGameTime = TIMER_USE_GAME_TIME
         if v.useGameTime and v.useGameTime == true then
@@ -195,8 +203,10 @@ function PudgeWarsGameMode:AutoAssignPlayer(keys)
                 heroEntity = ply:GetAssignedHero()
                 ABILITY = heroEntity:FindAbilityByName("ability_pudgewars_hook")
                 if ABILITY then ABILITY:SetLevel(1) end
-                ABILITY = heroEntity:FindAbilityByName("ability_pudgewars_toggle_hook")
+                 ABILITY = heroEntity:FindAbilityByName("ability_dota2x_pudgewars_toss")
                 if ABILITY then ABILITY:SetLevel(1) end
+                --ABILITY = heroEntity:FindAbilityByName("ability_pudgewars_toggle_hook")
+                --if ABILITY then ABILITY:SetLevel(1) end
                 ABILITY = heroEntity:FindAbilityByName("ability_pudgewars_upgrade_damage")
                 if ABILITY then ABILITY:SetLevel(1) end
                 ABILITY = heroEntity:FindAbilityByName("ability_pudgewars_upgrade_radius")

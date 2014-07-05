@@ -70,7 +70,7 @@ function initHookData()
 	PudgeWarsGameMode:CreateTimer("Create_Test_units",{
  		endTime = Time(),
  		callback = function ()
- 			if developmentmode then
+ 			--if developmentmode then
  				local testUnitTable = {
  				 "npc_dota_goodguys_melee_rax_bot"
  					,"npc_dota_neutral_blue_dragonspawn_overseer"
@@ -112,7 +112,7 @@ function initHookData()
  					
  					
  				end
- 			end
+ 			--end
  		end
  	})
 
@@ -892,6 +892,7 @@ function PlantABomb(keys)
 		nil,
 		caster:GetTeam())
 	unit:AddNewModifier(unit,nil,"modifier_phased",{})
+	dummy:AddAbility("ability_dota2x_pudgewars_hook_dummy")
 	unit:EmitSound("Hero_Techies.LandMine.Plant")
 	local item_bomb = ItemThinker:FindItemFuzzy(caster,"item_pudge_techies_explosive_barrel")
 	if item_bomb then
@@ -986,3 +987,33 @@ function AddScore(team,score)
 	GameMode:SetTopBarTeamValue(DOTA_TEAM_GOODGUYS,PudgeWarsGameMode:GetPudgeWarsScore(DOTA_TEAM_GOODGUYS))
 	GameMode:SetTopBarTeamValue(DOTA_TEAM_BADGUYS,PudgeWarsGameMode:GetPudgeWarsScore(DOTA_TEAM_BADGUYS))
 end
+
+function OnTinyArmCast(keys)
+	print("tiny arm casted")
+	PrintTable(keys)
+	local caster = EntIndexToHScript(keys.caster_entindex)
+	local target = keys.target_entities[1]
+	local itemLevel = keys.Level
+	print("ITEAM TINY ARM FOUND LEVEL:"..itemLevel)
+	local dummy = CreateUnitByName("npc_dota2x_pudgewars_unit_dummy", 
+	caster:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber())
+	
+	--if dummy then print("unit created") end
+	dummy:AddAbility("ability_dota2x_pudgewars_hook_dummy")
+	dummy:AddAbility("ability_dota2x_pudgewars_toss")
+	local ABILITY_TOSS_APPLIER = dummy:FindAbilityByName("ability_dota2x_pudgewars_toss")
+	
+	--if ABILITY_BLOOD_APPLIER then print("ability_dota2x_pudgewars_bloodsekker_claw ability successful added") end
+	ABILITY_TOSS_APPLIER:SetLevel(tonumber(itemLevel))
+
+	dummy:CastAbilityOnTarget(target, ABILITY_TOSS_APPLIER, 0 )
+	PudgeWarsGameMode:CreateTimer("remove_toss_unit"..tostring(caster)..tostring(GameRules:GetGameTime()),
+	{
+		endTime = Time() + 0.5,
+		callback = function()
+			dummy:Destroy()
+		end
+	})
+end
+
+
