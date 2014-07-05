@@ -34,7 +34,9 @@ tPossibleHookTargetName = {
 	"npc_dota_hero_pudge",
 	"npc_dota2x_pudgewars_chest",
  	"npc_dota_neutral_blue_dragonspawn_overseer",
-	"npc_dota2x_pudgewars_gold"
+	"npc_dota2x_pudgewars_gold",
+ 	"npc_dota_necronomicon_warrior_2",
+ 	"npc_dota_warlock_golem_3"
 }
 
 -- init hook parameters
@@ -73,10 +75,13 @@ function initHookData()
  		callback = function ()
  			--if developmentmode then
  				local testUnitTable = {
- 				 "npc_dota_goodguys_melee_rax_bot"
+ 					"npc_dota_neutral_blue_dragonspawn_overseer"
+ 					,"npc_dota_necronomicon_warrior_2"
+ 					,"npc_dota_warlock_golem_3"
  					,"npc_dota_neutral_blue_dragonspawn_overseer"
  					,"npc_dota_necronomicon_warrior_2"
- 				,"npc_dota_warlock_golem_3"
+ 					,"npc_dota_warlock_golem_3"
+
  				}
  				for k,v in pairs(testUnitTable) do
  					table.insert( tPossibleHookTargetName , #tPossibleHookTargetName + 1 ,v)
@@ -89,6 +94,7 @@ function initHookData()
  						nil,
  						nil,
  						DOTA_TEAM_BADGUYS)
+ 					--[[
  					local dummy = CreateUnitByName("npc_dota2x_pudgewars_unit_dummy", 
  						caster:GetAbsOrigin(), false, caster, caster, DOTA_TEAM_GOODGUYS)
  					if dummy then print("test dummy unit created") end
@@ -110,8 +116,7 @@ function initHookData()
  							if dummy then dummy:Destroy() end
  						end
  					})
- 					
- 					
+					]]
  				end
  			--end
  		end

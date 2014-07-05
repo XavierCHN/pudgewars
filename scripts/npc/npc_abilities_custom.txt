@@ -638,22 +638,23 @@
     "AbilityType"         "DOTA_ABILITY_TYPE_ULTIMATE"
     "AbilityUnitTargetFlags"    "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
     "AbilityUnitDamageType"     "DAMAGE_TYPE_HP_REMOVAL"  
+    "MaxLevel"                  "5"
 
     // Casting
     //-------------------------------------------------------------------------------------------------------------
-    "AbilityCastPoint"        "0.0 0.0 0.0"
+    "AbilityCastPoint"        "0.0 0.0 0.0 0.0 0.0"
 
     // Time   
     //-------------------------------------------------------------------------------------------------------------
-    "AbilityCooldown"       "0.0 0.0 0.0"
+    "AbilityCooldown"       "0.0 0.0 0.0 0.0 0.0"
 
     // Damage.
     //-------------------------------------------------------------------------------------------------------------
-    "AbilityDamage"         "0 0 0"
+    "AbilityDamage"         "0 0 0 0 0"
 
     // Cost
     //-------------------------------------------------------------------------------------------------------------
-    "AbilityManaCost"       "0 0 0"   
+    "AbilityManaCost"       "0 0 0 0 0"   
     
     // Cast Range
     //-------------------------------------------------------------------------------------------------------------
@@ -670,12 +671,12 @@
       "01"
       {
         "var_type"          "FIELD_FLOAT"
-        "duration"          "3.0 3.0 3.0"
+        "duration"          "3.0 3.0 3.0 3.0 3.0"
       }
       "02"
       {
         "var_type"          "FIELD_INTEGER"
-        "movement_damage_pct"   "20 30 40"
+        "movement_damage_pct"   "20 30 40 50 60"
       }
       "03"
       {

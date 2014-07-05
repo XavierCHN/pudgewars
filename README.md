@@ -222,7 +222,7 @@
 </h2>
 <blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;">
 	<span style="font-family:Microsoft YaHei;font-size:18px;">程序 Coding： [XavierCHN](https://github.com/XavierCHN)<br />
-	</span><span style="font-family:Microsoft YaHei;font-size:18px;">地形 Mapping： [Yatkill](https://github.com/HeadCrabD)<br />
+	</span><span style="font-family:Microsoft YaHei;font-size:18px;">图标制作：有钱人会感冒<br />
 	</span><span style="font-family:Microsoft YaHei;font-size:18px;">合作开发 Co-codding：[幻影Archer](https://github.com/justarcherit)</span>
 </blockquote>
 <span style="font-family:Microsoft YaHei;font-size:18px;"><br />
