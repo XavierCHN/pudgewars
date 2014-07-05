@@ -55,6 +55,7 @@ function initHookData()
 	tnPlayerHookType     = {}
 	tnPlayerKillStreak   = {}
 	tbHookByAlly         = {}
+	tnHookTurbineBonusDamage = {}
 	tHookElements = tHookElements or {}
 	for i = 0,9 do
 		tHookElements[i] = {
@@ -75,7 +76,7 @@ function initHookData()
 	PudgeWarsGameMode:CreateTimer("Create_Test_units",{
  		endTime = Time()+ 0.1,
  		callback = function ()
- 			--if developmentmode then
+ 			if developmentmode then
  				local testUnitTable = {
  					"npc_dota_neutral_blue_dragonspawn_overseer"
  					,"npc_dota_necronomicon_warrior_2"
@@ -120,7 +121,7 @@ function initHookData()
  					})
 					]]
  				end
- 			--end
+ 			end
  		end
  	})
 
