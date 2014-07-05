@@ -126,6 +126,7 @@
 		//
 		"BaseClass"					"npc_dota_base_additive"	// Class of entity of link to.
 		"Model"						"models/development/invisiblebox.mdl"	// Model.
+  		"Ability1"					"ability_dota2x_pudgewars_hook_dummy"
 		"SoundSet"					"Creep_Good_Range"					// Name of sound set.
 		"Level"						"0"
 		"UnitLabel"					"healing_ward"

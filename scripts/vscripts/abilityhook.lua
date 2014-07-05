@@ -638,14 +638,14 @@ function OnUpgradeHookDamage(keys)
 	local nCurrentGold  = PlayerResource:GetGold(nPlayerID)
 	if nCurrentLevel == 4 then
 		caster:Stop()
-		Say(caster:GetOwner()," =>伤害已经达到最大等级。",false)
+		Say(caster:GetOwner()," =>伤害已经达到最大等级。",true)
 		return
 	end
 
 	-- if the player has not enough gold then stop him from channeling
 	if nUpgradeCost > nCurrentGold then
 		caster:Stop()
-		Say(caster:GetOwner()," =>金钱不足，升级钩子伤害失败！",false)
+		Say(caster:GetOwner()," =>金钱不足，升级钩子伤害失败！",true)
 	end
 end
 
@@ -663,14 +663,14 @@ function OnUpgradeHookRadius( keys )
 
 	if nCurrentLevel == 4 then
 		caster:Stop()
-		Say(caster:GetOwner()," =>范围已经达到最大等级。",false)
+		Say(caster:GetOwner()," =>范围已经达到最大等级。",true)
 		return
 	end
 
 	-- if the player has not enough gold then stop him from channeling
 	if nUpgradeCost > nCurrentGold then
 		caster:Stop()
-		Say(caster:GetOwner()," =>金钱不足，升级钩子范围失败！",false)
+		Say(caster:GetOwner()," =>金钱不足，升级钩子范围失败！",true)
 	end
 end
 
@@ -688,14 +688,14 @@ function OnUpgradeHookLength( keys )
 
 	if nCurrentLevel == 4 then
 		caster:Stop()
-		Say(caster:GetOwner()," =>长度已经达到最大等级。",false)
+		Say(caster:GetOwner()," =>长度已经达到最大等级。",true)
 		return
 	end
 
 	-- if the player has not enough gold then stop him from channeling
 	if nUpgradeCost > nCurrentGold then
 		caster:Stop()
-		Say(caster:GetOwner()," =>金钱不足，升级钩子长度失败！",false)
+		Say(caster:GetOwner()," =>金钱不足，升级钩子长度失败！",true)
 	end
 end
 
@@ -713,14 +713,14 @@ function OnUpgradeHookSpeed( keys )
 
 	if nCurrentLevel == 4 then
 		caster:Stop()
-		Say(caster:GetOwner()," =>速度已经达到最大等级。",false)
+		Say(caster:GetOwner()," =>速度已经达到最大等级。",true)
 		return
 	end
 
 	-- if the player has not enough gold then stop him from channeling
 	if nUpgradeCost > nCurrentGold then
 		caster:Stop()
-		Say(caster:GetOwner()," =>金钱不足，升级钩子速度失败！",false)
+		Say(caster:GetOwner()," =>金钱不足，升级钩子速度失败！",true)
 	end
 end
 
@@ -735,7 +735,7 @@ function OnUpgradeHookDamageFinished( keys )
 	local nUpgradeCost  = tnUpgradeHookDamageCost[nCurrentLevel]
 	
 	if nUpgradeCost > PlayerResource:GetGold(nPlayerID) then
-		Say(caster:GetOwner()," =>金钱不足，升级钩子伤害失败",false)
+		Say(caster:GetOwner()," =>金钱不足，升级钩子伤害失败",true)
 	else
 		-- upgrade the hook data and spend gold
 		hHookAbility:SetLevel( nCurrentLevel + 1 )
@@ -756,7 +756,7 @@ function OnUpgradeHookRadiusFinished( keys )
 	local nCurrentLevel = hHookAbility:GetLevel()
 	local nUpgradeCost  = tnUpgradeHookRadiusCost[nCurrentLevel]
 	if nUpgradeCost > PlayerResource:GetGold(nPlayerID) then
-		Say(caster:GetOwner()," =>金钱不足，升级钩子范围失败！",false)
+		Say(caster:GetOwner()," =>金钱不足，升级钩子范围失败！",true)
 	else
 		-- upgrade the hook data and spend gold
 		hHookAbility:SetLevel( nCurrentLevel + 1 )
@@ -775,7 +775,7 @@ function OnUpgradeHookLengthFinished( keys )
 	local nCurrentLevel = hHookAbility:GetLevel()
 	local nUpgradeCost  = tnUpgradeHookLengthCost[nCurrentLevel]
 	if nUpgradeCost > PlayerResource:GetGold(nPlayerID) then
-		Say(caster:GetOwner()," =>金钱不足，升级钩子长度失败！",false)
+		Say(caster:GetOwner()," =>金钱不足，升级钩子长度失败！",true)
 	else
 		-- upgrade the hook data and spend gold
 		hHookAbility:SetLevel( nCurrentLevel + 1 )
@@ -796,7 +796,7 @@ function OnUpgradeHookSpeedFinished( keys )
 
 	local nUpgradeCost  = tnUpgradeHookSpeedCost[nCurrentLevel]
 	if nUpgradeCost > PlayerResource:GetGold(nPlayerID) then
-		Say(caster:GetOwner()," =>金钱不足，升级钩子速度失败！",false)
+		Say(caster:GetOwner()," =>金钱不足，升级钩子速度失败！",true)
 	else
 		-- upgrade the hook data and spend gold
 		hHookAbility:SetLevel( nCurrentLevel + 1 )

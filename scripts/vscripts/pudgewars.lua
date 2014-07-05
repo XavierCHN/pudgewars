@@ -166,7 +166,11 @@ function PudgeWarsGameMode:AutoAssignPlayer(keys)
 
     print ('[pudgewars] AutoAssignPlayer Fired')
     PrintTable (keys)
-    
+    Say(nil," =>欢迎进入阿哈利姆魔法隐修议会钩肥大战",false)
+    Say(nil," =>地图作者：",false)
+    Say(nil," =>主程序：XavierCHN",false)
+    Say(nil," =>地形制作：Yatkill",false)
+    Say(nil," =>合作开发：Archer",false)
     local entIndex = keys.index + 1
     local ply = EntIndexToHScript(entIndex)
     local playerID = ply:GetPlayerID()
