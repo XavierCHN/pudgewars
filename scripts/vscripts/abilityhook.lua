@@ -999,10 +999,9 @@ function OnTinyArmCast(keys)
 	local itemLevel = keys.Level
 	print("ITEAM TINY ARM FOUND LEVEL:"..itemLevel)
 	
-	caster:FindAbilityByName("ability_dota2x_pudgewars_toss")
+	local ABILITY_TOSS_APPLIER = caster:FindAbilityByName("ability_dota2x_pudgewars_toss")
 	--if ABILITY_BLOOD_APPLIER then print("ability_dota2x_pudgewars_bloodsekker_claw ability successful added") end
 	ABILITY_TOSS_APPLIER:SetLevel(tonumber(itemLevel))
-
 	caster:CastAbilityOnTarget(target, ABILITY_TOSS_APPLIER, 0 )
 
 end
