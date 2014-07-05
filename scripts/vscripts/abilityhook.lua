@@ -430,7 +430,7 @@ function dealLastHit( caster,target )
 		endTime = Time()+ 0.1,
 		callback = function()
 			--print("removing dummy unit")
-			if dummy then dummy:Destroy() end
+			if IsValidEntity(dummy) then dummy:Destroy() end
 			if target:IsAlive() then
 				print("WARNING! THE UNIT IS STILL ALIVE")
 			end
@@ -496,7 +496,7 @@ local function HookUnit( target , caster ,plyid )
 		{
 			endTime = Time()+ 0.1,
 			callback = function()
-				if dummy then dummy:Destroy() end
+				if IsValidEntity(dummy) then dummy:Destroy() end
 			end
 		})
 
@@ -547,7 +547,7 @@ local function HookUnit( target , caster ,plyid )
 					{
 						endTime = Time()+ 0.1,
 						callback = function()
-							if dummy then dummy:Destroy() end
+							if IsValidEntity(dummy) then dummy:Destroy() end
 						end
 					})
 				end
