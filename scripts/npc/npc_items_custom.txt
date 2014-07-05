@@ -753,28 +753,38 @@
     {
         "ID"                            "1739"
         
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY | DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
         "BaseClass"                     "item_datadriven"
-        "AbilityCastRange"              "2500"
-        "AbilityCastPoint"              "0.0 0.0 0.0 0.0 0.0 0.0"
-        "AbilityCooldown"               "20"
-        "AbilityManaCost"               "0 0 0 0 0"
-        "AbilityModifierSupportValue"   "0.25"
         "AbilityTextureName"            "item_pudge_tiny_arm1"
-
-        "ItemCost"                      "750"
-        "ItemInitialCharges"            "0"
         "ItemKillable"                  "0"
-        "ItemDroppable"                 "1"
-        "ItemSellable"                  "1"
-        "ItemRequiresCharges"           "0"
-        "ItemShopTags"                  "consumable"
-        "ItemQuality"                   "consumable"
+        "AbilityCooldown"               "10.0"
+        "ItemCost"                      "700"
+        "ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "ItemShopTags"                  ""
+        "ItemQuality"                   "common"
         "ItemShareability"              "ITEM_NOT_SHAREABLE"
-        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-        "SideShop"                      "1"
+        "ItemSellable"                  "0"
+        "ItemKillable"                  "0"
+        "AbilityCastRange"              "1000"
+        "AbilityCastPoint"              "0.0"
+        "AbilityDamage"                 "0"
+        "AbilityManaCost"               "0"
 
         "MaxUpgradeLevel"               "5"
         "ItemBaseLevel"                 "1"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "scripts\vscripts\abilityhook.lua"
+                "Target"        "TARGET"
+                "Level"         "1"
+                "Function"      "OnTinyArmCast"
+            }
+        }
 
         "AbilitySpecial"
         {
@@ -813,34 +823,43 @@
                 "var_type"                  "FIELD_INTEGER"
                 "toss_damage"               "75 150 225 300 350 450"
             }
-
         }
     }
     "item_pudge_tiny_arm2"
     {
         "ID"                            "1740"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY | DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
         "BaseClass"                     "item_datadriven"
-        "AbilityCastRange"              "2500"
-        "AbilityCastPoint"              "0.0 0.0 0.0 0.0 0.0 0.0"
-        "AbilityCooldown"               "20"
-        "AbilityManaCost"               "0 0 0 0 0"
-        "AbilityModifierSupportValue"   "0.25"
         "AbilityTextureName"            "item_pudge_tiny_arm2"
-
-        "ItemCost"                      "750"
-        "ItemInitialCharges"            "0"
         "ItemKillable"                  "0"
-        "ItemDroppable"                 "1"
-        "ItemSellable"                  "1"
-        "ItemRequiresCharges"           "0"
-        "ItemShopTags"                  "consumable"
-        "ItemQuality"                   "consumable"
+        "AbilityCooldown"               "10.0"
+        "ItemCost"                      "700"
+        "ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "ItemShopTags"                  ""
+        "ItemQuality"                   "common"
         "ItemShareability"              "ITEM_NOT_SHAREABLE"
-        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-        "SideShop"                      "1"
+        "ItemSellable"                  "0"
+        "ItemKillable"                  "0"
+        "AbilityCastRange"              "1000"
+        "AbilityCastPoint"              "0.0"
+        "AbilityDamage"                 "0"
+        "AbilityManaCost"               "0"
 
         "MaxUpgradeLevel"               "5"
         "ItemBaseLevel"                 "2"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "scripts\vscripts\abilityhook.lua"
+                "Target"        "TARGET"
+                "Level"         "2"
+                "Function"      "OnTinyArmCast"
+            }
+        }
 
         "AbilitySpecial"
         {
@@ -879,34 +898,43 @@
                 "var_type"                  "FIELD_INTEGER"
                 "toss_damage"               "75 150 225 300 350 450"
             }
-
         }
     }
     "item_pudge_tiny_arm3"
     {
         "ID"                        "1741"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY | DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
         "BaseClass"                     "item_datadriven"
-        "AbilityCastRange"              "2500"
-        "AbilityCastPoint"              "0.0 0.0 0.0 0.0 0.0 0.0"
-        "AbilityCooldown"               "20"
-        "AbilityManaCost"               "0 0 0 0 0"
-        "AbilityModifierSupportValue"   "0.25"
         "AbilityTextureName"            "item_pudge_tiny_arm3"
-
-        "ItemCost"                      "750"
-        "ItemInitialCharges"            "0"
         "ItemKillable"                  "0"
-        "ItemDroppable"                 "1"
-        "ItemSellable"                  "1"
-        "ItemRequiresCharges"           "0"
-        "ItemShopTags"                  "consumable"
-        "ItemQuality"                   "consumable"
+        "AbilityCooldown"               "10.0"
+        "ItemCost"                      "700"
+        "ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "ItemShopTags"                  ""
+        "ItemQuality"                   "common"
         "ItemShareability"              "ITEM_NOT_SHAREABLE"
-        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-        "SideShop"                      "1"
+        "ItemSellable"                  "0"
+        "ItemKillable"                  "0"
+        "AbilityCastRange"              "1000"
+        "AbilityCastPoint"              "0.0"
+        "AbilityDamage"                 "0"
+        "AbilityManaCost"               "0"
 
         "MaxUpgradeLevel"               "5"
         "ItemBaseLevel"                 "3"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "scripts\vscripts\abilityhook.lua"
+                "Target"        "TARGET"
+                "Level"         "3"
+                "Function"      "OnTinyArmCast"
+            }
+        }
 
         "AbilitySpecial"
         {
@@ -945,34 +973,43 @@
                 "var_type"                  "FIELD_INTEGER"
                 "toss_damage"               "75 150 225 300 350 450"
             }
-
         }
     }
     "item_pudge_tiny_arm4"
     {
         "ID"                        "1742"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY | DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
         "BaseClass"                     "item_datadriven"
-        "AbilityCastRange"              "2500"
-        "AbilityCastPoint"              "0.0 0.0 0.0 0.0 0.0 0.0"
-        "AbilityCooldown"               "20"
-        "AbilityManaCost"               "0 0 0 0 0"
-        "AbilityModifierSupportValue"   "0.25"
         "AbilityTextureName"            "item_pudge_tiny_arm4"
-
-        "ItemCost"                      "750"
-        "ItemInitialCharges"            "0"
         "ItemKillable"                  "0"
-        "ItemDroppable"                 "1"
-        "ItemSellable"                  "1"
-        "ItemRequiresCharges"           "0"
-        "ItemShopTags"                  "consumable"
-        "ItemQuality"                   "consumable"
+        "AbilityCooldown"               "10.0"
+        "ItemCost"                      "700"
+        "ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "ItemShopTags"                  ""
+        "ItemQuality"                   "common"
         "ItemShareability"              "ITEM_NOT_SHAREABLE"
-        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-        "SideShop"                      "1"
+        "ItemSellable"                  "0"
+        "ItemKillable"                  "0"
+        "AbilityCastRange"              "1000"
+        "AbilityCastPoint"              "0.0"
+        "AbilityDamage"                 "0"
+        "AbilityManaCost"               "0"
 
         "MaxUpgradeLevel"               "5"
         "ItemBaseLevel"                 "4"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "scripts\vscripts\abilityhook.lua"
+                "Target"        "TARGET"
+                "Level"         "4"
+                "Function"      "OnTinyArmCast"
+            }
+        }
 
         "AbilitySpecial"
         {
@@ -1011,34 +1048,43 @@
                 "var_type"                  "FIELD_INTEGER"
                 "toss_damage"               "75 150 225 300 350 450"
             }
-
         }
     }
     "item_pudge_tiny_arm5"
     {
         "ID"                        "1743"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY | DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
         "BaseClass"                     "item_datadriven"
-        "AbilityCastRange"              "2500"
-        "AbilityCastPoint"              "0.0 0.0 0.0 0.0 0.0 0.0"
-        "AbilityCooldown"               "20"
-        "AbilityManaCost"               "0 0 0 0 0"
-        "AbilityModifierSupportValue"   "0.25"
         "AbilityTextureName"            "item_pudge_tiny_arm5"
-
-        "ItemCost"                      "750"
-        "ItemInitialCharges"            "0"
         "ItemKillable"                  "0"
-        "ItemDroppable"                 "1"
-        "ItemSellable"                  "1"
-        "ItemRequiresCharges"           "0"
-        "ItemShopTags"                  "consumable"
-        "ItemQuality"                   "consumable"
+        "AbilityCooldown"               "10.0"
+        "ItemCost"                      "700"
+        "ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "ItemShopTags"                  ""
+        "ItemQuality"                   "common"
         "ItemShareability"              "ITEM_NOT_SHAREABLE"
-        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-        "SideShop"                      "1"
+        "ItemSellable"                  "0"
+        "ItemKillable"                  "0"
+        "AbilityCastRange"              "1000"
+        "AbilityCastPoint"              "0.0"
+        "AbilityDamage"                 "0"
+        "AbilityManaCost"               "0"
 
         "MaxUpgradeLevel"               "5"
         "ItemBaseLevel"                 "5"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "scripts\vscripts\abilityhook.lua"
+                "Target"        "TARGET"
+                "Level"         "5"
+                "Function"      "OnTinyArmCast"
+            }
+        }
 
         "AbilitySpecial"
         {
@@ -1077,7 +1123,6 @@
                 "var_type"                  "FIELD_INTEGER"
                 "toss_damage"               "75 150 225 300 350 450"
             }
-
         }
     }
     "item_recipe_pudge_techies_explosive_barrel2"
@@ -1680,17 +1725,16 @@
     "item_pudge_flask1"
     {
         "ID"        "1763"
-        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-        "Model"                         "models/props_gameplay/salve_blue.mdl"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "Model"                         "models/props_gameplay/salve_red.mdl"
         "BaseClass"                     "item_datadriven"
-        "AbilityTextureName"            "pudge_flask1"
+        "AbilityTextureName"            "item_pudge_flask1"
         "ItemKillable"                  "0"
-
         "AbilityCastRange"              "100"
         "AbilityCastPoint"              "0.0"
-
-        "ItemCost"                      "90"
+        "ItemCost"                      "100"
         "ItemShopTags"                  "consumable"
         "ItemQuality"                   "consumable"
         "ItemStackable"                 "1"
@@ -1704,34 +1748,34 @@
             "ApplyModifier"
             {
                 "Target" "CURSOR_TARGET"
-                "ModifierName" "modifier_item_flask"
+                "ModifierName" "modifier_item_greater_salve"
             }
             "FireSound"
             {
                 "Target" "UNIT"
-                "EffectName" "DOTA_Item.ClarityPotion.Activate"
+                "EffectName" "DOTA_Item.HealingSalve.Activate"
             }
             "SpendCharge"
             {}
         }
         "Modifiers"
         {
-            "modifier_item_flask"
+            "modifier_item_pudge_flask"
             {
-                "TextureName"           "item_greater_clarity"
-                "EffectName"            "pudge_flask1"
-                "EffectAttachType"      "follow_origin"
-                "Duration"              "%buff_duration"
+                "TextureName" "item_greater_salve"
+                "EffectName" "item_pudge_flask1"
+                "EffectAttachType" "follow_origin"
+                "Duration" "%buff_duration"
                 "Properties"
                 {
-                    "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"     "%heal_per_tick"
+                    "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%hp_per_tick"
                 }
                 "OnTakeDamage"
                 {
                     "RemoveModifier"
                     {
                         "Target" "UNIT"
-                        "ModifierName" "modifier_item_greater_clarity"
+                        "ModifierName" "modifier_item_pudge_flask"
                     }
                 }
             }
@@ -1740,13 +1784,18 @@
         {
             "01"
             {
-                "var_type"      "FIELD_FLOAT"
-                "heal_per_tick" "50.0"
+                "var_type"              "FIELD_INTEGER"
+                "buff_duration"         "60"
             }
             "02"
             {
-                "var_type"      "FIELD_FLOAT"
-                "buff_duration" "15.0"
+                "var_type"              "FIELD_INTEGER"
+                "total_hp"              "1000"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "hp_per_tick"           "16"  // %total_mana / %buff_duration
             }
         }
     }
