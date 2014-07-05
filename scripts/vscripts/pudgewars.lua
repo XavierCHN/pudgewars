@@ -28,7 +28,7 @@ function PudgeWarsGameMode:InitGameMode()
     GameRules:SetHeroRespawnEnabled( false )
     GameRules:SetUseUniversalShopMode( false )
     GameRules:SetSameHeroSelectionEnabled( true )
-    GameRules:SetPreGameTime( 30.0)
+    GameRules:SetPreGameTime( 0.0)
     GameRules:SetPostGameTime( 60.0 )
     GameRules:SetTreeRegrowTime( 60.0 )
     GameRules:SetUseCustomHeroXPValues ( false )
@@ -62,24 +62,26 @@ function PudgeWarsGameMode:InitGameMode()
     math.randomseed(tonumber(timeTxt))
 
     --Init Timers
-    self.timers = {}
+    PudgeWarsGameMode.timers = {}
+
+    PudgeWarsGameMode.tHeroEntity = {}
 
     --Init UserMap
-    self.vUserNames = {}
-    self.vUserIds = {}
-    self.vSteamIds = {}
-    self.vBots = {}
-    self.vBroadcasters = {}
-    self.vPlayers = {}
-    self.vRadiant = {}
-    self.vDire = {}
-    self.vPlayerHeroData = {}
+    PudgeWarsGameMode.vUserNames = {}
+    PudgeWarsGameMode.vUserIds = {}
+    PudgeWarsGameMode.vSteamIds = {}
+    PudgeWarsGameMode.vBots = {}
+    PudgeWarsGameMode.vBroadcasters = {}
+    PudgeWarsGameMode.vPlayers = {}
+    PudgeWarsGameMode.vRadiant = {}
+    PudgeWarsGameMode.vDire = {}
+    PudgeWarsGameMode.vPlayerHeroData = {}
 
-    self.RadiantScore = 0
-    self.DireScore = 0
+    PudgeWarsGameMode.RadiantScore = 0
+    PudgeWarsGameMode.DireScore = 0
 
     initHookData()
-    self.t0 = 0
+    PudgeWarsGameMode.t0 = 0
     PrecacheUnitByName('npc_precache_everything')
     print('[PudgeWars] Done loading PudgeWars gamemode!\n\n')
 
@@ -140,13 +142,23 @@ function PudgeWarsGameMode:Think()
     local dt = now - PudgeWarsGameMode.t0
     PudgeWarsGameMode.t0 = now
 
+    for k,v in pairs(PudgeWarsGameMode.tHeroEntity) do
+        if v:GetAbilityPoints() >0 then
+            v:SetAbilityPoints(0)
+        end
+    end
+
+    --[[
     for i = 0,9 do
         local ply = EntIndexToHScript(i+1)
         local heroEntity = ply:GetAssignedHero()
-        if heroEntity:GetAbilityPoints(i) > 0 then
-            heroEntity:SetAbilityPoints(0)
+        if heroEntity then
+            if heroEntity:GetAbilityPoints(i) > 0 then
+                heroEntity:SetAbilityPoints(0)
+            end
         end
     end
+    ]]
 
     for k,v in pairs(PudgeWarsGameMode.timers) do
         local bUseGameTime = TIMER_USE_GAME_TIME
@@ -203,10 +215,8 @@ function PudgeWarsGameMode:AutoAssignPlayer(keys)
                 heroEntity = ply:GetAssignedHero()
                 ABILITY = heroEntity:FindAbilityByName("ability_pudgewars_hook")
                 if ABILITY then ABILITY:SetLevel(1) end
-                 ABILITY = heroEntity:FindAbilityByName("ability_dota2x_pudgewars_toss")
+                ABILITY = heroEntity:FindAbilityByName("ability_pudgewars_toggle_hook")
                 if ABILITY then ABILITY:SetLevel(1) end
-                --ABILITY = heroEntity:FindAbilityByName("ability_pudgewars_toggle_hook")
-                --if ABILITY then ABILITY:SetLevel(1) end
                 ABILITY = heroEntity:FindAbilityByName("ability_pudgewars_upgrade_damage")
                 if ABILITY then ABILITY:SetLevel(1) end
                 ABILITY = heroEntity:FindAbilityByName("ability_pudgewars_upgrade_radius")
@@ -216,6 +226,7 @@ function PudgeWarsGameMode:AutoAssignPlayer(keys)
                 ABILITY = heroEntity:FindAbilityByName("ability_pudgewars_upgrade_speed")
                 if ABILITY then ABILITY:SetLevel(1) end
                 heroEntity:SetAbilityPoints(0)
+                table.insert(PudgeWarsGameMode.tHeroEntity,heroEntity)
             end
         end
     })

@@ -779,7 +779,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"    "scripts\vscripts\abilityhook.lua"
+                "ScriptFile"    "scripts/vscripts/abilityhook.lua"
                 "Target"        "TARGET"
                 "Level"         "1"
                 "Function"      "OnTinyArmCast"

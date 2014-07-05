@@ -33,6 +33,7 @@ tnHookParticleString = {
 tPossibleHookTargetName = {
 	"npc_dota_hero_pudge",
 	"npc_dota2x_pudgewars_chest",
+ 	"npc_dota_neutral_blue_dragonspawn_overseer",
 	"npc_dota2x_pudgewars_gold"
 }
 
@@ -68,7 +69,7 @@ function initHookData()
 	end
 
 	PudgeWarsGameMode:CreateTimer("Create_Test_units",{
- 		endTime = Time(),
+ 		endTime = Time()+ 0.1,
  		callback = function ()
  			--if developmentmode then
  				local testUnitTable = {
@@ -99,14 +100,14 @@ function initHookData()
  					dummy:CastAbilityOnTarget(caster, ABILITY_HOOK_APPLIER, 0 )
  					PudgeWarsGameMode:CreateTimer("timer_test_unit_spawn_"..tostring(k)..tostring(GameRules:GetGameTime()),
  					{
- 						endTime = Time() + 0.5,
+ 						endTime = Time()+ 0.1,
  						callback = function()
  							if caster:HasModifier("modifier_pudgewars_hooked") then
  								print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
  								print("the test unit  has the hooked modifier")
  							print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
  							end
- 							dummy:Destroy()
+ 							if dummy then dummy:Destroy() end
  						end
  					})
  					
@@ -301,6 +302,7 @@ end
 
 
 local function GetHookedUnit(caster, head , plyid)
+	
 	local tuHookedUnits = nil
 	tuHookedUnits = FindUnitsInRadius(
 		caster:GetTeam(),		--caster team
@@ -315,6 +317,7 @@ local function GetHookedUnit(caster, head , plyid)
 	-- remove all useless untis
 	if #tuHookedUnits >= 1 then
 		for k,v in pairs(tuHookedUnits) do
+			print("found something"..v:GetUnitName())
 			local va = false
 			for s,t in pairs (tPossibleHookTargetName) do
 				if v:GetUnitName() == t then
@@ -349,12 +352,12 @@ function dealLastHit( caster,target )
 	dummy:CastAbilityOnTarget(target, ABILITY_LAST_HIT, 0 )
 
 	PudgeWarsGameMode:CreateTimer("last_hit"..tostring(dummy)..tostring(GameRules:GetGameTime()),{
-		endTime = Time() + 1,
+		endTime = Time()+ 0.1,
 		callback = function()
 			--print("removing dummy unit")
-			dummy:Destroy()
+			if dummy then dummy:Destroy() end
 			if target:IsAlive() then
-				--print("WARNING! THE UNIT IS STILL ALIVE")
+				print("WARNING! THE UNIT IS STILL ALIVE")
 			end
 		end
 	})
@@ -416,9 +419,9 @@ local function HookUnit( target , caster ,plyid )
 		-- timer to remove unit
 		PudgeWarsGameMode:CreateTimer("damage_dealer_"..tostring(caster)..tostring(GameRules:GetGameTime()),
 		{
-			endTime = Time() + 0.5,
+			endTime = Time()+ 0.1,
 			callback = function()
-				dummy:Destroy()
+				if dummy then dummy:Destroy() end
 			end
 		})
 
@@ -464,9 +467,9 @@ local function HookUnit( target , caster ,plyid )
 					dummy:CastAbilityOnTarget(target, ABILITY_BLOOD_APPLIER, 0 )
 					PudgeWarsGameMode:CreateTimer("blood_claw_dealer_"..tostring(caster)..tostring(GameRules:GetGameTime()),
 					{
-						endTime = Time() + 0.5,
+						endTime = Time()+ 0.1,
 						callback = function()
-							dummy:Destroy()
+							if dummy then dummy:Destroy() end
 						end
 					})
 				end
@@ -884,22 +887,22 @@ function PlantABomb(keys)
 	else
 		returnPos = caster:GetOrigin()
 	end
-	local unit =CreateUnitByName(
+	local dummy =CreateUnitByName(
 		"npc_dota2x_pudgewars_unit_bomb",
 		returnPos,
 		false,
 		nil,
 		nil,
 		caster:GetTeam())
-	unit:AddNewModifier(unit,nil,"modifier_phased",{})
+	dummy:AddNewModifier(unit,nil,"modifier_phased",{})
 	dummy:AddAbility("ability_dota2x_pudgewars_hook_dummy")
-	unit:EmitSound("Hero_Techies.LandMine.Plant")
+	dummy:EmitSound("Hero_Techies.LandMine.Plant")
 	local item_bomb = ItemThinker:FindItemFuzzy(caster,"item_pudge_techies_explosive_barrel")
 	if item_bomb then
 		local itemLevel = string.sub(item_bomb,-1,-1)
-		print("ITEM LATERN FOUND LV :"..tostring(itemLevel))
+		print("ITEM BOMB FOUND LV :"..tostring(itemLevel))
 			--unit:AddAbility("ability_make_bomb_a_bomb")
-		local ABILITY_BOMB = unit:FindAbilityByName("ability_make_bomb_a_bomb")
+		local ABILITY_BOMB = dummy:FindAbilityByName("ability_make_bomb_a_bomb")
 		if ABILITY_BOMB then
 			--print("bomb level set")
 			ABILITY:SetLevel(tonumber(itemLevel))
@@ -951,7 +954,7 @@ function ThinkAboutBombTriggered(keys)
 				local health = v:GetHealth()
 				if dmg > health then
 					PudgeWarsGameMode:CreateTimer("bomb_last_hit"..tostring(GameRules:GetGameTime()),{
-						endTime = Time(),
+						endTime = Time() + 0.1,
 						callback = function()
 							dealLastHit(caster,v)
 						end
@@ -999,6 +1002,7 @@ function OnTinyArmCast(keys)
 	caster:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber())
 	
 	--if dummy then print("unit created") end
+	dummy:AddNewModifier(unit,nil,"modifier_phased",{})
 	dummy:AddAbility("ability_dota2x_pudgewars_hook_dummy")
 	dummy:AddAbility("ability_dota2x_pudgewars_toss")
 	local ABILITY_TOSS_APPLIER = dummy:FindAbilityByName("ability_dota2x_pudgewars_toss")
@@ -1009,9 +1013,9 @@ function OnTinyArmCast(keys)
 	dummy:CastAbilityOnTarget(target, ABILITY_TOSS_APPLIER, 0 )
 	PudgeWarsGameMode:CreateTimer("remove_toss_unit"..tostring(caster)..tostring(GameRules:GetGameTime()),
 	{
-		endTime = Time() + 0.5,
+		endTime = Time()+ 0.1,
 		callback = function()
-			dummy:Destroy()
+			if dummy then dummy:Destroy() end
 		end
 	})
 end
