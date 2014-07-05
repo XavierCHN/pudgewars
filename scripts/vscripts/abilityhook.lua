@@ -69,6 +69,7 @@ function initHookData()
 		tnPlayerHookLength[i] = 1400
 		tnPlayerHookSpeed[i] = 0.2
 		tnPlayerHookDamage[i] = 175
+		tnHookTurbineBonusDamage[i] = 0
 	end
 
 	PudgeWarsGameMode:CreateTimer("Create_Test_units",{
@@ -157,6 +158,7 @@ local function InitHookParameters(nPlayerID)
 	tbPlayerHookingBack[nPlayerID] = false
 	tHookElements[nPlayerID].Target = nil
 	tHookElements[nPlayerID].CurrentLength = nil
+	tnHookTurbineBonusDamage[nPlayerID] = 0
 end
 function OnHookStart(keys)
 	local targetPoint = keys.target_points[1]
@@ -356,12 +358,7 @@ local function GetHookedUnit(caster, head , plyid)
 
 
 					if angleLeft > 10 and angleRight > 10 then
-						local resFV = nil
-						if angleLeft > angleRight then
-							resFV = rightFV
-						else
-							resFV = leftFV
-						end
+						
 						local nearEnough = false
 						for i = 1,10 do
 							local pointLeft = Vector( wallOrigin.x + 25 * leftFV.x , wallOrigin.y + 25 * leftFV.y , 0)
@@ -374,7 +371,22 @@ local function GetHookedUnit(caster, head , plyid)
 							end
 						end
 						if nearEnough then
+							local resFV = nil
+							if angleLeft > angleRight then
+								resFV = rightFV
+							else
+								resFV = leftFV
+							end
 							head:SetForwardVector(resFV)
+
+							local itemTurbine = ItemThinker:FindItemFuzzy(caster,"item_pudge_ricochet_turbine")
+							if itemTurbine then
+								local itemLevel = string.sub(itemBlood,-1,-1)
+								print("ITEAM RICOCHET TURBINE FOUND LEVEL:"..itemLevel)
+								--100 150 200 250 300
+								local bonusDmg = 50 + 50 * tonumber(itemLevel)
+								tnHookTurbineBonusDamage[plyid] = tnHookTurbineBonusDamage[plyid] + bonusDmg
+							end
 						end
 					end
 			end
@@ -501,9 +513,12 @@ local function HookUnit( target , caster ,plyid )
 			bonusdamage = (tonumber(itemLevel) * 5 + 10 / 100) * dmg
 			target:EmitSound("Hero_Spirit_Breaker.GreaterBash")
 		end
+		
 		-- if the player has the barathon latern, add bonus damage
 		dmg = dmg + bonusdamage
 
+		print("item turbine bonus dmg"..tostring(tnHookTurbineBonusDamage[nPlayerID]))
+		dmg = dmg + tnHookTurbineBonusDamage[nPlayerID]
 
 		--print("dmg = "..tostring(dmg).."playerdi"..tostring(plyid))
 		local hp = target:GetHealth()

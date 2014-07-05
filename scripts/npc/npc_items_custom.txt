@@ -2618,4 +2618,309 @@
             "01"                        "item_pudge_earthshaker_totem4"
         }
     }
+    "item_pudge_ricochet_turbine1"
+    {
+        "ID"                                "1785"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "BaseClass"                         "item_datadriven"
+        "AbilityCastAnimation"              "ACT_DOTA_DISABLED"
+        "AbilityTextureName"                "item_pudge_ricochet_turbine1"
+
+        "AbilityCastRange"                  "5000"
+        "AbilityCastPoint"                  "0"
+        "AbilityCooldown"                   "0"
+
+        "ItemCost"                          "750"
+        "ItemInitialCharges"                "0"
+    
+        "ItemKillable"                      "0"
+        "ItemDroppable"                     "1"
+        "ItemSellable"                      "1"
+        "ItemRequiresCharges"               "0"
+        "ItemShopTags"                      "consumable"
+        "ItemQuality"                       "consumable"
+        "ItemShareability"                  "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"                  "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                          "1"
+    
+        "MaxUpgradeLevel"        "5"
+        "ItemBaseLevel"          "1"
+
+        "Modifiers"
+        {
+            "modifier_ricochet_turbine1"
+            {
+                "IsHidden"  "0"
+                "Passive" "1"
+            }
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "bonus_damage_per_turn"   "60.0 70.0 80.0 90.0 100.0"
+            }
+        }
+    }
+    "item_pudge_ricochet_turbine2"
+    {
+        "ID"                                "1786"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "BaseClass"                         "item_datadriven"
+        "AbilityCastAnimation"              "ACT_DOTA_DISABLED"
+        "AbilityTextureName"                "item_pudge_ricochet_turbine2"
+
+        "AbilityCastRange"                  "5000"
+        "AbilityCastPoint"                  "0"
+        "AbilityCooldown"                   "0"
+
+        "ItemCost"                          "750"
+        "ItemInitialCharges"                "0"
+    
+        "ItemKillable"                      "0"
+        "ItemDroppable"                     "1"
+        "ItemSellable"                      "1"
+        "ItemRequiresCharges"               "0"
+        "ItemShopTags"                      "consumable"
+        "ItemQuality"                       "consumable"
+        "ItemShareability"                  "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"                  "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                          "1"
+    
+        "MaxUpgradeLevel"        "5"
+        "ItemBaseLevel"          "2"
+
+        "Modifiers"
+        {
+            "modifier_ricochet_turbine2"
+            {
+                "IsHidden"  "0"
+                "Passive" "1"
+            }
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "bonus_damage_per_turn"   "60.0 70.0 80.0 90.0 100.0"
+            }
+        }
+    }
+    "item_pudge_ricochet_turbine3"
+    {
+        "ID"                                "1787"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "BaseClass"                         "item_datadriven"
+        "AbilityCastAnimation"              "ACT_DOTA_DISABLED"
+        "AbilityTextureName"                "item_pudge_ricochet_turbine3"
+
+        "AbilityCastRange"                  "5000"
+        "AbilityCastPoint"                  "0"
+        "AbilityCooldown"                   "0"
+
+        "ItemCost"                          "750"
+        "ItemInitialCharges"                "0"
+    
+        "ItemKillable"                      "0"
+        "ItemDroppable"                     "1"
+        "ItemSellable"                      "1"
+        "ItemRequiresCharges"               "0"
+        "ItemShopTags"                      "consumable"
+        "ItemQuality"                       "consumable"
+        "ItemShareability"                  "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"                  "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                          "1"
+    
+        "MaxUpgradeLevel"        "5"
+        "ItemBaseLevel"          "3"
+
+        "Modifiers"
+        {
+            "modifier_ricochet_turbine3"
+            {
+                "IsHidden"  "0"
+                "Passive" "1"
+            }
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "bonus_damage_per_turn"   "60.0 70.0 80.0 90.0 100.0"
+            }
+        }
+    }
+    "item_pudge_ricochet_turbine4"
+    {
+        "ID"                                "1788"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "BaseClass"                         "item_datadriven"
+        "AbilityCastAnimation"              "ACT_DOTA_DISABLED"
+        "AbilityTextureName"                "item_pudge_ricochet_turbine4"
+
+        "AbilityCastRange"                  "5000"
+        "AbilityCastPoint"                  "0"
+        "AbilityCooldown"                   "0"
+
+        "ItemCost"                          "750"
+        "ItemInitialCharges"                "0"
+    
+        "ItemKillable"                      "0"
+        "ItemDroppable"                     "1"
+        "ItemSellable"                      "1"
+        "ItemRequiresCharges"               "0"
+        "ItemShopTags"                      "consumable"
+        "ItemQuality"                       "consumable"
+        "ItemShareability"                  "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"                  "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                          "1"
+    
+        "MaxUpgradeLevel"        "5"
+        "ItemBaseLevel"          "4"
+
+        "Modifiers"
+        {
+            "modifier_ricochet_turbine4"
+            {
+                "IsHidden"  "0"
+                "Passive" "1"
+            }
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "bonus_damage_per_turn"   "60.0 70.0 80.0 90.0 100.0"
+            }
+        }
+    }
+    "item_pudge_ricochet_turbine5"
+    {
+        "ID"                                "1789"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO"
+        "BaseClass"                         "item_datadriven"
+        "AbilityCastAnimation"              "ACT_DOTA_DISABLED"
+        "AbilityTextureName"                "item_pudge_ricochet_turbine5"
+
+        "AbilityCastRange"                  "5000"
+        "AbilityCastPoint"                  "0"
+        "AbilityCooldown"                   "0"
+
+        "ItemCost"                          "750"
+        "ItemInitialCharges"                "0"
+    
+        "ItemKillable"                      "0"
+        "ItemDroppable"                     "1"
+        "ItemSellable"                      "1"
+        "ItemRequiresCharges"               "0"
+        "ItemShopTags"                      "consumable"
+        "ItemQuality"                       "consumable"
+        "ItemShareability"                  "ITEM_NOT_SHAREABLE"
+        "ItemDeclarations"                  "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "SideShop"                          "1"
+    
+        "MaxUpgradeLevel"        "5"
+        "ItemBaseLevel"          "5"
+
+        "Modifiers"
+        {
+            "modifier_ricochet_turbine5"
+            {
+                "IsHidden"  "0"
+                "Passive" "1"
+            }
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "bonus_damage_per_turn"   "60.0 70.0 80.0 90.0 100.0"
+            }
+        }
+    }
+    "item_recipe_pudge_ricochet_turbine2"
+    {
+        "ID"                            "1790"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+        "BaseClass"                     "item_recipe_arcane_boots"
+        "ItemCost"                      "1000"  
+        "ItemShopTags"                  ""
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_pudge_ricochet_turbine2"
+        "ItemRequirements"
+        {
+            "01"                        "item_pudge_ricochet_turbine1"
+        }
+    }
+    "item_recipe_pudge_ricochet_turbine2"
+    {
+        "ID"                            "1791"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+        "BaseClass"                     "item_recipe_arcane_boots"
+        "ItemCost"                      "1000"  
+        "ItemShopTags"                  ""
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_pudge_ricochet_turbine3"
+        "ItemRequirements"
+        {
+            "01"                        "item_pudge_ricochet_turbine2"
+        }
+    }
+    "item_recipe_pudge_ricochet_turbine3"
+    {
+        "ID"                            "1792"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+        "BaseClass"                     "item_recipe_arcane_boots"
+        "ItemCost"                      "1000"  
+        "ItemShopTags"                  ""
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_pudge_ricochet_turbine3"
+        "ItemRequirements"
+        {
+            "01"                        "item_pudge_ricochet_turbine2"
+        }
+    }
+    "item_recipe_pudge_ricochet_turbine4"
+    {
+        "ID"                            "1793"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+        "BaseClass"                     "item_recipe_arcane_boots"
+        "ItemCost"                      "1000"  
+        "ItemShopTags"                  ""
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_pudge_ricochet_turbine4"
+        "ItemRequirements"
+        {
+            "01"                        "item_pudge_ricochet_turbine3"
+        }
+    }
+    "item_recipe_pudge_ricochet_turbine5"
+    {
+        "ID"                            "1794"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+        "BaseClass"                     "item_recipe_arcane_boots"
+        "ItemCost"                      "1000"  
+        "ItemShopTags"                  ""
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_pudge_ricochet_turbine5"
+        "ItemRequirements"
+        {
+            "01"                        "item_pudge_ricochet_turbine4"
+        }
+    }
 }
