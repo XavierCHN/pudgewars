@@ -11,6 +11,7 @@
 		"Ability4"				"ability_pudgewars_upgrade_length"
 		"Ability5"				"ability_pudgewars_upgrade_speed"
 		"Ability6"				"ability_pudgewars_toggle_hook"
+		"Ability7"				"ability_dota2x_pudgewars_toss"
 		"ArmorPhysical"				"0"									// Physical protection.
 		"MagicalResistance"			"0"									// Magical protection (percentage).
 

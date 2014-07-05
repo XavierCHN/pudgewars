@@ -998,26 +998,13 @@ function OnTinyArmCast(keys)
 	local target = keys.target_entities[1]
 	local itemLevel = keys.Level
 	print("ITEAM TINY ARM FOUND LEVEL:"..itemLevel)
-	local dummy = CreateUnitByName("npc_dota2x_pudgewars_unit_dummy", 
-	caster:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber())
 	
-	--if dummy then print("unit created") end
-	dummy:AddNewModifier(unit,nil,"modifier_phased",{})
-	dummy:AddAbility("ability_dota2x_pudgewars_hook_dummy")
-	dummy:AddAbility("ability_dota2x_pudgewars_toss")
-	local ABILITY_TOSS_APPLIER = dummy:FindAbilityByName("ability_dota2x_pudgewars_toss")
-	
+	caster:FindAbilityByName("ability_dota2x_pudgewars_toss")
 	--if ABILITY_BLOOD_APPLIER then print("ability_dota2x_pudgewars_bloodsekker_claw ability successful added") end
 	ABILITY_TOSS_APPLIER:SetLevel(tonumber(itemLevel))
 
-	dummy:CastAbilityOnTarget(target, ABILITY_TOSS_APPLIER, 0 )
-	PudgeWarsGameMode:CreateTimer("remove_toss_unit"..tostring(caster)..tostring(GameRules:GetGameTime()),
-	{
-		endTime = Time()+ 0.1,
-		callback = function()
-			if dummy then dummy:Destroy() end
-		end
-	})
+	caster:CastAbilityOnTarget(target, ABILITY_TOSS_APPLIER, 0 )
+
 end
 
 
