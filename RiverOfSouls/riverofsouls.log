@@ -1,0 +1,66 @@
+
+
+
+materialPath: D:\SteamLibrary\steamapps\common\Alien Swarm\swarm\materials
+Loading d:\steamlibrary\steamapps\common\dota 2 beta\dota\addons\pudgewars\riverofsouls\riverofsouls.vmf
+"materials/dev/black.vtf": cached version doesn't exist
+***need to set $abovewater for material water/water_dota
+material water/water_dota needs to have a $fogcolor.
+***need to set $abovewater for material water/water_dota
+material water/water_dota needs to have a $fogcolor.
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing d:\steamlibrary\steamapps\common\dota 2 beta\dota\addons\pudgewars\riverofsouls\riverofsouls.prt...Building visibility clusters...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (7814 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 63 texinfos to 34
+Reduced 16 texdatas to 14 (328 bytes to 254)
+Writing d:\steamlibrary\steamapps\common\dota 2 beta\dota\addons\pudgewars\riverofsouls\riverofsouls.bsp
+2 seconds elapsed
+
+
+
+materialPath: D:\SteamLibrary\steamapps\common\Alien Swarm\swarm\materials
+Loading d:\steamlibrary\steamapps\common\dota 2 beta\dota\addons\pudgewars\riverofsouls\riverofsouls.vmf
+"materials/dev/black.vtf": cached version doesn't exist
+***need to set $abovewater for material water/water_dota
+material water/water_dota needs to have a $fogcolor.
+***need to set $abovewater for material water/water_dota
+material water/water_dota needs to have a $fogcolor.
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing d:\steamlibrary\steamapps\common\dota 2 beta\dota\addons\pudgewars\riverofsouls\riverofsouls.prt...Building visibility clusters...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (7814 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 63 texinfos to 34
+Reduced 16 texdatas to 14 (328 bytes to 254)
+Writing d:\steamlibrary\steamapps\common\dota 2 beta\dota\addons\pudgewars\riverofsouls\riverofsouls.bsp
+2 seconds elapsed
