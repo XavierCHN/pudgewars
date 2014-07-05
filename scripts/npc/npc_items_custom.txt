@@ -2314,7 +2314,7 @@
         "AbilityManaCost"               "0"
 
         "MaxUpgradeLevel"           "5"
-        "ItemBaseLevel"             "5"
+        "ItemBaseLevel"             "1"
 
         "OnSpellStart"
         {
@@ -2324,6 +2324,7 @@
                 "UnitCount"     "1"
                 "SpawnRadius"   "0"
                 "Target"        "POINT"
+                "Duration"      "%wall_duration"
                 "OnSpawn"
                 {
                     "RunScript"
@@ -2335,6 +2336,286 @@
                     }
                 }
             }
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "wall_duration"         "2.0 3.0 5.0 7.0 10.0"
+            }
+        }
+    }
+    "item_pudge_earthshaker_totem2"
+    {
+        "ID"                            "1777"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "item_pudge_earthshaker_totem2"
+        "ItemKillable"                  "0"
+        "AbilityCooldown"               "9.0"
+        "ItemCost"                      "650"
+        "ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "ItemShopTags"                  ""
+        "ItemQuality"                   "common"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemSellable"                  "0"
+        "ItemKillable"                  "0"
+        "AbilityCastRange"              "1200"
+        "AbilityCastPoint"              "0.0"
+        "AbilityDamage"                 "0"
+        "AbilityManaCost"               "0"
+
+        "MaxUpgradeLevel"           "5"
+        "ItemBaseLevel"             "2"
+
+        "OnSpellStart"
+        {
+            "SpawnUnit"
+            {
+                "UnitName"      "npc_pudge_wars_barrier"
+                "UnitCount"     "1"
+                "SpawnRadius"   "0"
+                "Target"        "POINT"
+                "Duration"      "%wall_duration"
+                "OnSpawn"
+                {
+                    "RunScript"
+                    {
+                        "Caster"                "CASTER"
+                        "Target"                "TARGET"
+                        "ScriptFile"            "scripts/vscripts/abilityhook.lua"
+                        "Function"              "OnBarrierBuilt"                
+                    }
+                }
+            }
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "wall_duration"         "2.0 3.0 5.0 7.0 10.0"
+            }
+        }
+    }
+    "item_pudge_earthshaker_totem3"
+    {
+        "ID"                            "1778"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "item_pudge_earthshaker_totem3"
+        "ItemKillable"                  "0"
+        "AbilityCooldown"               "9.0"
+        "ItemCost"                      "650"
+        "ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "ItemShopTags"                  ""
+        "ItemQuality"                   "common"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemSellable"                  "0"
+        "ItemKillable"                  "0"
+        "AbilityCastRange"              "1200"
+        "AbilityCastPoint"              "0.0"
+        "AbilityDamage"                 "0"
+        "AbilityManaCost"               "0"
+
+        "MaxUpgradeLevel"           "5"
+        "ItemBaseLevel"             "3"
+
+        "OnSpellStart"
+        {
+            "SpawnUnit"
+            {
+                "UnitName"      "npc_pudge_wars_barrier"
+                "UnitCount"     "1"
+                "SpawnRadius"   "0"
+                "Target"        "POINT"
+                "Duration"      "%wall_duration"
+                "OnSpawn"
+                {
+                    "RunScript"
+                    {
+                        "Caster"                "CASTER"
+                        "Target"                "TARGET"
+                        "ScriptFile"            "scripts/vscripts/abilityhook.lua"
+                        "Function"              "OnBarrierBuilt"                
+                    }
+                }
+            }
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "wall_duration"         "2.0 3.0 5.0 7.0 10.0"
+            }
+        }
+    }
+    "item_pudge_earthshaker_totem4"
+    {
+        "ID"                            "1779"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "item_pudge_earthshaker_totem4"
+        "ItemKillable"                  "0"
+        "AbilityCooldown"               "9.0"
+        "ItemCost"                      "650"
+        "ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "ItemShopTags"                  ""
+        "ItemQuality"                   "common"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemSellable"                  "0"
+        "ItemKillable"                  "0"
+        "AbilityCastRange"              "1200"
+        "AbilityCastPoint"              "0.0"
+        "AbilityDamage"                 "0"
+        "AbilityManaCost"               "0"
+
+        "MaxUpgradeLevel"           "5"
+        "ItemBaseLevel"             "4"
+
+        "OnSpellStart"
+        {
+            "SpawnUnit"
+            {
+                "UnitName"      "npc_pudge_wars_barrier"
+                "UnitCount"     "1"
+                "SpawnRadius"   "0"
+                "Target"        "POINT"
+                "Duration"      "%wall_duration"
+                "OnSpawn"
+                {
+                    "RunScript"
+                    {
+                        "Caster"                "CASTER"
+                        "Target"                "TARGET"
+                        "ScriptFile"            "scripts/vscripts/abilityhook.lua"
+                        "Function"              "OnBarrierBuilt"                
+                    }
+                }
+            }
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "wall_duration"         "2.0 3.0 5.0 7.0 10.0"
+            }
+        }
+    }
+    "item_pudge_earthshaker_totem5"
+    {
+        "ID"                            "1780"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "item_pudge_earthshaker_totem5"
+        "ItemKillable"                  "0"
+        "AbilityCooldown"               "9.0"
+        "ItemCost"                      "650"
+        "ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "ItemShopTags"                  ""
+        "ItemQuality"                   "common"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemSellable"                  "0"
+        "ItemKillable"                  "0"
+        "AbilityCastRange"              "1200"
+        "AbilityCastPoint"              "0.0"
+        "AbilityDamage"                 "0"
+        "AbilityManaCost"               "0"
+
+        "MaxUpgradeLevel"           "5"
+        "ItemBaseLevel"             "5"
+
+        "OnSpellStart"
+        {
+            "SpawnUnit"
+            {
+                "UnitName"      "npc_pudge_wars_barrier"
+                "UnitCount"     "1"
+                "SpawnRadius"   "0"
+                "Target"        "POINT"
+                "Duration"      "%wall_duration"
+                "OnSpawn"
+                {
+                    "RunScript"
+                    {
+                        "Caster"                "CASTER"
+                        "Target"                "TARGET"
+                        "ScriptFile"            "scripts/vscripts/abilityhook.lua"
+                        "Function"              "OnBarrierBuilt"                
+                    }
+                }
+            }
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "wall_duration"         "2.0 3.0 5.0 7.0 10.0"
+            }
+        }
+    }
+    "item_recipe_pudge_earthshaker_totem2"
+    {
+        "ID"                            "1781"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+        "BaseClass"                     "item_recipe_arcane_boots"
+        "ItemCost"                      "1000"  
+        "ItemShopTags"                  ""
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_pudge_earthshaker_totem2"
+        "ItemRequirements"
+        {
+            "01"                        "item_pudge_earthshaker_totem1"
+        }
+    }
+    "item_recipe_pudge_earthshaker_totem3"
+    {
+        "ID"                            "1782"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+        "BaseClass"                     "item_recipe_arcane_boots"
+        "ItemCost"                      "1000"  
+        "ItemShopTags"                  ""
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_pudge_earthshaker_totem3"
+        "ItemRequirements"
+        {
+            "01"                        "item_pudge_earthshaker_totem2"
+        }
+    }
+    "item_recipe_pudge_earthshaker_totem4"
+    {
+        "ID"                            "1783"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+        "BaseClass"                     "item_recipe_arcane_boots"
+        "ItemCost"                      "1000"  
+        "ItemShopTags"                  ""
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_pudge_earthshaker_totem4"
+        "ItemRequirements"
+        {
+            "01"                        "item_pudge_earthshaker_totem3"
+        }
+    }
+    "item_recipe_pudge_earthshaker_totem5"
+    {
+        "ID"                            "1784"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+        "BaseClass"                     "item_recipe_arcane_boots"
+        "ItemCost"                      "1000"  
+        "ItemShopTags"                  ""
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_pudge_earthshaker_totem5"
+        "ItemRequirements"
+        {
+            "01"                        "item_pudge_earthshaker_totem4"
         }
     }
 }

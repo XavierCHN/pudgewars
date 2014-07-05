@@ -103,9 +103,10 @@
   		"model"					"models/heroes/rattletrap/rattletrap_cog.mdl"
   		"BaseClass"				"npc_dota_creep_neutral"
   		//"Ability1"				"pudge_wars_dummy_unit"
-  		"Ability1"				"ability_make_bomb_a_bomb"
+  		"Ability2"				"ability_make_bomb_a_bomb"
   		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
   		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+        "StatusHealth"                      		"1350"       // Base health.
   		"VisionDaytimeRange"	"0"
   		"VisionNighttimeRange"	"0"
   		"HasInventory"			"0"
@@ -168,36 +169,19 @@
 		"AttackDesire"				"1.5"		// How much bots want to attack them vs other non-hero things
 	}
 	"npc_pudge_wars_barrier"
-    {
-        "Model"                                   	"models/props_structures/wood_wall004.mdl"
-        "BaseClass"                         		"npc_dota_creep"
-        "SoundSet"                          		"0"
-        "Level"                                   	"1"
-        "ModelScale"                        		"1"
-        "SelectionGroup"              				"Barriers"
-        "Ability1"                          		"pudge_wars_dummy_unit"                // Ability 1
-        "ArmorPhysical"                     		"0"               // Physical protection.
-        "AttackCapabilities"          				"DOTA_UNIT_CAP_NO_ATTACK"
-        "AttackDamageMin"             				"0"               // Damage range min.
-        "AttackDamageMax"             				"0"               // Damage range max.
-        "AttackRate"                        		"1.0"       // Speed of attack.
-        "AttackAnimationPoint"        				"0.0"       // Normalized time in animation cycle to attack.
-        "AttackAcquisitionRange"      				"0"               // Range within a target can be acquired.
-        "AttackRange"                       		"0"               // Range within a target can be attacked.
-        "ProjectileModel"             				""                // Particle system model for projectile.
-        "ProjectileSpeed"             				"0"               // Speed of projectile.
-        "HealthBarOffset"             				"150"
-        "BoundsHullName"              				"DOTA_HULL_SIZE_HUGE"
-        "BountyXP"                          		"12"  // Experience earn.
-        "BountyGoldMin"                     		"1"         // Gold earned min.
-        "BountyGoldMax"                     		"1"         // Gold earned max.
-        "MovementCapabilities"        				"DOTA_UNIT_CAP_MOVE_NONE"
-        "MovementSpeed"                     		"0"         // Speed.
+  	{
+  		"model"					"models/props_structures/wood_wall004.mdl"
+  		"BaseClass"				"npc_dota_creep_neutral"
+  		//"Ability1"				"pudge_wars_dummy_unit"
+  		"Ability2"				"ability_make_bomb_a_bomb"
+  		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+  		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
         "StatusHealth"                      		"1350"       // Base health.
-        "StatusHealthRegen"                 		"0"       // Health regeneration rate.
-        "VisionDaytimeRange"          				"0"       // Range of vision during day light.
-        "VisionNighttimeRange"        				"0"       // Range of vision at night time.
-	}
+  		"VisionDaytimeRange"	"0"
+  		"VisionNighttimeRange"	"0"
+  		"HasInventory"			"0"
+  		"WakesNeutrals"			"0"
+  	}
 
   //------------------------------------------------------------------------------------
   //- This unit can be used to precache different models/particles/sounds              -

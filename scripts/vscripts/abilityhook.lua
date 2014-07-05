@@ -36,7 +36,8 @@ tPossibleHookTargetName = {
  	"npc_dota_neutral_blue_dragonspawn_overseer",
 	"npc_dota2x_pudgewars_gold",
  	"npc_dota_necronomicon_warrior_2",
- 	"npc_dota_warlock_golem_3"
+ 	"npc_dota_warlock_golem_3",
+ 	"npc_dota2x_pudgewars_unit_bomb"
 }
 
 -- init hook parameters
@@ -314,9 +315,9 @@ local function GetHookedUnit(caster, head , plyid)
 		caster:GetTeam(),		--caster team
 		head:GetOrigin(),		--find position
 		nil,					--find entity
-		250,			--find radius
+		250,			        --find radius
 		DOTA_UNIT_TARGET_TEAM_BOTH,
-		DOTA_UNIT_TARGET_ALL, 
+		DOTA_UNIT_TARGET_ALL,
 		0, FIND_CLOSEST,
 		false
 	)
@@ -334,28 +335,47 @@ local function GetHookedUnit(caster, head , plyid)
 					local wallFVP = wallOrigin + wallFV
 					local wallAngleLeft = QAngle( 0, -90, 0 )
 					local wallAngleRight = QAngle( 0, 90, 0 )
-					local vLeft = RotatePosition( wallOrigin, angleLeft, wallFVP )
-					local vRight = RotatePosition( wallOrigin, angleRight, wallFVP )
+					local vLeft = RotatePosition( wallOrigin, wallAngleLeft, wallFVP )
+					local vRight = RotatePosition( wallOrigin, wallAngleRight, wallFVP )
 
-					local x1 = vLeft.x
-					local y1 = vLeft.y
-					local x2 = vRight.x
-					local y2 = vRight.y
+					local leftFV = (vLeft - wallOrigin):Normalized()
+					local rightFV = (vRight - wallOrigin):Normalized()
+
+					local x1 = leftFV.x
+					local y1 = leftFV.y
+					local x2 = rightFV.x
+					local y2 = rightFV.y
 					local x = headFV.x
 					local y = headFV.y
 
 					--x1x2+y1y2/根号下（x1^2+x2^2)+根号下(y1^2+y2^2)
 					local angleLeft = math.acos( (x*x1 + y*y1)/ ( math.sqrt(x*x + x1*x1) + math.sqrt(y*y + y1*y1) ) )
-					local angleRight = math.acos( (x*x1 + y*y1)/ ( math.sqrt(x*x + x1*x1) + math.sqrt(y*y + y1*y1) ) )
+					angleLeft = angleLeft * 180 / 3.14
+					local angleRight = math.acos( (x*x2 + y*y2)/ ( math.sqrt(x*x + x2*x2) + math.sqrt(y*y + y2*y2) ) )
+					angleRight = angleRight * 180 / 3.14
 
-					if angleLeft > 20 and angleRight > 20 then
+
+					if angleLeft > 10 and angleRight > 10 then
 						local resFV = nil
 						if angleLeft > angleRight then
-							resFV = angleRight
+							resFV = rightFV
 						else
-							resFV = angleLeft
+							resFV = leftFV
 						end
-						head:SetForwardVector(resFV)
+						local nearEnough = false
+						for i = 1,10 do
+							local pointLeft = Vector( wallOrigin.x + 25 * leftFV.x , wallOrigin.y + 25 * leftFV.y , 0)
+							local pointRight = Vector( wallOrigin.x + 25 * rightFV.x , wallOrigin.y + 25 * rightFV.y , 0)
+
+							if distance(pointLeft , head:GetOrigin()) < 30 
+								or distance(pointRight , head:GetOrigin()) < 30 
+								then
+								nearEnough = true
+							end
+						end
+						if nearEnough then
+							head:SetForwardVector(resFV)
+						end
 					end
 			end
 			local va = false
@@ -937,6 +957,8 @@ function PlantABomb(keys)
 		nil,
 		caster:GetTeam())
 	dummy:AddNewModifier(unit,nil,"modifier_phased",{})
+	--dummy:AddNewModifier(unit,nil,"modifier_invulnerable",{})
+
 	dummy:AddAbility("ability_dota2x_pudgewars_hook_dummy")
 	dummy:EmitSound("Hero_Techies.LandMine.Plant")
 	local item_bomb = ItemThinker:FindItemFuzzy(caster,"item_pudge_techies_explosive_barrel")
@@ -1072,7 +1094,7 @@ function OnBarrierBuilt(keys)
 	local caster = EntIndexToHScript(keys.caster_entindex)
 	local casterOrigin = caster:GetOrigin()
 	local barrier = keys.target_entities[1]
-
 	local diffVec = barrier:GetOrigin() - casterOrigin
 	barrier:SetForwardVector(diffVec:Normalized())
+	--barrier:AddNewModifier(barrier,nil,"modifier_invulnerable",{})
 end
