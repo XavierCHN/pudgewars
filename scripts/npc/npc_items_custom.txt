@@ -1921,4 +1921,420 @@
             }
         }
     }
+    "item_recipe_pudge_grappling_hook2"
+    {
+        "ID"                            "1767"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+        "BaseClass"                     "item_recipe_arcane_boots"
+        "ItemCost"                      "1000"  
+        "ItemShopTags"                  ""
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_pudge_grappling_hook2"
+        "ItemRequirements"
+        {
+            "01"                        "item_pudge_grappling_hook1"
+        }
+    }
+    "item_recipe_pudge_grappling_hook3"
+    {
+        "ID"                            "1768"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+        "BaseClass"                     "item_recipe_arcane_boots"
+        "ItemCost"                      "1000"  
+        "ItemShopTags"                  ""
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_pudge_grappling_hook3"
+        "ItemRequirements"
+        {
+            "01"                        "item_pudge_grappling_hook2"
+        }
+    }
+    "item_recipe_pudge_grappling_hook4"
+    {
+        "ID"                            "1769"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+        "BaseClass"                     "item_recipe_arcane_boots"
+        "ItemCost"                      "1000"  
+        "ItemShopTags"                  ""
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_pudge_grappling_hook4"
+        "ItemRequirements"
+        {
+            "01"                        "item_pudge_grappling_hook3"
+        }
+    }
+    "item_recipe_pudge_grappling_hook5"
+    {
+        "ID"                            "1770"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+        "BaseClass"                     "item_recipe_arcane_boots"
+        "ItemCost"                      "1000"  
+        "ItemShopTags"                  ""
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_pudge_grappling_hook5"
+        "ItemRequirements"
+        {
+            "01"                        "item_pudge_grappling_hook4"
+        }
+    }
+    "item_pudge_grappling_hook1"
+    {
+        "ID"                            "1771"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "item_pudge_grappling_hook1"
+        "ItemKillable"                  "0"
+        "AbilityCooldown"               "9.0"
+        "ItemCost"                      "650"
+        "ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "ItemShopTags"                  ""
+        "ItemQuality"                   "common"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemSellable"                  "0"
+        "ItemKillable"                  "0"
+        "AbilityCastRange"   "3500"
+        "AbilityCastPoint"   "0.0"
+        "AbilityDamage"  "0"
+        "AbilityManaCost"    "0"
+
+        "MaxUpgradeLevel"           "5"
+        "ItemBaseLevel"             "1"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                    "Caster"            "CASTER"
+                    "Target"             "POINT"
+                    "ScriptFile"         "scripts/vscripts/abilityhook.lua"
+                    "Function"           "OnGrapplingHook"                
+            }
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "chain_radius"      "40"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "range"             "1700 2000 2300 2500 3000"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "damage_radius"     "0"
+            }
+            "04"
+            {   
+                "var_type"          "FIELD_INTEGER"
+                "speed"             "1000 1100 1200 1350 1600"
+            }
+            "05"
+            {   
+                "var_type"          "FIELD_INTEGER"
+                "damage"            "0"
+            }
+        } 
+    }
+    "item_pudge_grappling_hook2"
+    {
+        "ID"                            "1772"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "item_pudge_grappling_hook2"
+        "ItemKillable"                  "0"
+        "AbilityCooldown"               "9.0"
+        "ItemCost"                      "650"
+        "ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "ItemShopTags"                  ""
+        "ItemQuality"                   "common"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemSellable"                  "0"
+        "ItemKillable"                  "0"
+        "AbilityCastRange"              "2500"
+        "AbilityCastPoint"              "0.0"
+        "AbilityDamage"                 "0"
+        "AbilityManaCost"               "0"
+
+        "MaxUpgradeLevel"           "5"
+        "ItemBaseLevel"             "2"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                    "Caster"               "CASTER"
+                    "Target"             "POINT"
+                    "ScriptFile"         "scripts/vscripts/abilityhook.lua"
+                    "Function"           "OnGrapplingHook"                
+            }
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "chain_radius"      "40"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "range"             "1700 2000 2300 2500 3000"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "damage_radius"     "0"
+            }
+            "04"
+            {   
+                "var_type"          "FIELD_INTEGER"
+                "speed"             "1000 1100 1200 1350 1600"
+            }
+            "05"
+            {   
+                "var_type"          "FIELD_INTEGER"
+                "damage"            "0"
+            }
+        } 
+    }
+    "item_pudge_grappling_hook3"
+    {
+        "ID"                            "1773"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "item_pudge_grappling_hook3"
+        "ItemKillable"                  "0"
+        "AbilityCooldown"               "9.0"
+        "ItemCost"                      "650"
+        "ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "ItemShopTags"                  ""
+        "ItemQuality"                   "common"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemSellable"                  "0"
+        "ItemKillable"                  "0"
+        "AbilityCastRange"   "3500"
+        "AbilityCastPoint"   "0.0"
+        "AbilityDamage"  "0"
+        "AbilityManaCost"    "0"
+
+        "MaxUpgradeLevel"           "5"
+        "ItemBaseLevel"             "3"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                    "Caster"            "CASTER"
+                    "Target"             "POINT"
+                    "ScriptFile"         "scripts/vscripts/abilityhook.lua"
+                    "Function"           "OnGrapplingHook"                
+            }
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "chain_radius"      "40"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "range"             "1700 2000 2300 2500 3000"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "damage_radius"     "0"
+            }
+            "04"
+            {   
+                "var_type"          "FIELD_INTEGER"
+                "speed"             "1000 1100 1200 1350 1600"
+            }
+            "05"
+            {   
+                "var_type"          "FIELD_INTEGER"
+                "damage"            "0"
+            }
+        } 
+    }
+    "item_pudge_grappling_hook4"
+    {
+        "ID"                            "1774"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "item_pudge_grappling_hook4"
+        "ItemKillable"                  "0"
+        "AbilityCooldown"               "9.0"
+        "ItemCost"                      "650"
+        "ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "ItemShopTags"                  ""
+        "ItemQuality"                   "common"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemSellable"                  "0"
+        "ItemKillable"                  "0"
+        "AbilityCastRange"   "3500"
+        "AbilityCastPoint"   "0.0"
+        "AbilityDamage"  "0"
+        "AbilityManaCost"    "0"
+
+        "MaxUpgradeLevel"           "5"
+        "ItemBaseLevel"             "4"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                    "Caster"            "CASTER"
+                    "Target"             "POINT"
+                    "ScriptFile"         "scripts/vscripts/abilityhook.lua"
+                    "Function"           "OnGrapplingHook"                
+            }
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "chain_radius"      "40"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "range"             "1700 2000 2300 2500 3000"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "damage_radius"     "0"
+            }
+            "04"
+            {   
+                "var_type"          "FIELD_INTEGER"
+                "speed"             "1000 1100 1200 1350 1600"
+            }
+            "05"
+            {   
+                "var_type"          "FIELD_INTEGER"
+                "damage"            "0"
+            }
+        } 
+    }
+    "item_pudge_grappling_hook5"
+    {
+        "ID"                            "1775"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "item_pudge_grappling_hook5"
+        "ItemKillable"                  "0"
+        "AbilityCooldown"               "9.0"
+        "ItemCost"                      "650"
+        "ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "ItemShopTags"                  ""
+        "ItemQuality"                   "common"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemSellable"                  "0"
+        "ItemKillable"                  "0"
+        "AbilityCastRange"   "3500"
+        "AbilityCastPoint"   "0.0"
+        "AbilityDamage"  "0"
+        "AbilityManaCost"    "0"
+
+        "MaxUpgradeLevel"           "5"
+        "ItemBaseLevel"             "5"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                    "Caster"            "CASTER"
+                    "Target"             "POINT"
+                    "ScriptFile"         "scripts/vscripts/abilityhook.lua"
+                    "Function"           "OnGrapplingHook"                
+            }
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "chain_radius"      "40"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "range"             "1700 2000 2300 2500 3000"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "damage_radius"     "0"
+            }
+            "04"
+            {   
+                "var_type"          "FIELD_INTEGER"
+                "speed"             "1000 1100 1200 1350 1600"
+            }
+            "05"
+            {   
+                "var_type"          "FIELD_INTEGER"
+                "damage"            "0"
+            }
+        } 
+    }
+    "item_pudge_earthshaker_totem1"
+    {
+        "ID"                            "1776"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "item_pudge_earthshaker_totem1"
+        "ItemKillable"                  "0"
+        "AbilityCooldown"               "9.0"
+        "ItemCost"                      "650"
+        "ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "ItemShopTags"                  ""
+        "ItemQuality"                   "common"
+        "ItemShareability"              "ITEM_NOT_SHAREABLE"
+        "ItemSellable"                  "0"
+        "ItemKillable"                  "0"
+        "AbilityCastRange"              "1200"
+        "AbilityCastPoint"              "0.0"
+        "AbilityDamage"                 "0"
+        "AbilityManaCost"               "0"
+
+        "MaxUpgradeLevel"           "5"
+        "ItemBaseLevel"             "5"
+
+        "OnSpellStart"
+        {
+            "SpawnUnit"
+            {
+                "UnitName"      "npc_pudge_wars_barrier"
+                "UnitCount"     "1"
+                "SpawnRadius"   "0"
+                "Target"        "POINT"
+                "OnSpawn"
+                {
+                    "RunScript"
+                    {
+                        "Caster"                "CASTER"
+                        "Target"                "TARGET"
+                        "ScriptFile"            "scripts/vscripts/abilityhook.lua"
+                        "Function"              "OnBarrierBuilt"                
+                    }
+                }
+            }
+        }
+    }
 }

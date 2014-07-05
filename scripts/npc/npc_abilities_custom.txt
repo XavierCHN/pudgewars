@@ -64,11 +64,6 @@
       }
     }
   }
-  
-  
-  
-  // the set hook ability
-  //----------------------------------------------------------------
   "ability_pudgewars_set_hook"
   {
     "ID"    "2000"
@@ -281,7 +276,7 @@
   //----------------------------------------------------------------
   "ability_pudgewars_upgrade_damage"
   {
-    "ID"                  "1857"
+    "ID"                  "2005"
     "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
     "BaseClass"           "ability_datadriven"
     "AbilityTextureName"  "ability_pudgewars_upgrade_damage"
@@ -362,7 +357,7 @@
   //----------------------------------------------------------------
   "ability_pudgewars_upgrade_radius"
   {
-    "ID"    "2005"
+    "ID"    "2006"
     "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
     "BaseClass"           "ability_datadriven"
     "AbilityTextureName"   "ability_pudgewars_upgrade_radius"
@@ -443,7 +438,7 @@
   //----------------------------------------------------------------
   "ability_pudgewars_upgrade_length"
   {
-    "ID"    "2006"
+    "ID"    "2007"
     "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
     "BaseClass"           "ability_datadriven"
     "AbilityTextureName"   "ability_pudgewars_upgrade_length"
@@ -524,7 +519,7 @@
   //----------------------------------------------------------------
   "ability_pudgewars_upgrade_speed"
   {
-    "ID"    "2007"
+    "ID"    "2008"
     "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
     "BaseClass"           "ability_datadriven"
     "AbilityTextureName"   "ability_pudgewars_upgrade_speed"
@@ -605,7 +600,7 @@
   //----------------------------------------------------------------
   "ability_dota2x_pudgewars_hook_dummy"
   {
-      "ID"    "1861"
+      "ID"    "2009"
       "BaseClass"   "ability_datadriven"
       "Modifiers"
       {
@@ -630,7 +625,7 @@
   }
   "ability_dota2x_pudgewars_bloodsekker_claw"
   {
-    "ID"  "2008"
+    "ID"  "2010"
     "BaseClass"     "bloodseeker_rupture"
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
     "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -692,7 +687,7 @@
   }
   "ability_make_bomb_a_bomb"
   {
-    "ID"        "2009"
+    "ID"        "2011"
     "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
     "BaseClass"     "ability_datadriven"
     "MaxLevel"      "5"
@@ -790,7 +785,7 @@
   }
   "ability_dota2x_pudgewars_toss"
   {
-    "ID"        "2010"
+    "ID"        "2012"
     "BaseClass" "tiny_toss"
 
     "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
@@ -843,6 +838,69 @@
         "toss_damage"       "0 0 0 0 0"
       }
 
+    }
+  }
+  "ability_pudge_wars_grappling_hook"
+  {
+    "ID"          "2013"
+    "BaseClass"                 "shredder_timber_chain"
+    "AbilityBehavior"           "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityCastRange"      "2500"
+    "AbilityCastPoint"      "0.3"
+    "AbilityCooldown"       "9.0"
+    "MaxLevel"                "5"
+    "AbilityDamage"           "1"
+    "AbilityManaCost"         "0"
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "chain_radius"      "40"
+        }
+      "02"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "range"             "1700 2000 2300 2500 3000"
+      }
+      "03"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "damage_radius"     "0"
+      }
+      "04"
+      {   
+        "var_type"          "FIELD_INTEGER"
+        "speed"             "1000 1100 1200 1350 1600"
+      }
+      "05"
+      {   
+        "var_type"          "FIELD_INTEGER"
+        "damage"            "0"
+      }
+    } 
+  }
+  "pudge_wars_dummy_unit"
+  {
+    "ID"                    "2014"
+    "AbilityBehavior"           "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "BaseClass"                                     "ability_datadriven"
+    "AbilityTextureName"            "rubick_empty1"
+    "MaxLevel"                      "1"
+    "Modifiers"
+    {
+      "dummy_unit"
+      {
+        "Passive"                        "1"
+        "IsHidden"                        "1"    
+        "States"
+        {
+          "MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+          "MODIFIER_STATE_NO_HEALTH_BAR" "MODIFIER_STATE_VALUE_ENABLED"
+          "MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+          "MODIFIER_STATE_NOT_ON_MINIMAP" "MODIFIER_STATE_VALUE_ENABLED"
+        }
+      }
     }
   }
 }

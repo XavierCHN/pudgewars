@@ -90,7 +90,7 @@
   		"model"					"models/props_debris/merchant_debris_chest001.mdl"
   		"BaseClass"				"npc_dota_creep_neutral"
   		"ModeLScale"			"0.3"
-  		"Ability1"				"ability_dota2x_pudgewars_hook_dummy"
+  		"Ability1"				"pudge_wars_dummy_unit"
   		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
   		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_FLY"
   		"VisionDaytimeRange"	"0"
@@ -102,7 +102,7 @@
   	{
   		"model"					"models/heroes/rattletrap/rattletrap_cog.mdl"
   		"BaseClass"				"npc_dota_creep_neutral"
-  		//"Ability1"				"ability_dota2x_pudgewars_hook_dummy"
+  		//"Ability1"				"pudge_wars_dummy_unit"
   		"Ability1"				"ability_make_bomb_a_bomb"
   		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
   		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
@@ -116,6 +116,7 @@
   		"BaseClass"				"npc_dota_creep_neutral"
   		"Model"					"models/development/invisiblebox.mdl"
   		"Ability1"				"ability_dota2x_pudgewars_hook_dummy"
+  		"Ability2"				"pudge_wars_dummy_unit"
   		
   		"VisionDaytimeRange"	"1000"
   		"VisionNighttimeRange"	"1000"
@@ -127,6 +128,7 @@
 		"BaseClass"					"npc_dota_base_additive"	// Class of entity of link to.
 		"Model"						"models/development/invisiblebox.mdl"	// Model.
   		"Ability1"					"ability_dota2x_pudgewars_hook_dummy"
+  		"Ability2"					"pudge_wars_dummy_unit"
 		"SoundSet"					"Creep_Good_Range"					// Name of sound set.
 		"Level"						"0"
 		"UnitLabel"					"healing_ward"
@@ -164,6 +166,37 @@
 		// Bots
 		//----------------------------------------------------------------
 		"AttackDesire"				"1.5"		// How much bots want to attack them vs other non-hero things
+	}
+	"npc_pudge_wars_barrier"
+    {
+        "Model"                                   	"models/props_structures/wood_wall004.mdl"
+        "BaseClass"                         		"npc_dota_creep"
+        "SoundSet"                          		"0"
+        "Level"                                   	"1"
+        "ModelScale"                        		"1"
+        "SelectionGroup"              				"Barriers"
+        "Ability1"                          		"pudge_wars_dummy_unit"                // Ability 1
+        "ArmorPhysical"                     		"0"               // Physical protection.
+        "AttackCapabilities"          				"DOTA_UNIT_CAP_NO_ATTACK"
+        "AttackDamageMin"             				"0"               // Damage range min.
+        "AttackDamageMax"             				"0"               // Damage range max.
+        "AttackRate"                        		"1.0"       // Speed of attack.
+        "AttackAnimationPoint"        				"0.0"       // Normalized time in animation cycle to attack.
+        "AttackAcquisitionRange"      				"0"               // Range within a target can be acquired.
+        "AttackRange"                       		"0"               // Range within a target can be attacked.
+        "ProjectileModel"             				""                // Particle system model for projectile.
+        "ProjectileSpeed"             				"0"               // Speed of projectile.
+        "HealthBarOffset"             				"150"
+        "BoundsHullName"              				"DOTA_HULL_SIZE_HUGE"
+        "BountyXP"                          		"12"  // Experience earn.
+        "BountyGoldMin"                     		"1"         // Gold earned min.
+        "BountyGoldMax"                     		"1"         // Gold earned max.
+        "MovementCapabilities"        				"DOTA_UNIT_CAP_MOVE_NONE"
+        "MovementSpeed"                     		"0"         // Speed.
+        "StatusHealth"                      		"1350"       // Base health.
+        "StatusHealthRegen"                 		"0"       // Health regeneration rate.
+        "VisionDaytimeRange"          				"0"       // Range of vision during day light.
+        "VisionNighttimeRange"        				"0"       // Range of vision at night time.
 	}
 
   //------------------------------------------------------------------------------------
@@ -308,7 +341,7 @@
 			//"particlefile"				"particles/units/heroes/hero_troll_warlord.pcf"
 			//"particlefile"				"particles/units/heroes/hero_centaur.pcf"
 			//"particlefile"				"particles/units/heroes/hero_magnataur.pcf"
-			//"particlefile"				"particles/units/heroes/hero_shredder.pcf"
+			"particlefile"				"particles/units/heroes/hero_shredder.pcf"
 			//"particlefile"				"particles/units/heroes/hero_bristleback.pcf"
 			//"particlefile"				"particles/units/heroes/hero_tusk.pcf"
 			//"particlefile"				"particles/units/heroes/hero_skywrath_mage.pcf"

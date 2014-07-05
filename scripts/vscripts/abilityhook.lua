@@ -162,6 +162,7 @@ function OnHookStart(keys)
 	local caster = EntIndexToHScript(keys.caster_entindex)
 	local nPlayerID = keys.unit:GetPlayerID()
 	print("player "..nPlayerID.." start A Hook")
+	print(keys.caster_entindex)
 	-- if there is already a hook, return
 	if tHookElements[nPlayerID].Head.unit ~= nil then return end
 	InitHookParameters(nPlayerID)
@@ -313,23 +314,59 @@ local function GetHookedUnit(caster, head , plyid)
 		caster:GetTeam(),		--caster team
 		head:GetOrigin(),		--find position
 		nil,					--find entity
-		tnPlayerHookRadius[plyid],			--find radius
+		250,			--find radius
 		DOTA_UNIT_TARGET_TEAM_BOTH,
 		DOTA_UNIT_TARGET_ALL, 
 		0, FIND_CLOSEST,
 		false
 	)
+
 	-- remove all useless untis
 	if #tuHookedUnits >= 1 then
 		for k,v in pairs(tuHookedUnits) do
 			print("found something"..v:GetUnitName())
+			--think about barriers
+			if v:GetUnitName() == "npc_pudge_wars_barrier" then
+					print("barrier found")
+					local headFV = head:GetForwardVector()
+					local wallFV = v:GetForwardVector()
+					local wallOrigin = v:GetOrigin()
+					local wallFVP = wallOrigin + wallFV
+					local wallAngleLeft = QAngle( 0, -90, 0 )
+					local wallAngleRight = QAngle( 0, 90, 0 )
+					local vLeft = RotatePosition( wallOrigin, angleLeft, wallFVP )
+					local vRight = RotatePosition( wallOrigin, angleRight, wallFVP )
+
+					local x1 = vLeft.x
+					local y1 = vLeft.y
+					local x2 = vRight.x
+					local y2 = vRight.y
+					local x = headFV.x
+					local y = headFV.y
+
+					--x1x2+y1y2/根号下（x1^2+x2^2)+根号下(y1^2+y2^2)
+					local angleLeft = math.acos( (x*x1 + y*y1)/ ( math.sqrt(x*x + x1*x1) + math.sqrt(y*y + y1*y1) ) )
+					local angleRight = math.acos( (x*x1 + y*y1)/ ( math.sqrt(x*x + x1*x1) + math.sqrt(y*y + y1*y1) ) )
+
+					if angleLeft > 20 and angleRight > 20 then
+						local resFV = nil
+						if angleLeft > angleRight then
+							resFV = angleRight
+						else
+							resFV = angleLeft
+						end
+						head:SetForwardVector(resFV)
+					end
+			end
 			local va = false
 			for s,t in pairs (tPossibleHookTargetName) do
 				if v:GetUnitName() == t then
 					va = true
 				end
 			end
-			if ( not va ) or ( v == caster ) then
+			if ( not va ) or ( v == caster )  or
+				distance (head:GetOrigin(),v:GetOrigin()) > tnPlayerHookRadius[plyid]
+				then
 				tuHookedUnits[k] = nil
 			end
 		end
@@ -1012,3 +1049,30 @@ function OnTinyArmCast(keys)
 end
 
 
+function OnGrapplingHook(keys)
+	PrintTable(keys)
+	local point = keys.target_points[1]
+	local caster = EntIndexToHScript(keys.caster_entindex)
+
+	local itemGH = ItemThinker:FindItemFuzzy(caster,"item_pudge_grappling_hook")
+	if itemGH then
+		local itemLevel = string.sub(itemGH,-1,-1)
+		print("ITEM GH FOUND LV :"..tostring(itemLevel))
+		
+		local ABILITY_GRAPPLING_HOOK = caster:FindAbilityByName("ability_pudge_wars_grappling_hook")
+		if ABILITY_GRAPPLING_HOOK then
+			ABILITY_GRAPPLING_HOOK:SetLevel(tonumber(itemLevel))
+			caster:CastAbilityOnPosition(point,ABILITY_GRAPPLING_HOOK,0)
+		end
+	end
+end
+
+function OnBarrierBuilt(keys)
+	PrintTable(keys)
+	local caster = EntIndexToHScript(keys.caster_entindex)
+	local casterOrigin = caster:GetOrigin()
+	local barrier = keys.target_entities[1]
+
+	local diffVec = barrier:GetOrigin() - casterOrigin
+	barrier:SetForwardVector(diffVec:Normalized())
+end
