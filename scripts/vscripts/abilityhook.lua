@@ -63,8 +63,7 @@ tPossibleHookTargetName = {
  	"npc_dota_neutral_blue_dragonspawn_overseer",
 	"npc_dota2x_pudgewars_gold",
  	"npc_dota_necronomicon_warrior_2",
- 	"npc_dota_warlock_golem_3",
- 	"npc_dota2x_pudgewars_unit_bomb"
+ 	"npc_dota_warlock_golem_3"
 }
 
 -- init hook parameters
@@ -809,7 +808,7 @@ function OnUpgradeHookDamage(keys)
 	local nCurrentLevel = hHookAbility:GetLevel()
 	local nUpgradeCost  = tnUpgradeHookDamageCost[nCurrentLevel]
 	local nCurrentGold  = PlayerResource:GetGold(nPlayerID)
-	if nCurrentLevel == 4 then
+	if nCurrentLevel >= 4 then
 		caster:Stop()
 		Say(caster:GetOwner()," =>伤害已经达到最大等级。",true)
 		return
@@ -834,7 +833,7 @@ function OnUpgradeHookRadius( keys )
 	local nUpgradeCost  = tnUpgradeHookRadiusCost[nCurrentLevel]
 	local nCurrentGold  = PlayerResource:GetGold(nPlayerID)
 
-	if nCurrentLevel == 4 then
+	if nCurrentLevel >= 4 then
 		caster:Stop()
 		Say(caster:GetOwner()," =>范围已经达到最大等级。",true)
 		return
@@ -859,7 +858,7 @@ function OnUpgradeHookLength( keys )
 	local nUpgradeCost  = tnUpgradeHookLengthCost[nCurrentLevel]
 	local nCurrentGold  = PlayerResource:GetGold(nPlayerID)
 
-	if nCurrentLevel == 4 then
+	if nCurrentLevel >= 4 then
 		caster:Stop()
 		Say(caster:GetOwner()," =>长度已经达到最大等级。",true)
 		return
@@ -884,7 +883,7 @@ function OnUpgradeHookSpeed( keys )
 	local nUpgradeCost  = tnUpgradeHookSpeedCost[nCurrentLevel]
 	local nCurrentGold  = PlayerResource:GetGold(nPlayerID)
 
-	if nCurrentLevel == 4 then
+	if nCurrentLevel >= 4 then
 		caster:Stop()
 		Say(caster:GetOwner()," =>速度已经达到最大等级。",true)
 		return

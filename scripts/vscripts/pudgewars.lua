@@ -124,7 +124,7 @@ function PudgeWarsGameMode:CaptureGameMode()
         GameRules:SetHeroMinimapIconSize( 300 )
         GameRules:SetHeroRespawnEnabled(false)
 
-        GameMode:SetContextThink("PudgewarsThink", Dynamic_Wrap( PudgeWarsGameMode, 'Think' ), 0.1 )
+        GameMode:SetContextThink("PudgewarsThink", Dynamic_Wrap( PudgeWarsGameMode, 'Think' ), 0.05 )
         print("[PudgeWars] Pudgewars game mode begin to think")
 
     end 
