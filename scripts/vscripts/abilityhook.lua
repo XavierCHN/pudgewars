@@ -71,6 +71,8 @@ function initHookData()
 	tnPlayerKillStreak   = {}
 	tbHookByAlly         = {}
 	tnHookTurbineBonusDamage = {}
+	tbBarrierBonusDamageTriggered = {}
+
 	tHookElements = tHookElements or {}
 	for i = 0,9 do
 		tHookElements[i] = {
@@ -91,7 +93,7 @@ function initHookData()
 	PudgeWarsGameMode:CreateTimer("Create_Test_units",{
  		endTime = Time()+ 0.1,
  		callback = function ()
- 			if developmentmode then
+ 			--if developmentmode then
  				local testUnitTable = {
  					"npc_dota_neutral_blue_dragonspawn_overseer"
  					,"npc_dota_necronomicon_warrior_2"
@@ -136,7 +138,7 @@ function initHookData()
  					})
 					]]
  				end
- 			end
+ 			--end
  		end
  	})
 
@@ -333,7 +335,7 @@ local function GetHookedUnit(caster, head , plyid)
 		caster:GetTeam(),		--caster team
 		head:GetOrigin(),		--find position
 		nil,					--find entity
-		250,			        --find radius
+		350,			        --find radius
 		DOTA_UNIT_TARGET_TEAM_BOTH,
 		DOTA_UNIT_TARGET_ALL,
 		0, FIND_CLOSEST,
@@ -343,10 +345,10 @@ local function GetHookedUnit(caster, head , plyid)
 	-- remove all useless untis
 	if #tuHookedUnits >= 1 then
 		for k,v in pairs(tuHookedUnits) do
-			print("found something"..v:GetUnitName())
+			--print("found something"..v:GetUnitName())
 			--think about barriers
 			if v:GetUnitName() == "npc_pudge_wars_barrier" then
-					print("barrier found")
+					--print("barrier found")
 					local headFV = head:GetForwardVector()
 					local wallFV = v:GetForwardVector()
 					local wallOrigin = v:GetOrigin()
@@ -367,18 +369,16 @@ local function GetHookedUnit(caster, head , plyid)
 					local y = headFV.y
 
 					--x1x2+y1y2/根号下（x1^2+x2^2)+根号下(y1^2+y2^2)
-					local angleLeft = math.acos( (x*x1 + y*y1)/ ( math.sqrt(x*x + x1*x1) + math.sqrt(y*y + y1*y1) ) )
+					local angleLeft = math.acos( (x*x1 + y*y1) / ( math.sqrt(x*x + x1*x1) + math.sqrt(y*y + y1*y1) ) )
 					angleLeft = angleLeft * 180 / 3.14
-					local angleRight = math.acos( (x*x2 + y*y2)/ ( math.sqrt(x*x + x2*x2) + math.sqrt(y*y + y2*y2) ) )
+					local angleRight = math.acos( (x*x2 + y*y2) / ( math.sqrt(x*x + x2*x2) + math.sqrt(y*y + y2*y2) ) )
 					angleRight = angleRight * 180 / 3.14
 
-
 					if angleLeft > 10 and angleRight > 10 then
-						
 						local nearEnough = false
-						for i = 1,10 do
-							local pointLeft = Vector( wallOrigin.x + 25 * leftFV.x , wallOrigin.y + 25 * leftFV.y , 0)
-							local pointRight = Vector( wallOrigin.x + 25 * rightFV.x , wallOrigin.y + 25 * rightFV.y , 0)
+						for i = 1,3 do
+							local pointLeft = Vector( wallOrigin.x + 20 * leftFV.x * i , wallOrigin.y + 20 * leftFV.y * i , 0)
+							local pointRight = Vector( wallOrigin.x + 20 * rightFV.x * i , wallOrigin.y + 20 * rightFV.y * i , 0)
 
 							if distance(pointLeft , head:GetOrigin()) < 30 
 								or distance(pointRight , head:GetOrigin()) < 30 
@@ -394,14 +394,18 @@ local function GetHookedUnit(caster, head , plyid)
 								resFV = leftFV
 							end
 							head:SetForwardVector(resFV)
-
-							local itemTurbine = ItemThinker:FindItemFuzzy(caster,"item_pudge_ricochet_turbine")
-							if itemTurbine then
-								local itemLevel = string.sub(itemBlood,-1,-1)
-								print("ITEAM RICOCHET TURBINE FOUND LEVEL:"..itemLevel)
-								--100 150 200 250 300
-								local bonusDmg = 50 + 50 * tonumber(itemLevel)
-								tnHookTurbineBonusDamage[plyid] = tnHookTurbineBonusDamage[plyid] + bonusDmg
+							print("barrier catched:"..tostring(v))
+							if not tbBarrierBonusDamageTriggered[v][plyid] then
+								local itemTurbine = ItemThinker:FindItemFuzzy(caster,"item_pudge_ricochet_turbine")
+								if itemTurbine then
+									local itemLevel = string.sub(itemTurbine,-1,-1)
+									print("ITEAM RICOCHET TURBINE FOUND LEVEL:"..itemLevel)
+									--100 150 200 250 300
+									local bonusDmg = 50 + 50 * tonumber(itemLevel)
+									print("add turbine bonus damage for player id:"..tostring(plyid))
+									tnHookTurbineBonusDamage[plyid] = tnHookTurbineBonusDamage[plyid] + bonusDmg
+									tbBarrierBonusDamageTriggered[v][plyid] = true
+								end
 							end
 						end
 					end
@@ -536,8 +540,10 @@ local function HookUnit( target , caster ,plyid )
 		-- if the player has the barathon latern, add bonus damage
 		dmg = dmg + bonusdamage
 
-		print("item turbine bonus dmg"..tostring(tnHookTurbineBonusDamage[nPlayerID]))
-		dmg = dmg + tnHookTurbineBonusDamage[nPlayerID]
+		print("item turbine bonus dmg"..tostring(plyid)..":"..tostring(tnHookTurbineBonusDamage[plyid]))
+		if tnHookTurbineBonusDamage[plyid] then
+			dmg = dmg + tnHookTurbineBonusDamage[plyid]
+		end
 
 		--print("dmg = "..tostring(dmg).."playerdi"..tostring(plyid))
 		local hp = target:GetHealth()
@@ -1090,7 +1096,7 @@ end
 
 function OnTinyArmCast(keys)
 	print("tiny arm casted")
-	PrintTable(keys)
+	--PrintTable(keys)
 	local caster = EntIndexToHScript(keys.caster_entindex)
 	local target = keys.target_entities[1]
 	local itemLevel = keys.Level
@@ -1105,7 +1111,7 @@ end
 
 
 function OnGrapplingHook(keys)
-	PrintTable(keys)
+	--PrintTable(keys)
 	local point = keys.target_points[1]
 	local caster = EntIndexToHScript(keys.caster_entindex)
 
@@ -1123,11 +1129,15 @@ function OnGrapplingHook(keys)
 end
 
 function OnBarrierBuilt(keys)
-	PrintTable(keys)
+	--PrintTable(keys)
 	local caster = EntIndexToHScript(keys.caster_entindex)
 	local casterOrigin = caster:GetOrigin()
 	local barrier = keys.target_entities[1]
 	local diffVec = barrier:GetOrigin() - casterOrigin
 	barrier:SetForwardVector(diffVec:Normalized())
-	--barrier:AddNewModifier(barrier,nil,"modifier_invulnerable",{})
+	print("regist barrier :"..tostring(barrier))
+	tbBarrierBonusDamageTriggered[barrier] = {}
+	for i = 0,9 do
+		tbBarrierBonusDamageTriggered[barrier][i] = false
+	end
 end
