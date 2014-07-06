@@ -2,10 +2,9 @@
 WORLDMAX_VEC = Vector(GetWorldMaxX(),GetWorldMaxY(),0)
 PER_HOOK_BODY_LENGTH = 100
 
-HEAD_SHOT_SCORE = 2
-DENY_SCORE = 1
+HEAD_SHOT_SCORE = 3
+DENY_SCORE = 2
 HOOK_KILL_SCORE = 1
-KILL_SCORE = 1
 
 tnHookDamage  = {175 , 250 , 350 , 500  }
 tnHookLength  = {1400 , 1500 , 1600 , 1800 }
@@ -457,6 +456,8 @@ local function HookUnit( target , caster ,plyid )
 			FireGameEvent('show_center_message',msg)
 			AddScore(caster:GetTeam(),HEAD_SHOT_SCORE)
 			caster:EmitSound("PudgeWars.Head.Shot")
+			return
+
 		elseif target:GetTeam() == caster:GetTeam() 
 			and not tbHookByAlly[target] then
 			--DENIED
@@ -469,6 +470,7 @@ local function HookUnit( target , caster ,plyid )
 			FireGameEvent('show_center_message',msg)
 			--print("team:"..tostring(caster:GetTeam()))
 			AddScore(caster:GetTeam(),DENY_SCORE)
+			return
 
 		end
 	else
@@ -570,6 +572,9 @@ local function HookUnit( target , caster ,plyid )
 			else
 				-- ADD THE ABILITY "ability_deal_the_last_hit" AND DEAL DAMAGE WITH THE SPELL
 				dealLastHit(caster,target)
+
+				-- add hook kill score
+				AddScore(caster:GetTeam(),HOOK_KILL_SCORE)
 			end
 		end
 		
