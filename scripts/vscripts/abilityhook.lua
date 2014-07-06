@@ -63,7 +63,8 @@ tPossibleHookTargetName = {
  	"npc_dota_neutral_blue_dragonspawn_overseer",
 	"npc_dota2x_pudgewars_gold",
  	"npc_dota_necronomicon_warrior_2",
- 	"npc_dota_warlock_golem_3"
+ 	"npc_dota_warlock_golem_3",
+ 	"npc_dota2x_pudgewars_unit_bomb"
 }
 
 -- init hook parameters
@@ -83,6 +84,7 @@ function initHookData()
 	tbHookByAlly         = {}
 	tnHookTurbineBonusDamage = {}
 	tbBarrierBonusDamageTriggered = {}
+	tuBombPlanter = {}
 
 	tHookElements = tHookElements or {}
 	for i = 0,9 do
@@ -428,6 +430,12 @@ local function GetHookedUnit(caster, head , plyid)
 			for s,t in pairs (tPossibleHookTargetName) do
 				if v:GetUnitName() == t then
 					va = true
+					if t == "npc_dota2x_pudgewars_unit_bomb" and tuBombPlanter[v] == head then
+						print("catch a bomb but its created by this head, ignore")
+						va = false
+					elseif t == "npc_dota2x_pudgewars_unit_bomb" and tuBombPlanter[v] ~= head then
+						print("bomb not created by this head,catch it")
+					end
 				end
 			end
 			if ( not va ) or ( v == caster )  or
@@ -1018,6 +1026,11 @@ function PlantABomb(keys)
 
 	dummy:AddAbility("ability_dota2x_pudgewars_hook_dummy")
 	dummy:EmitSound("Hero_Techies.LandMine.Plant")
+
+	if tHookElements[nPlayerID].Head.unit then
+		tuBombPlanter[dummy] = tHookElements[nPlayerID].Head.unit
+	end
+
 	local item_bomb = ItemThinker:FindItemFuzzy(caster,"item_pudge_techies_explosive_barrel")
 	if item_bomb then
 		local itemLevel = string.sub(item_bomb,-1,-1)
