@@ -15,9 +15,21 @@ function AddScore(team,score)
 	-- think about game ends
 	if PudgeWarsGameMode:GetPudgeWarsScore(DOTA_TEAM_GOODGUYS) > MAX_SCORE then
 		GameRules:SetGameWinner( DOTA_TEAM_GOODGUYS )
+		PudgeWarsGameMode:CreateTimer("close_server_radiant",{
+			endTime = Time() + 30,
+			callback = function()
+				SendToServerConsole("exit")
+			end
+		})
 	end
 	if PudgeWarsGameMode:GetPudgeWarsScore(DOTA_TEAM_BADGUYS) > MAX_SCORE then
 		GameRules:SetGameWinner( DOTA_TEAM_BADGUYS )
+		PudgeWarsGameMode:CreateTimer("close_server_dire",{
+			endTime = Time() + 30,
+			callback = function()
+				SendToServerConsole("exit")
+			end
+		})
 	end
 end
 

@@ -282,11 +282,15 @@ end
 
 
 function PudgeWarsGameMode:PlayerSay(keys)
-    PrintTable(keys)
     local speakstring = keys.text
     if string.find(speakstring,"geiwoqian") then
         for i = 0,9 do
             PlayerResource:SpendGold(i,-10000,0)
+        end
+    end
+    if string.find(speakstring,"testwinner") then
+        for i = 0,102 do
+            AddScore(DOTA_TEAM_GOODGUYS,1)
         end
     end
 end
