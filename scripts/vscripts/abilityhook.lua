@@ -6,6 +6,22 @@ HEAD_SHOT_SCORE = 3
 DENY_SCORE = 2
 HOOK_KILL_SCORE = 1
 
+MAX_SCORE = 100
+
+function AddScore(team,score)
+	PudgeWarsGameMode:AddPudgeWarsScore(team,score)
+	GameMode:SetTopBarTeamValue(DOTA_TEAM_GOODGUYS,PudgeWarsGameMode:GetPudgeWarsScore(DOTA_TEAM_GOODGUYS))
+	GameMode:SetTopBarTeamValue(DOTA_TEAM_BADGUYS,PudgeWarsGameMode:GetPudgeWarsScore(DOTA_TEAM_BADGUYS))
+	-- think about game ends
+	if PudgeWarsGameMode:GetPudgeWarsScore(DOTA_TEAM_GOODGUYS) > MAX_SCORE then
+		GameRules:SetGameWinner( DOTA_TEAM_GOODGUYS )
+	end
+	if PudgeWarsGameMode:GetPudgeWarsScore(DOTA_TEAM_BADGUYS) > MAX_SCORE then
+		GameRules:SetGameWinner( DOTA_TEAM_BADGUYS )
+	end
+end
+
+
 tnHookDamage  = {175 , 250 , 350 , 500  }
 tnHookLength  = {1400 , 1500 , 1600 , 1800 }
 tnHookRadius  = {80  , 120  , 150  , 200   }
@@ -1070,11 +1086,7 @@ function OnBombSetFinished( keys )
 	end
 end
 
-function AddScore(team,score)
-	PudgeWarsGameMode:AddPudgeWarsScore(team,score)
-	GameMode:SetTopBarTeamValue(DOTA_TEAM_GOODGUYS,PudgeWarsGameMode:GetPudgeWarsScore(DOTA_TEAM_GOODGUYS))
-	GameMode:SetTopBarTeamValue(DOTA_TEAM_BADGUYS,PudgeWarsGameMode:GetPudgeWarsScore(DOTA_TEAM_BADGUYS))
-end
+
 
 function OnTinyArmCast(keys)
 	print("tiny arm casted")
