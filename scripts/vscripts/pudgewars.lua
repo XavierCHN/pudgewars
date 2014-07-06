@@ -122,7 +122,7 @@ function PudgeWarsGameMode:CaptureGameMode()
         GameMode:SetTopBarTeamValuesOverride ( true )
         GameMode:SetUseCustomHeroLevels ( false )
         GameRules:SetHeroMinimapIconSize( 300 )
-        GameRules:SetHeroRespawnEnabled(true)
+        GameRules:SetHeroRespawnEnabled(false)
 
         GameMode:SetContextThink("PudgewarsThink", Dynamic_Wrap( PudgeWarsGameMode, 'Think' ), 0.1 )
         print("[PudgeWars] Pudgewars game mode begin to think")
@@ -277,6 +277,12 @@ function PudgeWarsGameMode:OnEntityKilled(keys)
         if killedUnit:GetTeam() == DOTA_TEAM_BADGUYS then self:AddPudgeWarsScore(DOTA_TEAM_GOODGUYS,1) end
         GameMode:SetTopBarTeamValue(DOTA_TEAM_GOODGUYS,PudgeWarsGameMode:GetPudgeWarsScore(DOTA_TEAM_GOODGUYS))
         GameMode:SetTopBarTeamValue(DOTA_TEAM_BADGUYS,PudgeWarsGameMode:GetPudgeWarsScore(DOTA_TEAM_BADGUYS))
+        PudgeWarsGameMode:CreateTimer("respawn_hero_"..tostring(killedUnit),{
+            endTime = Time() + 3,
+            callback = function()
+                killedUnit:RespawnHero(false,false,false)
+            end
+        })
     end
 end
 
