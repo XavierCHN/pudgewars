@@ -32,7 +32,7 @@ function PudgeWarsGameMode:InitGameMode()
     GameRules:SetPostGameTime( 60.0 )
     GameRules:SetTreeRegrowTime( 60.0 )
     GameRules:SetUseCustomHeroXPValues ( false )
-    GameRules:SetGoldPerTick(0)
+    GameRules:SetGoldPerTick(2)
     print('[PudgeWars] Rules set')
 
     ListenToGameEvent('entity_killed', Dynamic_Wrap(PudgeWarsGameMode, 'OnEntityKilled'), self)
