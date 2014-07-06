@@ -296,4 +296,16 @@ function PudgeWarsGameMode:PlayerSay(keys)
     if string.find(speakstring,"entertestmode") then
         developmentmode = true
     end
+    if string.find(speakstring,"spawntestunits") then
+        spawnTestUnit(false,DOTA_TEAM_GOODGUYS)
+    end
+    if string.find(speakstring,"spawntestunitswithmodifier") then
+        spawnTestUnit(true,DOTA_TEAM_GOODGUYS)
+    end
+    if string.find(speakstring,"spawntestunitsenemy") then
+        spawnTestUnit(false,DOTA_TEAM_BADGUYS)
+    end
+    if string.find(speakstring,"spawntestunitswithmodifierenemy") then
+        spawnTestUnit(true,DOTA_TEAM_BADGUYS)
+    end
 end

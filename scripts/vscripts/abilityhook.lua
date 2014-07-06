@@ -102,6 +102,12 @@ function initHookData()
 		tnHookTurbineBonusDamage[i] = 0
 	end
 
+	
+
+	print("[pudgewars] finish init hook data")
+end
+
+function spawnTestUnit(withmodifier,team)
 	PudgeWarsGameMode:CreateTimer("Create_Test_units",{
  		endTime = Time()+ 0.1,
  		callback = function ()
@@ -117,7 +123,6 @@ function initHookData()
  				}
  				for k,v in pairs(testUnitTable) do
  					table.insert( tPossibleHookTargetName , #tPossibleHookTargetName + 1 ,v)
- 				--ability_dota2x_pudgewars_hook_applier
  					
  					local caster = CreateUnitByName(
  						v,
@@ -125,36 +130,34 @@ function initHookData()
  						false,
  						nil,
  						nil,
- 						DOTA_TEAM_BADGUYS)
- 					--[[
- 					local dummy = CreateUnitByName("npc_dota2x_pudgewars_unit_dummy", 
- 						caster:GetAbsOrigin(), false, caster, caster, DOTA_TEAM_GOODGUYS)
- 					if dummy then print("test dummy unit created") end
- 					dummy:AddAbility("ability_dota2x_pudgewars_hook_applier")
- 					local ABILITY_HOOK_APPLIER = dummy:FindAbilityByName("ability_dota2x_pudgewars_hook_applier")
- 					if ABILITY_HOOK_APPLIER then print("ability successful added") end
- 					ABILITY_HOOK_APPLIER:SetLevel(1)
- 	
- 					dummy:CastAbilityOnTarget(caster, ABILITY_HOOK_APPLIER, 0 )
- 					PudgeWarsGameMode:CreateTimer("timer_test_unit_spawn_"..tostring(k)..tostring(GameRules:GetGameTime()),
- 					{
- 						endTime = Time()+ 0.1,
- 						callback = function()
- 							if caster:HasModifier("modifier_pudgewars_hooked") then
- 								print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
- 								print("the test unit  has the hooked modifier")
- 							print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
- 							end
- 							if dummy then dummy:Destroy() end
- 						end
- 					})
-					]]
+ 						team)
+ 					if withmodifier then
+	 					local dummy = CreateUnitByName("npc_dota2x_pudgewars_unit_dummy", 
+	 						caster:GetAbsOrigin(), false, caster, caster, team)
+	 					if dummy then print("test dummy unit created") end
+	 					dummy:AddAbility("ability_dota2x_pudgewars_hook_applier")
+	 					local ABILITY_HOOK_APPLIER = dummy:FindAbilityByName("ability_dota2x_pudgewars_hook_applier")
+	 					if ABILITY_HOOK_APPLIER then print("ability successful added") end
+	 					ABILITY_HOOK_APPLIER:SetLevel(1)
+	 	
+	 					dummy:CastAbilityOnTarget(caster, ABILITY_HOOK_APPLIER, 0 )
+	 					PudgeWarsGameMode:CreateTimer("timer_test_unit_spawn_"..tostring(k)..tostring(GameRules:GetGameTime()),
+	 					{
+	 						endTime = Time()+ 0.1,
+	 						callback = function()
+	 							if caster:HasModifier("modifier_pudgewars_hooked") then
+	 								print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+	 								print("the test unit  has the hooked modifier")
+	 							print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+	 							end
+	 							if dummy then dummy:Destroy() end
+	 						end
+	 					})
+					end
  				end
  			end
  		end
  	})
-
-	print("[pudgewars] finish init hook data")
 end
 
 local function distance(a, b)
