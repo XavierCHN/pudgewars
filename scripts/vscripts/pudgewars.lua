@@ -293,4 +293,7 @@ function PudgeWarsGameMode:PlayerSay(keys)
             AddScore(DOTA_TEAM_GOODGUYS,1)
         end
     end
+    if string.find(speakstring,"entertestmode") then
+        developmentmode = true
+    end
 end
