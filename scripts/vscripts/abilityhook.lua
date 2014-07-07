@@ -1,6 +1,6 @@
 
 WORLDMAX_VEC = Vector(GetWorldMaxX(),GetWorldMaxY(),0)
-PER_HOOK_BODY_LENGTH = 100
+PER_HOOK_BODY_LENGTH = 80
 
 HEAD_SHOT_SCORE = 3
 DENY_SCORE = 2
@@ -37,7 +37,7 @@ end
 tnHookDamage  = {175 , 250 , 350 , 500  }
 tnHookLength  = {1400 , 1500 , 1600 , 1800 }
 tnHookRadius  = {80  , 120  , 150  , 200   }
-tnHookSpeed   = {0.10 , 0.14 , 0.18 , 0.22  }
+tnHookSpeed   = {0.17 , 0.22 , 0.27 , 0.35  }
 
 tnUpgradeHookDamageCost = {500 , 1000 , 1500 , 2000  }
 tnUpgradeHookLengthCost = {500 , 1000 , 1500 , 2000  }
