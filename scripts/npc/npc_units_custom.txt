@@ -318,7 +318,7 @@
 			//"particlefile"				"particles/units/heroes/hero_nyx_assassin.pcf"
 			//"particlefile"				"particles/units/heroes/hero_siren.pcf"
 			//"particlefile"				"particles/units/heroes/hero_keeper_of_the_light.pcf"
-			//"particlefile"				"particles/units/heroes/hero_wisp.pcf"
+			"particlefile"				"particles/units/heroes/hero_wisp.pcf"
 			//"particlefile"				"particles/units/heroes/hero_visage.pcf"
 			//"particlefile"				"particles/units/heroes/hero_slark.pcf"
 			//"particlefile"				"particles/units/heroes/hero_medusa.pcf"
