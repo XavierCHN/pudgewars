@@ -187,6 +187,12 @@
 
     "OnSpellStart"
     {
+      "RunScript"
+      {
+      	"Target"		"POINT"
+      	"ScriptFile"		"scripts/vscripts/abilityhook.lua"
+      	"Function"		"OnSetOutterHookDirection"
+      }
       "ApplyModifier"
       {
         "Target"    "CASTER"
