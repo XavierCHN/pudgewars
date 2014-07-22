@@ -125,7 +125,6 @@ end
 ------------------------------------------------------------------------------------------------------------
 -- create hook head
 local function CreateHookHeadForPlayer(nPlayerID , hero , heroPosition , headCreatedPosition)
-    print("createing hook head")
     -- create the head unit
     local uHead = CreateUnitByName(
          GetHookType(nPlayerID)
@@ -133,7 +132,6 @@ local function CreateHookHeadForPlayer(nPlayerID , hero , heroPosition , headCre
         ,false,hero,hero,hero:GetTeam()
     )
     if uHead then
-        print("head created")
         -- emit sound
         uHead:EmitSound("Hero_Pudge.AttackHookExtend")
         -- set the head model scale to the hook radius
@@ -157,7 +155,6 @@ end
 ------------------------------------------------------------------------------------------------------------
 -- on ability hook start
 function OnHookStart(keys)
-    print("hook start called")
     local targetPoint = keys.target_points[1]
     local caster = EntIndexToHScript(keys.caster_entindex)
     local nPlayerID = keys.unit:GetPlayerID()
@@ -379,7 +376,6 @@ local function DealLastHit( caster , target )
     local dummy = CreateUnitByName("npc_dota2x_pudgewars_unit_dummy", 
         target:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber())
     dummy:SetOwner(caster)
-    --if dummy then print("unit created") end
     dummy:AddAbility("ability_deal_the_last_hit")
     local ABILITY_LAST_HIT = dummy:FindAbilityByName("ability_deal_the_last_hit")
     ABILITY_LAST_HIT:SetLevel(1)
@@ -388,7 +384,6 @@ local function DealLastHit( caster , target )
     PudgeWarsGameMode:CreateTimer("last_hit"..tostring(dummy)..tostring(GameRules:GetGameTime()),{
         endTime = Time()+ 0.1,
         callback = function()
-            --print("removing dummy unit")
             if IsValidEntity(dummy) then dummy:Destroy() end
             if target:IsAlive() then
                 print("WARNING! THE UNIT IS STILL ALIVE")
@@ -404,11 +399,14 @@ local function ApplyHookModifier(caster , target)
     local time = GameRules:GetGameTime()
     local dummy = CreateUnitByName("npc_dota2x_pudgewars_unit_dummy", target:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber())
     dummy:AddAbility("ability_dota2x_pudgewars_hook_applier")
+    dummy:AddAbility("ability_dota2x_pudgewars_hook_dummy")
+    dummy:FindAbilityByName("ability_dota2x_pudgewars_hook_dummy"):SetLebel(1)
+    dummy:AddNewModifier(dummy,nil,"modifier_invulnerable",{})
     local ABILITY_HOOK_APPLIER = dummy:FindAbilityByName("ability_dota2x_pudgewars_hook_applier")
     ABILITY_HOOK_APPLIER:SetLevel(1)
     dummy:CastAbilityOnTarget(target, ABILITY_HOOK_APPLIER, 0 )
     PudgeWarsGameMode:CreateTimer("remove_hook_dummy"..tostring(dummy),{
-        endTime = Time() + 0.1,
+        endTime = Time(),
         callback = function()
             if IsValidEntity(dummy) then dummy:Destroy() end
         end
@@ -437,7 +435,6 @@ local function HeadShotnDeny(caster , target)
             duration = 1
             }
         FireGameEvent('show_center_message',msg)
-        --print("team:"..tostring(caster:GetTeam()))
         AddScore(caster:GetTeam(),DENY_SCORE)
         return
     end
@@ -449,6 +446,7 @@ local function DealDamage(plyid , caster , target)
 
     -- think about barathon's latern item
     local itemLatern = ItemThinker:FindItemFuzzy(caster,"item_pudge_barathrum_lantern")
+    local bonusdamage = 0
     if itemLatren then
         local itemLevel = string.sub(itemLatern,-1,-1)
         bonusdamage = (tonumber(itemLevel) * 5 + 10 / 100) * nDamageToDeal
@@ -520,12 +518,14 @@ end
 -- create a dummt to catch the unit
 local function HookUnit( target , caster ,plyid )
     target:EmitSound("Hero_Pudge.AttackHookImpact")
-    ApplyHookModifier(caster,target)
+    
     --if the unit is already hooked by someone
     if target:HasModifier("modifier_pudgewars_hooked") then
         -- think about headshot and deny
+        print("the target has the modifier head shot")
         HeadShotnDeny(caster,target)
     else
+        ApplyHookModifier(caster,target)
         -- if target is an enemy, deal damage and apply item blood seeker's claw modifier
         if target:GetTeam() ~= caster:GetTeam() then
             -- deal damage and apply item modifiers
@@ -535,11 +535,13 @@ local function HookUnit( target , caster ,plyid )
                 -- think about item blood seeker's claw
                 local itemBlood = ItemThinker:FindItemFuzzy(caster,"item_pudge_bloodseeker_claw")
                 if itemBlood then
+                    print("item blood found")
                     ApplyItemBloodModifier(caster,target,itemBlood)
                 end
                 -- think about item naix's jaw
                 local itemJaw = ItemThinker:FindItemFuzzy(caster,"item_pudge_naix_jaw")
                 if itemJaw then
+                    print("item jaw found")
                     ApplyItemNaixJawModifier(caster,nDamageDealed,itemJaw)
                 end
             end
@@ -632,7 +634,6 @@ end
 ------------------------------------------------------------------------------------------------------------
 -- main function of releasing hook
 function OnReleaseHook( keys )
-    print("function on realease hook called")
     local caster = EntIndexToHScript(keys.caster_entindex)
     local nPlayerID = caster:GetPlayerID()
     
@@ -667,7 +668,7 @@ function OnReleaseHook( keys )
         end
 
         -- if success then hook the unit
-        if tHookElements[nPlayerID].Target then
+        if not tbPlayerHookingBack[nPlayerID] and tHookElements[nPlayerID].Target then
             tbPlayerHookingBack[nPlayerID]  = true
             HookUnit( tHookElements[nPlayerID].Target , caster ,nPlayerID)
             return
@@ -729,8 +730,6 @@ end
 -- REGION: HERO ABILITY HOOKS
 ------------------------------------------------------------------------------------------------------------
 function OnUpgradeHookDamage(keys)
-    --print("upgrading damage")
-    --PrintTable(keys)
     local caster    = EntIndexToHScript(keys.caster_entindex)
     local nPlayerID = caster:GetPlayerID()
 
@@ -752,9 +751,6 @@ function OnUpgradeHookDamage(keys)
 end
 ------------------------------------------------------------------------------------------------------------
 function OnUpgradeHookRadius( keys )
-    --print("upgrading radius")
-
-    --PrintTable(keys)
     local caster    = EntIndexToHScript(keys.caster_entindex)
     local nPlayerID = caster:GetPlayerID()
     
@@ -777,9 +773,6 @@ function OnUpgradeHookRadius( keys )
 end
 ------------------------------------------------------------------------------------------------------------
 function OnUpgradeHookLength( keys )
-    --print("upgrading length")
-
-    --PrintTable(keys)
     local caster    = EntIndexToHScript(keys.caster_entindex)
     local nPlayerID = caster:GetPlayerID()
 
@@ -802,9 +795,6 @@ function OnUpgradeHookLength( keys )
 end
 ------------------------------------------------------------------------------------------------------------
 function OnUpgradeHookSpeed( keys )
-    --print("upgrading speed")
-
-    --PrintTable(keys)
     local caster    = EntIndexToHScript(keys.caster_entindex)
     local nPlayerID = caster:GetPlayerID()
 
@@ -827,8 +817,6 @@ function OnUpgradeHookSpeed( keys )
 end
 ------------------------------------------------------------------------------------------------------------
 function OnUpgradeHookDamageFinished( keys )
-
-    --PrintTable(keys)
     local caster    = EntIndexToHScript(keys.caster_entindex)
     local nPlayerID = caster:GetPlayerID()
 
@@ -848,8 +836,6 @@ function OnUpgradeHookDamageFinished( keys )
 end
 ------------------------------------------------------------------------------------------------------------
 function OnUpgradeHookRadiusFinished( keys )
-
-    --PrintTable(keys)
     local caster    = EntIndexToHScript(keys.caster_entindex)
     local nPlayerID = caster:GetPlayerID()
 
@@ -868,8 +854,6 @@ function OnUpgradeHookRadiusFinished( keys )
 end
 ------------------------------------------------------------------------------------------------------------
 function OnUpgradeHookLengthFinished( keys )
-
-    --PrintTable(keys)
     local caster    = EntIndexToHScript(keys.caster_entindex)
     local nPlayerID = caster:GetPlayerID()
 
@@ -887,8 +871,6 @@ function OnUpgradeHookLengthFinished( keys )
 end
 ------------------------------------------------------------------------------------------------------------
 function OnUpgradeHookSpeedFinished( keys )
-
-    --PrintTable(keys)
     local caster    = EntIndexToHScript(keys.caster_entindex)
     local nPlayerID = caster:GetPlayerID()
 
@@ -913,9 +895,7 @@ function OnToggleHookType( keys )
 
     local ABILITY_START_HOOK = caster:FindAbilityByName("ability_pudgewars_hook")
     if ABILITY_START_HOOK then
-        --print("remove ability")
         caster:RemoveAbility("ability_pudgewars_hook")
-        --print("add ability")
         caster:AddAbility("ability_pudgewars_set_hook")
         local ABILITY_SET_HOOK = caster:FindAbilityByName("ability_pudgewars_set_hook")
         if ABILITY_SET_HOOK then
@@ -931,13 +911,11 @@ end
 ------------------------------------------------------------------------------------------------------------
 -- REGION: ITEM BOMB
 function PlantABomb(keys)
-    --PrintTable(keys)
     local caster = EntIndexToHScript(keys.caster_entindex)
     local nPlayerID = caster:GetPlayerID()
     local returnPos = nil
 
     if tHookElements[nPlayerID].Head.unit then
-        --print("there is a head,plant bomb at head")
         returnPos = tHookElements[nPlayerID].Head.unit:GetOrigin()
     else
         returnPos = caster:GetOrigin()
@@ -963,10 +941,8 @@ function PlantABomb(keys)
     if item_bomb then
         local itemLevel = string.sub(item_bomb,-1,-1)
         print("ITEM BOMB FOUND LV :"..tostring(itemLevel))
-            --unit:AddAbility("ability_make_bomb_a_bomb")
         local ABILITY_BOMB = dummy:FindAbilityByName("ability_make_bomb_a_bomb")
         if ABILITY_BOMB then
-            --print("bomb level set")
             ABILITY:SetLevel(tonumber(itemLevel))
         else
             print("UNIT ABILITY NOT FOUND")
@@ -998,7 +974,6 @@ function ThinkAboutBombTriggered(keys)
     local triggered = false
     if #triggeredUnits > 1 then
         for k,v in pairs(triggeredUnits) do
-            --print("bomb_test_triggered by :"..v:GetUnitName())
             if v:GetUnitName() ~= "npc_dota_hero_pudge" then
                 v = nil
                 print("invcalid unit found")
@@ -1053,14 +1028,12 @@ end
 -- REGION: TINY'S ARM
 function OnTinyArmCast(keys)
     print("tiny arm casted")
-    --PrintTable(keys)
     local caster = EntIndexToHScript(keys.caster_entindex)
     local target = keys.target_entities[1]
     local itemLevel = keys.Level
     print("ITEAM TINY ARM FOUND LEVEL:"..itemLevel)
     
     local ABILITY_TOSS_APPLIER = caster:FindAbilityByName("ability_dota2x_pudgewars_toss")
-    --if ABILITY_BLOOD_APPLIER then print("ability_dota2x_pudgewars_bloodsekker_claw ability successful added") end
     ABILITY_TOSS_APPLIER:SetLevel(tonumber(itemLevel))
     caster:CastAbilityOnTarget(target, ABILITY_TOSS_APPLIER, 0 )
 
@@ -1071,7 +1044,6 @@ end
 ------------------------------------------------------------------------------------------------------------
 -- REGION: GRAPPLING HOOK
 function OnGrapplingHook(keys)
-    --PrintTable(keys)
     local point = keys.target_points[1]
     local caster = EntIndexToHScript(keys.caster_entindex)
 
@@ -1093,7 +1065,6 @@ end
 ------------------------------------------------------------------------------------------------------------
 -- REGION: BARRIER
 function OnBarrierBuilt(keys)
-    --PrintTable(keys)
     local caster = EntIndexToHScript(keys.caster_entindex)
     local casterOrigin = caster:GetOrigin()
     local barrier = keys.target_entities[1]
