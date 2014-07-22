@@ -171,14 +171,14 @@
   "ability_pudgewars_release_hook"
   {
     "ID"    "2002"
-    "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_POINT"
     "BaseClass"           "ability_datadriven"
     "AbilityTextureName"      "ability_pudgewars_release_hook"
     "MaxLevel"                "1"
 
     // Stats
     //----------------------------------------------------------------
-    "AbilityCastRange"        "700"
+    "AbilityCastRange"        "3000"
     "AbilityManaCost"         "95"
     "AbilityCastPoint"        "0.0"
     "AbilityCooldown"         "0"
