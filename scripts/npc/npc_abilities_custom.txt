@@ -796,7 +796,8 @@
     "AbilityCastRange"        "3000"
     "AbilityCastPoint"        "0.0 0.0 0.0 0.0"
     "AbilityManaCost"         "0 0 0 0 0"
-    "AbilityCooldown"         "0"
+    "AbilityCooldown"         "15"
+    "AbilitySharedCooldown"	"ability_tiny_arm"
 
     "MaxLevel"                "5"
 
