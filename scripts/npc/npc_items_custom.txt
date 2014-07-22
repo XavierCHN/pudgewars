@@ -881,7 +881,7 @@
         "BaseClass"                     "item_datadriven"
         "AbilityTextureName"            "item_pudge_tiny_arm1"
         "ItemKillable"                  "0"
-        "AbilityCooldown"               "10.0"
+        "AbilityCooldown"               "0.0"
         "ItemCost"                      "700"
         "ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
         "ItemShopTags"                  ""
@@ -893,6 +893,7 @@
         "AbilityCastPoint"              "0.0"
         "AbilityDamage"                 "0"
         "AbilityManaCost"               "0"
+        "AbilitySharedCooldown"	        "ability_tiny_arm"
 
         "MaxUpgradeLevel"               "5"
         "ItemBaseLevel"                 "1"
@@ -956,7 +957,7 @@
         "BaseClass"                     "item_datadriven"
         "AbilityTextureName"            "item_pudge_tiny_arm2"
         "ItemKillable"                  "0"
-        "AbilityCooldown"               "10.0"
+        "AbilityCooldown"               "0.0"
         "ItemCost"                      "700"
         "ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
         "ItemShopTags"                  ""
@@ -968,6 +969,7 @@
         "AbilityCastPoint"              "0.0"
         "AbilityDamage"                 "0"
         "AbilityManaCost"               "0"
+        "AbilitySharedCooldown"	        "ability_tiny_arm"
 
         "MaxUpgradeLevel"               "5"
         "ItemBaseLevel"                 "2"
@@ -1043,6 +1045,7 @@
         "AbilityCastPoint"              "0.0"
         "AbilityDamage"                 "0"
         "AbilityManaCost"               "0"
+        "AbilitySharedCooldown"	        "ability_tiny_arm"
 
         "MaxUpgradeLevel"               "5"
         "ItemBaseLevel"                 "3"
@@ -1118,6 +1121,7 @@
         "AbilityCastPoint"              "0.0"
         "AbilityDamage"                 "0"
         "AbilityManaCost"               "0"
+        "AbilitySharedCooldown"	        "ability_tiny_arm"
 
         "MaxUpgradeLevel"               "5"
         "ItemBaseLevel"                 "4"
@@ -1193,6 +1197,7 @@
         "AbilityCastPoint"              "0.0"
         "AbilityDamage"                 "0"
         "AbilityManaCost"               "0"
+        "AbilitySharedCooldown"	        "ability_tiny_arm"
 
         "MaxUpgradeLevel"               "5"
         "ItemBaseLevel"                 "5"
