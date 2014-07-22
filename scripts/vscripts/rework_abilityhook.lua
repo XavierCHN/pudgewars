@@ -203,6 +203,16 @@ function OnSettingHookDirection(keys)
     head:SetForwardVector(casterFV)
 end
 ------------------------------------------------------------------------------------------------------------
+-- set the head forward vector and release it
+function OnSetOutterHookDirection(keys)
+    local nPlayerID = caster:GetPlayerID()
+    local head = tHookElements[nPlayerID].Head.unit
+    local targetPoint = keys.target_points[1]
+    
+    local diffVec = targetPoint - head:GetOrigin()
+    head:SetForwardVector(diffVec:Normalized())
+end
+------------------------------------------------------------------------------------------------------------
 -- if timeup then the hook disappear
 function OnSettingHookDirectionTimeUp(keys)
     local caster = EntIndexToHScript(keys.caster_entindex)
